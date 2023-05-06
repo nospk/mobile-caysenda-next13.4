@@ -1,0 +1,24 @@
+.product_item{
+    @apply flex flex-row;
+}
+.top_1{
+    @apply absolute z-10 text-white py-1 text-center rounded-full text-xs w-4 bg-red-500;
+}
+.top_2{
+    @apply absolute z-10 text-white py-1 text-center rounded-full text-xs w-4 bg-orange-400;
+}
+.top_3{
+    @apply absolute z-10 text-white py-1 text-center rounded-full text-xs w-4 bg-yellow-400;
+}
+.top_other{
+    @apply absolute z-10 text-white py-1 text-center rounded-full text-xs w-4 bg-gray-400;
+}
+.product_image{
+    @apply relative h-[15vw] w-[15vw];
+}
+.product_info{
+    @apply grow p-2 space-y-1.5;
+}
+.product_sold{
+    @apply text-gray-400;
+}

@@ -1,0 +1,19 @@
+.sticky_out_wrapper {
+    @apply sticky top-0 z-10 bg-[#f8f8f8] p-[2.4vw] space-y-1;
+}
+
+.sticky_wrapper {
+    @apply border-2 border-solid border-[#ed471f] rounded-lg bg-white flex justify-center items-center h-11 max-w-full;
+}
+
+.search_icon {
+    @apply flex-1 max-w-40px relative float-right ;
+}
+
+.search_text {
+    @apply flex-1 px-2 border-l-2 relative w-full outline-none whitespace-pre-wrap bg-white text-[#606060];
+}
+
+.search_button {
+    @apply flex-1 font-bold relative max-w-60px float-left text-[#ed471f];
+}

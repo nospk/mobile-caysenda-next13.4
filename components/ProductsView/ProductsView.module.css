@@ -1,0 +1,3 @@
+.products {
+    @apply flex flex-row gap-x-[2.4vw] justify-center p-[2.4vw] box-border;
+}

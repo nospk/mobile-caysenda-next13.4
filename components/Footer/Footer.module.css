@@ -1,0 +1,15 @@
+.footer{
+    @apply fixed flex flex-row bottom-0 left-0 z-10 text-center items-start justify-between text-[#2a201e] bg-white bg-opacity-95 w-full px-[11.06667vw] text-sm h-[14.6667vw] shrink-0;
+}
+.tab_item{
+    @apply flex flex-col box-border h-[10.13333vw] justify-center items-center mt-[1.86667vw] shrink-0
+}
+.img_menu {
+    @apply h-[5.33333vw] w-[5.33333vw] align-middle relative block;
+}
+.img_home {
+    @apply h-[9.86667vw] w-[9.86667vw] align-middle relative block;
+}
+.text_menu{
+    @apply text-[2.93333vw] mt-[2vw] leading-[2.93333vw] text-[#222];
+}

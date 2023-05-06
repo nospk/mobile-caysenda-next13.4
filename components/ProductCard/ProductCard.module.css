@@ -1,0 +1,30 @@
+.product_card {
+  @apply flex-1 mb-[2.4vw];
+}
+
+.image_product {
+  @apply relative rounded-lg w-46vw h-46vw;
+}
+
+.image_square {
+  @apply rounded-t-lg aspect-square;
+}
+
+.price_product {
+  @apply text-[#ee0000] text-xl font-bold;
+}
+
+.info_product {
+  @apply flex flex-col bg-white rounded-b-lg p-[2.4vw] w-46vw;
+}
+
+.sold {
+  @apply pt-2 ;
+}
+
+.add_cart {
+  @apply border-[1px] rounded-lg text-[#f66d09] font-bold border-[#f3bd9936] py-2;
+}
+.name_product{
+  @apply text-[#0062bd] font-bold;
+}

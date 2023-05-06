@@ -1,0 +1,23 @@
+.search_card {
+	@apply grid grid-cols-1 mb-[2.4vw] w-[46.4vw] bg-white rounded-xl text-lg p-[2.4vw] justify-center items-center text-center;
+}
+
+.span {
+	@apply bg-gray-100 rounded-xl mb-2;
+}
+
+.sticky_out_wrapper {
+	@apply sticky top-0 z-10 bg-[#f8f8f8];
+}
+
+.sticky_wrapper {
+	@apply rounded-lg bg-white flex justify-center items-center h-11 max-w-full;
+}
+
+.search_icon {
+	@apply flex-1 max-w-40px relative float-right;
+}
+
+.search_text {
+	@apply flex-1 text-lg relative w-full outline-none bg-white text-[#606060] truncate;
+}

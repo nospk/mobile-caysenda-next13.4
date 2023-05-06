@@ -1,0 +1,6 @@
+.icon {
+	@apply ml-auto mr-auto;
+}
+.icon_cricle {
+	@apply ml-auto mr-auto rounded-full aspect-square;
+}
