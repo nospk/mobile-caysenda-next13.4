@@ -1,4 +1,5 @@
-const DOMAIN = "https://caysenda.vn";
+import getBaseUrl from "@/lib/getBaseUrl";
+const DOMAIN = getBaseUrl();
 
 const GET = async ({
   path,

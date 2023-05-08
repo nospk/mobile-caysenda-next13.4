@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import Image from "next/image";
 import styles from "./ProductCard.module.css";
-import { numberToString } from "@/lib/formatNumberPrice";
+import numberToString from "@/lib/formatNumberPrice";
 import type { Product } from "@/types/product";
 type ProductCard = Product & {
   priority?: boolean;
@@ -32,10 +32,11 @@ const ProductCard: FC<ProductCard> = (props) => {
         <Image
           className={styles.image_square}
           src={props.image}
-          alt="Picture of the author"
+          alt={props.name}
           sizes="100vw"
-          fill
-          style={{ objectFit: "cover" }}
+          width={0}
+          height={0}
+          style={{ width: "100%", height: "100%" }}
           placeholder="blur"
           blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer)}`}
           priority={props.priority ? true : false}

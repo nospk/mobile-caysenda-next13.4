@@ -1,10 +1,10 @@
 import Menu from "@/components/Menu";
 import Flex2Col from "@/components/Flex2Col";
-import SpanHistory from "@/components/SpanHistory";
+import KeyWord from "@/components/KeyWord";
 import StickSearch from "@/components/StickSearch";
 import styles from "./page.module.css";
 import ProductsService from "@/services/Products.service";
-import SliderCard from "@/components/SliderCard";
+import BannerCard from "@/components/BannerCard";
 import ProductCard from "@/components/ProductCard";
 import SearchCardCol from "@/components/SearchCard";
 
@@ -32,8 +32,8 @@ export default async function Page() {
     "Quần áo trẻ 3",
     "Quần áo trẻ 4",
   ];
-  let listHistory = textInputs.map((textInput) => (
-    <SpanHistory key={textInput} textInput={textInput} />
+  let listKeyWord = textInputs.map((textInput: string) => (
+    <KeyWord key={textInput} keyword={textInput} />
   ));
   const listslideBanner = products.slideBanners.map((slideBanner: any) => {
     return {
@@ -72,13 +72,13 @@ export default async function Page() {
       />
     )
   );
-  listLeft.unshift(<SliderCard key={30} banner={listslideBanner} />);
+  listLeft.unshift(<BannerCard key={30} banner={listslideBanner} />);
   // prettier-ignore
   listRight.splice(3, 0,<SearchCardCol key={31} keywords={["Quần Áo", "Đồ trẻ em", "Túi xách", "Quần jean", "Áo Thun", "Túi xách hình con thỏ", "Tai nghe bluetooth", "Điện thoại Iphone"]}/>)
   return (
     <>
       <StickSearch />
-      <div className={styles.search_history}>{listHistory}</div>
+      <div className={styles.search_history}>{listKeyWord}</div>
       <Menu showCategory={true} />
       {/* Show Products */}
       <Flex2Col>
