@@ -1,20 +1,14 @@
-import API from '@/lib/api'
-import type { Product } from '@/types/product'
-const env = process.env.NODE_ENV
+import API from "@/lib/api";
+import type { Product } from "@/types/product";
+import getBaseUrl from "@/lib/getBaseUrl";
 
-let link: string = ''
-if (env == 'development') {
-  link = 'http://localhost:3000/api/product'
-} else if (env == 'production') {
-  link = 'https://test.caysenda.vn/api/product'
-}
 const getListProduct = async () => {
   let products: Product[] = await API.GETOTHER({
-    path: link
-  })
-  return products
-}
+    path: `${getBaseUrl() + "/api/product"}`,
+  });
+  return products;
+};
 const ProductService = {
-  getListProduct
-}
-export default ProductService
+  getListProduct,
+};
+export default ProductService;
