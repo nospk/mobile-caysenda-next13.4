@@ -1,9 +1,12 @@
 .menu {
-	@apply flex flex-row text-center pt-2 h-20 mx-[2.4vw] text-[#606060];
+  @apply flex flex-row text-center mt-[2vw] h-[11.13333vw] mx-[2.4vw] text-[#606060] justify-between;
 }
 .menu_item {
-	@apply flex-1 text-sm;
+  @apply flex flex-col text-sm justify-center items-center;
 }
 .menu_icon {
-	@apply flex items-center justify-center;
+  @apply flex items-center justify-center h-[7.33333vw] w-[7.33333vw];
+}
+.menu_text {
+  @apply text-[2.93333vw] mt-[1vw] leading-[2.93333vw];
 }
