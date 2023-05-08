@@ -1,0 +1,23 @@
+.sticky_out_wrapper {
+	@apply sticky top-0 z-10 bg-[#f8f8f8] mx-2.5 py-2 space-y-1;
+}
+
+.sticky_wrapper {
+	@apply flex justify-center text-center items-center h-[9.33333vw] max-w-full;
+}
+
+.avatar {
+	@apply flex-1 relative float-right max-w-[9vw];
+}
+.img {
+	@apply border-2 rounded-full border-black ml-auto mr-auto w-[6vw] h-[6vw];
+}
+.wrapper_icon {
+	@apply flex-1 relative float-left max-w-[9vw];
+}
+.icon {
+	@apply ml-auto mr-auto w-[6vw] h-[6vw];
+}
+.title {
+	@apply grow text-[4vw] font-semibold;
+}

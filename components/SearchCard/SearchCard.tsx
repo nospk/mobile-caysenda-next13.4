@@ -17,8 +17,8 @@ const MenuCardCol: FC<Search> = props => {
   return (
     <div className={styles.search_card}>
       <div className={styles.sticky_wrapper}>
-        <span className={styles.search_icon}>
-          <BsSearch className='ml-auto mr-auto' />
+        <span className={styles.wapper_icon}>
+          <BsSearch className={styles.icon} />
         </span>
         <span className={styles.search_text}>Tìm Kiếm Nhiều Nhất</span>
       </div>

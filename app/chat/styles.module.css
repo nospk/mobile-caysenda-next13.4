@@ -1,0 +1,42 @@
+.section {
+	@apply flex justify-center bg-white rounded-lg p-10 shadow-md h-[95vh];
+}
+.info {
+	@apply flex flex-col;
+}
+.profile {
+	@apply flex-row flex justify-between mb-10;
+}
+.avatar {
+	@apply inline-block flex-shrink-0 h-20 w-20 mr-6 relative top-0;
+}
+.img {
+	@apply object-cover align-middle rounded-full;
+}
+.business {
+	@apply items-center flex-1 justify-center;
+}
+.business_name {
+	@apply text-2xl leading-tight font-bold pb-2 items-center flex;
+}
+.business_label {
+	@apply bg-[#e0f4fe] rounded text-[#1092bd] text-xs font-semibold leading-normal ml-2 px-2;
+}
+.button {
+	@apply h-12 w-60 bg-[#0068ff] items-center rounded-lg text-white inline-flex font-medium justify-center no-underline;
+}
+.business_type {
+	@apply text-base leading-snug mb-4;
+}
+.title {
+	@apply text-xl leading-loose font-bold;
+}
+.profile__list_item {
+	@apply items-center flex text-base leading-snug mb-2;
+}
+.svg {
+	@apply flex-shrink-0 mr-3 text-xl;
+}
+.mail {
+	@apply text-[#0068ff];
+}

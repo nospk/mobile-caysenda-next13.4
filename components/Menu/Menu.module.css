@@ -1,12 +1,12 @@
 .menu {
-  @apply flex flex-row text-center mt-[2vw] h-[11.13333vw] mx-[2.4vw] text-[#606060] justify-between;
+  @apply flex flex-row text-center mt-[2.4vw] h-[21.6vw] text-[#606060] justify-center items-center;
 }
 .menu_item {
-  @apply flex flex-col text-sm justify-center items-center;
+  @apply flex flex-col text-sm justify-center items-center w-[18.66667vw] h-[21.6vw] text-center cursor-pointer;
 }
 .menu_icon {
-  @apply flex items-center justify-center h-[7.33333vw] w-[7.33333vw];
+  @apply flex items-center justify-center h-[13.33333vw] w-[13.33333vw];
 }
 .menu_text {
-  @apply text-[2.93333vw] mt-[1vw] leading-[2.93333vw];
+  @apply flex text-[4vw] leading-[5.6vw];
 }

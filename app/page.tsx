@@ -9,6 +9,7 @@ import ProductCard from "@/components/ProductCard";
 import SearchCardCol from "@/components/SearchCard";
 
 import type { Product } from "@/types/product";
+export const dynamic = 'force-dynamic'
 async function getProducts() {
   let listProduct = await ProductsService.getListProduct();
   const productsLefts = listProduct.slice(0, 10);

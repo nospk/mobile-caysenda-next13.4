@@ -11,7 +11,7 @@
 }
 
 .price_product {
-  @apply text-[#ee0000] text-xl font-bold;
+  @apply text-[#ee0000] text-[4.2667vw] leading-[4.2667vw] font-bold mt-[1.6vw];
 }
 
 .info_product {
@@ -19,12 +19,12 @@
 }
 
 .sold {
-  @apply pt-2 ;
+  @apply mt-[1vw] text-[3.2vw];
 }
 
 .add_cart {
-  @apply border-[1px] rounded-lg text-[#f66d09] font-bold border-[#f3bd9936] py-2;
+  @apply border-[1px] rounded-lg text-[#f66d09] font-bold border-[#f3bd9936] p-0 h-[7vw] text-[4vw] box-border;
 }
 .name_product{
-  @apply text-[#0062bd] font-bold;
+  @apply text-[#0062bd] font-bold text-[3.7333vw] leading-[4.2667vw];
 }

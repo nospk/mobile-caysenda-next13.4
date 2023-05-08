@@ -9,8 +9,8 @@ const StickySearch: FC = () => {
   return (
     <div className={styles.sticky_out_wrapper}>
       <div className={styles.sticky_wrapper}>
-        <span className={styles.search_icon}>
-          <BiBarcodeReader size={25} className="ml-auto mr-auto" />
+        <span className={styles.search_wapper_icon}>
+          <BiBarcodeReader className={styles.search_icon} />
         </span>
         <span
           className={styles.search_text}
