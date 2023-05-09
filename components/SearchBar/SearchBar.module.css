@@ -1,0 +1,43 @@
+.sticky_out_wrapper {
+    @apply flex flex-row sticky top-0 z-10 bg-[#f8f8f8] items-center p-[2.4vw];
+}
+
+.sticky_wrapper {
+    @apply grow border-2 border-solid border-[#ed471f] rounded-lg bg-white flex justify-center items-center h-11 max-w-full;
+}
+
+.search_icon {
+    @apply flex-1 px-2 max-w-40px relative float-right;
+}
+
+.search_text {
+    @apply flex-1 px-1 border-l-2 relative w-full outline-none whitespace-pre-wrap bg-white text-[#606060];
+}
+
+.search_button {
+    @apply flex-1 relative max-w-[50px] font-light h-full float-left bg-[#ed471f] text-white p-1;
+}
+.bar_back{
+    @apply flex;
+}
+.search_select{
+    @apply px-1 inline-flex justify-center items-center w-[100px];
+}
+.icon_center{
+    @apply ml-auto mr-auto;
+}
+.dropdown{
+    @apply relative inline-block;
+}
+.dropdown_wapper{
+    @apply absolute mt-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 w-full text-gray-700;
+}
+.dropdown_select{
+    @apply py-1 divide-y divide-solid;
+}
+.active{
+    @apply block px-1 py-2 text-sm  text-red-700 hover:bg-blue-500 hover:text-white;
+}
+.dropdown_select_item{
+    @apply block px-1 py-2 text-sm hover:bg-blue-500 hover:text-white;
+}

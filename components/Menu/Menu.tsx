@@ -52,12 +52,12 @@ const Menu: FC<{ showCategory: boolean }> = ({ showCategory }) => {
             </IconWithLabel>
           </div>
         </Link>
-        {process.env.NEXT_PUBLIC_PRODUCT_AVAILABILITY && (
-          <Link href="/product-availability">
+        {process.env.NEXT_PUBLIC_PRODUCT_AVAILABLE && (
+          <Link href="/product-available">
             <div className={styles.menu_item}>
               <IconWithLabel
-                src="/iconProductAvailability.png"
-                alt="ProductAvailability"
+                src="/iconProductAvailable.png"
+                alt="ProductAvailable"
                 className={styles.menu_icon}
               >
                 <span className={styles.menu_text}>Phân Loại</span>

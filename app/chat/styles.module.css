@@ -1,5 +1,5 @@
 .section {
-	@apply flex justify-center bg-white rounded-lg p-10 shadow-md h-[95vh];
+	@apply flex justify-center bg-white rounded-lg p-[10vw] shadow-md h-[calc(100vh-14.6667vw)];
 }
 .info {
 	@apply flex flex-col;
