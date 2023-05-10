@@ -1,5 +1,5 @@
 import LayoutHome from '@/components/Layouts/home';
 
-export default function Template({ children }: { children: React.ReactNode }) {
+export default function Layout({ children }: { children: React.ReactNode }) {
 	return <LayoutHome> {children}</LayoutHome>;
 }

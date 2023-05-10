@@ -2,7 +2,7 @@
 import SearchBar from '@/components/SearchBar';
 import styles from './styles.module.css';
 import { useEffect, useState } from 'react';
-const Template = ({ children }: { children: React.ReactNode }) => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
 	let [select, setSelect] = useState<boolean>(true);
 	useEffect(() => {}, [select]);
 	return (
@@ -31,4 +31,4 @@ const Template = ({ children }: { children: React.ReactNode }) => {
 	);
 };
 
-export default Template;
+export default Layout;

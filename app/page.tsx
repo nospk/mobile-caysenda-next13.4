@@ -1,37 +1,91 @@
 import Menu from '@/components/Menu';
-
 import KeyWord from '@/components/KeyWord';
 import StickSearch from '@/components/StickSearch';
 import styles from './page.module.css';
-import ProductView from '@/components/FlexTwoColView/FlexTwoColView';
+import FlexTwoColView from '@/components/FlexTwoColView';
 import Loading from '@/components/Loading';
 import { Suspense } from 'react';
+import ProductService from '@/services/Product.service';
+import KeyWordService from '@/services/KeyWord.service';
+import BannerService from '@/services/Banner.service';
+import ProductCard from '@/components/ProductCard';
 
-export const dynamic = 'force-dynamic';
-
+import type { Product } from '@/types/product';
+import BannerCard from '@/components/BannerCard';
+import KeyWordCard from '@/components/KeyWordCard';
+//export const dynamic = 'force-dynamic';
+import TemplateHome from '@/components/Layouts/home';
 export default async function Page() {
-	const textInputs = [
-		'Áo Nữ',
-		'Thời trang nam nữ',
-		'ốp điện thoại',
-		'Quần áo trẻ 1',
-		'Quần áo trẻ 2',
-		'Quần áo trẻ 3',
-		'Quần áo trẻ 4',
-	];
-	let listKeyWord = textInputs.map((textInput: string) => (
-		<KeyWord key={textInput} keyword={textInput} />
+	const productsData = ProductService.getProductData();
+	const keyWordsTopData = KeyWordService.getKeyWordTopData();
+	const keyWordsCardData = KeyWordService.getKeyWordCardData();
+	const bannersCardData = BannerService.getBannerCardData();
+
+	const [products, keyWordsTop, bannersCard, keyWordsCard] = await Promise.all([
+		productsData,
+		keyWordsTopData,
+		bannersCardData,
+		keyWordsCardData,
+	]);
+	let keyWordTopCard = keyWordsTop.map((keyword: string) => (
+		<KeyWord key={keyword} keyword={keyword} />
 	));
 
+	const productsLefts = products.slice(0, 10);
+	const productsRights = products.slice(10);
+	const listLeft = productsLefts.map((product: Product, index: number) => (
+		<ProductCard
+			key={product.name}
+			name={product.name}
+			price={product.price}
+			sold={product.sold}
+			image={product.image}
+			unit={product.unit}
+			data={product.data}
+			link={product.link}
+			priority={index == 0 ? true : false}
+		/>
+	));
+	const listRight = productsRights.map((product: Product, index: number) => (
+		<ProductCard
+			key={product.name}
+			name={product.name}
+			price={product.price}
+			sold={product.sold}
+			image={product.image}
+			unit={product.unit}
+			data={product.data}
+			link={product.link}
+			priority={index < 2 ? true : false}
+		/>
+	));
+
+	const listslideBanner = bannersCard.map((banner: string) => {
+		return {
+			src: banner,
+			alt: 'Slide Card',
+			link: '',
+		};
+	});
+
+	const bannerCard = <BannerCard key="banner" banner={listslideBanner} />;
+	const keyWordCard = <KeyWordCard key="keyword" keywords={keyWordsCard} />;
 	return (
 		<>
-			<StickSearch />
-			<div className={styles.search_history}>{listKeyWord}</div>
-			<Menu showCategory={true} />
-			{/* Show Products */}
-			<Suspense fallback={<Loading />}>
-				<ProductView showBanner={true} showKeyword={true} getData="index" />
-			</Suspense>
+			<TemplateHome>
+				<StickSearch />
+				<div className={styles.search_history}>{keyWordTopCard}</div>
+				<Menu showCategory={true} />
+				{/* Show Products */}
+				<Suspense fallback={<Loading />}>
+					<FlexTwoColView
+						keywordCard={keyWordCard}
+						bannerCard={bannerCard}
+						listLeft={listLeft}
+						listRight={listRight}
+					/>
+				</Suspense>
+			</TemplateHome>
 		</>
 	);
 }

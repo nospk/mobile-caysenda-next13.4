@@ -3,5 +3,5 @@
 }
 
 .image{
-  @apply h-[450px] relative;
+  @apply h-[450px] relative ;
 }

@@ -1,3 +1,4 @@
+"use client"
 import { FC, useState, useRef, useEffect } from 'react';
 import { MdArrowBackIosNew, MdOutlineKeyboardArrowDown } from 'react-icons/md';
 import styles from './SearchBar.module.css';

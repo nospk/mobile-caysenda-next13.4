@@ -1,0 +1,12 @@
+.offer_bar{
+    @apply box-border flex flex-row gap-[1.1vw];
+}
+.offer_card{
+    @apply relative box-border h-[31vw] w-[31vw];
+}
+.image_offer{
+    @apply rounded-lg;
+}
+.product_offer{
+    @apply absolute text-white flex items-center justify-center w-full bottom-0 h-14 bg-gradient-to-t from-black rounded-b-lg;
+}
