@@ -13,7 +13,6 @@ export default function Layout(props: {
 			{props.KeyWord}
 			{props.Menu}
 			{props.children}
-			{props.Product}
 		</LayoutHome>
 	);
 }

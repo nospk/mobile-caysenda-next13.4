@@ -1,12 +1,8 @@
 import FlexTwoColView from '@/components/FlexTwoColView/FlexTwoColView';
 
-import Loading from '@/components/Loading';
 import ProductCard from '@/components/ProductCard';
 import ProductService from '@/services/Product.service';
 import { Product } from '@/types/product';
-import { Suspense } from 'react';
-
-
 
 export default async function Page() {
 	const products = await ProductService.getProductData();
@@ -40,10 +36,8 @@ export default async function Page() {
 	));
 
 	return (
-		<>	
-			<Suspense fallback={<Loading />}>
-				<FlexTwoColView listLeft={listLeft} listRight={listRight} />
-			</Suspense>
+		<>
+			<FlexTwoColView listLeft={listLeft} listRight={listRight} />
 		</>
 	);
 }

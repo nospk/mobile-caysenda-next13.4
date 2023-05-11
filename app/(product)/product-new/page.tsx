@@ -1,7 +1,6 @@
 import BannerCard from '@/components/BannerCard';
 import FlexTwoColView from '@/components/FlexTwoColView/FlexTwoColView';
 import KeyWordCard from '@/components/KeyWordCard';
-import Loading from '@/components/Loading';
 import ProductCard from '@/components/ProductCard';
 import BannerService from '@/services/Banner.service';
 import KeyWordService from '@/services/KeyWord.service';
@@ -59,14 +58,12 @@ export default async function Page() {
 	const keyWordCard = <KeyWordCard key="keyword" keywords={keyWordsCard} />;
 	return (
 		<>
-			<Suspense fallback={<Loading />}>
-				<FlexTwoColView
-					keywordCard={keyWordCard}
-					bannerCard={bannerCard}
-					listLeft={listLeft}
-					listRight={listRight}
-				/>
-			</Suspense>
+			<FlexTwoColView
+				keywordCard={keyWordCard}
+				bannerCard={bannerCard}
+				listLeft={listLeft}
+				listRight={listRight}
+			/>
 		</>
 	);
 }

@@ -1,7 +1,7 @@
 'use client';
 import FlexTwoColView from '@/components/FlexTwoColView';
-import Loading from '@/components/Loading';
-import { Suspense, useCallback, useEffect, useState } from 'react';
+
+import { useCallback, useEffect, useState } from 'react';
 import ProductService from '@/services/Product.service';
 import KeyWordService from '@/services/KeyWord.service';
 import BannerService from '@/services/Banner.service';
@@ -37,12 +37,11 @@ export default function Page() {
 	// const bannerCard = <BannerCard key="banner" banner={listslideBanner} />;
 	// const keyWordCard = <KeyWordCard key="keyword" keywords={keyWordsCard} />;
 	const [change, setChange] = useState<boolean>(false);
-	
+
 	const handleNavigation = useCallback((e: Event, change: boolean) => {
 		const window = e.currentTarget as Window;
 
 		if (window.scrollY > 200 && change == false) {
-			setCount(3);
 			setChange(true);
 		}
 	}, []);
@@ -53,9 +52,9 @@ export default function Page() {
 				return res.json();
 			})
 			.then((products) => {
-				const productsLefts = products.slice(Number(0 * count),Number(2 * count));
-				const productsRights = products.slice(Number(3 * count), Number(5 * count));
-				let listLeft = productsLefts.map((product: Product, index: number) => (
+				const productsLefts = products.slice(0, 2);
+				const productsRights = products.slice(3, 5);
+				const left = productsLefts.map((product: Product, index: number) => (
 					<ProductCard
 						key={product.name}
 						name={product.name}
@@ -68,7 +67,7 @@ export default function Page() {
 						priority={index == 0 ? true : false}
 					/>
 				));
-				let listRight = productsRights.map((product: Product, index: number) => (
+				const right = productsRights.map((product: Product, index: number) => (
 					<ProductCard
 						key={product.name}
 						name={product.name}
@@ -81,10 +80,16 @@ export default function Page() {
 						priority={index < 2 ? true : false}
 					/>
 				));
-				setlistLeft((prevState) => [...prevState, listLeft]);
-				setlistRight((prevState) => [...prevState, listRight]);
+				if (count != 1) {
+					setlistLeft((state) => [...state, left]);
+
+					setlistRight((state) => [...state, right]);
+				}
+
+				setCount(2);
 			});
-	}, [change]);
+	}, [change, count]);
+
 	useEffect(() => {
 		window.addEventListener('scroll', (event: Event) => handleNavigation(event, change));
 
@@ -94,15 +99,11 @@ export default function Page() {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [handleNavigation]);
 	return (
-		<>
-			<Suspense fallback={<Loading />}>
-				<FlexTwoColView
-					//keywordCard={keyWordCard}
-					//bannerCard={bannerCard}
-					listLeft={listLeft}
-					listRight={listRight}
-				/>
-			</Suspense>
-		</>
+		<FlexTwoColView
+			//keywordCard={keyWordCard}
+			//bannerCard={bannerCard}
+			listLeft={listLeft}
+			listRight={listRight}
+		/>
 	);
 }

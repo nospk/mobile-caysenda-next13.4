@@ -2,8 +2,6 @@ import styles from './styles.module.css';
 import type { Video } from '@/types/video';
 import { AiOutlineSearch, AiOutlineUser } from 'react-icons/ai';
 import Link from 'next/link';
-import { Suspense } from 'react';
-import Loading from '@/components/Loading';
 import FlexTwoColView from '@/components/FlexTwoColView';
 import VideoCard from '@/components/VideoCard';
 import BannerCard from '@/components/BannerCard';
@@ -25,10 +23,7 @@ export default async function Page() {
 	const videosData = getVideo();
 	const bannersCardData = getBannerCard();
 
-	const [videos, bannersCard] = await Promise.all([
-		videosData,
-		bannersCardData,
-	]);
+	const [videos, bannersCard] = await Promise.all([videosData, bannersCardData]);
 	const videosLefts = videos.slice(0, 10);
 	const videossRights = videos.slice(10);
 
@@ -74,9 +69,8 @@ export default async function Page() {
 					</div>
 				</div>
 			</div>
-			<Suspense fallback={<Loading />}>
-				<FlexTwoColView listLeft={listLeft} listRight={listRight} bannerCard={bannerCard}/>
-			</Suspense>
+
+			<FlexTwoColView listLeft={listLeft} listRight={listRight} bannerCard={bannerCard} />
 		</>
 	);
 }
