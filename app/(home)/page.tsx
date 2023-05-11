@@ -60,14 +60,12 @@ export default async function Page() {
 
 	const bannerCard = <BannerCard key="banner" banner={listslideBanner} />;
 	const keyWordCard = <KeyWordCard key="keyword" keywords={keyWordsCard} />;
+	listLeft.unshift(bannerCard);
+	// prettier-ignore
+	listRight.splice(3, 0, keyWordCard)
 	return (
 		<>
-			<FlexTwoColView
-				keywordCard={keyWordCard}
-				bannerCard={bannerCard}
-				listLeft={listLeft}
-				listRight={listRight}
-			/>
+			<FlexTwoColView listLeft={listLeft} listRight={listRight} />
 		</>
 	);
 }
