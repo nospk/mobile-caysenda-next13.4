@@ -6,9 +6,8 @@ import KeyWordService from '@/services/KeyWord.service';
 //export const dynamic = 'force-dynamic';
 
 export default async function Page() {
-	const keyWordsTop = await KeyWordService.getKeyWordTopData();
-
-	let keyWordTopCard = keyWordsTop.map((keyword: string) => (
+	const keywords = await KeyWordService.getKeyWordTopData();
+	let keyWordTopCard = keywords.map((keyword: string) => (
 		<KeyWord key={keyword} keyword={keyword} />
 	));
 

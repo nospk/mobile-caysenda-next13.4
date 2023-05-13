@@ -1,12 +1,13 @@
 import type { FC } from 'react';
 import styles from './KeyWordCard.module.css';
 import { BsSearch } from 'react-icons/bs';
+import React from 'react';
 
 interface Search {
 	keywords: string[];
 }
 
-const KeyWordCard: FC<Search> = (props) => {
+const KeyWordCard: FC<Search> = React.memo(function Card(props) {
 	const list = props.keywords.map((keyword) => {
 		return (
 			<span key={keyword} className={styles.span}>
@@ -25,6 +26,6 @@ const KeyWordCard: FC<Search> = (props) => {
 			{list}
 		</div>
 	);
-};
+});
 
 export default KeyWordCard;

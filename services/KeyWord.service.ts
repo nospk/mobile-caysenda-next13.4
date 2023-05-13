@@ -1,5 +1,5 @@
 import API from '@/lib/api'
-import type { Product } from '@/types/product'
+import type { KeyWord } from '@/types/keyword'
 import getBaseUrl from '@/lib/getBaseUrl'
 
 const getKeyWordTopData = async () => {
@@ -8,10 +8,7 @@ const getKeyWordTopData = async () => {
     'Thời trang nam nữ',
     'ốp điện thoại',
     'Quần áo trẻ 1',
-    'Quần áo trẻ 2',
-    'Quần áo trẻ 3',
-    'Quần áo trẻ 4'
-  ]
+  ] as KeyWord
 
   return keywords
 }
@@ -25,7 +22,7 @@ const getKeyWordCardData = async () => {
     'Túi xách hình con thỏ',
     'Tai nghe bluetooth',
     'Điện thoại Iphone'
-  ]
+  ] as KeyWord
 
   return keywords
 }

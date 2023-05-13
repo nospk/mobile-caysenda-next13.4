@@ -7,17 +7,15 @@ import 'swiper/swiper-bundle.min.css';
 import 'swiper/swiper.min.css';
 import Image from 'next/image';
 import Link from 'next/link';
-interface Banner {
-	src: string;
-	alt: string;
-	link: string;
-}
+import React from 'react';
+import type { Banner } from '@/types/banner';
 interface Props {
 	banner: Banner[];
 }
+
 SwiperCore.use([Pagination, Autoplay]);
 
-const BannerCard: FC<Props> = (props) => {
+const BannerCard: FC<Props> = React.memo(function Card(props) {
 	return (
 		<div className={styles.silder}>
 			<Swiper
@@ -31,13 +29,13 @@ const BannerCard: FC<Props> = (props) => {
 			>
 				{props.banner.map((slide, index) => (
 					<SwiperSlide key={'slide' + index}>
-						<Link href="/product">
+						<Link href={slide.link}>
 							<div className={styles.image}>
 								<Image
 									fill
 									className="rounded-xl"
-									src={slide.src}
-									alt={slide.alt}
+									src={slide.img}
+									alt="Slide Card"
 									sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 									style={{ objectFit: 'cover' }}
 								/>
@@ -48,5 +46,5 @@ const BannerCard: FC<Props> = (props) => {
 			</Swiper>
 		</div>
 	);
-};
+});
 export default BannerCard;
