@@ -12,12 +12,43 @@ import React from 'react';
 import useScroll from '@/components/hook/useScroll';
 import VideoCard from '../VideoCard';
 type Video = { type: 'video'; data: {} };
+type View = Banner | KeyWord | Product | Video;
 interface Props {
-	banners?: Banner[];
-	keyWords?: KeyWord[];
+	banners?: Banner;
+	keyWords?: KeyWord;
 	data: Product[] | Video[];
 }
-
+const renderView = (data: View[]) => {
+	let view = data.map((item: View, index: number) => {
+		if (item.type === 'banner') return <BannerCard key="banner" banner={item.data} />;
+		if (item.type === 'product')
+			return (
+				<ProductCard
+					key={item.data.name}
+					name={item.data.name}
+					price={item.data.price}
+					sold={item.data.sold}
+					image={item.data.image}
+					unit={item.data.unit}
+					product={item.data.product}
+					link={item.data.link}
+					priority={index == 0 ? true : false}
+				/>
+			);
+		if (item.type === 'keyword') return <KeyWordCard key="keyword" keywords={item.data} />;
+		if (item.type === 'video')
+			return (
+				<VideoCard
+					key={index}
+					name="Kẹo dẻo"
+					detail="Kẹo dẻo mềm thơm ngon"
+					image={`https://source.unsplash.com/random/300x300?sig=${Math.random() * 100}`}
+					id="349938442291"
+				/>
+			);
+	});
+	return view;
+};
 const FlexTwoColView = function FlexTwoColView({
 	banners,
 	keyWords,
@@ -29,8 +60,8 @@ const FlexTwoColView = function FlexTwoColView({
 }) {
 	let listLeft: any = data.slice(0, 4);
 	let listRight: any = data.slice(4, 8);
-	if (banners) listLeft.unshift({ type: 'banner', data: banners });
-	if (keyWords) listRight.splice(3, 0, { type: 'keyword', data: keyWords });
+	if (banners) listLeft.unshift(banners);
+	if (keyWords) listRight.splice(3, 0, keyWords);
 	const [isLoanding, setIsLoading] = useState<boolean>(false);
 	const [dataLeft, setListLeft] = useState<{ type: any; data: any }[]>(listLeft);
 	const [dataRight, setListRight] = useState<{ type: any; data: any }[]>(listRight);
@@ -61,77 +92,12 @@ const FlexTwoColView = function FlexTwoColView({
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [loadData]);
-
+	const viewLeft = renderView(dataLeft);
+	const viewRight = renderView(dataRight);
 	return (
 		<div className={styles.flex2col}>
-			<div className="flex-1">
-				{dataLeft.map((item, index) => {
-					if (item.type === 'banner')
-						return <BannerCard key="banner" banner={item.data} />;
-					if (item.type === 'product')
-						return (
-							<ProductCard
-								key={item.data.name}
-								name={item.data.name}
-								price={item.data.price}
-								sold={item.data.sold}
-								image={item.data.image}
-								unit={item.data.unit}
-								product={item.data.product}
-								link={item.data.link}
-								priority={index == 0 ? true : false}
-							/>
-						);
-					if (item.type === 'keyword')
-						return <KeyWordCard key="keyword" keywords={item.data} />;
-					if (item.type === 'video')
-						return (
-							<VideoCard
-								key={index}
-								name="Kẹo dẻo"
-								detail="Kẹo dẻo mềm thơm ngon"
-								image={`https://source.unsplash.com/random/300x300?sig=${
-									Math.random() * 100
-								}`}
-								id="349938442291"
-							/>
-						);
-				})}
-			</div>
-			<div className="flex-1">
-				{dataRight.map((item, index) => {
-					if (item.type === 'banner')
-						return <BannerCard key="banner" banner={item.data} />;
-					if (item.type === 'product')
-						return (
-							<ProductCard
-								key={item.data.name}
-								name={item.data.name}
-								price={item.data.price}
-								sold={item.data.sold}
-								image={item.data.image}
-								unit={item.data.unit}
-								product={item.data.product}
-								link={item.data.link}
-								priority={index == 0 ? true : false}
-							/>
-						);
-					if (item.type === 'keyword')
-						return <KeyWordCard key="keyword" keywords={item.data} />;
-					if (item.type === 'video')
-						return (
-							<VideoCard
-								key={index}
-								name="Kẹo dẻo"
-								detail="Kẹo dẻo mềm thơm ngon"
-								image={`https://source.unsplash.com/random/300x300?sig=${
-									Math.random() * 100
-								}`}
-								id="349938442291"
-							/>
-						);
-				})}
-			</div>
+			<div className="flex-1">{viewLeft}</div>
+			<div className="flex-1">{viewRight}</div>
 		</div>
 	);
 };

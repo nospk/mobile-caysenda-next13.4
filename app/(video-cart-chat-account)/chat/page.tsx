@@ -1,10 +1,8 @@
-'use client';
 import Image from 'next/image';
 import avatar from '@/public/avatarzalo.jpg';
 import styles from './styles.module.css';
 import Button from '@/components/Button';
 export default async function Page() {
-
 	return (
 		<>
 			<div className={styles.section}>
@@ -29,9 +27,7 @@ export default async function Page() {
 								className={styles.button}
 								title="Nhắn tin qua Zalo"
 								aria-pressed="false"
-								onClick={() => {
-									window.open('https://zalo.me/0947620336');
-								}}
+								linkgo="https://zalo.me/0947620336"
 							>
 								<svg
 									xmlns="http://www.w3.org/2000/svg"

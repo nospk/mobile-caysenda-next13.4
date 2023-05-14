@@ -1,4 +1,4 @@
 export interface Banner {
-  link: string
-  img: string
+  type: 'banner'
+  data: { link: string; img: string }[]
 }

@@ -10,7 +10,10 @@ import Link from 'next/link';
 import React from 'react';
 import type { Banner } from '@/types/banner';
 interface Props {
-	banner: Banner[];
+	banner: {
+		link: string;
+		img: string;
+	}[];
 }
 
 SwiperCore.use([Pagination, Autoplay]);

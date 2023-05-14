@@ -7,7 +7,7 @@ import KeyWordService from '@/services/KeyWord.service';
 
 export default async function Page() {
 	const keywords = await KeyWordService.getKeyWordTopData();
-	let keyWordTopCard = keywords.map((keyword: string) => (
+	let keyWordTopCard = keywords.data.map((keyword: string) => (
 		<KeyWord key={keyword} keyword={keyword} />
 	));
 

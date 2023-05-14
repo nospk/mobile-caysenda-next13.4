@@ -51,7 +51,7 @@ const Footer: FC = () => {
               alt="Account"
               className={styles.img_menu}
             >
-              <span className={styles.text_menu}>Cá Nhân</span>
+              <span className={styles.text_menu}>Tài khoản</span>
             </IconWithLabel>
           </div>
         </Link>
