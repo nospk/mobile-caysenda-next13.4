@@ -8,7 +8,7 @@ const getKeyWordTopData = async () => {
     'Thời trang nam nữ',
     'ốp điện thoại',
     'Quần áo trẻ 1',
-  ] as KeyWord
+  ] as KeyWord[]
 
   return keywords
 }
@@ -22,7 +22,7 @@ const getKeyWordCardData = async () => {
     'Túi xách hình con thỏ',
     'Tai nghe bluetooth',
     'Điện thoại Iphone'
-  ] as KeyWord
+  ] as KeyWord[]
 
   return keywords
 }

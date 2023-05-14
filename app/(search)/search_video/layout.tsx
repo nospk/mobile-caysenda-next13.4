@@ -3,7 +3,6 @@ import SearchBar from '@/components/SearchBar';
 export default function Layout(props: {
 	children: React.ReactNode;
 	HistoryView: React.ReactNode;
-	VideoView: React.ReactNode;
 }) {
 	return (
 		<>

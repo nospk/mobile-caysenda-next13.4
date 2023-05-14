@@ -6,12 +6,12 @@ const Footer: FC = () => {
   return (
     <>
       <div className={styles.footer}>
-        <Link href="/">
+        <Link href="/" scroll={true}>
           <div className={styles.tab_item}>
             <Icon src="/iconHome.png" alt="Home" className={styles.img_home} />
           </div>
         </Link>
-        <Link href="/video">
+        <Link href="/video" scroll={true}>
           <div className={styles.tab_item}>
             <IconWithLabel
               src="/iconVideos.png"
@@ -22,7 +22,7 @@ const Footer: FC = () => {
             </IconWithLabel>
           </div>
         </Link>
-        <Link href="/chat">
+        <Link href="/chat" scroll={true}>
           <div className={styles.tab_item}>
             <IconWithLabel
               src="/iconChat.png"

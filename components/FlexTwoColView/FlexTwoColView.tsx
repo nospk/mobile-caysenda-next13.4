@@ -9,11 +9,13 @@ import type { KeyWord } from '@/types/keyword';
 import BannerCard from '@/components/BannerCard';
 import KeyWordCard from '@/components/KeyWordCard';
 import React from 'react';
-
+import useScroll from '@/components/hook/useScroll';
+import VideoCard from '../VideoCard';
+type Video = { type: 'video'; data: {} };
 interface Props {
 	banners?: Banner[];
-	keyWords?: KeyWord;
-	data: Product[] | unknown;
+	keyWords?: KeyWord[];
+	data: Product[] | Video[];
 }
 
 const FlexTwoColView = function FlexTwoColView({
@@ -22,144 +24,112 @@ const FlexTwoColView = function FlexTwoColView({
 	data,
 }: {
 	banners?: Banner[];
-	keyWords?: KeyWord;
-	data: Product[];
+	keyWords?: KeyWord[];
+	data: Product[] | Video[];
 }) {
-	let listLeft = data.slice(0, 4);
-	let listRight = data.slice(4, 8);
-	const [render, setRender] = useState<boolean>(false);
-	const [dataLeft, setListLeft] = useState<Product[]>(listLeft);
-	const [dataRight, setListRight] = useState<Product[]>(listRight);
-	const [banner, setBanner] = useState<Banner[]>(banners ? banners : []);
-	const [keyWord, setKeyWord] = useState<KeyWord>(keyWords ? keyWords : []);
-	const [check, setCheck] = useState<boolean>(false);
-	// const listslideBanner = props.banners
-	// 	? props.banners.map((banner: string) => {
-	// 			return {
-	// 				src: banner,
-	// 				alt: 'Slide Card',
-	// 				link: '',
-	// 			};
-	// 	  })
-	// 	: [];
+	let listLeft: any = data.slice(0, 4);
+	let listRight: any = data.slice(4, 8);
+	if (banners) listLeft.unshift({ type: 'banner', data: banners });
+	if (keyWords) listRight.splice(3, 0, { type: 'keyword', data: keyWords });
+	const [isLoanding, setIsLoading] = useState<boolean>(false);
+	const [dataLeft, setListLeft] = useState<{ type: any; data: any }[]>(listLeft);
+	const [dataRight, setListRight] = useState<{ type: any; data: any }[]>(listRight);
 
-	//const bannerCard = <BannerCard key="banner" banner={listslideBanner} />;
-	//const keyWordCard = <KeyWordCard key="keyword" keywords={keyWords} />;
-
-	// useEffect(() => {
-	// 	if (render) {
-	// 		let left2 = props.data.slice(10, 15);
-	// 		let right2 = props.data.slice(15, 20);
-	// 		setListLeft2(left2);
-	// 		setListRight2(right2);
-	// 		setRender(false);
-	// 	}
-	// }, []);
-	// useEffect(() => {
-	// 	const timer = setTimeout(() => {
-	// 		console.log(listLeft2);
-	// 		setListLeft((state) => [...state, ...listLeft2] as Data[]);
-	// 		setListRight((state) => [...state, ...listRight2] as Data[]);
-	// 	}, 5000);
-	// 	return () => clearTimeout(timer);
-	// }, [listLeft2, listRight2]);
-
-	const handleNavigation = useCallback((e: Event) => {
-		const window = e.currentTarget as Window;
-		if (window.scrollY == 0 || !window.scrollY) {
-			setRender(false);
+	const loadData = useScroll();
+	const fetchData = async () => {
+		setIsLoading(true);
+		try {
+			const response = await fetch(`http://localhost:3000/api/product`, {
+				cache: 'no-store',
+			});
+			const newData = await response.json();
+			let listLeft = newData.slice(10, 15);
+			let listRight = newData.slice(15, 20);
+			// Xử lý dữ liệu mới từ API
+			setListLeft((prevData) => [...prevData, ...listLeft]);
+			setListRight((prevData) => [...prevData, ...listRight]);
+		} catch (error) {
+			console.error('Error fetching data:', error);
 		}
-		if (window.scrollY > 200 && check == false) {
-			setRender(true);
-		}
-		console.log(window.scrollY, render);
-	}, []);
 
-	// useEffect(() => {
-	// 	getData().then((products) => {
-	// 		const productsLefts = products.slice(5, 10);
-	// 		const productsRights = products.slice(15, 20);
-	// 		setListLeft((state) => [...state, ...productsLefts] as Data[]);
-	// 		setListRight((state) => [...state, ...productsRights] as Data[]);
-	// 	});
-	// }, [change]);
-
+		setIsLoading(false);
+	};
 	useEffect(() => {
-		window.addEventListener('scroll', (event: Event) => handleNavigation(event));
+		if (!isLoanding && loadData) {
+			console.log('loading');
+			fetchData();
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [loadData]);
 
-		return () => {
-			window.removeEventListener('scroll', (event: Event) => handleNavigation(event));
-		};
-	}, [handleNavigation]);
 	return (
 		<div className={styles.flex2col}>
 			<div className="flex-1">
-				{dataLeft.map((data: Product, index: number) => {
-					if (index == 0 && banner.length > 0) {
+				{dataLeft.map((item, index) => {
+					if (item.type === 'banner')
+						return <BannerCard key="banner" banner={item.data} />;
+					if (item.type === 'product')
 						return (
-							<React.Fragment key="col1">
-								<BannerCard key="banner" banner={banner} />
-								<ProductCard
-									key={data.name}
-									name={data.name}
-									price={data.price}
-									sold={data.sold}
-									image={data.image}
-									unit={data.unit}
-									data={data.data}
-									link={data.link}
-									priority={index == 0 ? true : false}
-								/>
-							</React.Fragment>
+							<ProductCard
+								key={item.data.name}
+								name={item.data.name}
+								price={item.data.price}
+								sold={item.data.sold}
+								image={item.data.image}
+								unit={item.data.unit}
+								product={item.data.product}
+								link={item.data.link}
+								priority={index == 0 ? true : false}
+							/>
 						);
-					}
-					return (
-						<ProductCard
-							key={data.name}
-							name={data.name}
-							price={data.price}
-							sold={data.sold}
-							image={data.image}
-							unit={data.unit}
-							data={data.data}
-							link={data.link}
-							priority={index == 0 ? true : false}
-						/>
-					);
+					if (item.type === 'keyword')
+						return <KeyWordCard key="keyword" keywords={item.data} />;
+					if (item.type === 'video')
+						return (
+							<VideoCard
+								key={index}
+								name="Kẹo dẻo"
+								detail="Kẹo dẻo mềm thơm ngon"
+								image={`https://source.unsplash.com/random/300x300?sig=${
+									Math.random() * 100
+								}`}
+								id="349938442291"
+							/>
+						);
 				})}
 			</div>
 			<div className="flex-1">
-				{dataRight.map((data: Product, index: number) => {
-					if (index == 3 && keyWord.length > 0) {
+				{dataRight.map((item, index) => {
+					if (item.type === 'banner')
+						return <BannerCard key="banner" banner={item.data} />;
+					if (item.type === 'product')
 						return (
-							<React.Fragment key="col2">
-								<KeyWordCard key="keyword" keywords={keyWord} />
-								<ProductCard
-									key={data.name}
-									name={data.name}
-									price={data.price}
-									sold={data.sold}
-									image={data.image}
-									unit={data.unit}
-									data={data.data}
-									link={data.link}
-								/>
-							</React.Fragment>
+							<ProductCard
+								key={item.data.name}
+								name={item.data.name}
+								price={item.data.price}
+								sold={item.data.sold}
+								image={item.data.image}
+								unit={item.data.unit}
+								product={item.data.product}
+								link={item.data.link}
+								priority={index == 0 ? true : false}
+							/>
 						);
-					}
-					return (
-						<ProductCard
-							key={data.name}
-							name={data.name}
-							price={data.price}
-							sold={data.sold}
-							image={data.image}
-							unit={data.unit}
-							data={data.data}
-							link={data.link}
-							priority={index == 0 ? true : false}
-						/>
-					);
+					if (item.type === 'keyword')
+						return <KeyWordCard key="keyword" keywords={item.data} />;
+					if (item.type === 'video')
+						return (
+							<VideoCard
+								key={index}
+								name="Kẹo dẻo"
+								detail="Kẹo dẻo mềm thơm ngon"
+								image={`https://source.unsplash.com/random/300x300?sig=${
+									Math.random() * 100
+								}`}
+								id="349938442291"
+							/>
+						);
 				})}
 			</div>
 		</div>

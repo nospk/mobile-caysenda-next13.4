@@ -1,12 +1,32 @@
 import styles from './styles.module.css';
-import type { Video } from '@/types/video';
+//import type { Video } from '@/types/video';
 import { AiOutlineSearch, AiOutlineUser } from 'react-icons/ai';
 import Link from 'next/link';
 import FlexTwoColView from '@/components/FlexTwoColView';
 import BannerService from '@/services/Banner.service';
-
+type Video = { type: 'video'; data: {} };
 async function getVideo() {
-	const videos = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+	const videos = [
+		{ type: 'video', data: '' },
+		{ type: 'video', data: '' },
+		{ type: 'video', data: '' },
+		{ type: 'video', data: '' },
+		{ type: 'video', data: '' },
+		{ type: 'video', data: '' },
+		{ type: 'video', data: '' },
+		{ type: 'video', data: '' },
+		{ type: 'video', data: '' },
+		{ type: 'video', data: '' },
+		{ type: 'video', data: '' },
+		{ type: 'video', data: '' },
+		{ type: 'video', data: '' },
+		{ type: 'video', data: '' },
+		{ type: 'video', data: '' },
+		{ type: 'video', data: '' },
+		{ type: 'video', data: '' },
+		{ type: 'video', data: '' },
+		{ type: 'video', data: '' },
+	] as Video[];
 
 	return videos;
 }

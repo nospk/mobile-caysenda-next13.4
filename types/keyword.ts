@@ -1,1 +1,1 @@
-export type KeyWord = string[]
+export type KeyWord = string

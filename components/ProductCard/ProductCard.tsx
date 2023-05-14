@@ -2,9 +2,16 @@ import type { FC } from 'react';
 import Image from 'next/image';
 import styles from './ProductCard.module.css';
 import numberToString from '@/lib/formatNumberPrice';
-import type { Product } from '@/types/product';
+
 import React from 'react';
-type ProductCard = Product & {
+type ProductCard = {
+	image: string;
+	name: string;
+	price: number;
+	sold: number;
+	unit: string;
+	link: string;
+	product: object;
 	priority?: boolean;
 };
 

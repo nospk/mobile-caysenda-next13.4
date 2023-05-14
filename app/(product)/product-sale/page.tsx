@@ -4,8 +4,9 @@ import BannerService from '@/services/Banner.service';
 import KeyWordService from '@/services/KeyWord.service';
 import ProductService from '@/services/Product.service';
 
+import Loading from '@/components/Loading';
 import { Suspense } from 'react';
-
+export const dynamic = 'force-dynamic';
 export default async function Page() {
 	const productsData = ProductService.getProductData();
 	const keyWordsData = KeyWordService.getKeyWordCardData();
@@ -18,8 +19,13 @@ export default async function Page() {
 
 	return (
 		<>
-			<Suspense>
-				<FlexTwoColView data={products} banners={banners} keyWords={keyWords} />
+			<Suspense fallback={<Loading />}>
+				<FlexTwoColView
+					data={products}
+					banners={banners}
+					keyWords={keyWords}
+
+				/>
 			</Suspense>
 		</>
 	);
