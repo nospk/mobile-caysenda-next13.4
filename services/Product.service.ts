@@ -4,7 +4,7 @@ import getBaseUrl from '@/lib/getBaseUrl'
 
 const getProductData = async () => {
   let products: Product[] = await API.GETOTHER({
-    path: `${getBaseUrl() + '/api/product'}`
+    path: `${getBaseUrl + '/api/product'}`
   })
   return products
 }

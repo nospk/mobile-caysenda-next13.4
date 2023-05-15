@@ -3,12 +3,14 @@ import { useState, useEffect, useCallback } from 'react'
 
 const useScroll = () => {
   const [loadData, setLoadData] = useState<boolean>(false)
+  const [scrollHeightCheck, setscrollHeightCheck] = useState<number>(0)
   const handleNavigation = useCallback((e: Event, loadData: boolean) => {
     const scrollHeight = document.documentElement.scrollHeight
     const scrollTop = document.documentElement.scrollTop
     const clientHeight = document.documentElement.clientHeight
 
     const scrollHeightCheck = scrollHeight - (scrollTop + clientHeight)
+    setscrollHeightCheck(scrollHeightCheck)
     if (scrollHeightCheck < 100 && !loadData) {
       setLoadData(true)
     } else {
@@ -30,7 +32,7 @@ const useScroll = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [handleNavigation])
 
-  return loadData
+  return {loadData, scrollHeightCheck}
 }
 
 export default useScroll

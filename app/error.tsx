@@ -1,6 +1,5 @@
 'use client';
 
-import Button from '@/components/Button';
 import React from 'react';
 
 export default function Error({ error, reset }: any) {
@@ -13,7 +12,7 @@ export default function Error({ error, reset }: any) {
 			<h2 className="text-lg font-bold">Error</h2>
 			<p className="text-sm">{error?.message}</p>
 			<div>
-				<Button onClick={() => reset()}>Try Again</Button>
+				<button onClick={() => reset()}>Try Again</button>
 			</div>
 		</div>
 	);

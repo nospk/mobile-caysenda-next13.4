@@ -1,5 +1,5 @@
 import getBaseUrl from "@/lib/getBaseUrl";
-const DOMAIN = getBaseUrl();
+
 
 const GET = async ({
   path,
@@ -13,7 +13,7 @@ const GET = async ({
   try {
     const params = new URLSearchParams(data);
     if (!auth) {
-      const response = await fetch(DOMAIN + path + "?" + params.toString(), {
+      const response = await fetch(getBaseUrl + path + "?" + params.toString(), {
         method: "GET",
       });
       return await response.json();
@@ -22,7 +22,7 @@ const GET = async ({
         Authorization: localStorage.getItem("user_id") as string,
         "Content-Type": "application/json",
       };
-      const response = await fetch(DOMAIN + path + "?" + params, {
+      const response = await fetch(getBaseUrl + path + "?" + params, {
         method: "GET",
         headers: header,
       });
@@ -37,6 +37,7 @@ const GETOTHER = async ({ path }: { path: string }) => {
   try {
     const response = await fetch(path, {
       method: "GET",
+      cache: 'no-store'
     });
     return await response.json();
   } catch (e) {
@@ -50,7 +51,7 @@ const POST = async ({ data }: { data: any }) => {
     Authorization: localStorage.getItem("user_id") as string,
     "Content-Type": "application/json",
   };
-  const response = await fetch(DOMAIN + params.toString(), {
+  const response = await fetch(getBaseUrl + params.toString(), {
     method: "POST",
     headers: header,
   });

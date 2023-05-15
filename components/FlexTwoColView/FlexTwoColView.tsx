@@ -1,8 +1,8 @@
 'use client';
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './FlexTwoColView.module.css';
 import ProductCard from '@/components/ProductCard';
-
+import ProductService from '@/services/Product.service';
 import type { Product } from '@/types/product';
 import type { Banner } from '@/types/banner';
 import type { KeyWord } from '@/types/keyword';
@@ -66,16 +66,14 @@ const FlexTwoColView = function FlexTwoColView({
 	const [dataLeft, setListLeft] = useState<{ type: any; data: any }[]>(listLeft);
 	const [dataRight, setListRight] = useState<{ type: any; data: any }[]>(listRight);
 
-	const loadData = useScroll();
+	const {loadData} = useScroll();
 	const fetchData = async () => {
 		setIsLoading(true);
 		try {
-			const response = await fetch(`http://localhost:3000/api/product`, {
-				cache: 'no-store',
-			});
-			const newData = await response.json();
-			let listLeft = newData.slice(10, 15);
-			let listRight = newData.slice(15, 20);
+			const data = await ProductService.getProductData();
+			//const newData = await response.json();
+			let listLeft = data.slice(10, 15);
+			let listRight = data.slice(15, 20);
 			// Xử lý dữ liệu mới từ API
 			setListLeft((prevData) => [...prevData, ...listLeft]);
 			setListRight((prevData) => [...prevData, ...listRight]);
@@ -87,7 +85,6 @@ const FlexTwoColView = function FlexTwoColView({
 	};
 	useEffect(() => {
 		if (!isLoanding && loadData) {
-			console.log('loading');
 			fetchData();
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -95,10 +92,13 @@ const FlexTwoColView = function FlexTwoColView({
 	const viewLeft = renderView(dataLeft);
 	const viewRight = renderView(dataRight);
 	return (
-		<div className={styles.flex2col}>
-			<div className="flex-1">{viewLeft}</div>
-			<div className="flex-1">{viewRight}</div>
-		</div>
+		<>
+			<div className={styles.flex2col}>
+				<div className="flex-1">{viewLeft}</div>
+				<div className="flex-1">{viewRight}</div>
+			</div>
+			
+		</>
 	);
 };
 /**
