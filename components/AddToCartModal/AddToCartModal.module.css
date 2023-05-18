@@ -1,0 +1,21 @@
+.menu_item {
+	@apply flex text-sm flex-col box-border justify-center items-center shrink-0;
+}
+.modal {
+	@apply absolute box-border bottom-0 left-0 right-0 w-full h-[90%] rounded-t-lg bg-white shadow-md ease-in-out transition ;
+}
+.modalOverlay {
+	@apply fixed top-0 left-0 w-full h-full flex bg-slate-900 z-20 bg-opacity-60;
+}
+.button {
+	@apply text-[3.4667vw] relative bg-[#FEA200] px-[3.4667vw] justify-center items-center font-bold rounded-full text-white;
+}
+.wrapper_modal {
+	@apply flex flex-col box-border relative pb-[1.86667vw] flex-shrink overflow-hidden flex-1;
+}
+.modal_body {
+	@apply box-border flex flex-row content-start flex-shrink-0 relative;
+}
+.modal_footer {
+	@apply box-border flex flex-col content-start flex-shrink-0;
+}
