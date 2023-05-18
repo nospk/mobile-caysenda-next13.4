@@ -1,105 +1,108 @@
-'use client';
-import { useEffect, useState } from 'react';
-import styles from './FlexTwoColView.module.css';
-import ProductCard from '@/components/ProductCard';
-import ProductService from '@/services/Product.service';
-import type { Product } from '@/types/product';
-import type { Banner } from '@/types/banner';
-import type { KeyWord } from '@/types/keyword';
-import BannerCard from '@/components/BannerCard';
-import KeyWordCard from '@/components/KeyWordCard';
-import React from 'react';
-import useScroll from '@/components/hook/useScroll';
-import VideoCard from '../VideoCard';
-type Video = { type: 'video'; data: {} };
+"use client";
+import { useEffect, useState } from "react";
+import styles from "./FlexTwoColView.module.css";
+import ProductCard from "@/components/ProductCard";
+import ProductService from "@/services/Product.service";
+import type { Product } from "@/types/product";
+import type { Banner } from "@/types/banner";
+import type { KeyWord } from "@/types/keyword";
+import BannerCard from "@/components/BannerCard";
+import KeyWordCard from "@/components/KeyWordCard";
+import React from "react";
+import useScroll from "@/components/hook/useScroll";
+import VideoCard from "../VideoCard";
+type Video = { type: "video"; data: {} };
 type View = Banner | KeyWord | Product | Video;
 interface Props {
-	banners?: Banner;
-	keyWords?: KeyWord;
-	data: Product[] | Video[];
+  banners?: Banner;
+  keyWords?: KeyWord;
+  data: Product[] | Video[];
 }
 const renderView = (data: View[]) => {
-	let view = data.map((item: View, index: number) => {
-		if (item.type === 'banner') return <BannerCard key="banner" banner={item.data} />;
-		if (item.type === 'product')
-			return (
-				<ProductCard
-					key={item.data.name}
-					name={item.data.name}
-					price={item.data.price}
-					sold={item.data.sold}
-					image={item.data.image}
-					unit={item.data.unit}
-					product={item.data.product}
-					link={item.data.link}
-					priority={index == 0 ? true : false}
-				/>
-			);
-		if (item.type === 'keyword') return <KeyWordCard key="keyword" keywords={item.data} />;
-		if (item.type === 'video')
-			return (
-				<VideoCard
-					key={index}
-					name="Kẹo dẻo"
-					detail="Kẹo dẻo mềm thơm ngon"
-					image={`https://source.unsplash.com/random/300x300?sig=${Math.random() * 100}`}
-					id="349938442291"
-				/>
-			);
-	});
-	return view;
+  let view = data.map((item: View, index: number) => {
+    if (item.type === "banner")
+      return <BannerCard key="banner" banner={item.data} />;
+    if (item.type === "product")
+      return (
+        <ProductCard
+          key={item.data.name}
+          name={item.data.name}
+          price={item.data.price}
+          sold={item.data.sold}
+          image={item.data.image}
+          unit={item.data.unit}
+          product={item.data.product}
+          link={item.data.link}
+          priority={index == 0 ? true : false}
+        />
+      );
+    if (item.type === "keyword")
+      return <KeyWordCard key="keyword" keywords={item.data} />;
+    if (item.type === "video")
+      return (
+        <VideoCard
+          key={index}
+          name="Kẹo dẻo"
+          detail="Kẹo dẻo mềm thơm ngon"
+          image="https://images.unsplash.com/source-404?fm=eps&h=800&q=60&w=800"
+          id="349938442291"
+        />
+      );
+  });
+  return view;
 };
 const FlexTwoColView = function FlexTwoColView({
-	banners,
-	keyWords,
-	data,
+  banners,
+  keyWords,
+  data,
 }: {
-	banners?: Banner[];
-	keyWords?: KeyWord[];
-	data: Product[] | Video[];
+  banners?: Banner[];
+  keyWords?: KeyWord[];
+  data: Product[] | Video[];
 }) {
-	let listLeft: any = data.slice(0, 4);
-	let listRight: any = data.slice(4, 8);
-	if (banners) listLeft.unshift(banners);
-	if (keyWords) listRight.splice(3, 0, keyWords);
-	const [isLoanding, setIsLoading] = useState<boolean>(false);
-	const [dataLeft, setListLeft] = useState<{ type: any; data: any }[]>(listLeft);
-	const [dataRight, setListRight] = useState<{ type: any; data: any }[]>(listRight);
+  let listLeft: any = data.slice(0, 4);
+  let listRight: any = data.slice(4, 8);
+  if (banners) listLeft.unshift(banners);
+  if (keyWords) listRight.splice(3, 0, keyWords);
+  const [isLoanding, setIsLoading] = useState<boolean>(false);
+  const [dataLeft, setListLeft] =
+    useState<{ type: any; data: any }[]>(listLeft);
+  const [dataRight, setListRight] =
+    useState<{ type: any; data: any }[]>(listRight);
 
-	const {loadData} = useScroll();
-	const fetchData = async () => {
-		setIsLoading(true);
-		try {
-			const data = await ProductService.getProductData();
-			//const newData = await response.json();
-			let listLeft = data.slice(10, 15);
-			let listRight = data.slice(15, 20);
-			// Xử lý dữ liệu mới từ API
-			setListLeft((prevData) => [...prevData, ...listLeft]);
-			setListRight((prevData) => [...prevData, ...listRight]);
-		} catch (error) {
-			console.error('Error fetching data:', error);
-		}
+  const loadData: boolean = useScroll();
+  const fetchData = async () => {
+    setIsLoading(true);
+    try {
+      const data = await ProductService.getProductData();
+      //const newData = await response.json();
+      let listLeft = data.slice(10, 15);
+      let listRight = data.slice(15, 20);
+      // Xử lý dữ liệu mới từ API
+      setListLeft((prevData) => [...prevData, ...listLeft]);
+      setListRight((prevData) => [...prevData, ...listRight]);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
 
-		setIsLoading(false);
-	};
-	useEffect(() => {
-		if (!isLoanding && loadData) {
-			fetchData();
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [loadData]);
-	const viewLeft = renderView(dataLeft);
-	const viewRight = renderView(dataRight);
-	return (
-		<>
-			<div className={styles.flex2col}>
-				<div className="flex-1">{viewLeft}</div>
-				<div className="flex-1">{viewRight}</div>
-			</div>
-			
-		</>
-	);
+    setIsLoading(false);
+  };
+  useEffect(() => {
+    if (!isLoanding && loadData) {
+      fetchData();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loadData]);
+  const viewLeft = renderView(dataLeft);
+  const viewRight = renderView(dataRight);
+  return (
+    <>
+      <div className={styles.flex2col}>
+        <div className="flex-1">{viewLeft}</div>
+        <div className="flex-1">{viewRight}</div>
+      </div>
+    </>
+  );
 };
 /**
  * Flex chia 2 cột

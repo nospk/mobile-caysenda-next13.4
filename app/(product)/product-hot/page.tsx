@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 	title: 'Sản Phẩm Bán Chạy',
 };
 
-export const dynamic = 'force-dynamic';
+//export const dynamic = 'force-dynamic';
 
 
 

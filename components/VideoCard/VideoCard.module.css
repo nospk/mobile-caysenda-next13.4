@@ -1,9 +1,9 @@
-.product_card {
+.video_card {
   @apply flex-1 mb-[2.4vw];
 }
 
 .image_product {
-  @apply relative rounded-lg w-46vw h-[81vw];
+  @apply relative rounded-lg w-46vw h-46vw;
 }
 
 .image_square {
@@ -15,10 +15,9 @@
 }
 
 .info_product {
-  @apply flex flex-col bg-white rounded-b-lg p-[2.4vw] w-46vw text-[3.7333vw] leading-[4.2667vw] ;
+  @apply flex flex-col bg-white rounded-b-lg p-[2.4vw] w-46vw text-[3.7333vw] leading-[4.2667vw];
 }
 
 .detail {
   @apply pt-[2vw] text-[3.2vw] leading-[3.2vw] text-gray-400;
 }
-

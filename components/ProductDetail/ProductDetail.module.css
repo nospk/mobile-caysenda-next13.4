@@ -1,0 +1,21 @@
+.price_flex_row {
+  @apply flex flex-row gap-2 bg-white box-border rounded-t-lg pt-[2.6667vw] px-[2.4vw] pb-[1.0667vw];
+}
+.price_item {
+  @apply flex flex-row text-[#FF4000] shrink-0 content-start items-end relative box-border font-medium;
+}
+.wrapper_price_item {
+  @apply flex-1 flex-col w-[31.2vw] box-border;
+}
+.price_number {
+  @apply text-[6.4vw] content-start block box-border relative leading-[7.4667vw] shrink-0;
+}
+.price_currency {
+  @apply text-[3.2vw] leading-[5.3333vw] box-border block content-start shrink-0 relative ml-[0.5333vw];
+}
+.warpper_price_condition {
+  @apply flex flex-row shrink-0 box-border relative my-[0.8vw] ml-[0.8vw] content-start;
+}
+.price_condition {
+  @apply text-[3.2vw] text-[#666666] block relative box-border leading-[3.7333vw] content-start;
+}

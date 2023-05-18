@@ -1,38 +1,36 @@
-'use client'
-import { useState, useEffect, useCallback } from 'react'
+"use client";
+import { useState, useEffect, useCallback } from "react";
 
 const useScroll = () => {
-  const [loadData, setLoadData] = useState<boolean>(false)
-  const [scrollHeightCheck, setscrollHeightCheck] = useState<number>(0)
+  const [loadData, setLoadData] = useState<boolean>(false);
   const handleNavigation = useCallback((e: Event, loadData: boolean) => {
-    const scrollHeight = document.documentElement.scrollHeight
-    const scrollTop = document.documentElement.scrollTop
-    const clientHeight = document.documentElement.clientHeight
+    const scrollHeight = document.documentElement.scrollHeight;
+    const scrollTop = document.documentElement.scrollTop;
+    const clientHeight = document.documentElement.clientHeight;
 
-    const scrollHeightCheck = scrollHeight - (scrollTop + clientHeight)
-    setscrollHeightCheck(scrollHeightCheck)
+    const scrollHeightCheck = scrollHeight - (scrollTop + clientHeight);
     if (scrollHeightCheck < 100 && !loadData) {
-      setLoadData(true)
+      setLoadData(true);
     } else {
-      setLoadData(false)
+      setLoadData(false);
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
-    window.addEventListener('scroll', (event: Event) =>
+    window.addEventListener("scroll", (event: Event) =>
       handleNavigation(event, loadData)
-    )
+    );
 
     return () => {
-      window.scrollTo(0, 0)
-      window.removeEventListener('scroll', (event: Event) =>
+      window.scrollTo(0, 0);
+      window.removeEventListener("scroll", (event: Event) =>
         handleNavigation(event, loadData)
-      )
-    }
+      );
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [handleNavigation])
+  }, [handleNavigation]);
 
-  return {loadData, scrollHeightCheck}
-}
+  return loadData;
+};
 
-export default useScroll
+export default useScroll;
