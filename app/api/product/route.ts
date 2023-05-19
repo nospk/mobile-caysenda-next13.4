@@ -264,7 +264,7 @@ function shuffle(array:Product[]) {
 
   return array;
 }
-
+export const dynamic = 'force-dynamic';
 export async function GET () {
   await sleep(5000);
   let result = shuffle(product)
