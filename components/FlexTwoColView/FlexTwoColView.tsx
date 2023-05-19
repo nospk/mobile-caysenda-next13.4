@@ -19,11 +19,7 @@ interface Props {
   data: Product[] | Video[];
 }
 
-const renderView = async (data: View[]) => {
-  function sleep(n:number) {
-    return new Promise((resolve) => setTimeout(resolve, n));
-  }
-  await sleep(2000);
+const renderView = (data: View[]) => {
   let view = data.map((item: View, index: number) => {
     if (item.type === "banner")
       return <BannerCard key="banner" banner={item.data} />;

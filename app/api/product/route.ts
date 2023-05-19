@@ -244,6 +244,11 @@ const product = [
     type: 'product'
   }
 ] as Product[]
+function sleep(n:number) {
+  return new Promise((resolve) => setTimeout(resolve, n));
+}
+
 export async function GET () {
+  await sleep(5000);
   return NextResponse.json(product, { status: 200 })
 }

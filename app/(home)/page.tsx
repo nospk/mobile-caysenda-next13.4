@@ -1,9 +1,10 @@
-import FlexTwoColView from '@/components/FlexTwoColView';
+//import FlexTwoColView from '@/components/FlexTwoColView';
 
 import ProductService from '@/services/Product.service';
 import KeyWordService from '@/services/KeyWord.service';
 import BannerService from '@/services/Banner.service';
 import Loading from '@/components/Loading';
+import Wapper from './wrapper'
 import { Suspense } from 'react';
 import { Metadata } from 'next';
 export const metadata: Metadata = {
@@ -13,19 +14,12 @@ export const metadata: Metadata = {
 export const dynamic = 'force-dynamic';
 
 export default async function Page() {
-	const productsData = ProductService.getProductData();
-	const keyWordsData = KeyWordService.getKeyWordCardData();
-	const bannersData = BannerService.getBannerCardData();
-	const [products, banners, keyWords] = await Promise.all([
-		productsData,
-		bannersData,
-		keyWordsData,
-	]);
 
 	return (
 		<>
 			<Suspense fallback={<Loading />}>
-				<FlexTwoColView data={products} banners={banners} keyWords={keyWords} />
+				{/* @ts-expect-error Async Server Component */}
+				<Wapper data={ProductService.getProductData()} keyWords={KeyWordService.getKeyWordCardData()} banners={BannerService.getBannerCardData()} />
 			</Suspense>
 		</>
 	);
