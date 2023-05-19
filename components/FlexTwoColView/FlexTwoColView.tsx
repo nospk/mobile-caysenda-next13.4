@@ -20,7 +20,7 @@ interface Props {
 }
 
 const renderView = async (data: View[]) => {
-  function sleep(n) {
+  function sleep(n:number) {
     return new Promise((resolve) => setTimeout(resolve, n));
   }
   await sleep(2000);
