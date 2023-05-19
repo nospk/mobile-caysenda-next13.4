@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 	title: 'Sản Phẩm Phân Loại',
 };
 
-//export const dynamic = 'force-dynamic';
+export const dynamic = 'force-dynamic';
 
 export default async function Page() {
 	const products = await ProductService.getProductData();
