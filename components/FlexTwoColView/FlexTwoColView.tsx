@@ -18,7 +18,12 @@ interface Props {
   keyWords?: KeyWord;
   data: Product[] | Video[];
 }
-const renderView = (data: View[]) => {
+
+const renderView = async (data: View[]) => {
+  function sleep(n) {
+    return new Promise((resolve) => setTimeout(resolve, n));
+  }
+  await sleep(2000);
   let view = data.map((item: View, index: number) => {
     if (item.type === "banner")
       return <BannerCard key="banner" banner={item.data} />;
