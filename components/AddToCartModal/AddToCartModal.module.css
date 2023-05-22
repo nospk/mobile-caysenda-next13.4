@@ -14,7 +14,7 @@
   @apply flex flex-1 flex-col box-border relative pb-[1.86667vw] flex-shrink content-start overflow-hidden;
 }
 .modal_body {
-  @apply box-border flex grow  flex-row content-start flex-shrink relative;
+  @apply box-border flex flex-1 flex-row content-start flex-shrink-0 relative overflow-auto;
 }
 .modal_footer {
   @apply box-border flex flex-none flex-col content-start flex-shrink-0;
