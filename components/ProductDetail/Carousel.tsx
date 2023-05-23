@@ -35,6 +35,7 @@ export default function Carousel({ images, name }: { images: string[]; name: str
 								width={0}
 								height={0}
 								style={{ width: '100%', height: '100%' }}
+								priority={index === 0}
 							/>
 						</SwiperSlide>
 					);
@@ -62,6 +63,7 @@ export default function Carousel({ images, name }: { images: string[]; name: str
 									sizes="50vw"
 									width={0}
 									height={0}
+									priority={index === 0}
 								/>
 							</SwiperSlide>
 						);

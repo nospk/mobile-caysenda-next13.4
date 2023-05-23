@@ -9,8 +9,7 @@ export default function PriceWholeSale({
 	condition: string;
 }) {
 	const convertMoney = (money: string) => {
-		if (money.length >= 5) return `${money.slice(0, -3)}K`;
-		else return `${money.replace(/\B(?=(\d{3})+(?!\d))/g, '.').replace(/0+/, '')}K`;
+		return `${money.replace(/\B(?=(\d{3})+(?!\d))/g, '.').replace(/0+/, '')}K`;
 	};
 	return (
 		<>

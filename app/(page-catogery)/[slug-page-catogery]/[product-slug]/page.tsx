@@ -16,10 +16,10 @@ export default function Page() {
 		price: [
 			{ money: '25000', condition: '6' },
 			{ money: '22000', condition: '720-7199' },
-			{ money: '19400', condition: '7200' },
+			{ money: '19400', condition: '≥7200' },
 		],
 		pricewholesale: { min: '1900', max: '6700' },
-		unit: 'cái',
+		unit: 'Cái',
 		quickviewGallery: [
 			'https://caysenda.vn/resources/upload/17892827873_102253868.jpg',
 			'https://caysenda.vn/resources/upload/17892854272_102253868.jpg',
