@@ -47,208 +47,22 @@ const AddToCartModal: FC = () => {
                           {"2"}
                         </span>
                       </div>
-                      <Image
-                        className="h-[10.6667vw] w-[10.6667vw] relative ml-[2.4vw]"
-                        src={
-                          "https://caysenda.vn/resources/upload/17892827873_102253868.jpg"
-                        }
-                        alt={"product1"}
-                        sizes="100vw"
-                        width={0}
-                        height={0}
-                      />
+                      <div className="h-[10.6667vw] w-[10.6667vw] ml-[2.4vw] relative align-middle">
+                        <Image
+                          className="rounded-xl"
+                          src={
+                            "https://caysenda.vn/resources/upload/22216875771_102253868.jpg"
+                          }
+                          alt={"product1"}
+                          sizes="100vw"
+                          fill
+                          object-fit={"contain"}
+                        />
+                      </div>
+
                       <div className="box-border flex flex-col content-start relative flex-1 ml-[1.8667vw] max-h-full justify-center min-h-[10.66667vw] leading-[3.46667vw]">
                         <span className="relative box-border flex-col content-start flex-shrink-0 whitespace-pre-wrap text-[#666666] text-[2.9333vw] align-middle line-clamp-6 leading-[3.4667vw]">
-                          abcdwd
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="box-content flex flex-row content-start flex-shrink-0 items-center relative min-h-[12vw] py-[2.6667vw]">
-                  <div>
-                    <div className="box-border flex flex-row content-start flex-shrink-0 relative">
-                      <div className="absolute text-white bg-[#FD4000] top-[-1.4667vw] left-[2.6667vw] z-[1] text-center min-w-[4.66667vw] h-[2.93333vw] leading-[2.93333vw] text-[2.66667vw] p-[0 0.66667vw] rounded-t-lg rounded-br-lg">
-                        <span className="">
-                          {"x"}
-                          {"5"}
-                        </span>
-                      </div>
-                      <Image
-                        className="h-[10.6667vw] w-[10.6667vw] relative ml-[2.4vw]"
-                        src={
-                          "https://caysenda.vn/resources/upload/17892827873_102253868.jpg"
-                        }
-                        alt={"product1"}
-                        sizes="100vw"
-                        width={0}
-                        height={0}
-                      />
-                      <div className="box-border flex flex-col content-start relative flex-1 ml-[1.8667vw] max-h-full justify-center min-h-[10.66667vw] leading-[3.46667vw]">
-                        <span className="relative box-border flex-col content-start flex-shrink-0 whitespace-pre-wrap text-[#666666] text-[2.9333vw] align-middle line-clamp-6 leading-[3.4667vw]">
-                          abcdwd
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="box-content flex flex-row content-start flex-shrink-0 items-center relative min-h-[12vw] py-[2.6667vw]">
-                  <div>
-                    <div className="box-border flex flex-row content-start flex-shrink-0 relative">
-                      <div className="absolute text-white bg-[#FD4000] top-[-1.4667vw] left-[2.6667vw] z-[1] text-center min-w-[4.66667vw] h-[2.93333vw] leading-[2.93333vw] text-[2.66667vw] p-[0 0.66667vw] rounded-t-lg rounded-br-lg">
-                        <span className="">
-                          {"x"}
-                          {"5"}
-                        </span>
-                      </div>
-                      <Image
-                        className="h-[10.6667vw] w-[10.6667vw] relative ml-[2.4vw]"
-                        src={
-                          "https://caysenda.vn/resources/upload/17892827873_102253868.jpg"
-                        }
-                        alt={"product1"}
-                        sizes="100vw"
-                        width={0}
-                        height={0}
-                      />
-                      <div className="box-border flex flex-col content-start relative flex-1 ml-[1.8667vw] max-h-full justify-center min-h-[10.66667vw] leading-[3.46667vw]">
-                        <span className="relative box-border flex-col content-start flex-shrink-0 whitespace-pre-wrap text-[#666666] text-[2.9333vw] align-middle line-clamp-6 leading-[3.4667vw]">
-                          abcdwd
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="box-content flex flex-row content-start flex-shrink-0 items-center relative min-h-[12vw] py-[2.6667vw]">
-                  <div>
-                    <div className="box-border flex flex-row content-start flex-shrink-0 relative">
-                      <div className="absolute text-white bg-[#FD4000] top-[-1.4667vw] left-[2.6667vw] z-[1] text-center min-w-[4.66667vw] h-[2.93333vw] leading-[2.93333vw] text-[2.66667vw] p-[0 0.66667vw] rounded-t-lg rounded-br-lg">
-                        <span className="">
-                          {"x"}
-                          {"5"}
-                        </span>
-                      </div>
-                      <Image
-                        className="h-[10.6667vw] w-[10.6667vw] relative ml-[2.4vw]"
-                        src={
-                          "https://caysenda.vn/resources/upload/17892827873_102253868.jpg"
-                        }
-                        alt={"product1"}
-                        sizes="100vw"
-                        width={0}
-                        height={0}
-                      />
-                      <div className="box-border flex flex-col content-start relative flex-1 ml-[1.8667vw] max-h-full justify-center min-h-[10.66667vw] leading-[3.46667vw]">
-                        <span className="relative box-border flex-col content-start flex-shrink-0 whitespace-pre-wrap text-[#666666] text-[2.9333vw] align-middle line-clamp-6 leading-[3.4667vw]">
-                          abcdwd
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="box-content flex flex-row content-start flex-shrink-0 items-center relative min-h-[12vw] py-[2.6667vw]">
-                  <div>
-                    <div className="box-border flex flex-row content-start flex-shrink-0 relative">
-                      <div className="absolute text-white bg-[#FD4000] top-[-1.4667vw] left-[2.6667vw] z-[1] text-center min-w-[4.66667vw] h-[2.93333vw] leading-[2.93333vw] text-[2.66667vw] p-[0 0.66667vw] rounded-t-lg rounded-br-lg">
-                        <span className="">
-                          {"x"}
-                          {"5"}
-                        </span>
-                      </div>
-                      <Image
-                        className="h-[10.6667vw] w-[10.6667vw] relative ml-[2.4vw]"
-                        src={
-                          "https://caysenda.vn/resources/upload/17892827873_102253868.jpg"
-                        }
-                        alt={"product1"}
-                        sizes="100vw"
-                        width={0}
-                        height={0}
-                      />
-                      <div className="box-border flex flex-col content-start relative flex-1 ml-[1.8667vw] max-h-full justify-center min-h-[10.66667vw] leading-[3.46667vw]">
-                        <span className="relative box-border flex-col content-start flex-shrink-0 whitespace-pre-wrap text-[#666666] text-[2.9333vw] align-middle line-clamp-6 leading-[3.4667vw]">
-                          abcdwd
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="box-content flex flex-row content-start flex-shrink-0 items-center relative min-h-[12vw] py-[2.6667vw]">
-                  <div>
-                    <div className="box-border flex flex-row content-start flex-shrink-0 relative">
-                      <div className="absolute text-white bg-[#FD4000] top-[-1.4667vw] left-[2.6667vw] z-[1] text-center min-w-[4.66667vw] h-[2.93333vw] leading-[2.93333vw] text-[2.66667vw] p-[0 0.66667vw] rounded-t-lg rounded-br-lg">
-                        <span className="">
-                          {"x"}
-                          {"5"}
-                        </span>
-                      </div>
-                      <Image
-                        className="h-[10.6667vw] w-[10.6667vw] relative ml-[2.4vw]"
-                        src={
-                          "https://caysenda.vn/resources/upload/17892827873_102253868.jpg"
-                        }
-                        alt={"product1"}
-                        sizes="100vw"
-                        width={0}
-                        height={0}
-                      />
-                      <div className="box-border flex flex-col content-start relative flex-1 ml-[1.8667vw] max-h-full justify-center min-h-[10.66667vw] leading-[3.46667vw]">
-                        <span className="relative box-border flex-col content-start flex-shrink-0 whitespace-pre-wrap text-[#666666] text-[2.9333vw] align-middle line-clamp-6 leading-[3.4667vw]">
-                          abcdwd
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="box-content flex flex-row content-start flex-shrink-0 items-center relative min-h-[12vw] py-[2.6667vw]">
-                  <div>
-                    <div className="box-border flex flex-row content-start flex-shrink-0 relative">
-                      <div className="absolute text-white bg-[#FD4000] top-[-1.4667vw] left-[2.6667vw] z-[1] text-center min-w-[4.66667vw] h-[2.93333vw] leading-[2.93333vw] text-[2.66667vw] p-[0 0.66667vw] rounded-t-lg rounded-br-lg">
-                        <span className="">
-                          {"x"}
-                          {"5"}
-                        </span>
-                      </div>
-                      <Image
-                        className="h-[10.6667vw] w-[10.6667vw] relative ml-[2.4vw]"
-                        src={
-                          "https://caysenda.vn/resources/upload/17892827873_102253868.jpg"
-                        }
-                        alt={"product1"}
-                        sizes="100vw"
-                        width={0}
-                        height={0}
-                      />
-                      <div className="box-border flex flex-col content-start relative flex-1 ml-[1.8667vw] max-h-full justify-center min-h-[10.66667vw] leading-[3.46667vw]">
-                        <span className="relative box-border flex-col content-start flex-shrink-0 whitespace-pre-wrap text-[#666666] text-[2.9333vw] align-middle line-clamp-6 leading-[3.4667vw]">
-                          abcdwd
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="box-content flex flex-row content-start flex-shrink-0 items-center relative min-h-[12vw] py-[2.6667vw]">
-                  <div>
-                    <div className="box-border flex flex-row content-start flex-shrink-0 relative">
-                      <div className="absolute text-white bg-[#FD4000] top-[-1.4667vw] left-[2.6667vw] z-[1] text-center min-w-[4.66667vw] h-[2.93333vw] leading-[2.93333vw] text-[2.66667vw] p-[0 0.66667vw] rounded-t-lg rounded-br-lg">
-                        <span className="">
-                          {"x"}
-                          {"5"}
-                        </span>
-                      </div>
-                      <Image
-                        className="h-[10.6667vw] w-[10.6667vw] relative ml-[2.4vw]"
-                        src={
-                          "https://caysenda.vn/resources/upload/17892827873_102253868.jpg"
-                        }
-                        alt={"product1"}
-                        sizes="100vw"
-                        width={0}
-                        height={0}
-                      />
-                      <div className="box-border flex flex-col content-start relative flex-1 ml-[1.8667vw] max-h-full justify-center min-h-[10.66667vw] leading-[3.46667vw]">
-                        <span className="relative box-border flex-col content-start flex-shrink-0 whitespace-pre-wrap text-[#666666] text-[2.9333vw] align-middle line-clamp-6 leading-[3.4667vw]">
-                          abcdwd
+                          con voi
                         </span>
                       </div>
                     </div>
@@ -256,7 +70,76 @@ const AddToCartModal: FC = () => {
                 </div>
               </div>
             </div>
-            <div>abc</div>
+            <div className="box-border flex flex-col flex-1 relative content-start">
+              <div className="box-border flex flex-col flex-1 relative content-start px-[3.4667vw] pt-[3.4667vw]">
+                <div className="box-border flex flex-row flex-shrink-0">
+                  <div className="w-[32vw] h-[32vw] relative align-middle">
+                    <Image
+                      className="rounded-xl"
+                      src={
+                        "https://caysenda.vn/resources/upload/22216875771_102253868.jpg"
+                      }
+                      alt={"product1"}
+                      sizes="100vw"
+                      fill
+                      object-fit={"contain"}
+                    />
+                  </div>
+                  <div className="box-border flex flex-col flex-shirnk-0 ml-[3.2vw] justify-center items-start">
+                    <div className="mb-[2.4vw] ">
+                      <div className="relative box-border flex flex-row text-[4.8vw] leading-[5.6vw] font-bold items-baseline text-[#FF2900]">
+                        25K
+                        <span className="text-[2.13333vw] ml-[0.66667vw] ">
+                          đ
+                        </span>
+                      </div>
+                      <div className="box-border flex flex-col text-[#999] text-[2.66667vw] leading-[3.2vw] indent-[0.66667vw]">
+                        {`6 ~ 719`} {`Cái`}
+                      </div>
+                    </div>
+                    <div className="mb-[2.4vw] ">
+                      <div className="relative box-border flex flex-row text-[4.8vw] leading-[5.6vw] font-bold items-baseline text-[#FF2900]">
+                        22K
+                        <span className="text-[2.13333vw] ml-[0.66667vw] ">
+                          đ
+                        </span>
+                      </div>
+                      <div className="box-border flex flex-col text-[#999] text-[2.66667vw] leading-[3.2vw] indent-[0.66667vw]">
+                        {`720 ~ 7199`} {`Cái`}
+                      </div>
+                    </div>
+                    <div className="mb-[2.4vw] ">
+                      <div className="relative box-border flex flex-row text-[4.8vw] leading-[5.6vw] font-bold items-baseline text-[#FF2900]">
+                        19K
+                        <span className="text-[2.13333vw] ml-[0.66667vw] ">
+                          đ
+                        </span>
+                      </div>
+                      <div className="box-border flex flex-col text-[#999] text-[2.66667vw] leading-[3.2vw] indent-[0.66667vw]">
+                        {`≥7200`} {`Cái`}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="box-border flex flex-col flex-1 flex-shrink-0 mt-[4vw] pt-[4vw] overflow-y-auto">
+                  <div className="box-border flex flex-row flex-shrink-0 justify-between items-center max-w-full mb-[4.26667vw]">
+                    <div className="box-border flex flex-col flex-shrink-0">
+                      <span className="relative box-border flex-shrink-0 whitespace-pre-wrap line-clamp-5 text-[3.46667vw] leading-[3.66667vw] break-all inline-block w-[26.66667vw] text-[#222222]">
+                        con voi
+                      </span>
+                      <span className="relative box-border flex-shrink-0 items-center overflow-hidden whitespace-no-wrap inline-block text-[2.66667vw] leading-[3.33333vw] w-[32.53333vw] text-ellipsis text-[#999999]">
+                        Tồn kho: 16837 Cái
+                      </span>
+                    </div>
+                    <div className="box-border flex flex-shrink-0 flex-row w-[29.06667vw]">
+                      <div className="box-border flex flex-col flex-shrink-0 w-[8.26667vw] h-[8.26667vw] leading-[8.26667vw]  justify-center items-center text-center border-x border-y border-solid border-[#CECECE] rounded-l-xl"></div>
+                      <input className="w-[11.73333vw]" type="number" />
+                      <div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div className={styles.modal_footer}>
             <div className="box-border flex flex-col content-start flex-shrink-0 ">
