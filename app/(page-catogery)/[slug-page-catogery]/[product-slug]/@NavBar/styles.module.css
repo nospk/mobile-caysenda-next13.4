@@ -1,0 +1,24 @@
+.heard {
+	@apply flex sticky top-0 z-50 w-full h-[9vw];
+}
+.back {
+	@apply absolute flex flex-col shrink-0 justify-center items-center top-[0.5vw] w-[8vw] h-[8vw]  left-[2.4vw] rounded-full;
+}
+.search {
+	@apply absolute flex flex-col shrink-0 justify-center items-center top-[0.5vw] w-[8vw] h-[8vw]  right-[38.4vw] rounded-full;
+}
+.cart {
+	@apply absolute flex flex-col shrink-0 justify-center items-center top-[0.5vw] w-[8vw] h-[8vw] right-[26.4vw] rounded-full;
+}
+.share {
+	@apply absolute flex flex-col shrink-0 justify-center items-center top-[0.5vw] w-[8vw] h-[8vw] right-[14.4vw] rounded-full;
+}
+.home {
+	@apply absolute flex flex-col shrink-0 justify-center items-center top-[0.5vw] w-[8vw] h-[8vw] right-[2.4vw] rounded-full;
+}
+.icon {
+	@apply w-[5vw] h-[5vw];
+}
+.bg_black {
+	@apply bg-[rgba(0,0,0,0.3)];
+}

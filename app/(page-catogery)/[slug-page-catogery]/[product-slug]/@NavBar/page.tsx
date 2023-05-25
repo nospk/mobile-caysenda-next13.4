@@ -8,7 +8,7 @@ import {
 	AiOutlineShareAlt,
 	AiOutlineHome,
 } from 'react-icons/ai';
-
+import styles from './styles.module.css';
 export default function Page() {
 	const router = useRouter();
 	const opticalVariants = {
@@ -47,7 +47,6 @@ export default function Page() {
 	}, []);
 
 	useEffect(() => {
-		console.log('loading')
 		window.addEventListener('scroll', (event: Event) => handleNavigation(event, change));
 
 		return () => {
@@ -57,48 +56,36 @@ export default function Page() {
 	}, [handleNavigation]);
 	return (
 		<div
-			className={`flex sticky top-0 z-50 w-full h-[9vw] bg-[#f8f8f8] ${
-				opticalVariants[opacity]
-			} ${change ? ' text-black' : 'text-white'}`}
+			className={`${styles.heard} bg-[#f8f8f8] ${opticalVariants[opacity]} ${
+				change ? ' text-black' : 'text-white'
+			}`}
 		>
 			<div
 				onClick={() => router.back()}
-				className={`absolute flex flex-col shrink-0 justify-center items-center top-[0.5vw] w-[8vw] h-[8vw]  left-[2.4vw] rounded-full ${
-					change ? '' : 'bg-[rgba(0,0,0,0.3)]'
-				}`}
+				className={`${styles.back} ${change ? '' : styles.bg_black}`}
 			>
-				<AiOutlineLeft className="w-[5vw] h-[5vw] " />
+				<AiOutlineLeft className={styles.icon} />
 			</div>
 			<div
 				onClick={() => router.push('/search')}
-				className={`absolute flex flex-col shrink-0 justify-center items-center top-[0.5vw] w-[8vw] h-[8vw]  right-[38.4vw] rounded-full ${
-					change ? '' : 'bg-[rgba(0,0,0,0.3)]'
-				}`}
+				className={`${styles.search} ${change ? '' : styles.bg_black}`}
 			>
-				<AiOutlineSearch className="w-[5vw] h-[5vw] " />
+				<AiOutlineSearch className={styles.icon} />
 			</div>
 			<div
 				onClick={() => router.push('/cart')}
-				className={`absolute flex flex-col shrink-0 justify-center items-center top-[0.5vw] w-[8vw] h-[8vw] right-[26.4vw] rounded-full ${
-					change ? '' : 'bg-[rgba(0,0,0,0.3)]'
-				}`}
+				className={`${styles.cart} ${change ? '' : styles.bg_black}`}
 			>
-				<AiOutlineShoppingCart className="w-[5vw] h-[5vw] " />
+				<AiOutlineShoppingCart className={styles.icon} />
 			</div>
-			<div
-				className={`absolute flex flex-col shrink-0 justify-center items-center top-[0.5vw] w-[8vw] h-[8vw] right-[14.4vw] rounded-full ${
-					change ? '' : 'bg-[rgba(0,0,0,0.3)]'
-				}`}
-			>
-				<AiOutlineShareAlt className="w-[5vw] h-[5vw] " />
+			<div className={`${styles.share} ${change ? '' : styles.bg_black}`}>
+				<AiOutlineShareAlt className={styles.icon} />
 			</div>
 			<div
 				onClick={() => router.push('/')}
-				className={`absolute flex flex-col shrink-0 justify-center items-center top-[0.5vw] w-[8vw] h-[8vw] right-[2.4vw] rounded-full ${
-					change ? '' : 'bg-[rgba(0,0,0,0.3)]'
-				}`}
+				className={`${styles.home} ${change ? '' : styles.bg_black}`}
 			>
-				<AiOutlineHome className="w-[5vw] h-[5vw] " />
+				<AiOutlineHome className={styles.icon} />
 			</div>
 		</div>
 	);

@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import Image from 'next/image';
 import styles from './ProductCard.module.css';
-import numberToString from '@/lib/formatNumberPrice';
+import { numberToString } from '@/lib/formatPrice';
 
 import React from 'react';
 type ProductCard = {
