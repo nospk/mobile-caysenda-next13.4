@@ -3,6 +3,7 @@ import { IoSettingsOutline, IoChevronForwardOutline } from 'react-icons/io5';
 import { Icon } from '@/components/Icon';
 import Order from '@/components/Order';
 import Menu from '@/components/Menu';
+import Setting from '@/components/Setting'
 export default async function Page() {
 	return (
 		<>
