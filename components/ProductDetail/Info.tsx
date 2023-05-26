@@ -12,7 +12,6 @@ export default function Info() {
           <Rating
             className="flex flex-row box-broder shrink-0"
             count={5}
-            height={4.2}
             edit={false}
             value={4}
           />

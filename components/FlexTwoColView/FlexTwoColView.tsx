@@ -18,6 +18,7 @@ interface Props {
   keyWords?: KeyWord;
   data: Product[] | Video[];
 }
+
 const renderView = (data: View[]) => {
   let view = data.map((item: View, index: number) => {
     if (item.type === "banner")

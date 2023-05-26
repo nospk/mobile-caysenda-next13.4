@@ -1,8 +1,9 @@
 import { AiOutlineRight } from "react-icons/ai";
+import styles from './ProductDetail.module.css';
 export default function Detail() {
   return (
     <>
-      <div className="px-[2.4vw] pt-[4.8vw] flex flex-col content-start shrink-0 w-full box-border">
+      <div className={styles.wrapper_detail}>
         <div className="flex flex-row px-[2.4vw] py-[4.2667vw] bg-white rounded-lg box-border ">
           <div className="flex flex-row height-[5.3333vw] mr-[5.3333vw] items-center box-broder relative content-start">
             <span className="text-[3.4667vw] text-[#999999] shrink-0 relative box-border block">
@@ -19,7 +20,7 @@ export default function Detail() {
           <AiOutlineRight className="text-[#999999] w-[3vw] h-[4vw] ml-[1.3333vw] mt-[0.73333vw]" />
         </div>
       </div>
-      <div className="px-[2.4vw] pt-[4.8vw] flex flex-col content-start shrink-0 w-full box-border">
+      <div className={styles.wrapper_detail}>
         <div className="flex flex-row px-[2.4vw] pt-[2.4vw] pb-[1.8667vw] bg-white rounded-lg box-border ">
           <div className="flex flex-row height-[5.3333vw] mr-[5.3333vw] items-center box-broder relative content-start">
             <span className="text-[3.4667vw] text-[#999999] shrink-0 relative box-border block">

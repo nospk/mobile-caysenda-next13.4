@@ -244,6 +244,29 @@ const product = [
     type: 'product'
   }
 ] as Product[]
+function sleep(n:number) {
+  return new Promise((resolve) => setTimeout(resolve, n));
+}
+function shuffle(array:Product[]) {
+  let currentIndex = array.length,  randomIndex;
+
+  // While there remain elements to shuffle.
+  while (currentIndex != 0) {
+
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+
+  return array;
+}
+export const dynamic = 'force-dynamic';
 export async function GET () {
-  return NextResponse.json(product, { status: 200 })
+  //await sleep(5000);
+  let result = shuffle(product)
+  return NextResponse.json(result, { status: 200 })
 }

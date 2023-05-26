@@ -7,7 +7,7 @@ import styles from "./CategoryModal.module.css";
 interface Props {
   children: React.ReactNode;
 }
-const MenuModal: FC<Props> = ({ children }) => {
+const CategoryModal: FC<Props> = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const handleOpenModal = () => {
     setIsOpen(true);
@@ -135,4 +135,4 @@ const MenuModal: FC<Props> = ({ children }) => {
     </>
   );
 };
-export default MenuModal;
+export default CategoryModal;

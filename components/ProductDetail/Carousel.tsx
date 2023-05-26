@@ -4,14 +4,15 @@ import SwiperCore, { Thumbs, Pagination } from 'swiper';
 import Image from 'next/image';
 import { useState } from 'react';
 import { AiOutlineRight } from 'react-icons/ai';
+import styles from './ProductDetail.module.css';
 import 'swiper/css';
 import 'swiper/css/thumbs';
-export default function Carousel() {
+export default function Carousel({ images, name }: { images: string[]; name: string }) {
 	const [thumbsSwiper, setThumbsSwiper] = useState<SwiperCore>();
 	return (
 		<>
 			<Swiper
-				className="block w-[100vw] h-[100vw] rounded-xl mt-[-12vw]"
+				className={styles.carousel_main}
 				spaceBetween={10}
 				slidesPerView={1}
 				grabCursor={true}
@@ -23,100 +24,26 @@ export default function Carousel() {
 				}}
 				modules={[Pagination, Thumbs]}
 			>
-				<SwiperSlide>
-					<Image
-						src="https://caysenda.vn/resources/upload/17892854272_102253868.jpg"
-						alt=""
-						sizes="100vw"
-						fill
-						style={{ objectFit: 'contain' }}
-					/>
-				</SwiperSlide>
-				<SwiperSlide className="relative">
-					<Image
-						src="https://caysenda.vn/resources/upload/17892863213_102253868.jpg"
-						alt=""
-						sizes="100vw"
-						fill
-						style={{ objectFit: 'contain' }}
-					/>
-				</SwiperSlide>
-				<SwiperSlide>
-					<Image
-						src="https://caysenda.vn/resources/upload/17892872215_102253868.jpg"
-						alt=""
-						sizes="100vw"
-						fill
-						style={{ objectFit: 'contain' }}
-					/>
-				</SwiperSlide>
-				<SwiperSlide>
-					<Image
-						src="https://caysenda.vn/resources/upload/17892872215_102253868.jpg"
-						alt=""
-						sizes="100vw"
-						fill
-						style={{ objectFit: 'contain' }}
-					/>
-				</SwiperSlide>
-				<SwiperSlide>
-					<Image
-						src="https://caysenda.vn/resources/upload/17892872215_102253868.jpg"
-						alt=""
-						sizes="100vw"
-						fill
-						style={{ objectFit: 'contain' }}
-					/>
-				</SwiperSlide>
-				<SwiperSlide>
-					<Image
-						src="https://caysenda.vn/resources/upload/17892872215_102253868.jpg"
-						alt=""
-						sizes="100vw"
-						fill
-						style={{ objectFit: 'contain' }}
-					/>
-				</SwiperSlide>
-				<SwiperSlide>
-					<Image
-						src="https://caysenda.vn/resources/upload/17892872215_102253868.jpg"
-						alt=""
-						sizes="100vw"
-						fill
-						style={{ objectFit: 'contain' }}
-					/>
-				</SwiperSlide>
-				<SwiperSlide>
-					<Image
-						src="https://caysenda.vn/resources/upload/17892872215_102253868.jpg"
-						alt=""
-						sizes="100vw"
-						fill
-						style={{ objectFit: 'contain' }}
-					/>
-				</SwiperSlide>
-				<SwiperSlide>
-					<Image
-						src="https://caysenda.vn/resources/upload/17892872215_102253868.jpg"
-						alt=""
-						sizes="100vw"
-						fill
-						style={{ objectFit: 'contain' }}
-					/>
-				</SwiperSlide>
-				<SwiperSlide>
-					<Image
-						src="https://caysenda.vn/resources/upload/17892872215_102253868.jpg"
-						alt=""
-						sizes="100vw"
-						fill
-						style={{ objectFit: 'contain' }}
-					/>
-				</SwiperSlide>
+				{images.map((image, index) => {
+					return (
+						<SwiperSlide key={`${name}_${index}`}>
+							<Image
+								className={styles.image_round}
+								src={image}
+								alt={`${name}_slide${index}`}
+								sizes="100vw"
+								width={0}
+								height={0}
+								style={{ width: '100%', height: '100%' }}
+								priority={index === 0}
+							/>
+						</SwiperSlide>
+					);
+				})}
 			</Swiper>
-			<div className="py-[2.4vw] bg-white flex  w-full">
+			<div className={styles.wrapper_carousel_small}>
 				<Swiper
-					className="flex-1 w-full bg-white"
+					className={styles.carousel_small}
 					loop={false}
 					spaceBetween={2}
 					slidesPerView={7}
@@ -126,99 +53,24 @@ export default function Carousel() {
 					onSwiper={setThumbsSwiper}
 					modules={[Thumbs]}
 				>
-					<SwiperSlide>
-						<Image
-							className="rounded-xl w-[11.7333vw] h-[11.7333vw]"
-							src="https://caysenda.vn/resources/upload/17892854272_102253868.jpg"
-							alt=""
-							width={500}
-							height={500}
-						/>
-					</SwiperSlide>
-					<SwiperSlide>
-						<Image
-							className="rounded-xl w-[11.7333vw] h-[11.7333vw]"
-							src="https://caysenda.vn/resources/upload/17892863213_102253868.jpg"
-							alt=""
-							width={500}
-							height={500}
-						/>
-					</SwiperSlide>
-					<SwiperSlide>
-						<Image
-							className="rounded-xl w-[11.7333vw] h-[11.7333vw]"
-							src="https://caysenda.vn/resources/upload/17892872215_102253868.jpg"
-							alt=""
-							width={500}
-							height={500}
-						/>
-					</SwiperSlide>
-					<SwiperSlide>
-						<Image
-							className="rounded-xl w-[11.7333vw] h-[11.7333vw]"
-							src="https://caysenda.vn/resources/upload/17892872215_102253868.jpg"
-							alt=""
-							width={500}
-							height={500}
-						/>
-					</SwiperSlide>
-					<SwiperSlide>
-						<Image
-							className="rounded-xl w-[11.7333vw] h-[11.7333vw]"
-							src="https://caysenda.vn/resources/upload/17892872215_102253868.jpg"
-							alt=""
-							width={500}
-							height={500}
-						/>
-					</SwiperSlide>
-					<SwiperSlide>
-						<Image
-							className="rounded-xl w-[11.7333vw] h-[11.7333vw]"
-							src="https://caysenda.vn/resources/upload/17892872215_102253868.jpg"
-							alt=""
-							width={500}
-							height={500}
-						/>
-					</SwiperSlide>
-					<SwiperSlide>
-						<Image
-							className="rounded-xl w-[11.7333vw] h-[11.7333vw]"
-							src="https://caysenda.vn/resources/upload/17892872215_102253868.jpg"
-							alt=""
-							width={500}
-							height={500}
-						/>
-					</SwiperSlide>
-					<SwiperSlide>
-						<Image
-							className="rounded-xl w-[11.7333vw] h-[11.7333vw]"
-							src="https://caysenda.vn/resources/upload/17892872215_102253868.jpg"
-							alt=""
-							width={500}
-							height={500}
-						/>
-					</SwiperSlide>
-					<SwiperSlide>
-						<Image
-							className="rounded-xl w-[11.7333vw] h-[11.7333vw]"
-							src="https://caysenda.vn/resources/upload/17892872215_102253868.jpg"
-							alt=""
-							width={500}
-							height={500}
-						/>
-					</SwiperSlide>
-					<SwiperSlide>
-						<Image
-							className="rounded-xl w-[11.7333vw] h-[11.7333vw]"
-							src="https://caysenda.vn/resources/upload/17892872215_102253868.jpg"
-							alt=""
-							width={500}
-							height={500}
-						/>
-					</SwiperSlide>
+					{images.map((image, index) => {
+						return (
+							<SwiperSlide key={`${name}_${index}`}>
+								<Image
+									className={`${styles.image_round} ${styles.carousel_image_small}`}
+									src={image}
+									alt={`${name}_slide${index}`}
+									sizes="50vw"
+									width={0}
+									height={0}
+									priority={index === 0}
+								/>
+							</SwiperSlide>
+						);
+					})}
 				</Swiper>
-				<div className="flex bg-white flex-row justify-center items-center w-[9.33333vw] h-[11.73333vw] mt-[-0.4vw] top-[2.66667vw] left-[90.66667vw] z-10">
-					<AiOutlineRight className="text-[4.2667vw] text-[#999999]" />
+				<div className={styles.carousel_arrow}>
+					<AiOutlineRight className={styles.arrow_icon} />
 				</div>
 			</div>
 		</>

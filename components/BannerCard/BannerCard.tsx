@@ -41,6 +41,7 @@ const BannerCard: FC<Props> = React.memo(function Card(props) {
 									alt="Slide Card"
 									sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 									style={{ objectFit: 'cover' }}
+									priority={index === 0}
 								/>
 							</div>
 						</Link>

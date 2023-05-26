@@ -1,0 +1,171 @@
+.menu_item {
+	@apply flex text-sm flex-col box-border justify-center items-center shrink-0;
+}
+.modal {
+	@apply absolute box-border bottom-0 left-0 right-0 w-full h-[90%] flex rounded-t-lg bg-white shadow-md ease-in-out transition;
+}
+.modalOverlay {
+	@apply fixed top-0 left-0 w-full h-full flex bg-slate-900 z-20 bg-opacity-60;
+}
+.button {
+	@apply text-[3.4667vw] relative bg-[#FEA200] px-[3.4667vw] justify-center items-center font-bold rounded-full text-white;
+}
+.wrapper_modal {
+	@apply flex flex-1 flex-col box-border relative pb-[1.86667vw] flex-shrink content-start overflow-hidden;
+}
+.modal_body {
+	@apply box-border flex flex-1 flex-row content-start flex-shrink-0 relative overflow-auto;
+}
+.modal_footer {
+	@apply box-border flex flex-none flex-col content-start flex-shrink-0;
+}
+.button_close {
+	@apply flex flex-col content-start flex-shrink-0 top-0 right-0 absolute z-10 pr-[1vw] pt-[1vw];
+}
+.icon_close {
+	@apply h-[3vw] w-[3vw];
+}
+.body_left {
+	@apply box-border flex flex-col content-start flex-shrink-0;
+}
+.wapper_left {
+	@apply box-border flex flex-col content-start flex-shrink-0 text-[#666666] bg-[#F4F4F4] overflow-auto h-full relative w-[30.66667vw] rounded-l-lg text-[3.7333vw] grow;
+}
+.wapper_variant {
+	@apply box-content flex flex-row content-start flex-shrink-0 items-center relative min-h-[12vw] pb-[2.6667vw] pt-[2.4vw];
+}
+.wapper_variant_first {
+	@apply box-content flex flex-row content-start flex-shrink-0 items-center relative min-h-[12vw] pb-[2.6667vw] pt-[4.8vw];
+}
+.varriant_active {
+	@apply bg-[#FFFFFF];
+}
+.wapper_offer_number {
+	@apply box-border flex flex-row content-start flex-shrink-0 relative;
+}
+.offer_number {
+	@apply absolute text-white bg-[#FD4000] top-[-1.4667vw] left-[2.6667vw] z-[1] text-center min-w-[4.66667vw] h-[2.93333vw] leading-[2.93333vw] text-[2.66667vw] px-[0.66667vw] rounded-t-lg rounded-br-lg;
+}
+.hidden_offer {
+	@apply hidden;
+}
+.span_offer_number {
+	@apply text-[2.6667vw];
+}
+.image_variant {
+	@apply h-[10.6667vw] w-[10.6667vw] ml-[2.4vw] relative align-middle;
+}
+.name_variant {
+	@apply box-border flex flex-col content-start relative flex-1 ml-[1.8667vw] max-h-full justify-center min-h-[10.66667vw] leading-[3.46667vw];
+}
+.span_name_variant {
+	@apply relative box-border flex-col content-start flex-shrink-0 whitespace-pre-wrap text-[#666666] text-[2.9333vw] align-middle line-clamp-6 leading-[3.4667vw];
+}
+.wapper_right {
+	@apply box-border flex flex-col flex-1 relative content-start;
+}
+.body_right {
+	@apply box-border flex flex-col flex-1 relative content-start px-[3.4667vw] pt-[3.4667vw];
+}
+.img_price_wapper {
+	@apply box-border flex flex-row flex-shrink-0;
+}
+.img_product {
+	@apply w-[32vw] h-[32vw] relative align-middle;
+}
+.extend_info {
+	@apply box-border flex flex-col flex-shrink-0 ml-[3.2vw] justify-center items-start text-[#666666];
+}
+.price_info {
+	@apply relative box-border flex flex-row text-[4.8vw] leading-[5.6vw] font-bold items-baseline;
+}
+.condtion_info {
+	@apply box-border flex flex-col text-[#999] text-[2.66667vw] leading-[3.2vw] indent-[0.66667vw];
+}
+.price_active {
+	@apply text-[#FF2900];
+}
+.span_price {
+	@apply text-[2.13333vw] ml-[0.66667vw];
+}
+.margin_top {
+	@apply mb-[2.4vw];
+}
+.order_widget_wapper {
+	@apply box-border flex flex-col flex-1 flex-shrink-0 mt-[4vw] pt-[4vw] overflow-y-auto;
+}
+.order_item {
+	@apply box-border flex flex-row flex-shrink-0 justify-between items-center max-w-full mb-[4.26667vw];
+}
+.order_info {
+	@apply box-border flex flex-col flex-shrink-0;
+}
+.order_name {
+	@apply relative box-border flex-shrink-0 whitespace-pre-wrap line-clamp-5 text-[3.46667vw] leading-[3.66667vw] break-all inline-block w-[26.66667vw] text-[#222222];
+}
+.order_stock {
+	@apply relative box-border flex-shrink-0 items-center overflow-hidden whitespace-nowrap inline-block text-[2.66667vw] leading-[3.33333vw] w-[32.53333vw] text-ellipsis text-[#999999];
+}
+.order_control {
+	@apply box-border flex flex-shrink-0 flex-row w-[29.06667vw];
+}
+.decrease_wapper {
+	@apply box-border flex flex-col flex-shrink-0 w-[8.26667vw] h-[8.26667vw] leading-[8.26667vw]  justify-center items-center text-center border-x border-y border-solid border-[#CECECE] rounded-l-xl;
+}
+.icon_wapper {
+	@apply box-border flex flex-col flex-shrink-0 relative w-[3.46667vw] h-[3.46667vw];
+}
+.icon_decrease {
+	@apply box-border flex flex-col flex-shrink-0 bg-[#CCCCCC] relative top-[1.6vw] left-0 w-[3.46667vw] h-[1px] rounded-xl;
+}
+.input_number {
+	@apply w-[11.73333vw] text-center rounded-none border-y border-solid border-[#CECECE] h-[8.26667vw] text-[4.26667vw] outline-0 appearance-none align-middle placeholder-black focus:placeholder-white;
+}
+.increase_wapper {
+	@apply box-border flex flex-col flex-shrink-0 justify-center items-center text-center w-[8.26667vw] h-[8.26667vw] leading-[8.26667vw] border-x border-y border-solid border-[#CECECE] rounded-r-xl self-center;
+}
+.icon_increase_level {
+	@apply box-border flex flex-col flex-shrink-0 top-[1.6vw] left-0 w-[3.46667vw] h-[1px] rounded-xl bg-[#666666] relative;
+}
+.icon_increase_vertical {
+	@apply box-border flex flex-col flex-shrink-0 top-[-0.26667vw] left-[1.6vw] w-[1px] h-[3.46667vw] rounded-xl bg-[#666666] relative;
+}
+.condition_wapper {
+	@apply box-border flex flex-col content-start flex-shrink-0;
+}
+.condition {
+	@apply box-border flex content-start flex-shrink-0 flex-row justify-center items-center w-screen h-[9.6vw] bg-[#FFF9EC];
+}
+.span_condition {
+	@apply border-0 border-solid border-black relative box-border block flex-col content-start flex-shrink-0 whitespace-pre-wrap text-[3.2vw];
+}
+.count_total_wapper {
+	@apply box-border flex flex-col content-start flex-shrink-0 relative pl-[2.66667vw] pr-[2.93333vw] py-[1.46667vw];
+}
+.count_total {
+	@apply flex box-border flex-row flex-nowrap justify-between min-w-[30.66667vw] pr-[2.66667vw] pb-[2.4vw];
+}
+.count_total_num {
+	@apply flex box-border flex-shrink-0 flex-row justify-start items-center;
+}
+.span_count_total {
+	@apply border-0 border-solid border-black relative box-border block flex-col content-start flex-shrink-0 whitespace-pre-wrap text-[2.66667vw] text-[#999999];
+}
+.count_price {
+	@apply box-border flex content-start flex-shrink-0 flex-row items-baseline;
+}
+.span_count_price {
+	@apply relative box-border block flex-col content-start flex-shrink-0 whitespace-pre-wrap text-[2.66667vw] text-[#222222];
+}
+.total_price {
+	@apply flex flex-row flex-shrink-0 items-end;
+}
+.span_total_price {
+	@apply relative box-border block flex-col content-start flex-shrink-0 whitespace-pre-wrap text-[4.2667vw] text-[#ff4000];
+}
+.span_curency {
+	@apply relative box-border block flex-col content-start flex-shrink-0 whitespace-pre-wrap text-[2.93333vw] text-[#ff4000] mb-[0.26667vw];
+}
+.button_confirm {
+	@apply box-border flex content-start flex-shrink-0 text-center text-white flex-row items-center justify-center bg-[#ff4000] rounded-full text-[3.46667vw] h-[9.6vw];
+}

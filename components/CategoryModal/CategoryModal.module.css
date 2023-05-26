@@ -2,7 +2,7 @@
   @apply flex text-sm flex-col box-border justify-center items-center shrink-0;
 }
 .modal {
-  @apply fixed bottom-0 left-0 w-full h-2/3 rounded-lg bg-white p-[2.4vw] shadow-md ease-in-out transition;
+  @apply fixed bottom-0 left-0 w-full h-2/3 rounded-t-lg bg-white p-[2.4vw] shadow-md ease-in-out transition;
 }
 .modalOverlay {
   @apply fixed top-0 left-0 w-full h-full flex bg-slate-900 z-20 bg-opacity-60;
