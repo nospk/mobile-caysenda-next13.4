@@ -1,5 +1,6 @@
 
 import { IoSettingsOutline, IoChevronForwardOutline } from 'react-icons/io5';
+import Link from 'next/link'
 import { Icon } from '@/components/Icon';
 import Order from '@/components/Order';
 import Menu from '@/components/Menu';
@@ -30,10 +31,13 @@ export default async function Page() {
 						</div>
 					</div>
 					<div className="grow"></div>
+					<Link href={'./Setting'}>
 					<div className="flex-none">
 						<IoSettingsOutline className="ml-auto mr-auto" size="30" />
+						
 						<span>Cài Đặt</span>
 					</div>
+					</Link>
 				</div>
 				<div className="flex flex-col space-y-4">
 					<div className="flex items-center justify-start bg-amber-600 py-5 rounded-lg">
