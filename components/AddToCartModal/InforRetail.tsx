@@ -35,6 +35,9 @@ const InforWholeSale = React.memo(function InforWholeSale({
             {convertMoney(product.pricemax) + "K"}
             <span className={styles.span_price}>đ</span>
           </span>
+          <div className={styles.condtion_info}>
+            {`≥${product.condition}`} {product.unit}
+          </div>
         </div>
       </div>
     </div>

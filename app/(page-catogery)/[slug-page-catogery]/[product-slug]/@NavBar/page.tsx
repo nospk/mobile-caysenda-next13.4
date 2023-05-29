@@ -9,6 +9,7 @@ import {
 	AiOutlineHome,
 } from 'react-icons/ai';
 import styles from './styles.module.css';
+import Dialog from '@/components/Dialog/Dialog';
 export default function Page() {
 	const router = useRouter();
 	const opticalVariants = {
@@ -54,6 +55,18 @@ export default function Page() {
 		};
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [handleNavigation]);
+	const [isOpen, setIsOpen] = useState(false);
+	const handleOpenModal = () => {
+		setIsOpen(true);
+	};
+	const handleCloseModal = () => {
+		setIsOpen(false);
+	};
+	const copyLink = () => {
+		navigator.clipboard.writeText(location.href);
+		handleOpenModal()
+		setTimeout(handleCloseModal, 3000);
+	};
 	return (
 		<div
 			className={`${styles.heard} bg-[#f8f8f8] ${opticalVariants[opacity]} ${
@@ -78,7 +91,7 @@ export default function Page() {
 			>
 				<AiOutlineShoppingCart className={styles.icon} />
 			</div>
-			<div className={`${styles.share} ${change ? '' : styles.bg_black}`}>
+			<div onClick={copyLink} className={`${styles.share} ${change ? '' : styles.bg_black}`}>
 				<AiOutlineShareAlt className={styles.icon} />
 			</div>
 			<div
@@ -87,6 +100,11 @@ export default function Page() {
 			>
 				<AiOutlineHome className={styles.icon} />
 			</div>
+			<Dialog
+				isOpen={isOpen}
+				handleCloseModal={handleCloseModal}
+				message="Đã coppy link sản phẩm"
+			/>
 		</div>
 	);
 }
