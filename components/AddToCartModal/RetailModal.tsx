@@ -5,16 +5,15 @@ import Modal from "@/components/Modal";
 import styles from "./styles.module.css";
 import { numberToString } from "@/lib/formatPrice";
 import Variant from "./Variant";
-import InforWholeSale from "./InforWholeSale";
-import { convertMoney } from "@/lib/formatPrice";
 import ButtonClose from "./ButtonClose";
-import Image from "next/image";
+import InforRetail from "./InforRetail";
 interface Variants {
   name: string;
   image: string;
   stock: number;
   order: number;
   sku: string;
+  orderPrice: number;
   variants: any[];
 }
 interface Props {}
@@ -25,6 +24,7 @@ const AddToCartModal: FC = () => {
       image: "https://caysenda.vn/resources/upload/14442943058_1234020846.jpg",
       stock: 16837,
       order: 0,
+      orderPrice: 0,
       sku: "ZCT-1-1",
       variants: [
         {
@@ -94,7 +94,6 @@ const AddToCartModal: FC = () => {
   const [totalOrder, setTotalOrder] = useState<number>(0);
   const [totalType, setTotalType] = useState<number>(0);
   const [totalPrice, setTotalPrice] = useState<number>(0);
-  const [activePrice, setActivePrice] = useState<number>(0);
   const setActive = useCallback((index: number) => {
     setIndexAcitve(index);
   }, []);
@@ -105,31 +104,79 @@ const AddToCartModal: FC = () => {
     unit: "Cái",
     condition: 2,
   });
-  const decreaseOrder = useCallback(() => {
-    const newVariants = [...variants];
-    newVariants[indexAcitve].order = Number(newVariants[indexAcitve].order) - 1;
-    if (newVariants[indexAcitve].order < 0) newVariants[indexAcitve].order = 0;
-    setVariants(newVariants);
-    calculatorOrder();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [indexAcitve]);
-  const increaseOrder = useCallback(() => {
-    const newVariants = [...variants];
-    newVariants[indexAcitve].order = Number(newVariants[indexAcitve].order) + 1;
-    if (newVariants[indexAcitve].order > newVariants[indexAcitve].stock)
-      newVariants[indexAcitve].order = newVariants[indexAcitve].stock;
-    setVariants(newVariants);
-    calculatorOrder();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [indexAcitve]);
-  const changeOrder = useCallback(
-    (e: any) => {
+  const decreaseOrder = useCallback(
+    (skuVi: string) => {
       const newVariants = [...variants];
-      newVariants[indexAcitve].order = Number(e.target.value);
-      if (newVariants[indexAcitve].order < 0)
-        newVariants[indexAcitve].order = 0;
-      if (newVariants[indexAcitve].order > newVariants[indexAcitve].stock)
-        newVariants[indexAcitve].order = newVariants[indexAcitve].stock;
+      newVariants[indexAcitve].variants.map((variant) => {
+        if (variant.skuVi === skuVi) {
+          variant.order = Number(variant.order) - 1;
+          if (variant.order < 0) variant.order = 0;
+        }
+      });
+      newVariants[indexAcitve].order = newVariants[indexAcitve].variants.reduce(
+        (orderTotal, item) => {
+          return orderTotal + item.order;
+        },
+        0
+      );
+      newVariants[indexAcitve].orderPrice = newVariants[
+        indexAcitve
+      ].variants.reduce((orderPriceTotal, item) => {
+        return orderPriceTotal + Number(item.order) * Number(item.vip1);
+      }, 0);
+      setVariants(newVariants);
+      calculatorOrder();
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [indexAcitve]
+  );
+  const increaseOrder = useCallback(
+    (skuVi: string) => {
+      const newVariants = [...variants];
+      newVariants[indexAcitve].variants.map((variant) => {
+        if (variant.skuVi === skuVi) {
+          variant.order = Number(variant.order) + 1;
+          if (variant.order > variant.stock) variant.order = variant.stock;
+        }
+      });
+      newVariants[indexAcitve].order = newVariants[indexAcitve].variants.reduce(
+        (orderTotal, item) => {
+          return orderTotal + item.order;
+        },
+        0
+      );
+      newVariants[indexAcitve].orderPrice = newVariants[
+        indexAcitve
+      ].variants.reduce((orderPriceTotal, item) => {
+        return orderPriceTotal + Number(item.order) * Number(item.vip1);
+      }, 0);
+      setVariants(newVariants);
+      calculatorOrder();
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [indexAcitve]
+  );
+  const changeOrder = useCallback(
+    (e: any, skuVi: string) => {
+      const newVariants = [...variants];
+      newVariants[indexAcitve].variants.map((variant) => {
+        if (variant.skuVi === skuVi) {
+          variant.order = Number(e.target.value);
+          if (variant.order < 0) variant.order = 0;
+          if (variant.order > variant.stock) variant.order = variant.stock;
+        }
+      });
+      newVariants[indexAcitve].order = newVariants[indexAcitve].variants.reduce(
+        (orderTotal, item) => {
+          return orderTotal + item.order;
+        },
+        0
+      );
+      newVariants[indexAcitve].orderPrice = newVariants[
+        indexAcitve
+      ].variants.reduce((orderPriceTotal, item) => {
+        return orderPriceTotal + Number(item.order) * Number(item.vip1);
+      }, 0);
       setVariants(newVariants);
       calculatorOrder();
     },
@@ -157,7 +204,10 @@ const AddToCartModal: FC = () => {
     }, 0);
 
     //Cal price and level price
-    let price = 0;
+    let price = variants.reduce(function (price, item) {
+      if (item.orderPrice > 0) return price + item.orderPrice;
+      return price;
+    }, 0);
 
     //Set
     setTotalOrder(orders);
@@ -202,33 +252,11 @@ const AddToCartModal: FC = () => {
             </div>
             <div className={styles.wapper_right}>
               <div className={styles.body_right}>
-                <div className={styles.img_price_wapper}>
-                  <div className={styles.img_product}>
-                    <Image
-                      className="rounded-xl"
-                      src={variants[indexAcitve].image}
-                      alt={variants[indexAcitve].name}
-                      sizes="50vw"
-                      fill
-                      object-fit={"contain"}
-                    />
-                  </div>
-                  <div className="flex flex-col flex-shrink-0 justify-center items-center flex-1">
-                    <div className="flex flex-col flex-shrink-0">
-                      <span className="relative box-border block flex-shrink-0 text-center font-bold whitespace-prewrap mb-[1.3333vw] text-[4.8vw] leading-[4.8vw] text-[#ff2900]">
-                        {convertMoney(product.pricemin) + "K"}
-                        <span className={styles.span_price}>đ</span>
-                      </span>
-                      <span className="relative box-border block flex-shrink-0 text-center font-bold whitespace-prewrap mb-[1.3333vw] text-[4.8vw] leading-[4.8vw] text-[#ff2900]">
-                        ~
-                      </span>
-                      <span className="relative box-border block flex-shrink-0 text-center font-bold whitespace-prewrap mb-[1.3333vw] text-[4.8vw] leading-[4.8vw] text-[#ff2900]">
-                        {convertMoney(product.pricemax) + "K"}
-                        <span className={styles.span_price}>đ</span>
-                      </span>
-                    </div>
-                  </div>
-                </div>
+                <InforRetail
+                  name={variants[indexAcitve].name}
+                  image={variants[indexAcitve].image}
+                  product={product}
+                />
                 <div className={styles.order_widget_wapper}>
                   {variants[indexAcitve].variants.map((variant: any) => (
                     <div key={variant.skuVi} className={styles.order_item}>
@@ -245,24 +273,30 @@ const AddToCartModal: FC = () => {
                       </div>
                       <div className={styles.order_control}>
                         <div
-                          onClick={decreaseOrder}
+                          onClick={() => decreaseOrder(variant.skuVi)}
                           className={styles.decrease_wapper}
                         >
                           <div className={styles.icon_wapper}>
-                            <div className={styles.icon_decrease}></div>
+                            <div
+                              className={`${styles.icon_decrease} ${
+                                variant.order > 0
+                                  ? "bg-[#666666]"
+                                  : "bg-[#CCCCCC]"
+                              }`}
+                            ></div>
                           </div>
                         </div>
                         <input
                           className={styles.input_number}
                           placeholder="0"
                           type="number"
-                          value={variant.order}
-                          onChange={changeOrder}
+                          value={variant.order != 0 ? variant.order : ""}
+                          onChange={(e) => changeOrder(e, variant.skuVi)}
                           min="0"
                           max={variant.stock}
                         />
                         <div
-                          onClick={increaseOrder}
+                          onClick={() => increaseOrder(variant.skuVi)}
                           className={styles.increase_wapper}
                         >
                           <div className={styles.icon_wapper}>
@@ -281,11 +315,13 @@ const AddToCartModal: FC = () => {
           </div>
           <div className={styles.modal_footer}>
             <div className={styles.condition_wapper}>
-              <div className={styles.condition}>
-                <span className={styles.span_condition}>
-                  Tối thiểu {product.condition} {product.unit}
-                </span>
-              </div>
+              {totalOrder < product.condition ? (
+                <div className={styles.condition}>
+                  <span className={styles.span_condition}>
+                    Tối thiểu {product.condition} {product.unit}
+                  </span>
+                </div>
+              ) : null}
               <div className={styles.count_total_wapper}>
                 <div>
                   <div className={styles.count_total}>

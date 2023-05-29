@@ -29,7 +29,7 @@
   @apply box-border flex flex-col content-start flex-shrink-0;
 }
 .wapper_left {
-  @apply box-border flex flex-col content-start flex-shrink-0 text-[#666666] bg-[#F4F4F4] overflow-auto h-full relative w-[30.66667vw] rounded-l-lg text-[3.7333vw] grow;
+  @apply box-border flex flex-col content-start flex-shrink-0 text-[#666666] bg-[#F4F4F4] overflow-auto h-full relative w-[30.66667vw] rounded-l-lg text-[3.7333vw] grow scrollbar-hide;
 }
 .wapper_variant {
   @apply box-content flex flex-row content-start flex-shrink-0 items-center relative min-h-[12vw] pb-[2.6667vw] pt-[2.4vw];
@@ -92,7 +92,7 @@
   @apply mb-[2.4vw];
 }
 .order_widget_wapper {
-  @apply box-border flex flex-col flex-1 flex-shrink-0 mt-[4vw] pt-[4vw] overflow-y-auto;
+  @apply box-border flex flex-col flex-1 flex-shrink-0 mt-[4vw] pt-[4vw] overflow-y-auto scrollbar-hide;
 }
 .order_item {
   @apply box-border flex flex-row flex-shrink-0 justify-between items-center max-w-full mb-[4.26667vw];
@@ -116,7 +116,7 @@
   @apply box-border flex flex-col flex-shrink-0 relative w-[3.46667vw] h-[3.46667vw];
 }
 .icon_decrease {
-  @apply box-border flex flex-col flex-shrink-0 bg-[#CCCCCC] relative top-[1.6vw] left-0 w-[3.46667vw] h-[1px] rounded-xl;
+  @apply box-border flex flex-col flex-shrink-0 relative top-[1.6vw] left-0 w-[3.46667vw] h-[1px] rounded-xl;
 }
 .input_number {
   @apply w-[11.73333vw] text-center rounded-none border-y border-solid border-[#CECECE] h-[8.26667vw] text-[4.26667vw] outline-0 appearance-none align-middle placeholder-black focus:placeholder-white;
@@ -168,4 +168,19 @@
 }
 .button_confirm {
   @apply box-border flex content-start flex-shrink-0 text-center text-white flex-row items-center justify-center bg-[#ff4000] rounded-full text-[3.46667vw] h-[9.6vw];
+}
+.infor_retail {
+  @apply flex flex-col flex-shrink-0 justify-center items-center flex-1;
+}
+.infor_retail_wrapper {
+  @apply flex flex-col flex-shrink-0;
+}
+.retail_money_min {
+  @apply relative box-border block flex-shrink-0 text-center font-bold whitespace-pre-wrap mb-[1.3333vw] text-[4.8vw] leading-[4.8vw] text-[#ff2900];
+}
+.retail_tilde {
+  @apply relative box-border block flex-shrink-0 text-center font-bold whitespace-pre-wrap mb-[1.3333vw] text-[4.8vw] leading-[4.8vw] text-[#ff2900];
+}
+.retail_money_max {
+  @apply relative box-border block flex-shrink-0 text-center font-bold whitespace-pre-wrap mb-[1.3333vw] text-[4.8vw] leading-[4.8vw] text-[#ff2900];
 }

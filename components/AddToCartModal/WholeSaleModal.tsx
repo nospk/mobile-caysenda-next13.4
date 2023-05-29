@@ -179,14 +179,24 @@ const AddToCartModal: FC = () => {
                         className={styles.decrease_wapper}
                       >
                         <div className={styles.icon_wapper}>
-                          <div className={styles.icon_decrease}></div>
+                          <div
+                            className={`${styles.icon_decrease} ${
+                              variants[indexAcitve].order > 0
+                                ? "bg-[#666666]"
+                                : "bg-[#CCCCCC]"
+                            }`}
+                          ></div>
                         </div>
                       </div>
                       <input
                         className={styles.input_number}
                         placeholder="0"
                         type="number"
-                        value={variants[indexAcitve].order}
+                        value={
+                          variants[indexAcitve].order != 0
+                            ? variants[indexAcitve].order
+                            : ""
+                        }
                         onChange={changeOrder}
                         min="0"
                         max={variants[indexAcitve].stock}

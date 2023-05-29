@@ -9,7 +9,7 @@ import styles from './styles.module.css';
 export default function Page() {
 	const ProductDetail = {
 		name: 'ZCT-1',
-		retail: false,
+		retail: true,
 		conditiondefault: '6',
 		condition1: '720',
 		condition2: '7200',
