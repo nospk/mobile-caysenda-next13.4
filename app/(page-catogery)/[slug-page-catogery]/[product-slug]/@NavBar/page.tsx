@@ -9,7 +9,7 @@ import {
 	AiOutlineHome,
 } from 'react-icons/ai';
 import styles from './styles.module.css';
-import Dialog from '@/components/Dialog/Dialog';
+import {useDialog} from '@/components/Dialog/Provider';
 export default function Page() {
 	const router = useRouter();
 	const opticalVariants = {
@@ -55,17 +55,10 @@ export default function Page() {
 		};
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [handleNavigation]);
-	const [isOpen, setIsOpen] = useState(false);
-	const handleOpenModal = () => {
-		setIsOpen(true);
-	};
-	const handleCloseModal = () => {
-		setIsOpen(false);
-	};
+	const { setDialog } = useDialog();
 	const copyLink = () => {
 		navigator.clipboard.writeText(location.href);
-		handleOpenModal()
-		setTimeout(handleCloseModal, 3000);
+		setDialog({type:"DIALOG", dialog:{message:"Đã copy link sản phẩm"}})
 	};
 	return (
 		<div
@@ -100,11 +93,6 @@ export default function Page() {
 			>
 				<AiOutlineHome className={styles.icon} />
 			</div>
-			<Dialog
-				isOpen={isOpen}
-				handleCloseModal={handleCloseModal}
-				message="Đã coppy link sản phẩm"
-			/>
 		</div>
 	);
 }
