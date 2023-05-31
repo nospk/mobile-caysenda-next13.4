@@ -7,7 +7,7 @@ import Gallery from '@/components/ProductDetail/Gallery';
 import AddToCart from '@/components/ProductDetail/AddToCart';
 import styles from './styles.module.css';
 export default function Page() {
-	const ProductDetailRetail = {
+	const ProductDetail = {
 		name: 'ZCT-1',
 		retail: true,
 		conditiondefault: '6',
@@ -29,18 +29,18 @@ export default function Page() {
 	};
 	return (
 		<>
-			<Carousel images={ProductDetailRetail.quickviewGallery} name={ProductDetailRetail.name}/>
+			<Carousel images={ProductDetail.quickviewGallery} name={ProductDetail.name}/>
 			<div className={styles.wrapper}>
-				{ProductDetailRetail.retail ? (
+				{ProductDetail.retail ? (
 					<PriceRetail
-						unit={ProductDetailRetail.unit}
-						name={ProductDetailRetail.name}
-						price={ProductDetailRetail.price}
+						unit={ProductDetail.unit}
+						name={ProductDetail.name}
+						price={ProductDetail.price}
 					/>
 				) : (
 					<PriceWholeSale
-						unit={ProductDetailRetail.unit}
-						price={ProductDetailRetail.pricewholesale}
+						unit={ProductDetail.unit}
+						price={ProductDetail.pricewholesale}
 						condition="30"
 					/>
 				)}
@@ -48,7 +48,7 @@ export default function Page() {
 			</div>
 			<Detail />
 			<Gallery />
-			<AddToCart />
+			<AddToCart retail={ProductDetail.retail}/>
 		</>
 	);
 }

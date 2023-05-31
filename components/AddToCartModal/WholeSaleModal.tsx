@@ -2,7 +2,7 @@
 import { useCallback, type FC } from 'react';
 import { useState } from 'react';
 import Modal from '@/components/Modal';
-import styles from './AddToCartModal.module.css';
+import styles from './styles.module.css';
 import { numberToString } from '@/lib/formatPrice';
 import Variant from './Variant';
 import InforWholeSale from './InforWholeSale';
@@ -136,50 +136,11 @@ const AddToCartModal: FC = () => {
 						<div className={styles.body_left}>
 							<div className={styles.wapper_left}>
 								{variants.map((variant, index) => (
-									// <div
-									// 	key={variant.name}
-									// 	onClick={() => setActive(index)}
-									// 	className={`${
-									// 		indexAcitve == index ? styles.varriant_active : ''
-									// 	} ${
-									// 		index == 0
-									// 			? styles.wapper_variant_first
-									// 			: styles.wapper_variant
-									// 	}`}
-									// >
-									// 	<div>
-									// 		<div className={styles.wapper_offer_number}>
-									// 			<div
-									// 				className={`${styles.offer_number} ${
-									// 					variant.order > 0 ? '' : styles.hidden_offer
-									// 				}`}
-									// 			>
-									// 				<span className={styles.span_offer_number}>
-									// 					{'x'}
-									// 					{variant.order}
-									// 				</span>
-									// 			</div>
-									// 			<div className={styles.image_variant}>
-									// 				<Image
-									// 					className="rounded-xl"
-									// 					src={variant.image}
-									// 					alt={variant.name}
-									// 					fill
-									// 					object-fit={'contain'}
-									// 					sizes="50vw"
-									// 				/>
-									// 			</div>
-									// 			<div className={styles.name_variant}>
-									// 				<span className={styles.span_name_variant}>
-									// 					{variant.name}
-									// 				</span>
-									// 			</div>
-									// 		</div>
-									// 	</div>
-									// </div>
 									<Variant
 										key={variant.name}
-										variant={variant}
+										name={variant.name}
+										image={variant.image}
+										order={variant.order}
 										className={`${
 											indexAcitve == index ? styles.varriant_active : ''
 										} ${
@@ -195,65 +156,6 @@ const AddToCartModal: FC = () => {
 						</div>
 						<div className={styles.wapper_right}>
 							<div className={styles.body_right}>
-								{/* <div className={styles.img_price_wapper}>
-									<div className={styles.img_product}>
-										<Image
-											className="rounded-xl"
-											src={variants[indexAcitve].image}
-											alt={variants[indexAcitve].name}
-											sizes="50vw"
-											fill
-											object-fit={'contain'}
-										/>
-									</div>
-									<div className={styles.extend_info}>
-										<div className={styles.margin_top}>
-											<div
-												className={`${styles.price_info} ${
-													activePrice == 0 ? styles.price_active : ''
-												} `}
-											>
-												{convertMoney(product.price) + 'K'}
-												<span className={styles.span_price}>đ</span>
-											</div>
-											<div className={styles.condtion_info}>
-												{`${product.condition} ~ ${
-													Number(product.condition1) - 1
-												}`}{' '}
-												{product.unit}
-											</div>
-										</div>
-										<div className={styles.margin_top}>
-											<div
-												className={`${styles.price_info} ${
-													activePrice == 1 ? styles.price_active : ''
-												} `}
-											>
-												{convertMoney(product.price1) + 'K'}
-												<span className={styles.span_price}>đ</span>
-											</div>
-											<div className={styles.condtion_info}>
-												{`${product.condition1} ~ ${
-													Number(product.condition2) - 1
-												}`}{' '}
-												{product.unit}
-											</div>
-										</div>
-										<div className={styles.margin_top}>
-											<div
-												className={`${styles.price_info} ${
-													activePrice == 2 ? styles.price_active : ''
-												} `}
-											>
-												{convertMoney(product.price2) + 'K'}
-												<span className={styles.span_price}>đ</span>
-											</div>
-											<div className={styles.condtion_info}>
-												{`≥${product.condition2}`} {product.unit}
-											</div>
-										</div>
-									</div>
-								</div> */}
 								<InforWholeSale
 									image={variants[indexAcitve].image}
 									name={variants[indexAcitve].name}
@@ -276,14 +178,24 @@ const AddToCartModal: FC = () => {
 												className={styles.decrease_wapper}
 											>
 												<div className={styles.icon_wapper}>
-													<div className={styles.icon_decrease}></div>
+													<div
+														className={`${styles.icon_decrease} ${
+															variants[indexAcitve].order > 0
+																? 'bg-[#666666]'
+																: 'bg-[#CCCCCC]'
+														}`}
+													></div>
 												</div>
 											</div>
 											<input
 												className={styles.input_number}
 												placeholder="0"
 												type="number"
-												value={variants[indexAcitve].order}
+												value={
+													variants[indexAcitve].order != 0
+														? variants[indexAcitve].order
+														: ''
+												}
 												onChange={changeOrder}
 												min="0"
 												max={variants[indexAcitve].stock}
@@ -309,12 +221,15 @@ const AddToCartModal: FC = () => {
 					</div>
 					<div className={styles.modal_footer}>
 						<div className={styles.condition_wapper}>
-							<div className={styles.condition}>
-								<span className={styles.span_condition}>
-									Tối thiểu {product.condition} {product.unit}
-								</span>
-							</div>
 							<div className={styles.count_total_wapper}>
+								{totalOrder > 0 && totalOrder < product.condition ? (
+									<div className={styles.condition}>
+										<span className={styles.span_condition}>
+											Tối thiểu {product.condition} {product.unit}
+										</span>
+									</div>
+								) : null}
+
 								<div>
 									<div className={styles.count_total}>
 										<div className={styles.count_total_num}>

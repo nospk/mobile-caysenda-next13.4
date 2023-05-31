@@ -9,6 +9,7 @@ import {
 	AiOutlineHome,
 } from 'react-icons/ai';
 import styles from './styles.module.css';
+import {useDialog} from '@/components/Dialog/Provider';
 export default function Page() {
 	const router = useRouter();
 	const opticalVariants = {
@@ -54,6 +55,11 @@ export default function Page() {
 		};
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [handleNavigation]);
+	const { setDialog } = useDialog();
+	const copyLink = () => {
+		navigator.clipboard.writeText(location.href);
+		setDialog({type:"DIALOG", dialog:{message:"Đã copy link sản phẩm"}})
+	};
 	return (
 		<div
 			className={`${styles.heard} bg-[#f8f8f8] ${opticalVariants[opacity]} ${
@@ -78,7 +84,7 @@ export default function Page() {
 			>
 				<AiOutlineShoppingCart className={styles.icon} />
 			</div>
-			<div className={`${styles.share} ${change ? '' : styles.bg_black}`}>
+			<div onClick={copyLink} className={`${styles.share} ${change ? '' : styles.bg_black}`}>
 				<AiOutlineShareAlt className={styles.icon} />
 			</div>
 			<div
