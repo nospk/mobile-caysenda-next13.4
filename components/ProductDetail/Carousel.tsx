@@ -69,9 +69,9 @@ export default function Carousel({ images, name }: { images: string[]; name: str
 						);
 					})}
 				</Swiper>
-				<div className={styles.carousel_arrow}>
+				{/* <div className={styles.carousel_arrow}>
 					<AiOutlineRight className={styles.arrow_icon} />
-				</div>
+				</div> */}
 			</div>
 		</>
 	);

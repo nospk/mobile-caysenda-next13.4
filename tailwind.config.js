@@ -20,16 +20,7 @@ module.exports = {
       height: {
         "46vw": "46.4vw",
       },
-      keyframes: {
-        fadeInDown: {
-          "0%": { opacity: "0", transform: "translateY(-100px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
-        },
-      },
-      animation: {
-        fadeInDown: "fadeInDown 3s 2s infinite",
-      },
     },
   },
-  plugins: [require("tailwind-scrollbar-hide")],
+  plugins: [require("tailwind-scrollbar-hide"), require('tailwindcss-animated')],
 };

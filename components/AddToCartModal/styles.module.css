@@ -2,10 +2,10 @@
   @apply flex text-sm flex-col box-border justify-center items-center shrink-0;
 }
 .modal {
-  @apply absolute box-border bottom-0 left-0 right-0 w-full h-[90%] flex rounded-t-lg bg-white shadow-md ease-in-out transition;
+  @apply absolute box-border bottom-0 left-0 right-0 w-full h-[90%] flex rounded-t-lg bg-white shadow-md;
 }
 .modalOverlay {
-  @apply fixed top-0 left-0 w-full h-full flex bg-slate-900 z-20 bg-opacity-60;
+  @apply fixed top-0 left-0 w-full h-full flex bg-slate-900 z-20 bg-opacity-60 animate-fade-up animate-once animate-duration-[50ms] animate-delay-0 animate-ease-linear animate-normal animate-fill-both;
 }
 .button {
   @apply text-[3.4667vw] relative bg-[#FEA200] px-[3.4667vw] justify-center items-center font-bold rounded-full text-white;
