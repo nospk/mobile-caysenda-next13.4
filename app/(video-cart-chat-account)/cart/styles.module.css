@@ -1,0 +1,24 @@
+.order_control {
+  @apply box-border flex flex-shrink-0 flex-row items-center justify-start text-[3.73333vw] relative;
+}
+.icon_decrease {
+  @apply box-border flex flex-col flex-shrink-0 relative top-[1.6vw] left-0 w-[3.46667vw] h-[1px] rounded-xl;
+}
+.decrease_wapper {
+  @apply box-border flex flex-col flex-shrink-0 w-[4.26667vw] h-[4.26667vw] justify-center items-center text-center border-x border-y border-solid border-[#CECECE] rounded-l-xl;
+}
+.icon_wapper {
+  @apply box-border flex flex-col flex-shrink-0 relative w-[3.46667vw] h-[3.46667vw];
+}
+.input_number {
+  @apply w-[11.73333vw] text-center rounded-none border-y border-solid border-[#CECECE] h-[4.26667vw] outline-0 appearance-none align-middle placeholder-black focus:placeholder-white;
+}
+.increase_wapper {
+  @apply box-border flex flex-col flex-shrink-0 justify-center items-center text-center w-[4.26667vw] h-[4.26667vw] border-x border-y border-solid border-[#CECECE] rounded-r-xl self-center;
+}
+.icon_increase_level {
+  @apply box-border flex flex-col flex-shrink-0 top-[1.6vw] left-0 w-[3.46667vw] h-[1px] rounded-xl bg-[#666666] relative;
+}
+.icon_increase_vertical {
+  @apply box-border flex flex-col flex-shrink-0 top-[-0.26667vw] left-[1.6vw] w-[1px] h-[3.46667vw] rounded-xl bg-[#666666] relative;
+}
