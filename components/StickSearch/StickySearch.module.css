@@ -1,21 +1,23 @@
 .sticky_out_wrapper {
-	@apply sticky top-0 z-10 bg-[#f8f8f8] p-[2.4vw] space-y-1;
+  @apply sticky top-0 z-10 bg-[#f8f8f8] p-[2.4vw] space-y-1;
 }
 
 .sticky_wrapper {
-	@apply border-2 border-solid border-[#ed471f] rounded-lg bg-white flex justify-center items-center h-[9.33333vw] max-w-full;
+  @apply border-2 border-solid border-[#ed471f] rounded-lg bg-white flex justify-center items-center h-[9.33333vw] max-w-full;
 }
 
 .search_wapper_icon {
-	@apply flex-1 max-w-[9vw] relative float-right;
+  @apply flex-1 max-w-[9vw] relative float-right;
 }
 .search_icon {
-	@apply ml-auto mr-auto w-[4.4vw] h-[4.4vw];
+  @apply ml-auto mr-auto w-[4.4vw] h-[4.4vw];
 }
 .search_text {
-	@apply flex-1 px-2 border-x-2 relative w-full text-[3.4vw] outline-none bg-white text-[#606060] truncate;
+  @apply flex-1 px-2 border-x-2 relative w-full text-[3.4vw] outline-none bg-white text-[#606060] truncate;
 }
-
+.search_text_span {
+  @apply animate-fade-down animate-infinite animate-duration-[5000ms] animate-delay-[2000ms] animate-ease-in-out animate-normal animate-fill-forwards;
+}
 .search_button {
-	@apply flex-1 font-bold relative max-w-[8vw] float-left text-[#ed471f] text-[3.4vw];
+  @apply flex-1 font-bold relative max-w-[8vw] float-left text-[#ed471f] text-[3.4vw];
 }

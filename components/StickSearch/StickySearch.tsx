@@ -12,12 +12,14 @@ const StickySearch: FC = () => {
         <span className={styles.search_wapper_icon}>
           <BiBarcodeReader className={styles.search_icon} />
         </span>
-        <span
+        <div
           className={styles.search_text}
           onClick={() => router.push(`/search`)}
         >
-          Tìm Theo Tên Sản Phẩm
-        </span>
+          <div className={styles.search_text_span}>
+            <span>Tìm Theo Tên Sản Phẩm</span>
+          </div>
+        </div>
         <button
           className={styles.search_button}
           onClick={() => router.push(`/search`)}
