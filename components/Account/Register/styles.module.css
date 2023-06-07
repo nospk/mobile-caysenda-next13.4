@@ -1,0 +1,201 @@
+.register-form-body {
+    @apply w-full h-full;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+    @apply w-full;
+  max-width: 100%;
+}
+
+.register-label-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  padding: 5px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  @apply flex flex-col items-center; /* Thêm @apply và chỉnh sửa */
+}
+
+.register-content-box {
+  
+  width: 100%;
+  padding: 10px;
+}
+
+.register-password {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  @apply mt-0.5; /* Thêm @apply và chỉnh sửa */
+}
+
+.register-error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ff6d6d;
+  margin: 20px 0;
+  font-size: 14px;
+  line-height: 16px;
+  @apply text-center; /* Thêm @apply và chỉnh sửa */
+}
+
+.register-error i {
+  margin-right: 5px;
+  font-size: 20px;
+}
+
+.register-error-msg {
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.register-form {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  @apply mt-10; /* Thêm @apply và chỉnh sửa */
+}
+
+.register-blocks {
+  @apply mt-6; /* Thêm @apply và chỉnh sửa */
+}
+
+.logo-block {
+  @apply mb-4; /* Thêm @apply và chỉnh sửa */
+}
+
+.fm-field {
+    width: 100%;
+  display: flex;
+  flex-direction: column;
+  font-weight: 100%;
+  margin-bottom: 20px;
+}
+
+.fm-label {
+  font-size: 14px;
+  font-weight: 100%;
+  margin-bottom: 5px;
+}
+
+.input-pwa-wrap {
+  position: relative;
+  display: inline-block;
+  height: 44px;
+  width: 100%;
+}
+
+.fm-text {
+  outline: none;
+  border: none;
+  font-size: 16px;
+  line-height: 18px;
+  width: 100%;
+  padding: 12px;
+  position: relative;
+  z-index: 1;
+  @apply focus:outline-none focus:border-blue-400; /* Thêm @apply và chỉnh sửa */
+}
+
+.underline {
+  position: relative;
+  width: 100%;
+  height: 1px;
+}
+
+.unfocused-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #d2d6dc;
+}
+
+.focused-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #3182ce;
+  transform: scaleX(0);
+  transform-origin: bottom left;
+  transition: transform 0.3s ease;
+}
+
+.has-password-look-btn {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 44px;
+}
+
+.input-wrap-password {
+  @apply relative flex items-center; /* Thêm @apply và chỉnh sửa */
+}
+
+.password-look-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.icon-eye-close {
+  @apply block w-6 h-6; /* Thêm @apply và chỉnh sửa */
+}
+
+.fm-btn {
+    width: 100%;
+    box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.fm-button {
+    width: 100%;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  background-color: #ff4800;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 80%;
+  padding: 12px 24px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  @apply hover:bg-blue-400; /* Thêm @apply và chỉnh sửa */
+}
+
+.register-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #636e72;
+}
+
+.show-other-register {
+  margin-top: 20px;
+  font-size: 12px;
+  color: #a1a1aa;
+  text-align: center;
+}

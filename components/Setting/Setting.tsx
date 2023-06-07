@@ -6,7 +6,7 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisH, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
-const SettingsPage: React.FC = () => {
+function SettingsPage() {
   const links = [
     { href: "/change-avatar", text: "Thay đổi Avatar" },
     { href: "", text: "Tên Người Dùng" },
@@ -71,6 +71,6 @@ const SettingsPage: React.FC = () => {
       </div>
     </div>
   );
-};
+}
 
 export default SettingsPage;
