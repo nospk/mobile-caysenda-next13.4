@@ -404,7 +404,7 @@ export default async function Page() {
 					<span className="bg-[#fff2e6] p-[2.4vw] text-[3.2vw] text-[#666] whitespace-pre-wrap box-border">Có {1} sản phẩm chưa đặt đủ số lượng hàng tối thiểu</span>
 					<div className="flex flex-row justify-between items-center p-[2.66667vw] border-t border-solid border-[#e9e9e9]">
 						<div className="ml-[-1.6vw] py-[2.4vw] pl-[2.66667vw] flex flex-row items-center box-border relative flex-shrink-0">
-							<div class="rounded-full border-[0.26667vw] border-[#ddd] items-center content-start transition w-[5.33333vw] h-[5.33333vw]"></div>
+							<div className="rounded-full border-[0.26667vw] border-[#ddd] items-center content-start transition w-[5.33333vw] h-[5.33333vw]"></div>
 							<span className="text-[#333] text-[3.2vw] ml-[2.13333vw] block box-border whitespace-pre-wrap">Tất Cả</span>
 						</div>
 						<div className="flex flex-1 flex-row items-center justify-end box-border">
