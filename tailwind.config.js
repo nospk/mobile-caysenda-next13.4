@@ -8,7 +8,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-google)"],
+        sans: ["var(--font-sans)"],
+        icon: ["var(--font-icon)"],
       },
       maxWidth: {
         "40px": "40px",

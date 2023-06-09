@@ -1,15 +1,15 @@
 .sticky_out_wrapper {
-  @apply sticky top-0 z-10 bg-[#f8f8f8] space-y-1;
+  @apply sticky top-0 z-10 space-y-1 bg-white;
 }
 .sticky_wrapper {
-  @apply flex justify-center text-center items-center h-[7vw] max-w-full;
+  @apply flex h-[8vw] max-w-full items-center justify-center text-center;
 }
 .wapper_back {
-  @apply flex-1 relative float-right max-w-[9vw];
+  @apply relative float-right max-w-[9vw] flex-1;
 }
 .back {
-  @apply ml-auto mr-auto w-[3vw] h-[3vw];
+  @apply ml-auto mr-auto h-[3vw] w-[3vw];
 }
 .title {
-  @apply grow text-[3vw] font-semibold;
+  @apply grow text-[3vw] font-semibold text-[#222222] leading-[8vw];
 }

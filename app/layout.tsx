@@ -1,13 +1,24 @@
 import "./globals.css";
 import { Open_Sans } from "next/font/google";
 import { Metadata } from "next";
-const fonter = Open_Sans({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-google",
-});
+import localFont from 'next/font/local'
+
+//dialog message global
 import Dialog from "@/components/Dialog";
 import { DialogProvider } from "@/components/Dialog/Provider";
+
+//font text basic
+const fonter = Open_Sans({
+  subsets: ["latin"],
+  weight: '400',
+  variable: '--font-sans'
+});
+
+//font for icon by unicode
+const fontIcon = localFont({ src: './icon/font-icon.ttf', variable: '--font-icon'})
+
+
+//seo global
 export const metadata: Metadata = {
   title: {
     template: "%s - Cây Sen Đá - Nomi - Ngọc Minh",
@@ -23,13 +34,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="vi">
-      <head>
-        <link
-          href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          rel="stylesheet"
-        />
-      </head>
-      <body className={fonter.className}>
+      <body className={`${fonter.variable} ${fontIcon.variable} font-sans`}>
         <DialogProvider>
           {children}
           <Dialog />
