@@ -1,5 +1,5 @@
 .sticky_out_wrapper {
-  @apply sticky top-0 z-10 space-y-1 bg-white;
+  @apply absolute top-0 z-20 space-y-1 bg-white w-full;
 }
 .sticky_wrapper {
   @apply flex h-[8vw] max-w-full items-center justify-center text-center;
