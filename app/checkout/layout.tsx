@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 export const metadata: Metadata = {
-  title: "Thanh Toán",
+  title: "Xác Nhận Đơn Hàng",
 };
 
 export default function Layout(props: {
