@@ -8,8 +8,8 @@
   @apply relative float-right max-w-[9vw] flex-1;
 }
 .back {
-  @apply ml-auto mr-auto h-[3vw] w-[3vw];
+  @apply ml-auto mr-auto h-[4.3333332vw] w-[4.3333332vw];
 }
 .title {
-  @apply grow text-[3vw] font-semibold text-[#222222] leading-[8vw];
+  @apply grow text-[4.3333332vw] font-semibold text-[#222222] leading-[8vw];
 }
