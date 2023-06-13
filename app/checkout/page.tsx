@@ -45,7 +45,7 @@ export default async function Page() {
                 <div className="box-border">
                   <div className="box-border">
                     <div className="mb-[1.66667vw] box-border flex flex-row items-start">
-                      <div className="mr-[1vw] block h-[12.084vw] w-[12.084vw]">
+                      <div className="mr-[1vw] block h-[17.5vw] w-[17.5vw]">
                         <Image
                           className="rounded-lg"
                           src="https://caysenda.vn/resources/upload/22216875771_102253868.jpg"
@@ -57,7 +57,7 @@ export default async function Page() {
                         />
                       </div>
                       <div className="box-border flex-1 overflow-hidden">
-                        <div className="mb-[1vw] box-border truncate text-[3.033333vw] font-medium text-[#222]">
+                        <div className="mb-[1vw] box-border truncate text-[3.3816vw] font-medium text-[#222]">
                           ZTC1
                         </div>
                       </div>
@@ -67,7 +67,7 @@ export default async function Page() {
                         <div className="mb-[1.66667vw] flex list-none flex-row items-center rounded-lg bg-[#f9f9f9] px-[1.66667vw] py-[0.833333vw]">
                           <div className="box-border flex-1 overflow-hidden">
                             <div className="box-border">
-                              <span className="box-border text-[2.866667vw] text-[#666]">
+                              <span className="box-border text-[3.14vw] text-[#555]">
                                 Chậu hình voi
                               </span>
                             </div>
@@ -93,7 +93,7 @@ export default async function Page() {
                         <div className="mb-[1.66667vw] flex list-none flex-row items-center rounded-lg bg-[#f9f9f9] px-[1.66667vw] py-[0.833333vw]">
                           <div className="box-border flex-1 overflow-hidden">
                             <div className="box-border">
-                              <span className="box-border text-[2.866667vw] text-[#666]">
+                              <span className="box-border text-[3.14vw] text-[#555]">
                                 Chậu hình voi
                               </span>
                             </div>
@@ -119,7 +119,7 @@ export default async function Page() {
                         <div className="mb-[1.66667vw] flex list-none flex-row items-center rounded-lg bg-[#f9f9f9] px-[1.66667vw] py-[0.833333vw]">
                           <div className="box-border flex-1 overflow-hidden">
                             <div className="box-border">
-                              <span className="box-border text-[2.866667vw] text-[#666]">
+                              <span className="box-border text-[3.14vw] text-[#555]">
                                 Chậu hình voi
                               </span>
                             </div>
@@ -145,7 +145,7 @@ export default async function Page() {
                   </div>
                   <div className="box-border">
                     <div className="mb-[1.66667vw] box-border flex flex-row items-start">
-                      <div className="mr-[1vw] block h-[12.084vw] w-[12.084vw]">
+                      <div className="mr-[1vw] block h-[17.5vw] w-[17.5vw]">
                         <Image
                           className="rounded-lg"
                           src="https://caysenda.vn/resources/upload/22216875771_102253868.jpg"
@@ -157,7 +157,7 @@ export default async function Page() {
                         />
                       </div>
                       <div className="box-border flex-1 overflow-hidden">
-                        <div className="mb-[1vw] box-border truncate text-[3.033333vw] font-medium text-[#222]">
+                        <div className="mb-[1vw] box-border truncate text-[3.3816vw] font-medium text-[#222]">
                           ZTC1
                         </div>
                       </div>
@@ -167,7 +167,7 @@ export default async function Page() {
                         <div className="mb-[1.66667vw] flex list-none flex-row items-center rounded-lg bg-[#f9f9f9] px-[1.66667vw] py-[0.833333vw]">
                           <div className="box-border flex-1 overflow-hidden">
                             <div className="box-border">
-                              <span className="box-border text-[2.866667vw] text-[#666]">
+                              <span className="box-border text-[3.14vw] text-[#555]">
                                 Chậu hình voi
                               </span>
                             </div>
@@ -193,7 +193,7 @@ export default async function Page() {
                         <div className="mb-[1.66667vw] flex list-none flex-row items-center rounded-lg bg-[#f9f9f9] px-[1.66667vw] py-[0.833333vw]">
                           <div className="box-border flex-1 overflow-hidden">
                             <div className="box-border">
-                              <span className="box-border text-[2.866667vw] text-[#666]">
+                              <span className="box-border text-[3.14vw] text-[#555]">
                                 Chậu hình voi
                               </span>
                             </div>
@@ -219,7 +219,7 @@ export default async function Page() {
                         <div className="mb-[1.66667vw] flex list-none flex-row items-center rounded-lg bg-[#f9f9f9] px-[1.66667vw] py-[0.833333vw]">
                           <div className="box-border flex-1 overflow-hidden">
                             <div className="box-border">
-                              <span className="box-border text-[2.866667vw] text-[#666]">
+                              <span className="box-border text-[3.14vw] text-[#555]">
                                 Chậu hình voi
                               </span>
                             </div>
@@ -247,31 +247,12 @@ export default async function Page() {
                 <div className="relative box-border pb-[1.666667vw]">
                   <div className="box-border">
                     <div className="flex flex-row items-center justify-between py-[1.166667vw] text-[2.833333vw]">
-                      <label>Hình Thức Thanh Toán</label>
-                      <div className="flex flex-1 flex-row items-center justify-end pl-[0.833333vw]">
-                        <span className="inline text-[#666]">CK trước 10%</span>
-                        <AiOutlineRight className="ml-[0.666667vw] h-[2vw] w-[2vw] text-[#999]" />
-                      </div>
-                    </div>
-                    <div className="flex flex-row items-center justify-between py-[1.166667vw] text-[2.833333vw]">
                       <label className="mr-[2vw]">Phí Vận Chuyển</label>
                       <div className="flex flex-1 flex-row items-center justify-end pl-[0.833333vw]">
                         <span className="inline font-medium text-[#333]">
                           30K
                         </span>
                         <AiOutlineRight className="ml-[0.666667vw] h-[2vw] w-[2vw] text-[#999]" />
-                      </div>
-                    </div>
-                    <div className="box-border">
-                      <div className="relative h-auto bg-white pt-[1.166667vw]">
-                        <div className="flex flex-row items-center overflow-hidden text-[2.833333vw]">
-                          <label className="mr-[2vw]">Ghi Chú</label>
-                          <input
-                            className="flex-1 pl-[1.333333vw] text-right outline-0"
-                            maxLength={500}
-                            placeholder="Lưu Ý Cho Người Bán"
-                          />
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -290,7 +271,7 @@ export default async function Page() {
                 <div className="box-border">
                   <div className="box-border">
                     <div className="mb-[1.66667vw] box-border flex flex-row items-start">
-                      <div className="mr-[1vw] block h-[12.084vw] w-[12.084vw]">
+                      <div className="mr-[1vw] block h-[17.5vw] w-[17.5vw]">
                         <Image
                           className="rounded-lg"
                           src="https://caysenda.vn/resources/upload/22216875771_102253868.jpg"
@@ -302,7 +283,7 @@ export default async function Page() {
                         />
                       </div>
                       <div className="box-border flex-1 overflow-hidden">
-                        <div className="mb-[1vw] box-border truncate text-[3.033333vw] font-medium text-[#222]">
+                        <div className="mb-[1vw] box-border truncate text-[3.3816vw] font-medium text-[#222]">
                           ZTC1
                         </div>
                       </div>
@@ -312,7 +293,7 @@ export default async function Page() {
                         <div className="mb-[1.66667vw] flex list-none flex-row items-center rounded-lg bg-[#f9f9f9] px-[1.66667vw] py-[0.833333vw]">
                           <div className="box-border flex-1 overflow-hidden">
                             <div className="box-border">
-                              <span className="box-border text-[2.866667vw] text-[#666]">
+                              <span className="box-border text-[3.14vw] text-[#666]">
                                 Chậu hình voi
                               </span>
                             </div>
@@ -338,7 +319,7 @@ export default async function Page() {
                         <div className="mb-[1.66667vw] flex list-none flex-row items-center rounded-lg bg-[#f9f9f9] px-[1.66667vw] py-[0.833333vw]">
                           <div className="box-border flex-1 overflow-hidden">
                             <div className="box-border">
-                              <span className="box-border text-[2.866667vw] text-[#666]">
+                              <span className="box-border text-[3.14vw] text-[#666]">
                                 Chậu hình voi
                               </span>
                             </div>
@@ -364,7 +345,7 @@ export default async function Page() {
                         <div className="mb-[1.66667vw] flex list-none flex-row items-center rounded-lg bg-[#f9f9f9] px-[1.66667vw] py-[0.833333vw]">
                           <div className="box-border flex-1 overflow-hidden">
                             <div className="box-border">
-                              <span className="box-border text-[2.866667vw] text-[#666]">
+                              <span className="box-border text-[3.14vw] text-[#666]">
                                 Chậu hình voi
                               </span>
                             </div>
@@ -390,7 +371,7 @@ export default async function Page() {
                   </div>
                   <div className="box-border">
                     <div className="mb-[1.66667vw] box-border flex flex-row items-start">
-                      <div className="mr-[1vw] block h-[12.084vw] w-[12.084vw]">
+                      <div className="mr-[1vw] block h-[17.5vw] w-[17.5vw]">
                         <Image
                           className="rounded-lg"
                           src="https://caysenda.vn/resources/upload/22216875771_102253868.jpg"
@@ -402,7 +383,7 @@ export default async function Page() {
                         />
                       </div>
                       <div className="box-border flex-1 overflow-hidden">
-                        <div className="mb-[1vw] box-border truncate text-[3.033333vw] font-medium text-[#222]">
+                        <div className="mb-[1vw] box-border truncate text-[3.3816vw] font-medium text-[#222]">
                           ZTC1
                         </div>
                       </div>
@@ -412,7 +393,7 @@ export default async function Page() {
                         <div className="mb-[1.66667vw] flex list-none flex-row items-center rounded-lg bg-[#f9f9f9] px-[1.66667vw] py-[0.833333vw]">
                           <div className="box-border flex-1 overflow-hidden">
                             <div className="box-border">
-                              <span className="box-border text-[2.866667vw] text-[#666]">
+                              <span className="box-border text-[3.14vw] text-[#666]">
                                 Chậu hình voi
                               </span>
                             </div>
@@ -438,7 +419,7 @@ export default async function Page() {
                         <div className="mb-[1.66667vw] flex list-none flex-row items-center rounded-lg bg-[#f9f9f9] px-[1.66667vw] py-[0.833333vw]">
                           <div className="box-border flex-1 overflow-hidden">
                             <div className="box-border">
-                              <span className="box-border text-[2.866667vw] text-[#666]">
+                              <span className="box-border text-[3.14vw] text-[#666]">
                                 Chậu hình voi
                               </span>
                             </div>
@@ -464,7 +445,7 @@ export default async function Page() {
                         <div className="mb-[1.66667vw] flex list-none flex-row items-center rounded-lg bg-[#f9f9f9] px-[1.66667vw] py-[0.833333vw]">
                           <div className="box-border flex-1 overflow-hidden">
                             <div className="box-border">
-                              <span className="box-border text-[2.866667vw] text-[#666]">
+                              <span className="box-border text-[3.14vw] text-[#666]">
                                 Chậu hình voi
                               </span>
                             </div>
@@ -492,31 +473,12 @@ export default async function Page() {
                 <div className="relative box-border pb-[1.666667vw]">
                   <div className="box-border">
                     <div className="flex flex-row items-center justify-between py-[1.166667vw] text-[2.833333vw]">
-                      <label>Hình Thức Thanh Toán</label>
-                      <div className="flex flex-1 flex-row items-center justify-end pl-[0.833333vw]">
-                        <span className="inline text-[#666]">CK trước 10%</span>
-                        <AiOutlineRight className="ml-[0.666667vw] h-[2vw] w-[2vw] text-[#999]" />
-                      </div>
-                    </div>
-                    <div className="flex flex-row items-center justify-between py-[1.166667vw] text-[2.833333vw]">
                       <label className="mr-[2vw]">Phí Vận Chuyển</label>
                       <div className="flex flex-1 flex-row items-center justify-end pl-[0.833333vw]">
                         <span className="inline font-medium text-[#333]">
                           30K
                         </span>
                         <AiOutlineRight className="ml-[0.666667vw] h-[2vw] w-[2vw] text-[#999]" />
-                      </div>
-                    </div>
-                    <div className="box-border">
-                      <div className="relative h-auto bg-white pt-[1.166667vw]">
-                        <div className="flex flex-row items-center overflow-hidden text-[2.833333vw]">
-                          <label className="mr-[2vw]">Ghi Chú</label>
-                          <input
-                            className="flex-1 pl-[1.333333vw] text-right outline-0"
-                            maxLength={500}
-                            placeholder="Lưu Ý Cho Người Bán"
-                          />
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -530,7 +492,7 @@ export default async function Page() {
                 </div>
                 <div className="box-border">
                   <div className="flex flex-row items-center justify-between py-[1.1666667vw]">
-                    <label className="text-[2.666667vw] ">
+                    <label className="text-[3.14vw] ">
                       Tổng Tiền Hàng
                       <span className="ml-[1vw] text-[2.1666667vw] text-[#999]">
                         2 Loại 5 Cái
@@ -546,7 +508,7 @@ export default async function Page() {
                     </div>
                   </div>
                   <div className="flex flex-row items-center justify-between py-[1.1666667vw]">
-                    <label className="text-[2.666667vw]">
+                    <label className="text-[3.14vw]">
                       Tổng Tiền Phí Vận Chuyển
                     </label>
                     <div className="box-border flex flex-1 flex-row items-center justify-end pl-[1.666667vw]">
@@ -559,7 +521,7 @@ export default async function Page() {
                     </div>
                   </div>
                   <div className="flex flex-row items-center justify-between py-[1.1666667vw]">
-                    <label className="text-[2.666667vw]">Tổng Thanh Toán</label>
+                    <label className="text-[3.14vw]">Tổng Thanh Toán</label>
                     <div className="box-border flex flex-1 flex-row items-center justify-end pl-[1.666667vw]">
                       <span className="box-border text-[3.233333vw] ">
                         190K
@@ -567,6 +529,23 @@ export default async function Page() {
                           đ
                         </span>
                       </span>
+                    </div>
+                  </div>
+                  <div className="flex flex-row items-center justify-between py-[1.1666667vw]">
+                    <label className="text-[3.14vw]">Hình Thức Thanh Toán</label>
+                    <div className="box-border flex flex-1 flex-row items-center justify-end pl-[1.666667vw]">
+                      <span className="inline text-[#666] text-[3.233333vw]">CK trước 10%</span>
+                      <AiOutlineRight className="ml-[0.666667vw] h-[2vw] w-[2vw] text-[#999]" />
+                    </div>
+                  </div>
+                  <div className="flex flex-row items-center justify-between py-[1.1666667vw]">
+                    <label className="text-[3.14vw]">Ghi Chú</label>
+                    <div className="box-border flex flex-1 flex-row items-center justify-end pl-[1.666667vw]">
+                      <input
+                        className="flex-1 pl-[1.333333vw] text-right text-[3.233333vw] outline-0"
+                        maxLength={500}
+                        placeholder="Lưu Ý Cho Người Bán"
+                      />
                     </div>
                   </div>
                 </div>
