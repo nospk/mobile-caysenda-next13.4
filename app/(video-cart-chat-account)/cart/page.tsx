@@ -136,9 +136,6 @@ export default async function Page() {
                                 <div className="box-border flex flex-shrink-0 flex-row text-[#FF4000]">
                                   <span className="relative box-border text-[3.2vw] leading-[3.2vw]">
                                     {convertMoney(16000) + "K"}
-                                    <span className="ml-[0.66667vw] text-[2.93333vw]">
-                                      đ
-                                    </span>
                                   </span>
                                 </div>
                                 <div className="relative flex flex-row items-center text-[3.73333vw]">
