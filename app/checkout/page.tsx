@@ -71,29 +71,19 @@ export default async function Page() {
                                 Chậu hình voi
                               </span>
                             </div>
-                            <span className="mr-[0.666666vw] box-border text-[3.666667vw] leading-[3.666667vw] text-[#FF4000]">
-                              <span className="box-border">
-                                16K
-                                <span className="ml-[0.333333vw] text-[2.666667vw]">
-                                  đ
-                                </span>
-                              </span>
+                            <span className="mr-[0.666666vw] box-border text-[3.666667vw] leading-[3vw] text-[#FF4000]">
+                              <span className="box-border">16K</span>
                             </span>
                             <span className="mr-[0.666666vw] box-border text-[2.666667vw] leading-[2vw] text-[#999]">
                               {`Tổng: `}
-                              <span className="box-border">
-                                16K
-                                <span className="ml-[0.333333vw] text-[1.66667vw]">
-                                  đ
-                                </span>
-                              </span>
+                              <span className="box-border">16K</span>
                             </span>
                           </div>
                           <div className="box-border flex flex-col ">
                             <div className="box-border h-[4.876vw] ">
-                              <span className="inline-block h-full rounded-lg bg-white px-[1.66667vw] text-[2.633333vw] leading-[4.666667vw] text-[#999]">
+                              <span className="inline-block h-full rounded-lg bg-white px-[1.66667vw] text-[2.833333vw] leading-[4.876vw] text-[#999]">
                                 {"x "}
-                                <em className="not-italic text-[#222]">1</em>
+                                <em className="not-italic text-[#222]">123</em>
                               </span>
                             </div>
                           </div>
@@ -107,29 +97,19 @@ export default async function Page() {
                                 Chậu hình voi
                               </span>
                             </div>
-                            <span className="mr-[0.666666vw] box-border text-[3.666667vw] leading-[3.666667vw] text-[#FF4000]">
-                              <span className="box-border">
-                                16K
-                                <span className="ml-[0.333333vw] text-[2.666667vw]">
-                                  đ
-                                </span>
-                              </span>
+                            <span className="mr-[0.666666vw] box-border text-[3.666667vw] leading-[3vw] text-[#FF4000]">
+                              <span className="box-border">16K</span>
                             </span>
                             <span className="mr-[0.666666vw] box-border text-[2.666667vw] leading-[2vw] text-[#999]">
                               {`Tổng: `}
-                              <span className="box-border">
-                                16K
-                                <span className="ml-[0.333333vw] text-[1.66667vw]">
-                                  đ
-                                </span>
-                              </span>
+                              <span className="box-border">16K</span>
                             </span>
                           </div>
                           <div className="box-border flex flex-col ">
                             <div className="box-border h-[4.876vw] ">
-                              <span className="inline-block h-full rounded-lg bg-white px-[1.66667vw] text-[2.633333vw] leading-[4.666667vw] text-[#999]">
+                              <span className="inline-block h-full rounded-lg bg-white px-[1.66667vw] text-[2.833333vw] leading-[4.876vw] text-[#999]">
                                 {"x "}
-                                <em className="not-italic text-[#222]">1</em>
+                                <em className="not-italic text-[#222]">123</em>
                               </span>
                             </div>
                           </div>
@@ -143,29 +123,19 @@ export default async function Page() {
                                 Chậu hình voi
                               </span>
                             </div>
-                            <span className="mr-[0.666666vw] box-border text-[3.666667vw] leading-[3.666667vw] text-[#FF4000]">
-                              <span className="box-border">
-                                16K
-                                <span className="ml-[0.333333vw] text-[2.666667vw]">
-                                  đ
-                                </span>
-                              </span>
+                            <span className="mr-[0.666666vw] box-border text-[3.666667vw] leading-[3vw] text-[#FF4000]">
+                              <span className="box-border">16K</span>
                             </span>
                             <span className="mr-[0.666666vw] box-border text-[2.666667vw] leading-[2vw] text-[#999]">
                               {`Tổng: `}
-                              <span className="box-border">
-                                16K
-                                <span className="ml-[0.333333vw] text-[1.66667vw]">
-                                  đ
-                                </span>
-                              </span>
+                              <span className="box-border">16K</span>
                             </span>
                           </div>
                           <div className="box-border flex flex-col ">
                             <div className="box-border h-[4.876vw] ">
-                              <span className="inline-block h-full rounded-lg bg-white px-[1.66667vw] text-[2.633333vw] leading-[4.666667vw] text-[#999]">
+                              <span className="inline-block h-full rounded-lg bg-white px-[1.66667vw] text-[2.833333vw] leading-[4.876vw] text-[#999]">
                                 {"x "}
-                                <em className="not-italic text-[#222]">1</em>
+                                <em className="not-italic text-[#222]">12</em>
                               </span>
                             </div>
                           </div>
@@ -201,27 +171,17 @@ export default async function Page() {
                                 Chậu hình voi
                               </span>
                             </div>
-                            <span className="mr-[0.666666vw] box-border text-[3.666667vw] leading-[3.666667vw] text-[#FF4000]">
-                              <span className="box-border">
-                                16K
-                                <span className="ml-[0.333333vw] text-[2.666667vw]">
-                                  đ
-                                </span>
-                              </span>
+                            <span className="mr-[0.666666vw] box-border text-[3.666667vw] leading-[3vw] text-[#FF4000]">
+                              <span className="box-border">16K</span>
                             </span>
                             <span className="mr-[0.666666vw] box-border text-[2.666667vw] leading-[2vw] text-[#999]">
                               {`Tổng: `}
-                              <span className="box-border">
-                                16K
-                                <span className="ml-[0.333333vw] text-[1.66667vw]">
-                                  đ
-                                </span>
-                              </span>
+                              <span className="box-border">16K</span>
                             </span>
                           </div>
                           <div className="box-border flex flex-col ">
                             <div className="box-border h-[4.876vw] ">
-                              <span className="inline-block h-full rounded-lg bg-white px-[1.66667vw] text-[2.633333vw] leading-[4.666667vw] text-[#999]">
+                              <span className="inline-block h-full rounded-lg bg-white px-[1.66667vw] text-[2.833333vw] leading-[4.876vw] text-[#999]">
                                 {"x "}
                                 <em className="not-italic text-[#222]">1</em>
                               </span>
@@ -237,27 +197,17 @@ export default async function Page() {
                                 Chậu hình voi
                               </span>
                             </div>
-                            <span className="mr-[0.666666vw] box-border text-[3.666667vw] leading-[3.666667vw] text-[#FF4000]">
-                              <span className="box-border">
-                                16K
-                                <span className="ml-[0.333333vw] text-[2.666667vw]">
-                                  đ
-                                </span>
-                              </span>
+                            <span className="mr-[0.666666vw] box-border text-[3.666667vw] leading-[3vw] text-[#FF4000]">
+                              <span className="box-border">16K</span>
                             </span>
                             <span className="mr-[0.666666vw] box-border text-[2.666667vw] leading-[2vw] text-[#999]">
                               {`Tổng: `}
-                              <span className="box-border">
-                                16K
-                                <span className="ml-[0.333333vw] text-[1.66667vw]">
-                                  đ
-                                </span>
-                              </span>
+                              <span className="box-border">16K</span>
                             </span>
                           </div>
                           <div className="box-border flex flex-col ">
                             <div className="box-border h-[4.876vw] ">
-                              <span className="inline-block h-full rounded-lg bg-white px-[1.66667vw] text-[2.633333vw] leading-[4.666667vw] text-[#999]">
+                              <span className="inline-block h-full rounded-lg bg-white px-[1.66667vw] text-[2.833333vw] leading-[4.876vw] text-[#999]">
                                 {"x "}
                                 <em className="not-italic text-[#222]">1</em>
                               </span>
@@ -273,27 +223,17 @@ export default async function Page() {
                                 Chậu hình voi
                               </span>
                             </div>
-                            <span className="mr-[0.666666vw] box-border text-[3.666667vw] leading-[3.666667vw] text-[#FF4000]">
-                              <span className="box-border">
-                                16K
-                                <span className="ml-[0.333333vw] text-[2.666667vw]">
-                                  đ
-                                </span>
-                              </span>
+                            <span className="mr-[0.666666vw] box-border text-[3.666667vw] leading-[3vw] text-[#FF4000]">
+                              <span className="box-border">16K</span>
                             </span>
                             <span className="mr-[0.666666vw] box-border text-[2.666667vw] leading-[2vw] text-[#999]">
                               {`Tổng: `}
-                              <span className="box-border">
-                                16K
-                                <span className="ml-[0.333333vw] text-[1.66667vw]">
-                                  đ
-                                </span>
-                              </span>
+                              <span className="box-border">16K</span>
                             </span>
                           </div>
                           <div className="box-border flex flex-col ">
                             <div className="box-border h-[4.876vw] ">
-                              <span className="inline-block h-full rounded-lg bg-white px-[1.66667vw] text-[2.633333vw] leading-[4.666667vw] text-[#999]">
+                              <span className="inline-block h-full rounded-lg bg-white px-[1.66667vw] text-[2.833333vw] leading-[4.876vw] text-[#999]">
                                 {"x "}
                                 <em className="not-italic text-[#222]">1</em>
                               </span>
@@ -306,14 +246,14 @@ export default async function Page() {
                 </div>
                 <div className="relative box-border pb-[1.666667vw]">
                   <div className="box-border">
-                    <div className="flex flex-row items-center justify-between py-[1.166667vw] text-[2.633333vw]">
+                    <div className="flex flex-row items-center justify-between py-[1.166667vw] text-[2.833333vw]">
                       <label>Hình Thức Thanh Toán</label>
                       <div className="flex flex-1 flex-row items-center justify-end pl-[0.833333vw]">
                         <span className="inline text-[#666]">CK trước 10%</span>
                         <AiOutlineRight className="ml-[0.666667vw] h-[2vw] w-[2vw] text-[#999]" />
                       </div>
                     </div>
-                    <div className="flex flex-row items-center justify-between py-[1.166667vw] text-[2.633333vw]">
+                    <div className="flex flex-row items-center justify-between py-[1.166667vw] text-[2.833333vw]">
                       <label className="mr-[2vw]">Phí Vận Chuyển</label>
                       <div className="flex flex-1 flex-row items-center justify-end pl-[0.833333vw]">
                         <span className="inline font-medium text-[#333]">
@@ -324,7 +264,7 @@ export default async function Page() {
                     </div>
                     <div className="box-border">
                       <div className="relative h-auto bg-white pt-[1.166667vw]">
-                        <div className="flex flex-row items-center overflow-hidden text-[2.633333vw]">
+                        <div className="flex flex-row items-center overflow-hidden text-[2.833333vw]">
                           <label className="mr-[2vw]">Ghi Chú</label>
                           <input
                             className="flex-1 pl-[1.333333vw] text-right outline-0"
@@ -376,27 +316,17 @@ export default async function Page() {
                                 Chậu hình voi
                               </span>
                             </div>
-                            <span className="mr-[0.666666vw] box-border text-[3.666667vw] leading-[3.666667vw] text-[#FF4000]">
-                              <span className="box-border">
-                                16K
-                                <span className="ml-[0.333333vw] text-[2.666667vw]">
-                                  đ
-                                </span>
-                              </span>
+                            <span className="mr-[0.666666vw] box-border text-[3.666667vw] leading-[3vw] text-[#FF4000]">
+                              <span className="box-border">16K</span>
                             </span>
                             <span className="mr-[0.666666vw] box-border text-[2.666667vw] leading-[2vw] text-[#999]">
                               {`Tổng: `}
-                              <span className="box-border">
-                                16K
-                                <span className="ml-[0.333333vw] text-[1.66667vw]">
-                                  đ
-                                </span>
-                              </span>
+                              <span className="box-border">16K</span>
                             </span>
                           </div>
                           <div className="box-border flex flex-col ">
                             <div className="box-border h-[4.876vw] ">
-                              <span className="inline-block h-full rounded-lg bg-white px-[1.66667vw] text-[2.633333vw] leading-[4.666667vw] text-[#999]">
+                              <span className="inline-block h-full rounded-lg bg-white px-[1.66667vw] text-[2.833333vw] leading-[4.876vw] text-[#999]">
                                 {"x "}
                                 <em className="not-italic text-[#222]">1</em>
                               </span>
@@ -412,27 +342,17 @@ export default async function Page() {
                                 Chậu hình voi
                               </span>
                             </div>
-                            <span className="mr-[0.666666vw] box-border text-[3.666667vw] leading-[3.666667vw] text-[#FF4000]">
-                              <span className="box-border">
-                                16K
-                                <span className="ml-[0.333333vw] text-[2.666667vw]">
-                                  đ
-                                </span>
-                              </span>
+                            <span className="mr-[0.666666vw] box-border text-[3.666667vw] leading-[3vw] text-[#FF4000]">
+                              <span className="box-border">16K</span>
                             </span>
                             <span className="mr-[0.666666vw] box-border text-[2.666667vw] leading-[2vw] text-[#999]">
                               {`Tổng: `}
-                              <span className="box-border">
-                                16K
-                                <span className="ml-[0.333333vw] text-[1.66667vw]">
-                                  đ
-                                </span>
-                              </span>
+                              <span className="box-border">16K</span>
                             </span>
                           </div>
                           <div className="box-border flex flex-col ">
                             <div className="box-border h-[4.876vw] ">
-                              <span className="inline-block h-full rounded-lg bg-white px-[1.66667vw] text-[2.633333vw] leading-[4.666667vw] text-[#999]">
+                              <span className="inline-block h-full rounded-lg bg-white px-[1.66667vw] text-[2.833333vw] leading-[4.876vw] text-[#999]">
                                 {"x "}
                                 <em className="not-italic text-[#222]">1</em>
                               </span>
@@ -448,27 +368,17 @@ export default async function Page() {
                                 Chậu hình voi
                               </span>
                             </div>
-                            <span className="mr-[0.666666vw] box-border text-[3.666667vw] leading-[3.666667vw] text-[#FF4000]">
-                              <span className="box-border">
-                                16K
-                                <span className="ml-[0.333333vw] text-[2.666667vw]">
-                                  đ
-                                </span>
-                              </span>
+                            <span className="mr-[0.666666vw] box-border text-[3.666667vw] leading-[3vw] text-[#FF4000]">
+                              <span className="box-border">16K</span>
                             </span>
                             <span className="mr-[0.666666vw] box-border text-[2.666667vw] leading-[2vw] text-[#999]">
                               {`Tổng: `}
-                              <span className="box-border">
-                                16K
-                                <span className="ml-[0.333333vw] text-[1.66667vw]">
-                                  đ
-                                </span>
-                              </span>
+                              <span className="box-border">16K</span>
                             </span>
                           </div>
                           <div className="box-border flex flex-col ">
                             <div className="box-border h-[4.876vw] ">
-                              <span className="inline-block h-full rounded-lg bg-white px-[1.66667vw] text-[2.633333vw] leading-[4.666667vw] text-[#999]">
+                              <span className="inline-block h-full rounded-lg bg-white px-[1.66667vw] text-[2.833333vw] leading-[4.876vw] text-[#999]">
                                 {"x "}
                                 <em className="not-italic text-[#222]">1</em>
                               </span>
@@ -506,27 +416,17 @@ export default async function Page() {
                                 Chậu hình voi
                               </span>
                             </div>
-                            <span className="mr-[0.666666vw] box-border text-[3.666667vw] leading-[3.666667vw] text-[#FF4000]">
-                              <span className="box-border">
-                                16K
-                                <span className="ml-[0.333333vw] text-[2.666667vw]">
-                                  đ
-                                </span>
-                              </span>
+                            <span className="mr-[0.666666vw] box-border text-[3.666667vw] leading-[3vw] text-[#FF4000]">
+                              <span className="box-border">16K</span>
                             </span>
                             <span className="mr-[0.666666vw] box-border text-[2.666667vw] leading-[2vw] text-[#999]">
                               {`Tổng: `}
-                              <span className="box-border">
-                                16K
-                                <span className="ml-[0.333333vw] text-[1.66667vw]">
-                                  đ
-                                </span>
-                              </span>
+                              <span className="box-border">16K</span>
                             </span>
                           </div>
                           <div className="box-border flex flex-col ">
                             <div className="box-border h-[4.876vw] ">
-                              <span className="inline-block h-full rounded-lg bg-white px-[1.66667vw] text-[2.633333vw] leading-[4.666667vw] text-[#999]">
+                              <span className="inline-block h-full rounded-lg bg-white px-[1.66667vw] text-[2.833333vw] leading-[4.876vw] text-[#999]">
                                 {"x "}
                                 <em className="not-italic text-[#222]">1</em>
                               </span>
@@ -542,27 +442,17 @@ export default async function Page() {
                                 Chậu hình voi
                               </span>
                             </div>
-                            <span className="mr-[0.666666vw] box-border text-[3.666667vw] leading-[3.666667vw] text-[#FF4000]">
-                              <span className="box-border">
-                                16K
-                                <span className="ml-[0.333333vw] text-[2.666667vw]">
-                                  đ
-                                </span>
-                              </span>
+                            <span className="mr-[0.666666vw] box-border text-[3.666667vw] leading-[3vw] text-[#FF4000]">
+                              <span className="box-border">16K</span>
                             </span>
                             <span className="mr-[0.666666vw] box-border text-[2.666667vw] leading-[2vw] text-[#999]">
                               {`Tổng: `}
-                              <span className="box-border">
-                                16K
-                                <span className="ml-[0.333333vw] text-[1.66667vw]">
-                                  đ
-                                </span>
-                              </span>
+                              <span className="box-border">16K</span>
                             </span>
                           </div>
                           <div className="box-border flex flex-col ">
                             <div className="box-border h-[4.876vw] ">
-                              <span className="inline-block h-full rounded-lg bg-white px-[1.66667vw] text-[2.633333vw] leading-[4.666667vw] text-[#999]">
+                              <span className="inline-block h-full rounded-lg bg-white px-[1.66667vw] text-[2.833333vw] leading-[4.876vw] text-[#999]">
                                 {"x "}
                                 <em className="not-italic text-[#222]">1</em>
                               </span>
@@ -578,27 +468,17 @@ export default async function Page() {
                                 Chậu hình voi
                               </span>
                             </div>
-                            <span className="mr-[0.666666vw] box-border text-[3.666667vw] leading-[3.666667vw] text-[#FF4000]">
-                              <span className="box-border">
-                                16K
-                                <span className="ml-[0.333333vw] text-[2.666667vw]">
-                                  đ
-                                </span>
-                              </span>
+                            <span className="mr-[0.666666vw] box-border text-[3.666667vw] leading-[3vw] text-[#FF4000]">
+                              <span className="box-border">16K</span>
                             </span>
                             <span className="mr-[0.666666vw] box-border text-[2.666667vw] leading-[2vw] text-[#999]">
                               {`Tổng: `}
-                              <span className="box-border">
-                                16K
-                                <span className="ml-[0.333333vw] text-[1.66667vw]">
-                                  đ
-                                </span>
-                              </span>
+                              <span className="box-border">16K</span>
                             </span>
                           </div>
                           <div className="box-border flex flex-col ">
                             <div className="box-border h-[4.876vw] ">
-                              <span className="inline-block h-full rounded-lg bg-white px-[1.66667vw] text-[2.633333vw] leading-[4.666667vw] text-[#999]">
+                              <span className="inline-block h-full rounded-lg bg-white px-[1.66667vw] text-[2.833333vw] leading-[4.876vw] text-[#999]">
                                 {"x "}
                                 <em className="not-italic text-[#222]">1</em>
                               </span>
@@ -611,14 +491,14 @@ export default async function Page() {
                 </div>
                 <div className="relative box-border pb-[1.666667vw]">
                   <div className="box-border">
-                    <div className="flex flex-row items-center justify-between py-[1.166667vw] text-[2.633333vw]">
+                    <div className="flex flex-row items-center justify-between py-[1.166667vw] text-[2.833333vw]">
                       <label>Hình Thức Thanh Toán</label>
                       <div className="flex flex-1 flex-row items-center justify-end pl-[0.833333vw]">
                         <span className="inline text-[#666]">CK trước 10%</span>
                         <AiOutlineRight className="ml-[0.666667vw] h-[2vw] w-[2vw] text-[#999]" />
                       </div>
                     </div>
-                    <div className="flex flex-row items-center justify-between py-[1.166667vw] text-[2.633333vw]">
+                    <div className="flex flex-row items-center justify-between py-[1.166667vw] text-[2.833333vw]">
                       <label className="mr-[2vw]">Phí Vận Chuyển</label>
                       <div className="flex flex-1 flex-row items-center justify-end pl-[0.833333vw]">
                         <span className="inline font-medium text-[#333]">
@@ -629,7 +509,7 @@ export default async function Page() {
                     </div>
                     <div className="box-border">
                       <div className="relative h-auto bg-white pt-[1.166667vw]">
-                        <div className="flex flex-row items-center overflow-hidden text-[2.633333vw]">
+                        <div className="flex flex-row items-center overflow-hidden text-[2.833333vw]">
                           <label className="mr-[2vw]">Ghi Chú</label>
                           <input
                             className="flex-1 pl-[1.333333vw] text-right outline-0"
@@ -698,9 +578,9 @@ export default async function Page() {
       <div className="absolute bottom-0 left-0 right-0 z-10 h-[9.5vw] w-full bg-white">
         <div className="box-border p-[1.666667vw]">
           <div className="flex flex-row items-center">
-            <div className="mr-[1.666667vw] flex-shrink-0 grow text-right text-[2.666667vw] ">
+            <div className="mr-[1.666667vw] flex-shrink-0 grow text-right text-[3.2vw] ">
               <label>
-                <span className="mr-[1vw] text-[#999]">
+                <span className="mr-[1vw] text-[2.666667vw] text-[#999]">
                   Đã bao gồm phí vận chuyển
                 </span>
                 {"Tổng Cộng "}
@@ -711,7 +591,7 @@ export default async function Page() {
             </div>
             <div className="flex-initial">
               <div className="flex">
-                <button className="h-[6.1666667vw] w-[16.6666667vw] flex-1 rounded-full bg-[#ff4000] text-[2.866667vw] leading-[6.1666667vw] text-white">
+                <button className="h-[6.1666667vw] w-[16.6666667vw] flex-1 rounded-full bg-[#ff4000] text-[3.2vw] font-medium leading-[6.1666667vw] text-white">
                   Xác Nhận
                 </button>
               </div>
