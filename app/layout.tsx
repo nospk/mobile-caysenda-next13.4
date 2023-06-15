@@ -40,7 +40,7 @@ export default function RootLayout({
       <body className={`${fonter.variable} ${fontIcon.variable} font-sans`}>
         <StoreProviders>
           <DialogProvider>
-            {children}
+            <main>{children}</main>
             <Dialog />
           </DialogProvider>
         </StoreProviders>

@@ -1,4 +1,5 @@
 import styles from './ProductDetail.module.css';
+import { convertMoney } from "@/lib/formatPrice";
 export default function PriceWholeSale({
 	unit,
 	price,
@@ -8,9 +9,7 @@ export default function PriceWholeSale({
 	price: any;
 	condition: string;
 }) {
-	const convertMoney = (money: string) => {
-		return `${money.replace(/\B(?=(\d{3})+(?!\d))/g, '.').replace(/0+/, '')}K`;
-	};
+
 	return (
 		<>
 			<div className={styles.wrapper_price}>
@@ -18,12 +17,12 @@ export default function PriceWholeSale({
 					<div className={styles.wrapper_price_item}>
 						<div className={styles.price_item}>
 							<span className={styles.price_number}>
-								{convertMoney(price.min.toString()) }
+								{convertMoney(price.min) }
 							</span>
 							<span className={styles.price_currency}>đ</span>
 							<span className={styles.space}> - </span>
 							<span className={styles.price_number}>
-								{convertMoney(price.max.toString()) }
+								{convertMoney(price.max) }
 							</span>
 							<span className={styles.price_currency}>đ</span>
 						</div>

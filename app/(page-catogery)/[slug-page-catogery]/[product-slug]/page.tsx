@@ -1,10 +1,10 @@
-import Carousel from '@/components/ProductDetail/Carousel';
-import PriceRetail from '@/components/ProductDetail/PriceRetail';
-import PriceWholeSale from '@/components/ProductDetail/PriceWholeSale';
-import Info from '@/components/ProductDetail/Info';
-import Detail from '@/components/ProductDetail/Detail';
-import Gallery from '@/components/ProductDetail/Gallery';
-import AddToCart from '@/components/ProductDetail/AddToCart';
+import Carousel from '@/components/Product/Carousel';
+import PriceRetail from '@/components/Product/PriceRetail';
+import PriceWholeSale from '@/components/Product/PriceWholeSale';
+import Info from '@/components/Product/Info';
+import Detail from '@/components/Product/Detail';
+import Gallery from '@/components/Product/Gallery';
+import AddToCart from '@/components/Product/AddToCart';
 import styles from './styles.module.css';
 export default function Page() {
 	const ProductDetail = {

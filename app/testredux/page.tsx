@@ -11,9 +11,9 @@ export default function Home() {
   const { isLoading, isFetching, data, error } = useGetUsersQuery(null);
 
   return (
-    <main style={{ maxWidth: 1200, marginInline: "auto", padding: 20 }}>
-      <div style={{ marginBottom: "4rem", textAlign: "center" }}>
-        <h4 style={{ marginBottom: 16 }}>{count}</h4>
+    <div className="m-auto">
+      <div className="mb-[4rem] text-center">
+        <h4 className="mb-[16px]">{count}</h4>
         <button onClick={() => dispatch(increment())}>increment</button>
         <button
           onClick={() => dispatch(decrement())}
@@ -36,7 +36,7 @@ export default function Home() {
             gap: 20,
           }}
         >
-          {data.map((user) => (
+          {data.map((user: any) => (
             <div
               key={user.id}
               style={{ border: "1px solid #ccc", textAlign: "center" }}
@@ -52,6 +52,6 @@ export default function Home() {
           ))}
         </div>
       ) : null}
-    </main>
+    </div>
   );
 }

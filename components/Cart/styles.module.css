@@ -1,0 +1,45 @@
+.main {
+  @apply flex h-[calc(100dvh-14.6667vw)] w-[100vw] flex-col items-stretch bg-[#f0f0f0];
+}
+.content {
+  @apply flex h-[100%] flex-shrink-0 flex-col;
+}
+.header {
+  @apply box-border flex flex-shrink-0 flex-col;
+}
+.header_wapper {
+  @apply relative box-border flex h-[11.7333vw] flex-shrink-0 flex-row content-start items-center bg-gradient-to-b from-[#f5f5f5];
+}
+.address {
+  @apply box-border flex flex-1 flex-row items-center;
+}
+.address_title {
+  @apply ml-[3.2vw] block whitespace-pre-wrap text-[4.233vw] font-bold text-[#222];
+}
+.address_content {
+  @apply mx-[1.6vw] box-border flex max-w-[53.3333vw] flex-1 flex-row items-center;
+}
+.address_icon_place {
+  @apply mr-[0.8vw] flex h-[3.2vw] w-[2.93333vw] flex-shrink-0;
+}
+.address_box {
+  @apply box-border flex w-0 flex-1 flex-row items-center;
+}
+.address_detail {
+  @apply box-border block truncate text-[3.2vw] text-[#666];
+}
+.address_icon_arrow {
+  @apply box-border h-[3.26667vw] w-[3.26667vw] flex-shrink-0 text-center text-[#666];
+}
+.remove_button {
+  @apply relative ml-auto box-border flex flex-shrink-0 flex-row items-center;
+}
+.remove_text {
+  @apply mr-[2.66667vw] box-border block whitespace-pre-wrap text-[3.73333vw] text-[#333333];
+}
+.warning_text {
+  @apply mb-[3.2vw] flex flex-col text-[3.2vw] text-[#F66D09];
+}
+.warning_banner {
+  @apply relative mb-[2.4vw] flex h-[10.66667vw] items-center justify-center rounded-lg bg-[#f5ddcb] px-[2.4vw] text-[3.2222vw] font-semibold text-[#333];
+}
