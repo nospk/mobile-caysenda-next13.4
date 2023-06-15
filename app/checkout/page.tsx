@@ -16,7 +16,7 @@ export default async function Page() {
                 />
                 <div className="box-border flex-1 px-[2vw]">
                   <div className="text-[3.2vw] text-[#666]">
-                    Phường Hoàn Kiếm, Quận Ba Đình, thành phố Hà Nội
+                    Phường Hoàn Kiếm, Quận Ba Đình, thành phố Hà Nội 1
                   </div>
                   <div className="mb-[0.666666vw] box-border text-[3.333337vw] font-medium text-[#333]">
                     24A Bà Triệu
@@ -532,9 +532,13 @@ export default async function Page() {
                     </div>
                   </div>
                   <div className="flex flex-row items-center justify-between py-[1.1666667vw]">
-                    <label className="text-[3.14vw]">Hình Thức Thanh Toán</label>
+                    <label className="text-[3.14vw]">
+                      Hình Thức Thanh Toán
+                    </label>
                     <div className="box-border flex flex-1 flex-row items-center justify-end pl-[1.666667vw]">
-                      <span className="inline text-[#666] text-[3.233333vw]">CK trước 10%</span>
+                      <span className="inline text-[3.233333vw] text-[#666]">
+                        CK trước 10%
+                      </span>
                       <AiOutlineRight className="ml-[0.666667vw] h-[2vw] w-[2vw] text-[#999]" />
                     </div>
                   </div>
