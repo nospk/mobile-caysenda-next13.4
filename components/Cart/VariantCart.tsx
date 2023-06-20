@@ -1,4 +1,6 @@
 import { convertMoney } from "@/lib/formatPrice";
+import { ActiveFull, HaftFull, NotFull } from "./Checked";
+import styles from "./styles.module.css";
 import Image from "next/image";
 export default function VariantCart() {
   return (
@@ -8,9 +10,7 @@ export default function VariantCart() {
           <div className="box-border flex flex-shrink-0 flex-col px-[3.2vw]">
             <div className="fex-row box-border flex flex-shrink-0 items-center justify-between">
               <div className="relative ml-[-2.4vw] flex flex-shrink-0 flex-row items-center pb-[2.4vw] pl-[2.66667vw] pt-[2.4vw]">
-                <div className="relative flex h-[5.33333vw] w-[5.33333vw] flex-col content-start items-center justify-center rounded-full border-[0.26667vw] border-[#ff4000] bg-[#ff4000] transition">
-                  <span className="box-border block text-center font-icon text-[4.26667vw] leading-none text-white before:content-['\e8a5']"></span>
-                </div>
+                <HaftFull />
                 <div className="relative ml-[2.13333vw] box-border flex flex-shrink-0 flex-col"></div>
               </div>
               <div className="box-border flex min-h-[6.93333vw] flex-1 flex-row content-between items-center">

@@ -1,6 +1,8 @@
 import Image from "next/image";
 import VariantCart from "./VariantCart";
 import { useState, useEffect } from "react";
+import { ActiveFull, HaftFull, NotFull } from "./Checked";
+import styles from "./styles.module.css";
 export default function ProductCart() {
   const widthDivHidden = 12;
   const touchPosition = [
@@ -77,26 +79,26 @@ export default function ProductCart() {
   };
 
   return (
-    <div className="box-border flex flex-shrink-0 flex-col">
+    <div className={styles.productcart_wrapper}>
       <div
         onTouchStart={(e) => TouchStart(e)}
         onTouchMove={(e) => TouchHandle(e)}
         onTouchEnd={TouchEnd}
-        className="relative mt-[4vw] box-border flex flex-shrink-0 touch-auto flex-col overflow-hidden"
+        className={styles.productcart_swiper}
       >
-        <div className={`z-10 bg-white ${cssTouch.css}`}>
-          <div className="box-border flex flex-shrink-0 flex-row items-center px-[3.2vw]">
-            <div className="relative ml-[-2.4vw] flex flex-shrink-0 flex-row items-center pb-[2.4vw] pl-[2.66667vw] pt-[2.4vw]">
-              <div className="relative flex h-[5.33333vw] w-[5.33333vw] flex-col content-start items-center justify-center rounded-full border-[0.26667vw] border-[#ff4000] bg-[#ff4000] transition">
-                <span className="box-border block text-center font-icon text-[4.26667vw] leading-none text-white before:content-['\e8b0']"></span>
+        <div className={`${styles.productcart} ${cssTouch.css}`}>
+          <div className={styles.productcart_pad}>
+            <div className={styles.checked_wrapper}>
+              <div className={styles.checked_active_full}>
+                <span className={styles.checked_active_full_icon}></span>
               </div>
-              <div className="relative ml-[2.13333vw] box-border flex flex-shrink-0 flex-col"></div>
+              <div className={styles.checked_padding}></div>
             </div>
-            <div className="box-border flex flex-1 flex-shrink-0 flex-row content-start items-center">
-              <div className="relative mr-[2.4vw] box-border flex flex-shrink-0 flex-col">
-                <div className="block h-[18.66667vw] w-[18.66667vw]">
+            <div className={styles.productcart_main}>
+              <div className={styles.productcart_image}>
+                <div className={styles.productcart_wrapper_image}>
                   <Image
-                    className="rounded-lg"
+                    className={styles.productcart_image_styles}
                     src="https://caysenda.vn/resources/upload/22216875771_102253868.jpg"
                     alt="test"
                     sizes="100vw"
@@ -106,18 +108,16 @@ export default function ProductCart() {
                   />
                 </div>
               </div>
-              <div className="box-border flex w-0 flex-1 shrink-0 flex-col content-start self-start overflow-hidden">
-                <span className="mb-[1.6vw] box-border block truncate whitespace-nowrap text-[3.46667vw] font-medium text-[#333333]">
+              <div className={styles.productcart_name}>
+                <span className={styles.productcart_name_text}>
                   Chậu hình thú
                 </span>
               </div>
             </div>
           </div>
         </div>
-        <div className="absolute right-0 top-0 z-0 flex h-full flex-row flex-nowrap items-stretch whitespace-nowrap">
-          <span className="box-border flex w-[12vw] items-center justify-center bg-[#ff0000] text-center text-[3.2vw] text-white">
-            Xóa
-          </span>
+        <div className={styles.productcart_button}>
+          <span className={styles.productcart_button_text}>Xóa</span>
         </div>
       </div>
       <VariantCart />

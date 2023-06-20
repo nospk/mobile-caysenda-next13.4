@@ -6,7 +6,7 @@ interface Props {
 }
 const Header: React.FC<Props> = ({ remove, changeRemove }) => {
   return (
-    <div className={styles.header}>
+    <header className={styles.header}>
       <div className={styles.header_wapper}>
         <div className={styles.address}>
           <span className={styles.address_title}>Địa chỉ</span>
@@ -29,7 +29,7 @@ const Header: React.FC<Props> = ({ remove, changeRemove }) => {
           )}
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 export default Header;
