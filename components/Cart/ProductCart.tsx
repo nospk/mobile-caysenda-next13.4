@@ -1,9 +1,24 @@
 import Image from "next/image";
 import VariantCart from "./VariantCart";
 import { useState, useEffect } from "react";
-import { ActiveFull, HaftFull, NotFull } from "./Checked";
+import { ActiveFull, HaftFull, NotActive } from "./Checked";
+import type { FC } from "react";
 import styles from "./styles.module.css";
-export default function ProductCart() {
+interface Variant {
+  condition: number;
+  active: boolean;
+  name: string;
+  image: string;
+  quantity: number;
+  price: number;
+}
+interface Product {
+  image: string;
+  name: string;
+  active: boolean;
+  variants: Variant[];
+}
+const ProductCart: FC<Product> = ({ image, name, active, variants }) => {
   const widthDivHidden = 12;
   const touchPosition = [
     "",
@@ -77,7 +92,10 @@ export default function ProductCart() {
       } else setCssTouch({ css: touchPosition[12], level: 12 });
     }
   };
-
+  const CheckActiveFull = () => {
+    const check = variants.filter((variant) => variant.active == false);
+    return check.length > 0 ? false : true;
+  };
   return (
     <div className={styles.productcart_wrapper}>
       <div
@@ -89,9 +107,8 @@ export default function ProductCart() {
         <div className={`${styles.productcart} ${cssTouch.css}`}>
           <div className={styles.productcart_pad}>
             <div className={styles.checked_wrapper}>
-              <div className={styles.checked_active_full}>
-                <span className={styles.checked_active_full_icon}></span>
-              </div>
+              {!active ? <NotActive /> : null}
+              {CheckActiveFull() ? <ActiveFull /> : <HaftFull />}
               <div className={styles.checked_padding}></div>
             </div>
             <div className={styles.productcart_main}>
@@ -99,7 +116,7 @@ export default function ProductCart() {
                 <div className={styles.productcart_wrapper_image}>
                   <Image
                     className={styles.productcart_image_styles}
-                    src="https://caysenda.vn/resources/upload/22216875771_102253868.jpg"
+                    src={image}
                     alt="test"
                     sizes="100vw"
                     width={0}
@@ -109,9 +126,7 @@ export default function ProductCart() {
                 </div>
               </div>
               <div className={styles.productcart_name}>
-                <span className={styles.productcart_name_text}>
-                  Chậu hình thú
-                </span>
+                <span className={styles.productcart_name_text}>{name}</span>
               </div>
             </div>
           </div>
@@ -120,7 +135,18 @@ export default function ProductCart() {
           <span className={styles.productcart_button_text}>Xóa</span>
         </div>
       </div>
-      <VariantCart />
+      {variants.map((variant) => (
+        <VariantCart
+          key={variant.name}
+          image={variant.image}
+          name={variant.name}
+          active={variant.active}
+          condition={variant.condition}
+          quantity={variant.quantity}
+          price={variant.price}
+        />
+      ))}
     </div>
   );
-}
+};
+export default ProductCart;

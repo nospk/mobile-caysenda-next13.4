@@ -13,8 +13,8 @@ const HaftFull = () => {
     </div>
   );
 };
-const NotFull = () => {
+const NotActive = () => {
   return <div className={styles.checked_not_active}></div>;
 };
 
-export { ActiveFull, HaftFull, NotFull };
+export { ActiveFull, HaftFull, NotActive };
