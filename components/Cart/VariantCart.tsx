@@ -169,7 +169,7 @@ const VariantCart = React.memo(function card({
             <div className="ml-[7.46667vw] box-border flex flex-shrink-0 flex-row justify-between">
               {quantity < condition ? (
                 <span className="ml-[3.2vw] box-border block flex-1 whitespace-pre-wrap text-right text-[2.93333vw] text-[#FF4000]">
-                  Yêu cầu tối thiểu : {2} {"Cái"}
+                  Yêu cầu tối thiểu : {condition} {"Cái"}
                 </span>
               ) : null}
             </div>

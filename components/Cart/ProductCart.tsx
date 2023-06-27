@@ -4,21 +4,25 @@ import { useState, useEffect } from "react";
 import { ActiveFull, HaftFull, NotActive } from "./Checked";
 import type { FC } from "react";
 import styles from "./styles.module.css";
-interface Variant {
+type Variant = {
   condition: number;
   active: boolean;
   name: string;
   image: string;
   quantity: number;
   price: number;
-}
-interface Product {
+};
+type Product = {
   image: string;
   name: string;
   active: boolean;
   variants: Variant[];
-}
-const ProductCart: FC<Product> = ({ image, name, active, variants }) => {
+};
+type ProductProps<T> = {
+  data: T;
+};
+export const ProductCart = <T extends Product>(props: ProductProps<T>) => {
+  const { variants, name, image, active } = props.data;
   const widthDivHidden = 12;
   const touchPosition = [
     "",
@@ -149,4 +153,4 @@ const ProductCart: FC<Product> = ({ image, name, active, variants }) => {
     </div>
   );
 };
-export default ProductCart;
+//export default ProductCart;

@@ -1,13 +1,27 @@
-import ProductCart from "./ProductCart";
+import { ProductCart } from "./ProductCart";
 import { ActiveFull, HaftFull, NotActive } from "./Checked";
 import styles from "./styles.module.css";
+type Variant = {
+  condition: number;
+  active: boolean;
+  name: string;
+  image: string;
+  quantity: number;
+  price: number;
+};
+type Product = {
+  image: string;
+  name: string;
+  active: boolean;
+  variants: Variant[];
+};
 export default function Catogery() {
-  const variants = [
+  const variants: Variant[] = [
     {
       image: "https://caysenda.vn/resources/upload/22216875771_102253868.jpg",
       name: "Thú Hình Voi",
       active: true,
-      condition: 2,
+      condition: 5,
       quantity: 3,
       price: 29000,
     },
@@ -28,7 +42,7 @@ export default function Catogery() {
       price: 19000,
     },
   ];
-  const products = [
+  const products: Product[] = [
     {
       image: "https://caysenda.vn/resources/upload/22216875771_102253868.jpg",
       name: "ZTC-1",
@@ -63,13 +77,7 @@ export default function Catogery() {
           </div>
         </div>
         {products.map((product) => (
-          <ProductCart
-            key={product.name}
-            image={product.image}
-            name={product.name}
-            active={product.active}
-            variants={product.variants}
-          />
+          <ProductCart<Product> key={product.name} data={product} />
         ))}
       </div>
     </div>
