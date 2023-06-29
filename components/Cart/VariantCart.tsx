@@ -1,10 +1,11 @@
 import { convertMoney } from "@/lib/formatPrice";
 import { ActiveFull, NotActive } from "./Checked";
 import { useState, useRef } from "react";
-import type { FC } from "react";
+import {useOnActionOutside}  from '@/components/hook/useOnActionOutside';
 import styles from "./styles.module.css";
 import Image from "next/image";
 import React from "react";
+import { useOnClickOutside } from "usehooks-ts";
 
 const VariantCart = React.memo(function card({
   condition,
@@ -13,14 +14,25 @@ const VariantCart = React.memo(function card({
   image,
   quantity,
   price,
-}:{
+}: {
   condition: number;
   active: boolean;
-  name:string;
-  image:string;
-  quantity:number;
-  price:number;
+  name: string;
+  image: string;
+  quantity: number;
+  price: number;
 }) {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const ref = useRef(null);
+
+  const handleClickOutside = () => {
+    // Your custom logic here
+    setCssTouch({ css: touchPosition[0], level: 0 });
+    setdirection("left");
+  };
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  useOnActionOutside(ref, handleClickOutside);
   const widthDivHidden = 18;
   const touchPosition = [
     "",
@@ -49,7 +61,7 @@ const VariantCart = React.memo(function card({
   const [cssTouch, setCssTouch] = useState({ css: touchPosition[0], level: 0 });
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [direction, setdirection] = useState<"left" | "right">("left");
- 
+
   //Get Start postion
   const TouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     const startTouch = e.touches[0].clientX;
@@ -107,6 +119,7 @@ const VariantCart = React.memo(function card({
     <>
       <div className="relative box-border flex flex-shrink-0 flex-col overflow-hidden ">
         <div
+          ref={ref}
           onTouchStart={(e) => TouchStart(e)}
           onTouchMove={(e) => TouchHandle(e)}
           onTouchEnd={TouchEnd}
