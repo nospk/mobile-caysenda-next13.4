@@ -1,26 +1,70 @@
+
 "use client";
-import loginUser from "@/app/api/auth/route";
 import Link from "next/link";
 import { Icon } from '@/components/Icon';
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import styles from './styles.module.css';
+import { VscWarning } from "react-icons/vsc";
 import Image from 'next/image';
+
+
+// Login Page Component
 const Login =  () => {
+  //state | props
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const router = useRouter();
+  const [showPassword, setShowPassword] = useState(false);
+
+  // Event handle
   const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value);
   };
-
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   };
-
+  // Submit Login Form
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const loginCredentials = { login: username, password };
+    try {
+      // Gọi API bằng hàm `fetch`
+        const res =  await fetch('https://dummyjson.com/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            username: username,
+            password: password,
+            // expiresInMins: 60, // optional
+          })
+        })
+        console.log(res);
+        if (res.status === 200) {
+          const auth = await res.json();
+          console.log(auth);
+          localStorage.setItem('user_id', JSON.stringify(auth.id));
+          localStorage.setItem('token', JSON.stringify(auth.token));
+          router.back();
+        } else {
+          setError('Invalid login credentials. Please try again.');
+        }
+
+        
+    }
+    catch {
+      console.error(error);
+      setError("Đã có lỗi xảy ra. Vui lòng thử lại sau.");
+    }
     
   };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  // UI Login
   return (<div className={styles['login-form-body']}>
   <div className={styles.container}>
     <div className={styles['login-label-text']}>
@@ -29,7 +73,7 @@ const Login =  () => {
           <div className={styles['login-error']}>
             {error &&
               <>
-                <Icon className="warning" src={""} alt={"Error"} />
+                <VscWarning className="warning"/>
                 <div className={styles['login-error-msg']}>{error}</div>
                 </>
             }
@@ -54,6 +98,7 @@ const Login =  () => {
                   autoCapitalize={'off'}
                   onChange={handleUsernameChange}
                 />
+                
                 <div className={styles.underline}>
                   <div className={styles['unfocused-line']}></div>
                   <div className={styles['focused-line']}></div>
@@ -64,10 +109,10 @@ const Login =  () => {
               <div className={styles['fm-label']} hidden>
                 <span>Password</span>
               </div>
-              <div className={`${styles['input-pwa-wrap']} has-password-look-btn input-wrap-password`}>
+              <div className={`${styles['input-pwa-wrap']} `}>
                 <input
                   name="fm-login-password"
-                  type="password"
+                  type={showPassword ? 'text' : 'password'}
                   className={styles['fm-text']}
                   id="fm-login-password"
                   tabIndex={2}
@@ -76,6 +121,13 @@ const Login =  () => {
                   autoCapitalize={'off'}
                   onChange={handlePasswordChange}
                 />
+                <div className="password_state" onClick={togglePasswordVisibility}>
+                      {showPassword ? (
+                        <i className="icon-eyes-visible" />
+                      ) : (
+                        <i className="icon-eyes-invisible" />
+                      )}
+                    </div>
                 <div className={styles.underline}>
                   <div className={styles['unfocused-line']}></div>
                   <div className={styles['focused-line']}></div>
@@ -101,7 +153,7 @@ const Login =  () => {
               </div>
             </div>
             <div className="link-forgot-password">
-              <Link href="./register">Quên Mật Khẩu</Link>
+              <Link href="./forgotPassword">Quên Mật Khẩu</Link>
             </div>
             <div className={styles['fm-btn']}>
 

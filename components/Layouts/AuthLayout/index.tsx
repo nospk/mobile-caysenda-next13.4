@@ -1,7 +1,7 @@
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
 	return (
-		<div className="bg-white w-full h-full">
+		<div className="bg-black w-full h-full">
             { children }
 		</div>
 	);

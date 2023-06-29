@@ -1,76 +1,69 @@
-// settings.tsx
 
-import React from "react";
-import Head from "next/head";
-import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsisH, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+'use client';
+import Link from 'next/link';
+import { FaEllipsisH } from 'react-icons/fa';
 
-function SettingsPage() {
-  const links = [
-    { href: "/change-avatar", text: "Thay đổi Avatar" },
-    { href: "", text: "Tên Người Dùng" },
-    { href: "", text: "Số Điện Thoại" },
-    { href: "/change-password", text: "Thay đổi Mật khẩu" },
-    { href: "/shipping-address", text: "Địa chỉ giao hàng" },
-    { href: "/logout", text: "Đăng xuất" },
-  ];
-
+const SettingPage = () => {
   return (
-    <div className="bg-cover bg-fixed" style={{ backgroundImage: "url('/background.jpg')" }}>
-      <Head>
-        <title>Cài Đặt - YourSite</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <div className="min-h-screen bg-white">
+      <div className="flex justify-between items-center border-b-8 border-gray-300 h-16 py-4 px-8">
 
-      <div className="flex items-center justify-between bg-white py-6 px-8">
-        <h1 className="text-3xl font-bold text-gray-800">Cài Đặt</h1>
-        <div className="flex items-center space-x-4">
-          <Link href="/notifications" legacyBehavior>
-            <a className="flex items-center">
-              <FontAwesomeIcon icon={faEllipsisH} className="ml-2 text-gray-500 w-4 h-4" />
-            </a>
-          </Link>
-        </div>
-      </div>
+        <h1 className="flex flex-1 items-center text-xl font-bold">
+          Cài đặt
+        </h1>
 
-      <div>
-        <div className="w-full flex-grow">
-          <div className="bg-white shadow-lg flex-grow">
-            <div className="px-6 py-4">
-              {/* links */}
-              <ul>
-                {links.slice(0, 5).map((link) => (
-                  <li key={link.href}>
-                    <div className="p-3 border-t border-gray-500">
-                      <Link href={link.href} legacyBehavior>
-                        <a className="text-gray-500 hover:text-black">{link.text}</a>
-                      </Link>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-
-              <hr className="my-4 border-gray-500" />
-
-              {/* Đăng xuất */}
-              <div className="relative">
-                <ul className="flex justify-center">
-                  <li key={links[5].href}>
-                    <div className="p-3">
-                      <Link href={links[5].href} legacyBehavior>
-                        <a className="text-red-500 font-medium hover:text-black">{links[5].text}</a>
-                      </Link>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
+        <div className="relative inline-block">
+          <FaEllipsisH size={18} />
+          <div className="bg-red-500 rounded-full flex items-center justify-center h-5 w-5 absolute -top-2 -right-3">
+            <p className="text-white text-sm font-medium leading-none">
+              2
+            </p>
           </div>
         </div>
       </div>
+      <div className="max-w-md bg-white rounded-lg px-2">
+        <ul className="">
+          <li className="border-b border-gray-300 pt-4">
+            <Link href="/change-avatar" legacyBehavior>
+              <a className="block hover:text-red-500 mt-4 mb-4">Thay đổi Avatar</a>
+            </Link>
+          </li>
+          <li className="border-b border-gray-300 pt-4">
+            <Link href="/" legacyBehavior>
+              <a className="block hover:text-red-500 mt-4 mb-4">
+                Tên Người Dùng
+              </a>
+            </Link>
+          </li>
+          <li className="border-b border-gray-300 pt-4">
+            <Link href="/" legacyBehavior>
+              <a className="block hover:text-red-500 mt-4 mb-4">
+                Số Điện Thoại
+              </a>
+            </Link>
+          </li>
+          <li className="border-b border-gray-300 pt-4">
+            <Link href="/change-password" legacyBehavior>
+              <a className="block hover:text-red-500 mt-4 mb-4">Thay đổi Mật khẩu</a>
+            </Link>
+          </li>
+          <li className="border-b border-gray-300 pt-4">
+            <Link href="/shipping-address" legacyBehavior>
+              <a className="block hover:text-red-500 mt-4 mb-4">Địa chỉ giao hàng</a>
+            </Link>
+          </li>
+        </ul>
+      </div>
+      <div className="absolute inset-x-0 bottom-0 border-b border-gray-300 pt-4 pb-2 mb-0">
+            <Link href="/logout" legacyBehavior className="w-14">
+              <a className="block text-center text-red-500 hover:text-red-600 font-semibold mt-4 mb-4 text-xl">
+                Đăng xuất
+              </a>
+            </Link>
+        </div>
     </div>
   );
-}
+};
 
-export default SettingsPage;
+export default SettingPage;
+

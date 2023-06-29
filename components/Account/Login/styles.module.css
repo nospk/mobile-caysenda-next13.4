@@ -1,6 +1,7 @@
 .login-form-body {
     @apply w-full h-full;
   display: flex;
+  background-color: white;
   justify-content: center;
   align-items: center;
 }
@@ -16,10 +17,9 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #fff;
+  overflow: auto;
+  background-color: white;
   padding: 5px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   @apply flex flex-col items-center; /* Thêm @apply và chỉnh sửa */
 }
 
@@ -71,7 +71,7 @@
 }
 
 .logo-block {
-  @apply mb-4; /* Thêm @apply và chỉnh sửa */
+  @apply mb-5; /* Thêm @apply và chỉnh sửa */
 }
 
 .fm-field {
@@ -180,7 +180,6 @@
   padding: 12px 24px;
   transition: all 0.2s ease;
   cursor: pointer;
-  @apply hover:bg-blue-400; /* Thêm @apply và chỉnh sửa */
 }
 
 .login-links {

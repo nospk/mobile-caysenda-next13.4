@@ -31,7 +31,7 @@ export default async function Page() {
 						</div>
 					</div>
 					<div className="grow"></div>
-					<Link href={'./Setting'}>
+					<Link href={'/setting'}>
 					<div className="flex-none">
 						<IoSettingsOutline className="ml-auto mr-auto" size="30" />
 						

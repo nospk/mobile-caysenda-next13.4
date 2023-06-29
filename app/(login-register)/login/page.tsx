@@ -1,21 +1,19 @@
-
+"use client"
 import ProductService from '@/services/Product.service';
 import Loading from '@/components/Loading';
-import { Suspense } from 'react';
+import { Suspense,	useEffect, useState} from 'react';
 import Login from '@/components/Account/Login'
+import { useRouter } from 'next/navigation';
 
 import { Metadata } from 'next';
 
 export const dynamic = 'force-dynamic';
 
 export default async function Page() {
-	const products = await ProductService.getProductData();
 
+	const router = useRouter();
 	return (
-		<>
-			<Suspense fallback={<Loading />}>
-                <Login/>
-			</Suspense>
-		</>
+				<Login/>
 	);
+	
 }
