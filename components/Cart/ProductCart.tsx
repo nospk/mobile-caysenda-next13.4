@@ -1,7 +1,8 @@
 import Image from "next/image";
 import VariantCart from "./VariantCart";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ActiveFull, HaftFull, NotActive } from "./Checked";
+import { useOnActionOutside } from "@/components/hook/useOnActionOutside";
 import type { FC } from "react";
 import styles from "./styles.module.css";
 type Variant = {
@@ -100,9 +101,18 @@ export const ProductCart = <T extends Product>(props: ProductProps<T>) => {
     const check = variants.filter((variant) => variant.active == false);
     return check.length > 0 ? false : true;
   };
+  const handleClickOutside = () => {
+    // Your custom logic here
+    setCssTouch({ css: touchPosition[0], level: 0 });
+    setdirection("left");
+  };
+
+  const ref = useRef(null);
+  useOnActionOutside(ref, handleClickOutside);
   return (
     <div className={styles.productcart_wrapper}>
       <div
+        ref={ref}
         onTouchStart={(e) => TouchStart(e)}
         onTouchMove={(e) => TouchHandle(e)}
         onTouchEnd={TouchEnd}
