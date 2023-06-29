@@ -106,10 +106,7 @@ const Login =  () => {
               </div>
             </div>
             <div className={styles['fm-field']}>
-              <div className={styles['fm-label']} hidden>
-                <span>Password</span>
-              </div>
-              <div className={`${styles['input-pwa-wrap']} `}>
+              <div className={`${styles['input-pwa-wrap']}`}>
                 <input
                   name="fm-login-password"
                   type={showPassword ? 'text' : 'password'}
@@ -118,22 +115,21 @@ const Login =  () => {
                   tabIndex={2}
                   aria-label="Mật Khẩu"
                   placeholder="Mật Khẩu"
-                  autoCapitalize={'off'}
+                  autoCapitalize={'on'}
                   onChange={handlePasswordChange}
                 />
                 <div className="password_state" onClick={togglePasswordVisibility}>
-                      {showPassword ? (
-                        <i className="icon-eyes-visible" />
-                      ) : (
-                        <i className="icon-eyes-invisible" />
-                      )}
-                    </div>
+                  {
+                    showPassword ? (
+                            <i className="iconfont icon-eyes-visible"></i>
+                          ) : (
+                            <i className="iconfont icon-eyes-invisible"></i>
+                          )
+                  }
+                </div>
                 <div className={styles.underline}>
                   <div className={styles['unfocused-line']}></div>
                   <div className={styles['focused-line']}></div>
-                </div>
-                <div className={styles['password-look-btn']}>
-                  <i className="iconfont icon-eye-close"></i>
                 </div>
               </div>
             </div>
