@@ -1,7 +1,7 @@
 import { convertMoney } from "@/lib/formatPrice";
 import { ActiveFull, NotActive } from "./Checked";
 import { useState, useRef } from "react";
-import {useOnActionOutside}  from '@/components/hook/useOnActionOutside';
+import { useOnActionOutside } from "@/components/hook/useOnActionOutside";
 import styles from "./styles.module.css";
 import Image from "next/image";
 import React from "react";
@@ -66,6 +66,7 @@ const VariantCart = React.memo(function card({
   const TouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     const startTouch = e.touches[0].clientX;
     setTouchStart(startTouch);
+    console.log(ref.current);
   };
 
   const TouchHandle = (e: React.TouchEvent<HTMLDivElement>) => {
