@@ -1,9 +1,10 @@
 import Image from "next/image";
 import VariantCart from "./VariantCart";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useImperativeHandle } from "react";
 import { ActiveFull, HaftFull, NotActive } from "./Checked";
 import { useOnActionOutside } from "@/components/hook/useOnActionOutside";
-import type { FC } from "react";
+import useOutsideListener from "@/components/hook/useOutsideListener";
+
 import styles from "./styles.module.css";
 type Variant = {
   condition: number;
@@ -21,10 +22,12 @@ type Product = {
 };
 type ProductProps<T> = {
   data: T;
+  activeRef: any;
 };
 export const ProductCart = <T extends Product>(props: ProductProps<T>) => {
   const { variants, name, image, active } = props.data;
   const widthDivHidden = 12;
+  const [refL, setRefL] = useOutsideListener();
   const touchPosition = [
     "",
     "-translate-x-[1vw]",
@@ -43,7 +46,11 @@ export const ProductCart = <T extends Product>(props: ProductProps<T>) => {
   const [touchStart, setTouchStart] = useState<number>(0);
   const [cssTouch, setCssTouch] = useState({ css: touchPosition[0], level: 0 });
   const [direction, setdirection] = useState<"left" | "right">("left");
-
+  const changeCSS = () => {
+    if (ref.current) {
+      setCssTouch({ css: touchPosition[0], level: 0 });
+    }
+  };
   //Get Start postion
   const TouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     const startTouch = e.touches[0].clientX;

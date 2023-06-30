@@ -15,7 +15,7 @@ type Product = {
   active: boolean;
   variants: Variant[];
 };
-export default function Catogery() {
+export default function Catogery({ activeRef }: { activeRef: any }) {
   const variants: Variant[] = [
     {
       image: "https://caysenda.vn/resources/upload/22216875771_102253868.jpg",
@@ -50,6 +50,9 @@ export default function Catogery() {
       variants: variants,
     },
   ];
+  const changCSS = () => {
+    setCssTouch({ css: touchPosition[0], level: 0 });
+  };
   return (
     <div className={styles.catogerycart_wrapper}>
       <div className={styles.catogerycart}>
@@ -77,7 +80,12 @@ export default function Catogery() {
           </div>
         </div>
         {products.map((product) => (
-          <ProductCart<Product> key={product.name} data={product} />
+          <ProductCart<Product>
+            changCSS={changCSS}
+            key={product.name}
+            data={product}
+            activeRef={activeRef}
+          />
         ))}
       </div>
     </div>
