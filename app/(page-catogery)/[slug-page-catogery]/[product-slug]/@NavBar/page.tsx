@@ -9,6 +9,7 @@ import {
 	AiOutlineHome,
 } from 'react-icons/ai';
 import styles from './styles.module.css';
+import Dialog from '@/components/Dialog/Dialog';
 import {useDialog} from '@/components/Dialog/Provider';
 export default function Page() {
 	const router = useRouter();
