@@ -4,11 +4,13 @@ module.exports = {
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./redux/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-google)"],
+        sans: ["var(--font-sans)"],
+        icon: ["var(--font-icon)"],
       },
       maxWidth: {
         "40px": "40px",

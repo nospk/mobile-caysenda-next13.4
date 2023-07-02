@@ -1,13 +1,27 @@
 import "./globals.css";
 import { Open_Sans } from "next/font/google";
 import { Metadata } from "next";
+import localFont from "next/font/local";
+import { StoreProviders } from "@/redux/provider";
+
+//dialog message global
+import Dialog from "@/components/Dialog";
+import { DialogProvider } from "@/components/Dialog/Provider";
+
+//font text basic
 const fonter = Open_Sans({
   subsets: ["latin"],
   weight: "400",
-  variable: "--font-google",
+  variable: "--font-sans",
 });
-import Dialog from "@/components/Dialog";
-import { DialogProvider } from "@/components/Dialog/Provider";
+
+//font for icon by unicode
+const fontIcon = localFont({
+  src: "./icon/font-icon.ttf",
+  variable: "--font-icon",
+});
+
+//seo global
 export const metadata: Metadata = {
   title: {
     template: "%s - Cây Sen Đá - Nomi - Ngọc Minh",
@@ -23,11 +37,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="vi">
-      <body className={fonter.className}>
-        <DialogProvider>
-          {children}
-          <Dialog />
-        </DialogProvider>
+      <body className={`${fonter.variable} ${fontIcon.variable} font-sans`}>
+        <StoreProviders>
+          <DialogProvider>
+            <main>{children}</main>
+            <Dialog />
+          </DialogProvider>
+        </StoreProviders>
       </body>
     </html>
   );

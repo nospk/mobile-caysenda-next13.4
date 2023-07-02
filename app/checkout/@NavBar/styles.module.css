@@ -1,0 +1,15 @@
+.sticky_out_wrapper {
+  @apply absolute top-0 z-20 space-y-1 bg-white w-full;
+}
+.sticky_wrapper {
+  @apply flex h-[8vw] max-w-full items-center justify-center text-center;
+}
+.wapper_back {
+  @apply relative float-right max-w-[9vw] flex-1;
+}
+.back {
+  @apply ml-auto mr-auto h-[4.3333332vw] w-[4.3333332vw];
+}
+.title {
+  @apply grow text-[4.3333332vw] font-semibold text-[#222222] leading-[8vw];
+}
