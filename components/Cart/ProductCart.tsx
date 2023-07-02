@@ -3,7 +3,6 @@ import VariantCart from "./VariantCart";
 import { useState, useEffect, useRef, useImperativeHandle } from "react";
 import { ActiveFull, HaftFull, NotActive } from "./Checked";
 import { useOnActionOutside } from "@/components/hook/useOnActionOutside";
-import useOutsideListener from "@/components/hook/useOutsideListener";
 
 import styles from "./styles.module.css";
 type Variant = {
@@ -22,12 +21,10 @@ type Product = {
 };
 type ProductProps<T> = {
   data: T;
-  activeRef: any;
 };
 export const ProductCart = <T extends Product>(props: ProductProps<T>) => {
   const { variants, name, image, active } = props.data;
   const widthDivHidden = 12;
-  const [refL, setRefL] = useOutsideListener();
   const touchPosition = [
     "",
     "-translate-x-[1vw]",
@@ -115,7 +112,7 @@ export const ProductCart = <T extends Product>(props: ProductProps<T>) => {
   };
 
   const ref = useRef(null);
-  useOnActionOutside(ref, handleClickOutside);
+  useOnActionOutside(ref, handleClickOutside, "mousedown");
   return (
     <div className={styles.productcart_wrapper}>
       <div

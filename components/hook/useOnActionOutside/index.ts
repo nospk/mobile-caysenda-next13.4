@@ -3,15 +3,14 @@ import { RefObject } from "react";
 
 import { useEventListener } from "../useEventListener";
 
-type Handler = (event: React.MouseEvent) => void;
+type Handler = (event: MouseEvent) => void;
 
 export function useOnActionOutside<T extends HTMLElement = HTMLElement>(
   ref: RefObject<T>,
   handler: Handler,
-  actionEvent: "mousedown" | "mousedown" = "mouseup"
+  actionEvent: "mousedown" 
 ): void {
   useEventListener(actionEvent, (event) => {
-    console.log(ref);
     const el = ref?.current;
 
     // Do nothing if clicking ref's element or descendent elements

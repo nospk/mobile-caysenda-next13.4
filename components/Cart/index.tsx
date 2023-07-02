@@ -9,26 +9,11 @@ import Header from "./Header";
 import Warning from "./Warning";
 import CatogeryCart from "./CatogeryCart";
 import { useState, useEffect } from "react";
-import useOutsideListener from "@/components/hook/useOutsideListener";
 export default function Cart() {
   const [isRemove, setIsRemoven] = useState(false);
   const changeRemove: () => void = () => {
     setIsRemoven(!isRemove);
   };
-  const [activeRef, setActiveRef] = useOutsideListener();
-  const handleOutside = (event) => {
-    console.log(activeRef.current, event.target);
-    if (!activeRef.current) {
-      setActiveRef(event.target);
-    } else if (activeRef.current.contains(event.target as Node)) {
-      console.log("1");
-    } else {
-      activeRef.current.changCSS();
-    }
-  };
-  useEffect(() => {
-    document.addEventListener("touchstart", handleOutside);
-  });
   const cart = useAppSelector((state) => state.cartReducer);
   return (
     <div className={styles.main}>
@@ -39,7 +24,7 @@ export default function Cart() {
             <div className={styles.content_box_wrapper}>
               <div className={styles.catogerycart_overlay}>
                 <Warning />
-                <CatogeryCart activeRef={activeRef} />
+                <CatogeryCart />
               </div>
             </div>
           </div>

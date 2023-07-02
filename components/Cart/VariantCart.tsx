@@ -5,7 +5,6 @@ import { useOnActionOutside } from "@/components/hook/useOnActionOutside";
 import styles from "./styles.module.css";
 import Image from "next/image";
 import React from "react";
-import { useOnClickOutside } from "usehooks-ts";
 
 const VariantCart = React.memo(function card({
   condition,
@@ -32,7 +31,7 @@ const VariantCart = React.memo(function card({
   };
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  useOnActionOutside(ref, handleClickOutside);
+  useOnActionOutside(ref, handleClickOutside, "mousedown");
   const widthDivHidden = 18;
   const touchPosition = [
     "",
