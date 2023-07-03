@@ -40,10 +40,8 @@ const Login =  () => {
             // expiresInMins: 60, // optional
           })
         })
-        console.log(res);
         if (res.status === 200) {
           const auth = await res.json();
-          console.log(auth);
           localStorage.setItem('user_id', JSON.stringify(auth.id));
           localStorage.setItem('token', JSON.stringify(auth.token));
           router.back();

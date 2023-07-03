@@ -1,5 +1,5 @@
 'use client';
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 
 import Loading from "@/components/Loading";
@@ -19,7 +19,7 @@ function SettingPage() {
 
   useEffect(() => {
     if (!loading && !token) {
-      router.push("/login");
+      redirect("/login");
     }
   }, [loading, router, token]);
 
