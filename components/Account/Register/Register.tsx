@@ -141,7 +141,6 @@ const Register = () => {
                       onChange={(e) => handleChange(e, name)}
                       required
                     />
-
                     {name.includes('password') && (
                       <div className="password_state" onClick={name === 'password' ? handleShowPassword : handleShowConfirmPassword}>
                         {name === 'password' ? (
