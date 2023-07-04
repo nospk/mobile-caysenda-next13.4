@@ -1,10 +1,12 @@
 import { AiOutlineEnvironment, AiOutlineRight } from "react-icons/ai";
 import styles from "./styles.module.css";
+import SelectAddressModal from "../SelectAddressModal/SelectAddressModal";
 interface Props {
+  address: string
   remove: boolean;
   changeRemove: () => void;
 }
-const Header: React.FC<Props> = ({ remove, changeRemove }) => {
+const Header: React.FC<Props> = ({address, remove, changeRemove }) => {
   return (
     <header className={styles.header}>
       <div className={styles.header_wapper}>
@@ -13,10 +15,12 @@ const Header: React.FC<Props> = ({ remove, changeRemove }) => {
           <div className={styles.address_content}>
             <AiOutlineEnvironment className={styles.address_icon_place} />
             <div className={styles.address_box}>
-              <span className={styles.address_detail}>
-                24 Nguyễn Thị Minh Khai, phường Bến Nghé, Quận 1, thành phố Hồ
-                Chí Minh
-              </span>
+              <SelectAddressModal>
+                <span className={styles.address_detail}>
+                  {address}
+                </span>
+              </SelectAddressModal>
+
               <AiOutlineRight className={styles.address_icon_arrow} />
             </div>
           </div>

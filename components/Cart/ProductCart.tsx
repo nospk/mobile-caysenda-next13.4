@@ -1,29 +1,15 @@
 import Image from "next/image";
 import VariantCart from "./VariantCart";
-import { useState, useEffect, useRef, useImperativeHandle } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ActiveFull, HaftFull, NotActive } from "./Checked";
 import { useOnActionOutside } from "@/components/hook/useOnActionOutside";
-
+import type { CartProduct } from "@/types/cart";
 import styles from "./styles.module.css";
-type Variant = {
-  condition: number;
-  active: boolean;
-  name: string;
-  image: string;
-  quantity: number;
-  price: number;
-};
-type Product = {
-  image: string;
-  name: string;
-  active: boolean;
-  variants: Variant[];
-};
-type ProductProps<T> = {
-  data: T;
-};
-export const ProductCart = <T extends Product>(props: ProductProps<T>) => {
-  const { variants, name, image, active } = props.data;
+interface Props{
+  product: CartProduct
+}
+export const ProductCart = (props:Props) => {
+  const { variants, name, thumbnail, active, conditionDefault } = props.product;
   const widthDivHidden = 12;
   const touchPosition = [
     "",
@@ -43,11 +29,7 @@ export const ProductCart = <T extends Product>(props: ProductProps<T>) => {
   const [touchStart, setTouchStart] = useState<number>(0);
   const [cssTouch, setCssTouch] = useState({ css: touchPosition[0], level: 0 });
   const [direction, setdirection] = useState<"left" | "right">("left");
-  const changeCSS = () => {
-    if (ref.current) {
-      setCssTouch({ css: touchPosition[0], level: 0 });
-    }
-  };
+
   //Get Start postion
   const TouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     const startTouch = e.touches[0].clientX;
@@ -102,7 +84,7 @@ export const ProductCart = <T extends Product>(props: ProductProps<T>) => {
     }
   };
   const CheckActiveFull = () => {
-    const check = variants.filter((variant) => variant.active == false);
+    const check = variants.filter((variant) => variant.selected == false);
     return check.length > 0 ? false : true;
   };
   const handleClickOutside = () => {
@@ -134,7 +116,7 @@ export const ProductCart = <T extends Product>(props: ProductProps<T>) => {
                 <div className={styles.productcart_wrapper_image}>
                   <Image
                     className={styles.productcart_image_styles}
-                    src={image}
+                    src={thumbnail}
                     alt="test"
                     sizes="100vw"
                     width={0}
@@ -154,15 +136,7 @@ export const ProductCart = <T extends Product>(props: ProductProps<T>) => {
         </div>
       </div>
       {variants.map((variant) => (
-        <VariantCart
-          key={variant.name}
-          image={variant.image}
-          name={variant.name}
-          active={variant.active}
-          condition={variant.condition}
-          quantity={variant.quantity}
-          price={variant.price}
-        />
+        <VariantCart key={variant.name} variant={variant} condition={conditionDefault}/>
       ))}
     </div>
   );

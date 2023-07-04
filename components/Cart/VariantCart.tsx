@@ -3,24 +3,15 @@ import { ActiveFull, NotActive } from "./Checked";
 import { useState, useRef } from "react";
 import { useOnActionOutside } from "@/components/hook/useOnActionOutside";
 import styles from "./styles.module.css";
+import type { CartVariant } from "@/types/cart";
 import Image from "next/image";
 import React from "react";
-
-const VariantCart = React.memo(function card({
-  condition,
-  active,
-  name,
-  image,
-  quantity,
-  price,
-}: {
+interface Prop {
+  variant: CartVariant;
   condition: number;
-  active: boolean;
-  name: string;
-  image: string;
-  quantity: number;
-  price: number;
-}) {
+}
+const VariantCart = (props: Prop) => {
+  const { selected, name, thumbnail, quantity, price } = props.variant;
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const ref = useRef(null);
 
@@ -65,7 +56,6 @@ const VariantCart = React.memo(function card({
   const TouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     const startTouch = e.touches[0].clientX;
     setTouchStart(startTouch);
-    console.log(ref.current);
   };
 
   const TouchHandle = (e: React.TouchEvent<HTMLDivElement>) => {
@@ -130,14 +120,14 @@ const VariantCart = React.memo(function card({
           >
             <div className="fex-row box-border flex flex-shrink-0 items-center justify-between">
               <div className="relative ml-[-2.4vw] flex flex-shrink-0 flex-row items-center pb-[2.4vw] pl-[2.66667vw] pt-[2.4vw]">
-                {active ? <ActiveFull /> : <NotActive />}
+                {selected ? <ActiveFull /> : <NotActive />}
                 <div className="relative ml-[2.13333vw] box-border flex flex-shrink-0 flex-col"></div>
               </div>
               <div className="box-border flex min-h-[6.93333vw] flex-1 flex-row content-between items-center">
                 <div className="mr-[1.6vw] block h-[8vw] w-[8vw]">
                   <Image
                     className="rounded-lg"
-                    src={image}
+                    src={thumbnail}
                     alt="test"
                     sizes="100vw"
                     width={0}
@@ -180,9 +170,9 @@ const VariantCart = React.memo(function card({
               </div>
             </div>
             <div className="ml-[7.46667vw] box-border flex flex-shrink-0 flex-row justify-between">
-              {quantity < condition ? (
+              {quantity < props.condition ? (
                 <span className="ml-[3.2vw] box-border block flex-1 whitespace-pre-wrap text-right text-[2.93333vw] text-[#FF4000]">
-                  Yêu cầu tối thiểu : {condition} {"Cái"}
+                  Yêu cầu tối thiểu : {props.condition} {"Cái"}
                 </span>
               ) : null}
             </div>
@@ -196,5 +186,5 @@ const VariantCart = React.memo(function card({
       </div>
     </>
   );
-});
-export default VariantCart;
+};
+export default React.memo(VariantCart);

@@ -1,71 +1,20 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import type { Cart } from "@/types/cart";
 
-type CartState = {
-  user_id: number;
-  categories: CartCategory[];
-};
-
-type CartCategory = {
-  name: string;
-  slug: string;
-  condition: number;
-  amount: number;
-  products: CartProduct[];
-};
-
-type CartProduct = {
-  productId: number;
-  name: string;
-  sku: string;
-  slug: string;
-  conditionDefault: number;
-  condition1: number;
-  condition2: number;
-  condition3: number;
-  condition4: number;
-  priceDefault: number;
-  price1: number;
-  price2: number;
-  price3: number;
-  price4: number;
-  thumbnail: string;
-  categoryId: number;
-  retail: boolean;
-  quantity: number;
-  range: number;
-  amount: number;
-  active: boolean;
-  unit: string;
-  variants: CartVariant[];
-};
-
-type CartVariant = {
-  name: string;
-  thumbnail: string;
-  sku: string;
-  price: number;
-  quantity: number;
-  priceDefault: number;
-  vip1: number;
-  vip2: number;
-  vip3: number;
-  vip4: number;
-  selected: boolean;
-  variantId: number;
-};
 
 const initialState = {
   user_id: 0,
   categories: [
     {
-      name: "Chậu Hình Thú",
+      name: "ZTC-1",
       slug: "chau-hinh-thu",
       condition: 1000000,
       amount: 55555555,
+      bill: 500000,
       products: [
         {
           productId: 123,
-          name: "ZTC-1",
+          name: "Chậu Hình Thú",
           sku: "ZTC-1",
           slug: "ZTC-1",
           conditionDefault: 2,
@@ -108,7 +57,7 @@ const initialState = {
       ],
     },
   ],
-} as CartState;
+} as Cart;
 
 export const cart = createSlice({
   name: "cart",
@@ -122,6 +71,7 @@ export const cart = createSlice({
           slug: "chau-hinh-thu",
           condition: 1000000,
           amount: 55555555,
+          bill: 100000,
           products: [
             {
               productId: 123,

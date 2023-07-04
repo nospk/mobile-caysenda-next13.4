@@ -1,55 +1,12 @@
 import { ProductCart } from "./ProductCart";
 import { ActiveFull, HaftFull, NotActive } from "./Checked";
+import { convertMoney } from "@/lib/formatPrice";
+import type { CartCategory } from "@/types/cart";
 import styles from "./styles.module.css";
-type Variant = {
-  condition: number;
-  active: boolean;
-  name: string;
-  image: string;
-  quantity: number;
-  price: number;
-};
-type Product = {
-  image: string;
-  name: string;
-  active: boolean;
-  variants: Variant[];
-};
-export default function Catogery() {
-  const variants: Variant[] = [
-    {
-      image: "https://caysenda.vn/resources/upload/22216875771_102253868.jpg",
-      name: "Thú Hình Voi",
-      active: true,
-      condition: 5,
-      quantity: 3,
-      price: 29000,
-    },
-    {
-      image: "https://caysenda.vn/resources/upload/22216875771_102253868.jpg",
-      name: "Thú Hình Voi 1",
-      active: false,
-      condition: 5,
-      quantity: 1,
-      price: 11000,
-    },
-    {
-      image: "https://caysenda.vn/resources/upload/22216875771_102253868.jpg",
-      name: "Thú Hình Voi 2",
-      active: true,
-      condition: 2,
-      quantity: 2,
-      price: 19000,
-    },
-  ];
-  const products: Product[] = [
-    {
-      image: "https://caysenda.vn/resources/upload/22216875771_102253868.jpg",
-      name: "ZTC-1",
-      active: true,
-      variants: variants,
-    },
-  ];
+interface Props {
+  category: CartCategory;
+}
+export default function Catogery({ category }: Props) {
   return (
     <div className={styles.catogerycart_wrapper}>
       <div className={styles.catogerycart}>
@@ -60,27 +17,26 @@ export default function Catogery() {
               <div className={styles.checked_padding}></div>
             </div>
             <div className={styles.catogerycart_title}>
-              <span className={styles.catogerycart_name}>Quần áo</span>
+              <span className={styles.catogerycart_name}>{category.name}</span>
               {">"}
               <span className={styles.catogerycart_pricecondition}>
-                Tối thiểu: 1.000K
+                Tối thiểu: {convertMoney(category.condition) + "K"}
               </span>
               {">>"}
               <span className={styles.catogerycart_pricenow}>
-                Hiện tại: 249K
+                Hiện tại: {convertMoney(category.bill) + "K"}
               </span>
             </div>
             <span className={styles.catogerycart_button_buymore}>Đặt Thêm</span>
           </div>
           <div className={styles.catogerycart_error}>
-            <span>Chưa đạt mức tối thiểu của danh mục này</span>
+            {category.condition < category.bill ? (
+              <span>Chưa đạt mức tối thiểu của danh mục này</span>
+            ) : null}
           </div>
         </div>
-        {products.map((product) => (
-          <ProductCart<Product>
-            key={product.name}
-            data={product}
-          />
+        {category.products.map((product) => (
+          <ProductCart key={product.name} product={product} />
         ))}
       </div>
     </div>
