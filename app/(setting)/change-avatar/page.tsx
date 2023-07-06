@@ -1,8 +1,10 @@
 'use client';
 import { useState } from 'react';
 import Image from 'next/image'
-const AvatarPage = () => {
+import Avatar from '@/components/Avatar';
+const AvatarPage = async () => {
   const [avatar, setAvatar] = useState('/avatarzalo.jpg');
+  
 
   const handleAvatarChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -25,12 +27,12 @@ const AvatarPage = () => {
           <Image
             src={avatar}
             alt="Avatar"
-            width={100}
-            height={100}
-            className="w-32 h-32 rounded-full object-cover mb-4"
+            width={300}
+            height={300}
+            className="object-center rounded-full w-3/5 h-3/5 object-cover mb-4"
           />
-        ) : (
-          <div className="w-32 h-32 bg-gray-300 rounded-full mb-4"></div>
+        ) : ( 
+          <div className="w-3/5 h-3/5 bg-gray-300 rounded-full mb-4"></div>
         )}
         <label className="box-border">
           <input
