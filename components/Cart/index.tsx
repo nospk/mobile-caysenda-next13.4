@@ -10,12 +10,6 @@ import Warning from "./Warning";
 import CatogeryCart from "./CatogeryCart";
 import { useState, useEffect } from "react";
 export default function Cart() {
-  //Setting for delete button active change css
-  const [isRemove, setIsRemoven] = useState(false);
-  const changeRemove: () => void = () => {
-    setIsRemoven(!isRemove);
-  };
-
   //Get cart
   const cart = useAppSelector((state) => state.cartReducer);
 
@@ -25,7 +19,7 @@ export default function Cart() {
   return (
     <div className={styles.main}>
       <div className={styles.content}>
-        <Header remove={isRemove} changeRemove={changeRemove} address={address} />
+        <Header address={address} />
         <div className={styles.content_wrapper}>
           <div className={styles.content_box}>
             <div className={styles.content_box_wrapper}>

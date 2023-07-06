@@ -1,12 +1,14 @@
 import { AiOutlineEnvironment, AiOutlineRight } from "react-icons/ai";
 import styles from "./styles.module.css";
 import SelectAddressModal from "../SelectAddressModal/SelectAddressModal";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { setRemove } from "@/redux/features/removeCart/removeCart.slice";
 interface Props {
   address: string
-  remove: boolean;
-  changeRemove: () => void;
 }
-const Header: React.FC<Props> = ({address, remove, changeRemove }) => {
+const Header: React.FC<Props> = ({address}) => {
+  const isRemove = useAppSelector((state) => state.removeCartReducer.isRemove);
+  const dispatch = useAppDispatch();
   return (
     <header className={styles.header}>
       <div className={styles.header_wapper}>
@@ -25,9 +27,9 @@ const Header: React.FC<Props> = ({address, remove, changeRemove }) => {
             </div>
           </div>
         </div>
-        <div className={styles.remove_button} onClick={changeRemove}>
-          {remove ? (
-            <span className={styles.remove_text}>Hoàn Tất</span>
+        <div className={styles.remove_button} onClick={() => dispatch(setRemove())}>
+          {isRemove ? (
+            <span className={styles.remove_text_confirm}>Hoàn Tất</span>
           ) : (
             <span className={styles.remove_text}>Xóa</span>
           )}

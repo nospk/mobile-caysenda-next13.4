@@ -76,6 +76,9 @@
 .remove_text {
   @apply mr-[2.66667vw] box-border block whitespace-pre-wrap text-[3.73333vw] text-[#333333];
 }
+.remove_text_confirm{
+  @apply mr-[2.66667vw] box-border block whitespace-pre-wrap text-[3.73333vw] text-[#ff4000];
+}
 .warning_text {
   @apply mb-[3.2vw] flex flex-col text-[3.2vw] text-[#F66D09];
 }
