@@ -18,7 +18,6 @@ type ProductCard = {
 };
 
 const ProductCard: FC<ProductCard> = React.memo(function card(props) {
-  console.log(props)
   const shimmer = `
 <svg width="800" height="800" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs>

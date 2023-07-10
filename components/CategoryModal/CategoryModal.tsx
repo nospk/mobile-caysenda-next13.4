@@ -47,9 +47,9 @@ const CategoryModal: FC<Props> = ({ children,nav }) => {
       >
         <span className="font-bold">Danh Mục Sản Phẩm</span>
         <div className="grid grid-cols-4 gap-2.5">
-          {nav.map((category) => {
+          {nav.map((category,index) => {
             return (
-                <div className={styles.wrap_item} onClick={() => gotoCategory(category.href)}>
+                <div className={styles.wrap_item} onClick={() => gotoCategory(category.href)} key={index}>
                     <IconWithLabel
                         src={category.icon ? 'https://caysenda.vn' + category.icon: 'https://caysenda.vn/resources/upload/chau-trong-cay.jpg'}
                         alt={category.name}
