@@ -6,7 +6,9 @@ import Detail from '@/components/Product/Detail';
 import Gallery from '@/components/Product/Gallery';
 import AddToCart from '@/components/Product/AddToCart';
 import styles from './styles.module.css';
-export default function Page() {
+import ProductService from '@/services/Product.service';
+
+export default async function Page({searchParams}:any) {
 	const ProductDetail = {
 		name: 'ZCT-1',
 		retail: true,
@@ -27,6 +29,8 @@ export default function Page() {
 			'https://caysenda.vn/resources/upload/17892872215_102253868.jpg',
 		],
 	};
+	const data = await ProductService.getDetail({slug:searchParams.slug})
+	console.log(data);
 	return (
 		<>
 			<Carousel images={ProductDetail.quickviewGallery} name={ProductDetail.name}/>
