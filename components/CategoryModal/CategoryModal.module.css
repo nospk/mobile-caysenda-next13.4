@@ -1,3 +1,14 @@
+.wrap_item {
+  @apply flex flex-col items-center
+}
+.category_item {
+  width: 40px;
+  height: 40px;
+  @apply flex justify-center
+}
+.category_name {
+  font-size: 12px;
+}
 .menu_item {
   @apply flex text-sm flex-col box-border justify-center items-center shrink-0;
 }
