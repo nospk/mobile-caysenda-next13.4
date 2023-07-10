@@ -5,6 +5,7 @@ import { numberToString } from "@/lib/formatPrice";
 import WholeSaleModal from "@/components/AddToCartModal/WholeSaleModal";
 import RetailModal from "@/components/AddToCartModal/RetailModal";
 import React from "react";
+import Link from "next/link";
 type ProductCard = {
   image: string;
   name: string;
@@ -17,6 +18,7 @@ type ProductCard = {
 };
 
 const ProductCard: FC<ProductCard> = React.memo(function card(props) {
+  console.log(props)
   const shimmer = `
 <svg width="800" height="800" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs>
@@ -36,7 +38,7 @@ const ProductCard: FC<ProductCard> = React.memo(function card(props) {
       ? Buffer.from(str).toString("base64")
       : window.btoa(str);
   return (
-    <div className={styles.product_card}>
+    <Link className={styles.product_card} href={props.link}>
       <div className={styles.image_product}>
         <Image
           className={styles.image_square}
@@ -69,7 +71,7 @@ const ProductCard: FC<ProductCard> = React.memo(function card(props) {
           <WholeSaleModal className={styles.add_cart} />
         )}
       </div>
-    </div>
+    </Link>
   );
 });
 
