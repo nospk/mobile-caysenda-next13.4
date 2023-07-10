@@ -6,6 +6,7 @@ import { Suspense } from 'react';
 
 
 import { Metadata } from 'next';
+import {ProductListParamType} from "@/services/types/ProductRequestType";
 
 export const metadata: Metadata = {
 	title: 'Sản Phẩm Phân Loại',
@@ -14,12 +15,14 @@ export const metadata: Metadata = {
 export const dynamic = 'force-dynamic';
 
 export default async function Page() {
-	const products = await ProductService.getProductData();
+	let requestData:ProductListParamType = {}
+	let data = await ProductService.getProductList({selectType:"@SELECT", ...requestData});
+	let page = await ProductService.getProductList({selectType:"@COUNT", ...requestData});
 
 	return (
 		<>
 			<Suspense fallback={<Loading />}>
-				<FlexTwoColView data={products} />
+				<FlexTwoColView data={data} maxPage={page.totalPages} requestData={requestData}/>
 			</Suspense>
 		</>
 	);

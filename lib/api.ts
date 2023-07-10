@@ -7,11 +7,12 @@ const GET = async ({
   auth,
 }: {
   path: string;
-  data: any;
-  auth: boolean;
+  data?: any;
+  auth?: boolean;
 }) => {
   try {
     const params = new URLSearchParams(data);
+
     if (!auth) {
       const response = await fetch(getBaseUrl + path + "?" + params.toString(), {
         method: "GET",

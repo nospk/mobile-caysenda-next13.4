@@ -1,9 +1,23 @@
-.menu_item {
+.wrap_item {
+  @apply flex flex-col justify-center items-center;
+}
+.category_item {
+  width: 50px;
+  height: 50px;
   @apply flex text-sm flex-col box-border justify-center items-center shrink-0;
 }
 .modal {
   @apply fixed bottom-0 left-0 w-full h-2/3 rounded-t-lg bg-white p-[2.4vw] shadow-md ease-in-out transition;
 }
 .modalOverlay {
-  @apply fixed top-0 left-0 w-full h-full flex bg-slate-900 z-20 bg-opacity-60;
+  @apply fixed top-0 left-0 w-full h-full flex bg-[#0000008c] z-20 bg-opacity-60;
+}
+.category_name {
+  font-size: 12px;
+  max-width: 80px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  height: 40px;
+  overflow: hidden;
 }

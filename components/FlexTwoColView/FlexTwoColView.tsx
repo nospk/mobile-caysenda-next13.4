@@ -11,12 +11,15 @@ import KeyWordCard from "@/components/KeyWordCard";
 import React from "react";
 import useScroll from "@/components/hook/useScroll";
 import VideoCard from "../VideoCard";
+import {ProductListParamType} from "@/services/types/ProductRequestType";
 type Video = { type: "video"; data: {} };
 type View = Banner | KeyWord | Product | Video;
 interface Props {
   banners?: Banner;
   keyWords?: KeyWord;
   data: Product[] | Video[];
+  maxPage:number;
+  requestData:ProductListParamType;
 }
 
 const renderView = (data: View[]) => {
@@ -26,7 +29,7 @@ const renderView = (data: View[]) => {
     if (item.type === "product")
       return (
         <ProductCard
-          key={item.data.name}
+          key={item.data.name + index}
           name={item.data.name}
           price={item.data.price}
           sold={item.data.sold}
@@ -52,36 +55,37 @@ const renderView = (data: View[]) => {
   });
   return view;
 };
-const FlexTwoColView = function FlexTwoColView({
-  banners,
-  keyWords,
-  data,
-}: {
-  banners?: Banner[];
-  keyWords?: KeyWord[];
-  data: Product[] | Video[];
-}) {
+const FlexTwoColView = function FlexTwoColView({banners, keyWords, data,maxPage, requestData}: Props) {
   let listLeft: any = data.slice(0, 4);
   let listRight: any = data.slice(4, 8);
+  const [isLoanding, setIsLoading] = useState<boolean>(false);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+
   if (banners) listLeft.unshift(banners);
   if (keyWords) listRight.splice(3, 0, keyWords);
-  const [isLoanding, setIsLoading] = useState<boolean>(false);
-  const [dataLeft, setListLeft] =
-    useState<{ type: any; data: any }[]>(listLeft);
-  const [dataRight, setListRight] =
-    useState<{ type: any; data: any }[]>(listRight);
+
+  const [dataLeft, setListLeft] = useState<{ type: any; data: any }[]>(listLeft);
+  const [dataRight, setListRight] = useState<{ type: any; data: any }[]>(listRight);
 
   const loadData: boolean = useScroll();
   const fetchData = async () => {
     setIsLoading(true);
     try {
-      const data = await ProductService.getProductData();
-      //const newData = await response.json();
-      let listLeft = data.slice(10, 15);
-      let listRight = data.slice(15, 20);
-      // Xử lý dữ liệu mới từ API
-      setListLeft((prevData) => [...prevData, ...listLeft]);
-      setListRight((prevData) => [...prevData, ...listRight]);
+      let nextPage = currentPage + 1;
+
+      if (nextPage <= maxPage) {
+        requestData.page = nextPage;
+
+        const res = await ProductService.getProductList(requestData);
+        let newListLeft = res.slice(0,res.length / 2);
+        let newListRight = res.slice(res.length / 2, res.length);
+
+        setListLeft((prevData) => [...prevData, ...newListLeft]);
+        setListRight((prevData) => [...prevData, ...newListRight]);
+        console.log(currentPage, maxPage)
+        setCurrentPage(nextPage);
+      }
+
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -94,6 +98,7 @@ const FlexTwoColView = function FlexTwoColView({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loadData]);
+
   const viewLeft = renderView(dataLeft);
   const viewRight = renderView(dataRight);
   return (

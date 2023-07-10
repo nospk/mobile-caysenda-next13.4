@@ -1,38 +1,25 @@
 import FlexTwoColView from '@/components/FlexTwoColView/FlexTwoColView';
-
-import BannerService from '@/services/Banner.service';
-import KeyWordService from '@/services/KeyWord.service';
 import ProductService from '@/services/Product.service';
-
 import Loading from '@/components/Loading';
 import { Suspense } from 'react';
-
 import { Metadata } from 'next';
+import {ProductListParamType} from "@/services/types/ProductRequestType";
 export const metadata: Metadata = {
 	title: 'Sản Phẩm Bán Chạy',
 };
-
 export const dynamic = 'force-dynamic';
-
-
-
 export default async function Page() {
-	const productsData = ProductService.getProductData();
-	const keyWordsData = KeyWordService.getKeyWordCardData();
-	const bannersData = BannerService.getBannerCardData();
-	const [products, banners, keyWords] = await Promise.all([
-		productsData,
-		bannersData,
-		keyWordsData,
-	]);
+	let requestData:ProductListParamType = {}
+	let data = await ProductService.getProductList({selectType:"@SELECT", ...requestData});
+	let page = await ProductService.getProductList({selectType:"@COUNT", ...requestData});
 
 	return (
 		<>
 			<Suspense fallback={<Loading />}>
 				<FlexTwoColView
-					data={products}
-					banners={banners}
-					keyWords={keyWords}
+					data={data}
+					maxPage={page.totalPages}
+					requestData={requestData}
 				/>
 			</Suspense>
 		</>
