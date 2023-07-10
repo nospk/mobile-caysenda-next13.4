@@ -3,13 +3,14 @@ import styles from "./Menu.module.css";
 import { IconWithLabel } from "@/components/Icon";
 import CategoryModal from "@/components/CategoryModal";
 import Link from "next/link";
+import {CategoryNavType} from "@/types/WebSettingType";
 
-const Menu: FC<{ showCategory: boolean }> = ({ showCategory }) => {
+const Menu: FC<{ showCategory: boolean, nav:CategoryNavType[] }> = ({ showCategory,nav }) => {
   return (
     <>
       <div className={styles.menu}>
         {showCategory && (
-          <CategoryModal>
+          <CategoryModal nav={nav}>
             <IconWithLabel
               src="/iconCategory.png"
               alt="category"

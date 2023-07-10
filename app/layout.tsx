@@ -24,7 +24,7 @@ const fontIcon = localFont({
 //seo global
 export const metadata: Metadata = {
   title: {
-    template: "%s - Cây Sen Đá - Nomi - Ngọc Minh",
+    template: "%s",
     default: "Cây Sen Đá - Nomi - Ngọc Minh",
     absolute: "Cây Sen Đá - Nomi - Ngọc Minh",
   },

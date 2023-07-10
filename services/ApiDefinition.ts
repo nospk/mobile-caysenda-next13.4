@@ -1,0 +1,46 @@
+export default {
+	PRODUCT: {
+		PRODUCTLIST: {
+			FUNC_CD: 'PRODUCTLIST',
+			PARAMS:{
+				PARAM1:"CATEGORYID",
+				PARAM2:"CATEGORYSLUG",
+				PARAM3:"SELECTTYPE",
+				PARAM4:"OFFSET",
+				PARAM5:"LIMIT",
+				PARAM6:"RANDFLAG"
+			}
+		},
+		PRODUCTDETAIL: {
+			FUNC_CD: 'PRODUCTDETAIL',
+			PARAMS:{
+				PARAM1:"PRODUCTID",
+				PARAM2:"SLUG"
+			}
+		},
+	},
+	SETTING: {
+		BANNER: {
+			FUNC_CD: 'GETBANNER'
+		},
+		WEBSITE: {
+			FUNC_CD: 'WEBSETTING',
+			PARAMS:{
+				PARAM1:"CODE"
+			}
+		}
+	},
+	KEYWORD: {
+		RAND: {
+			FUNC_CD: 'RANDOMKEYWORD',
+		}
+	},
+	WEBSITE: {
+		GETPAGEINFO: {
+			FUNC_CD: 'GETPAGEINFO',
+			PARAMS: {
+				PARAM1: 'SLUG'
+			}
+		}
+	}
+}

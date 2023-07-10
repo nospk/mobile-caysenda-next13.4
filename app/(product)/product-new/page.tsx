@@ -8,6 +8,7 @@ import Loading from '@/components/Loading';
 import { Suspense } from 'react';
 
 import { Metadata } from 'next';
+import {ProductListParamType} from "@/services/types/ProductRequestType";
 export const metadata: Metadata = {
 	title: 'Sản Phẩm Mới',
 };
@@ -15,22 +16,17 @@ export const metadata: Metadata = {
 export const dynamic = 'force-dynamic';
 
 export default async function Page() {
-	const productsData = ProductService.getProductData();
-	const keyWordsData = KeyWordService.getKeyWordCardData();
-	const bannersData = BannerService.getBannerCardData();
-	const [products, banners, keyWords] = await Promise.all([
-		productsData,
-		bannersData,
-		keyWordsData,
-	]);
+	const requestData:ProductListParamType = {}
+	const data = await ProductService.getProductList({selectType:"@SELECT", ...requestData});
+	const page = await ProductService.getProductList({selectType:"@COUNT", ...requestData});
 
 	return (
 		<>
 			<Suspense fallback={<Loading />}>
 				<FlexTwoColView
-					data={products}
-					banners={banners}
-					keyWords={keyWords}
+					data={data}
+					maxPage={page.totalPages}
+					requestData={requestData}
 				/>
 			</Suspense>
 		</>

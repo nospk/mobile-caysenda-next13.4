@@ -1,5 +1,6 @@
 import Menu from '@/components/Menu';
-
-export default function Page() {
-	return <Menu showCategory={true} />;
+import {getCategoryNav} from '@/services/WebSetting.service'
+export default async function Page() {
+	let categoryNav = await getCategoryNav();
+	return <Menu showCategory={true} nav={categoryNav} />;
 }

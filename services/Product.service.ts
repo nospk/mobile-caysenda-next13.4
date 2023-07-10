@@ -1,14 +1,51 @@
 import API from '@/lib/api'
-import type { Product } from '@/types/product'
-import getBaseUrl from '@/lib/getBaseUrl'
+import ApiDefinition from "@/services/ApiDefinition";
+import {ProductListParamType} from "@/services/types/ProductRequestType";
 
-const getProductData = async () => {
-  let products: Product[] = await API.GETOTHER({
-    path: `${getBaseUrl + '/api/product'}`
-  })
-  return products
+const getProductList = async (params:ProductListParamType) => {
+	let limit:number = 20;
+	let offset:number = 0;
+	let requestParams:any = {};
+
+	if (params.page && params.page > 0) {
+		offset = (params.page - 1) * limit;
+	}
+
+	requestParams["FUNC_CD"] = ApiDefinition.PRODUCT.PRODUCTLIST.FUNC_CD;
+	// params
+	requestParams[ApiDefinition.PRODUCT.PRODUCTLIST.PARAMS.PARAM1]    = params.catId ? params.catId:'';
+	requestParams[ApiDefinition.PRODUCT.PRODUCTLIST.PARAMS.PARAM2]    = params.catSlug ? params.catSlug:'';
+	requestParams[ApiDefinition.PRODUCT.PRODUCTLIST.PARAMS.PARAM5]    = limit;
+	requestParams[ApiDefinition.PRODUCT.PRODUCTLIST.PARAMS.PARAM4]    = offset;
+	requestParams[ApiDefinition.PRODUCT.PRODUCTLIST.PARAMS.PARAM3]    = params.selectType ? params.selectType : '';
+	requestParams[ApiDefinition.PRODUCT.PRODUCTLIST.PARAMS.PARAM6]    = params.randFlag ? params.randFlag : '';
+
+	let res = await API.GET({
+		path: '/api/rest/dataaccess',
+		data: requestParams
+	});
+
+	if (params.selectType === "@COUNT") {
+		if (res.status === "ok") {
+			return {
+				count:res.results[0].COUNT,
+				totalPages: Math.ceil((res.results[0].COUNT / limit))
+			}
+		}
+	}
+
+	if (res.status === "ok") {
+		return res.results.map((data:any) => {
+			return {
+				type: "product",
+				data: data
+			}
+		});
+	}
+
+	return [];
 }
 const ProductService = {
-  getProductData
+	getProductList
 }
-export default ProductService
+export default ProductService;

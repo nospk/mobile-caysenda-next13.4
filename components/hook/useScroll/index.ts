@@ -9,7 +9,7 @@ const useScroll = () => {
     const clientHeight = document.documentElement.clientHeight;
 
     const scrollHeightCheck = scrollHeight - (scrollTop + clientHeight);
-    if (scrollHeightCheck < 100 && !loadData) {
+    if (scrollHeightCheck < 300 && !loadData) {
       setLoadData(true);
     } else {
       setLoadData(false);

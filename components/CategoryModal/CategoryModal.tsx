@@ -1,22 +1,39 @@
 "use client";
-import { type FC } from "react";
+import {type FC, useEffect} from "react";
 import { useState } from "react";
 import Modal from "@/components/Modal";
 import { IconWithLabel } from "@/components/Icon";
 import styles from "./CategoryModal.module.css";
+import {CategoryNavType} from "@/types/WebSettingType";
+import Link from "next/link";
+import {useRouter} from "next/navigation";
 interface Props {
   children: React.ReactNode;
+  nav:CategoryNavType[]
 }
-const CategoryModal: FC<Props> = ({ children }) => {
+const CategoryModal: FC<Props> = ({ children,nav }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+      if (isOpen) {
+          document.body.classList.add("overflow-hidden");
+      } else {
+          document.body.classList.remove("overflow-hidden");
+      }
+  }, [isOpen])
+
   const handleOpenModal = () => {
     setIsOpen(true);
-    document.body.classList.add("overflow-hidden");
   };
   const handleCloseModal = () => {
     setIsOpen(false);
-    document.body.classList.remove("overflow-hidden");
   };
+  const gotoCategory = (href:string) => {
+      router.push(href);
+      setIsOpen(false);
+  }
+
   return (
     <>
       <div className={styles.menu_item} onClick={handleOpenModal}>
@@ -29,107 +46,21 @@ const CategoryModal: FC<Props> = ({ children }) => {
         onClose={handleCloseModal}
       >
         <span className="font-bold">Danh Mục Sản Phẩm</span>
-        <div className="grid grid-cols-6 gap-2.5">
-          <div className="flex flex-col">
-            <IconWithLabel
-              src="/iconProductNews.png"
-              alt="category"
-              className={styles.menu_item}
-              isCricle={true}
-            >
-              <span>Test Menu</span>
-            </IconWithLabel>
-          </div>
-          <div className="flex flex-col">
-            <IconWithLabel
-              src="/iconProductNews.png"
-              alt="category"
-              className={styles.menu_item}
-              isCricle={true}
-            >
-              <span>Test Menu</span>
-            </IconWithLabel>
-          </div>
-          <div className="flex flex-col">
-            <IconWithLabel
-              src="/iconProductNews.png"
-              alt="category"
-              className={styles.menu_item}
-              isCricle={true}
-            >
-              <span>Test Menu</span>
-            </IconWithLabel>
-          </div>
-          <div className="flex flex-col">
-            <IconWithLabel
-              src="/iconProductNews.png"
-              alt="category"
-              className={styles.menu_item}
-              isCricle={true}
-            >
-              <span>Test Menu</span>
-            </IconWithLabel>
-          </div>
-          <div className="flex flex-col">
-            <IconWithLabel
-              src="/iconProductNews.png"
-              alt="category"
-              className={styles.menu_item}
-              isCricle={true}
-            >
-              <span>Test Menu</span>
-            </IconWithLabel>
-          </div>
-          <div className="flex flex-col">
-            <IconWithLabel
-              src="/iconProductNews.png"
-              alt="category"
-              className={styles.menu_item}
-              isCricle={true}
-            >
-              <span>Test Menu</span>
-            </IconWithLabel>
-          </div>
-          <div className="flex flex-col">
-            <IconWithLabel
-              src="/iconProductNews.png"
-              alt="category"
-              className={styles.menu_item}
-              isCricle={true}
-            >
-              <span>Test Menu</span>
-            </IconWithLabel>
-          </div>
-          <div className="flex flex-col">
-            <IconWithLabel
-              src="/iconProductNews.png"
-              alt="category"
-              className={styles.menu_item}
-              isCricle={true}
-            >
-              <span>Test Menu</span>
-            </IconWithLabel>
-          </div>
-          <div className="flex flex-col">
-            <IconWithLabel
-              src="/iconProductNews.png"
-              alt="category"
-              className={styles.menu_item}
-              isCricle={true}
-            >
-              <span>Test Menu</span>
-            </IconWithLabel>
-          </div>
-          <div className="flex flex-col">
-            <IconWithLabel
-              src="/iconProductNews.png"
-              alt="category"
-              className={styles.menu_item}
-              isCricle={true}
-            >
-              <span>Test Menu</span>
-            </IconWithLabel>
-          </div>
+        <div className="grid grid-cols-4 gap-2.5">
+          {nav.map((category) => {
+            return (
+                <div className={styles.wrap_item} onClick={() => gotoCategory(category.href)}>
+                    <IconWithLabel
+                        src={category.icon ? 'https://caysenda.vn' + category.icon: 'https://caysenda.vn/resources/upload/chau-trong-cay.jpg'}
+                        alt={category.name}
+                        className={styles.category_item}
+                        isCricle={true}
+                    >
+                        <span className={styles.category_name}>{category.name}</span>
+                    </IconWithLabel>
+                </div>
+            )
+          })}
         </div>
       </Modal>
     </>
