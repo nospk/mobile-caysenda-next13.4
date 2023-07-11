@@ -76,7 +76,7 @@
 .remove_text {
   @apply mr-[2.66667vw] box-border block whitespace-pre-wrap text-[3.73333vw] text-[#333333];
 }
-.remove_text_confirm{
+.remove_text_confirm {
   @apply mr-[2.66667vw] box-border block whitespace-pre-wrap text-[3.73333vw] text-[#ff4000];
 }
 .warning_text {
@@ -192,4 +192,13 @@
 }
 .footer_tottaly_currency {
   @apply ml-[0.66667vw];
+}
+.footer_remove {
+  @apply box-border flex flex-1 flex-row items-center justify-end;
+}
+.footer_remove_button {
+  @apply min-w-[26.66667vw] rounded-full border-[0.26667vw] border-[#ff4000] px-[3.73333vw] py-[2.66667vw];
+}
+.footer_remove_text {
+  @apply box-border block text-center text-[3.73333vw] leading-[1] text-[#ff4000];
 }

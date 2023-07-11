@@ -2,7 +2,6 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface RemoveCart {
   isRemove: boolean;
-  list: null;
 }
 
 const initialState = {

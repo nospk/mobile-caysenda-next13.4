@@ -11,8 +11,12 @@ const getCart = async () => {
 
   return cart;
 };
-
+const updateCart = async ()=>{
+  const update= ""
+  return update
+}
 const CartService = {
   getCart,
+  updateCart
 };
 export default CartService;
