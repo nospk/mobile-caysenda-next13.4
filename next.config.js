@@ -7,6 +7,10 @@ const nextConfig = {
 	rewrites() {
 		return [
 			{
+				source: '/tim-kiem',
+				destination: '/search',
+			},
+			{
 				source: '/:slug',
 				destination: '/category',
 			},
@@ -18,7 +22,6 @@ const nextConfig = {
 				source: '/:catSlug/:slug',
 				destination: '/product',
 			},
-			
 		]
 	}
 }

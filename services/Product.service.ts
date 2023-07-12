@@ -47,7 +47,7 @@ const getProductList = async (params:ProductListParamType) => {
 }
 
 const getDetail = async ({productId,slug}:ProductDetailParamType) => {
-	let data = {};
+	let data = null;
 	let requestParams:any = {};
 	requestParams["FUNC_CD"] = ApiDefinition.PRODUCT.PRODUCTDETAIL.FUNC_CD;
 	// params
@@ -60,8 +60,13 @@ const getDetail = async ({productId,slug}:ProductDetailParamType) => {
 	});
 
 	if (res.status === "ok") {
-		data = res.results;
+		data = res.results[0];
+
+		let gallery = JSON.parse(data.quickviewGallery);
+		data.quickviewGallery = gallery ? gallery.map((image:string) => "https://caysenda.vn" + image) : [];
 	}
+
+	return data;
 }
 
 const ProductService = {

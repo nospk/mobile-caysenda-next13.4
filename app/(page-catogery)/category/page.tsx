@@ -12,6 +12,7 @@ export async function generateMetadata({ params , searchParams}:any) {
 	let pageData = await getPageInfo(searchParams.slug);
 	return convertPageInfoToMeta(pageData);
 }
+
 export default async function Page({searchParams}:any) {
 	let requestData:ProductListParamType = {}
 	requestData.catSlug = searchParams.slug;

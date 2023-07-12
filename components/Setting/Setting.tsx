@@ -17,7 +17,7 @@ const SettingPage = () => {
   return (
     <div className="min-h-screen bg-white">
       <div className="bg-white rounded-lg px-2">
-        <ul className="">
+        <ul className="h-full w-full">
           <li className="border-b border-gray-300 py-4">
             <Link href="/change-avatar">
               <div className="flex">
@@ -71,7 +71,7 @@ const SettingPage = () => {
           </li>
         </ul>
       </div>
-      <div className="absolute inset-x-0 bottom-0 border-b border-gray-300 pt-4 pb-2 mb-0">
+      <div className="absolute inset-x-0 bottom-0 pt-4 pb-2 mb-0">
         <Link href="/logout" className="w-14">
           <div className="block text-center text-red-500 hover:text-red-600 font-semibold mt-4 mb-4 text-xl">
             Đăng xuất

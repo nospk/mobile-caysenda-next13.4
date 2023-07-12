@@ -37,7 +37,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="vi">
-      <body className={`${fonter.variable} ${fontIcon.variable} font-sans`}>
+      <body>
         <StoreProviders>
           <DialogProvider>
             <main>{children}</main>

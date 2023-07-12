@@ -1,0 +1,7 @@
+.content{
+	@apply w-[96vw] relative
+}
+
+.content a{
+	@apply text-blue-600
+}

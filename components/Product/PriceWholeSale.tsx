@@ -7,7 +7,7 @@ export default function PriceWholeSale({
 }: {
 	unit: string;
 	price: any;
-	condition: string;
+	condition: number;
 }) {
 
 	return (

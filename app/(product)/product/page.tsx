@@ -7,52 +7,33 @@ import Gallery from '@/components/Product/Gallery';
 import AddToCart from '@/components/Product/AddToCart';
 import styles from './styles.module.css';
 import ProductService from '@/services/Product.service';
+import { ProductDetail } from '@/types/product';
 
 export default async function Page({searchParams}:any) {
-	const ProductDetail = {
-		name: 'ZCT-1',
-		retail: true,
-		conditiondefault: '6',
-		condition1: '720',
-		condition2: '7200',
-		price: [
-			{ money: '25000', condition: '6' },
-			{ money: '22000', condition: '720-7199' },
-			{ money: '19400', condition: '≥7200' },
-		],
-		pricewholesale: { min: '1900', max: '6700' },
-		unit: 'Cái',
-		quickviewGallery: [
-			'https://caysenda.vn/resources/upload/17892827873_102253868.jpg',
-			'https://caysenda.vn/resources/upload/17892854272_102253868.jpg',
-			'https://caysenda.vn/resources/upload/17892863213_102253868.jpg',
-			'https://caysenda.vn/resources/upload/17892872215_102253868.jpg',
-		],
-	};
-	const data = await ProductService.getDetail({slug:searchParams.slug})
-	console.log(data);
+	const data:ProductDetail = await ProductService.getDetail({slug:searchParams.slug})
+
 	return (
 		<>
-			<Carousel images={ProductDetail.quickviewGallery} name={ProductDetail.name}/>
+			<Carousel images={data.quickviewGallery} name={data.name}/>
 			<div className={styles.wrapper}>
-				{ProductDetail.retail ? (
+				{!data.retail ? (
 					<PriceRetail
-						unit={ProductDetail.unit}
-						name={ProductDetail.name}
-						price={ProductDetail.price}
+						unit={data.unit}
+						name={data.name}
+						price={data.price}
 					/>
 				) : (
 					<PriceWholeSale
-						unit={ProductDetail.unit}
-						price={ProductDetail.pricewholesale}
-						condition="30"
+						unit={data.unit}
+						price={data.pricewholesale}
+						condition= {data.conditiondefault}
 					/>
 				)}
-				<Info />
+				<Info product={data}/>
 			</div>
-			<Detail />
-			<Gallery />
-			<AddToCart retail={ProductDetail.retail}/>
+			<Detail product={data}/>
+			<Gallery content={data.content}/>
+			<AddToCart retail={data.retail}/>
 		</>
 	);
 }

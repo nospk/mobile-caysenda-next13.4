@@ -74,7 +74,7 @@ export default function Page() {
 				<AiOutlineLeft className={styles.icon} />
 			</div>
 			<div
-				onClick={() => router.push('/search')}
+				onClick={() => router.push('/tim-kiem')}
 				className={`${styles.search} ${change ? '' : styles.bg_black}`}
 			>
 				<AiOutlineSearch className={styles.icon} />
