@@ -11,7 +11,7 @@
   @apply h-full w-full;
 }
 .close {
-  @apply absolute right-2 top-2 z-10 text-lg text-[#999];
+  @apply absolute right-2 top-2 z-auto text-lg text-[#999];
 }
 .title {
   @apply mb-[0.625rem] text-center text-[1.125rem] font-medium leading-[2.8125rem];

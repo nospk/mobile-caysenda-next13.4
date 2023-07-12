@@ -22,6 +22,7 @@ type ProductCard = {
 };
 
 const ProductCard: FC<ProductCard> = React.memo(function card(props) {
+	// eslint-disable-next-line react-hooks/rules-of-hooks
 	const router = useRouter()
 	const toBase64 = (str: string) => typeof window === "undefined" ? Buffer.from(str).toString("base64") : window.btoa(str);
 	const navigate = (link:string) => {
