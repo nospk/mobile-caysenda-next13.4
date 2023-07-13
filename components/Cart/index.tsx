@@ -1,26 +1,43 @@
 "use client";
 
 import { convertMoney } from "@/lib/formatPrice";
-import { addCart, reset } from "@/redux/features/cart/cart.slice";
+import { add, reset } from "@/redux/features/cart/cart.slice";
 import { ActiveFull, HaftFull, NotActive } from "./Checked";
 import styles from "./styles.module.css";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import Header from "./Header";
 import Warning from "./Warning";
 import CatogeryCart from "./CatogeryCart";
-import { useState, type FC } from "react";
-
+import { useState, type FC, useEffect } from "react";
+import { openDialog } from "@/redux/features/dialog/dialog.slice";
+import { getCart } from "@/redux/features/cart/cart.action";
+import type { Cart } from "@/types/cart";
 interface Props {
   address: string;
+  cart: Cart;
 }
 const Cart: FC<Props> = (props) => {
   const [address, setAddress] = useState<string>(props.address);
+  const dispatch = useAppDispatch();
 
-  //Get cart
-  const cart = useAppSelector((state) => state.cartReducer);
+  //Initial cart
+  const cart = useAppSelector((state) => state.cartReducer.data);
+  const error = useAppSelector((state) => state.cartReducer.error);
+  
+  //Use for show error when update cart
+  useEffect(() => {
+    if (error) dispatch(openDialog({ message: error }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [error]);
+
+  //Get cart first load
+  useEffect(() => {
+    dispatch(getCart());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const isRemove = useAppSelector((state) => state.removeCartReducer.isRemove);
-  const totalMoney = 13090001
-  const order_error = 1
+  const totalMoney = 13090001;
+  const order_error = 1;
   return (
     <div className={styles.main}>
       <div className={styles.content}>
@@ -52,9 +69,7 @@ const Cart: FC<Props> = (props) => {
               {isRemove ? (
                 <div className={styles.footer_remove}>
                   <div className={styles.footer_remove_button}>
-                    <span className={styles.footer_remove_text}>
-                      Xóa Bỏ
-                    </span>
+                    <span className={styles.footer_remove_text}>Xóa Bỏ</span>
                   </div>
                 </div>
               ) : (

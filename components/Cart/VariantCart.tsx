@@ -6,15 +6,24 @@ import styles from "./styles.module.css";
 import type { CartVariant } from "@/types/cart";
 import Image from "next/image";
 import React from "react";
-import { useAppSelector } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { updateCart } from "@/redux/features/cart/cart.action";
+
+
 interface Prop {
   variant: CartVariant;
   condition: number;
+  catId: number;
+  productId: number;
 }
-const VariantCart = ({ variant, condition }: Prop) => {
-  const { selected, name, thumbnail, quantity, price } = variant;
+const VariantCart = ({ variant, condition, catId, productId }: Prop) => {
+  const { selected, name, thumbnail, quantity, price, id } = variant;
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const ref = useRef(null);
+
+
+
+  const dispatch = useAppDispatch();
   const isRemove = useAppSelector((state) => state.removeCartReducer.isRemove);
   const handleClickOutside = () => {
     // Your custom logic here
@@ -154,7 +163,21 @@ const VariantCart = ({ variant, condition }: Prop) => {
                   </span>
                 ) : (
                   <div className="relative box-border flex flex-shrink-0 flex-row items-center justify-start text-[3.73333vw]">
-                    <div className="box-border flex flex-shrink-0 flex-col items-center justify-center rounded-l-xl border-x border-y border-solid border-[#CECECE] p-[1.06667vw] text-center">
+                    <div
+                      onClick={() => {
+                        dispatch(
+                          updateCart({
+                            catId: catId,
+                            productId: productId,
+                            variantId: id,
+                            quantity: Number(quantity) - 1,
+                          })
+                        ).catch((e)=>{
+                          console.log(e)
+                        })
+                      }}
+                      className="box-border flex flex-shrink-0 flex-col items-center justify-center rounded-l-xl border-x border-y border-solid border-[#CECECE] p-[1.06667vw] text-center"
+                    >
                       <div className="relative box-border flex h-[4.26667vw] w-[4.26667vw] flex-shrink-0 flex-col justify-center">
                         <div className="relative left-0 box-border flex h-[1px] w-[3.2vw] flex-shrink-0 flex-col self-center rounded-xl bg-[#222222]"></div>
                       </div>
@@ -167,7 +190,19 @@ const VariantCart = ({ variant, condition }: Prop) => {
                       onChange={(e) => console.log(e.target.value)}
                     />
                     <div className="box-border flex flex-shrink-0 flex-col items-center justify-center rounded-r-xl border-x border-y border-solid border-[#CECECE] p-[1.06667vw] text-center ">
-                      <div className="relative box-border flex h-[4.26667vw] w-[4.26667vw] flex-shrink-0 flex-col justify-center">
+                      <div
+                        onClick={() => {
+                          dispatch(
+                            updateCart({
+                              catId: catId,
+                              productId: productId,
+                              variantId: id,
+                              quantity: Number(quantity) + 1,
+                            })
+                          )
+                        }}
+                        className="relative box-border flex h-[4.26667vw] w-[4.26667vw] flex-shrink-0 flex-col justify-center"
+                      >
                         <div className="relative top-[1.6vw] box-border flex h-[1px] w-[3.2vw] flex-shrink-0 flex-col self-center rounded-xl bg-[#222222]"></div>
                         <div className="relative box-border flex h-[3.2vw] w-[1px] flex-shrink-0 flex-col self-center rounded-xl bg-[#222222]"></div>
                       </div>

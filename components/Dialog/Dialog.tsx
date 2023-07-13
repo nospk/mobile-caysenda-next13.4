@@ -1,38 +1,39 @@
 "use client";
-import { useEffect, type FC } from "react";
-import { useState } from "react";
+import { useEffect, type FC, useState } from "react";
+
 import Modal from "@/components/Modal";
 
 import styles from "./Dialog.module.css";
-import { useDialog } from "./Provider";
-
+//import { useDialog } from "./Provider";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { closeDialog } from "@/redux/features/dialog/dialog.slice";
 /**
  * How To Use
- *
- * import {useDialog} from '@/components/Dialog/Provider'
- *
- * const { dialog, setDialog } = useDialog();
- *
- * dialog with message:string and time:number
+ * openDialog({message: string, time: null||number})
+ * 
+ * 
  * default time is 3s
  *
- * setDialog with {type:"DIALOG", dialog:{time:(timeout), message:(The message)}}
+ * 
  */
 const Dialog: FC = () => {
-  const { dialog } = useDialog();
-  const [isOpen, setIsOpen] = useState(false);
+  const { message, time } = useAppSelector((state) => state.dialogReducer);
+  const dispatch = useAppDispatch();
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const handleOpenModal = () => {
     setIsOpen(true);
   };
   const handleCloseModal = () => {
     setIsOpen(false);
+    dispatch(closeDialog())
   };
   useEffect(() => {
-    if (dialog.message.length > 0) {
+    if (message.length > 0) {
       handleOpenModal();
-      setTimeout(handleCloseModal, dialog.time || 3000);
+      setTimeout(handleCloseModal, time);
     }
-  }, [dialog]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [message]);
   return (
     <>
       <Modal
@@ -41,7 +42,7 @@ const Dialog: FC = () => {
         styleModalOverlay={styles.modalOverlay}
         onClose={handleCloseModal}
       >
-        <span className="text-white font-bold">{dialog.message}</span>
+        <span className="font-bold text-white">{message}</span>
       </Modal>
     </>
   );

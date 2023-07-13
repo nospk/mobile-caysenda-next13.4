@@ -1,80 +1,90 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import type { Cart } from "@/types/cart";
+import CartService from "@/services/Cart.service";
 
 const initialState = {
-  user_id: 0,
-  categories: [
-    {
-      name: "ZTC-1",
-      slug: "chau-hinh-thu",
-      condition: 1000000,
-      amount: 55555555,
-      bill: 500000,
-      products: [
-        {
-          productId: 123,
-          name: "Chậu Hình Thú",
-          sku: "ZTC-1",
-          slug: "ZTC-1",
-          conditionDefault: 2,
-          condition1: 2,
-          condition2: 5,
-          condition3: 10,
-          condition4: 11,
-          priceDefault: 60000,
-          price1: 60000,
-          price2: 40000,
-          price3: 30000,
-          price4: 30000,
-          thumbnail:
-            "https://caysenda.vn/resources/upload/17892827873_102253868.jpg",
-          categoryId: 123,
-          retail: true,
-          quantity: 10,
-          range: 1,
-          amount: 1,
-          active: true,
-          unit: "Cái",
-          variants: [
-            {
-              name: "Chậu Hình Voi",
-              thumbnail:
-                "https://caysenda.vn/resources/upload/22216875771_102253868.jpg",
-              sku: "adw",
-              price: 40000,
-              quantity: 1,
-              priceDefault: 40000,
-              vip1: 10000,
-              vip2: 20000,
-              vip3: 30000,
-              vip4: 40000,
-              selected: true,
-              variantId: 123,
-            },
-          ],
-        },
-      ],
-    },
-  ],
-} as Cart;
+  data: {} as Cart,
+  loading: false as boolean,
+  error: null as string | null | undefined,
+};
+
+/**
+ * Function update
+ * catId, productId, variantId is id tracking in cart
+ */
+export const update = createAsyncThunk(
+  "cart/update",
+  async ({
+    catId,
+    productId,
+    variantId,
+    quantity,
+  }: {
+    catId: number;
+    productId: number;
+    variantId: number;
+    quantity: number;
+  }) => {
+    if (quantity < 1) throw "Kiểm tra lại số lượng";
+    const result = await CartService.updateCart(
+      catId,
+      productId,
+      variantId,
+      quantity
+    );
+    return result;
+  }
+);
+
+export const get = createAsyncThunk("cart/get", async () => {
+  const result = await CartService.getCart();
+  return result;
+});
 
 export const cart = createSlice({
   name: "cart",
   initialState,
   reducers: {
     reset: () => initialState,
-    addCart: (state) => {
-      state.categories = [];
+    add: (state) => {
+      state.data.categories = [];
     },
-    increment: (state, action: PayloadAction<number>) => {},
-    decrement: (state) => {},
     changeInput: (state) => {},
-    updateCart: (state) => {},
     activeVariant: () => {},
     activeProduct: () => {},
     activeCatoger: () => {},
   },
+  extraReducers: (builder) => {
+    builder
+      //get
+      .addCase(get.fulfilled, (state, action) => {
+        state.data = action.payload;
+      })
+      .addCase(update.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      //update
+      .addCase(update.fulfilled, (state, action) => {
+        const { respone, catId } = action.payload;
+        let indexCategory = state.data.categories.findIndex((category) => {
+          return category.id == catId;
+        });
+        let indexProduct = state.data.categories[
+          indexCategory
+        ].products.findIndex((product) => {
+          return product.id == respone.cartProductList[0].id;
+        });
+        state.data.categories[indexCategory].products[indexProduct] =
+          respone.cartProductList[0];
+      })
+      .addCase(update.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
+      //
+  },
 });
 
-export const { addCart, reset } = cart.actions;
+export const { add, reset } = cart.actions;
 export default cart.reducer;

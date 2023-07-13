@@ -11,11 +11,13 @@ export interface CartCategory {
   amount: number;
   products: CartProduct[];
   bill: number;
+  id: number;
 }
 
 export interface CartProduct {
   productId: number;
   name: string;
+  id: number;
   sku: string;
   slug: string;
   conditionDefault: number;
@@ -42,6 +44,7 @@ export interface CartProduct {
 export interface CartVariant {
   name: string;
   thumbnail: string;
+  id:number;
   sku: string;
   price: number;
   quantity: number;

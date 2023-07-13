@@ -6,7 +6,7 @@ import { StoreProviders } from "@/redux/provider";
 
 //dialog message global
 import Dialog from "@/components/Dialog";
-import { DialogProvider } from "@/components/Dialog/Provider";
+
 
 //font text basic
 const fonter = Open_Sans({
@@ -37,12 +37,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="vi">
-      <body>
+      <body className={`${fontIcon.variable} `}>
         <StoreProviders>
-          <DialogProvider>
             <main>{children}</main>
             <Dialog />
-          </DialogProvider>
         </StoreProviders>
       </body>
     </html>

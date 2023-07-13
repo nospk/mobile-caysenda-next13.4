@@ -3,10 +3,11 @@ import { ActiveFull, HaftFull, NotActive } from "./Checked";
 import { convertMoney } from "@/lib/formatPrice";
 import type { CartCategory } from "@/types/cart";
 import styles from "./styles.module.css";
+import React from "react";
 interface Props {
   category: CartCategory;
 }
-export default function Catogery({ category }: Props) {
+const Catogery = ({ category }: Props) => {
   return (
     <div className={styles.catogerycart_wrapper}>
       <div className={styles.catogerycart}>
@@ -36,9 +37,15 @@ export default function Catogery({ category }: Props) {
           </div>
         </div>
         {category.products.map((product) => (
-          <ProductCart key={product.name} product={product} />
+          <ProductCart
+            key={product.name}
+            catId={category.id}
+            product={product}
+          />
         ))}
       </div>
     </div>
   );
-}
+};
+
+export default React.memo(Catogery);

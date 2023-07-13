@@ -5,11 +5,12 @@ import { ActiveFull, HaftFull, NotActive } from "./Checked";
 import { useOnActionOutside } from "@/components/hook/useOnActionOutside";
 import type { CartProduct } from "@/types/cart";
 import styles from "./styles.module.css";
-interface Props{
-  product: CartProduct
+interface Props {
+  product: CartProduct;
+  catId: number;
 }
-export const ProductCart = (props:Props) => {
-  const { variants, name, thumbnail, active, conditionDefault } = props.product;
+export const ProductCart = ({ product, catId }: Props) => {
+  const { variants, name, thumbnail, active, conditionDefault, id } = product;
   const widthDivHidden = 12;
   const touchPosition = [
     "",
@@ -136,7 +137,13 @@ export const ProductCart = (props:Props) => {
         </div>
       </div>
       {variants.map((variant) => (
-        <VariantCart key={variant.name} variant={variant} condition={conditionDefault}/>
+        <VariantCart
+          key={variant.name}
+          variant={variant}
+          productId={id}
+          catId={catId}
+          condition={conditionDefault}
+        />
       ))}
     </div>
   );
