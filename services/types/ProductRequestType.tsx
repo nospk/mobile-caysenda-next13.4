@@ -7,6 +7,6 @@ export interface ProductListParamType {
 }
 
 export interface ProductDetailParamType {
-	productId		?: string | undefined,
+	productId		?: number | undefined,
 	slug			?: string | undefined
 }

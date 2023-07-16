@@ -137,7 +137,7 @@
   @apply box-border flex content-start flex-shrink-0 flex-row justify-center items-center w-screen h-[9.6vw] bg-[#FFF9EC];
 }
 .span_condition {
-  @apply border-0 border-solid border-black relative box-border block flex-col content-start flex-shrink-0 whitespace-pre-wrap text-[3.2vw];
+  @apply border-0 border-solid border-black relative box-border block flex-col content-start flex-shrink-0 whitespace-pre-wrap text-[3.2vw] text-red-700 font-bold;
 }
 .count_total_wapper {
   @apply box-border flex flex-col content-start flex-shrink-0 relative pl-[2.66667vw] pr-[2.93333vw] py-[1.46667vw];

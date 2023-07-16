@@ -33,7 +33,7 @@ export default async function Page({searchParams}:any) {
 			</div>
 			<Detail product={data}/>
 			<Gallery content={data.content}/>
-			<AddToCart retail={data.retail}/>
+			<AddToCart retail={data.retail} productId={data.id}/>
 		</>
 	);
 }

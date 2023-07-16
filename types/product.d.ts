@@ -31,6 +31,7 @@ export interface PriceWholeSale {
 }
 
 export interface ProductDetail {
+	id					: number,
 	name				: string,
 	sku					: string,
 	conditiondefault	: number,

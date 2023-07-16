@@ -1,3 +1,4 @@
+import { ProductQuickViewType, QuickViewType } from '@/components/AddToCartModal/types/QuickViewType';
 import API from '@/lib/api'
 import ApiDefinition from "@/services/ApiDefinition";
 import {ProductDetailParamType, ProductListParamType} from "@/services/types/ProductRequestType";
@@ -69,8 +70,82 @@ const getDetail = async ({productId,slug}:ProductDetailParamType) => {
 	return data;
 }
 
+const getQuickview = async (requetsData:ProductDetailParamType, retail?: boolean) => {
+	const data = await getDetail(requetsData);
+	console.log(data);
+	let returnData:QuickViewType = {
+		product: {
+			condition: data.conditiondefault,
+			condition1: data.condition1,
+			condition2: data.condition2,
+			price: data.price[0].money,
+			price1: data.price[1].money,
+			price2: data.price[2].money,
+			unit: data.unit,
+			thumbnail: data.thumbnail,
+			pricemin: data.pricewholesale.min,
+			pricemax: data.pricewholesale.max
+		},
+		variants: []
+	}
+
+	let variants = [];
+	if (data.variant_group && data.variant_group.length > 0) {
+		data.variant_group.forEach((group:any) => {
+			let variantRes = {
+				name: group.name,
+				image: group.thumbnail ? "https://caysenda.vn" + group.thumbnail : "",
+				stock: 0,
+				order: 0,
+				orderPrice: 0,
+				sku: group.skuGroup,
+				variants: []
+			}
+			let chilrenList = data.variants.filter((variant:any) => variant.parent === group.skuGroup).map((variant:any) => {
+				return {
+					id: variant.id,
+					name: variant.name,
+					sku: variant.sku,
+					stock: variant.stock,
+					price: variant.price,
+					order: 0,
+				}
+			});
+
+			variantRes.variants = chilrenList;
+			variantRes.stock = chilrenList.reduce((res:any, item:any) => (res + item.stock), 0);
+			variants.push(variantRes);
+		})
+	} else {
+		variants = data.variants.map((variant:any) => {
+			return {
+				name: variant.name,
+				image: variant.thumbnail,
+				stock: variant.stock,
+				order: 0,
+				orderPrice: 0,
+				sku: variant.sku,
+				variants: [
+					{
+						id: variant.id,
+						name: variant.name,
+						sku: variant.sku,
+						stock: variant.stock,
+						price: variant.price,
+						order: 0,
+					}
+				]
+			}
+		});
+	}
+
+	returnData.variants = variants;
+	return returnData;
+}
+
 const ProductService = {
 	getProductList,
-	getDetail
+	getDetail,
+	getQuickview
 }
 export default ProductService;
