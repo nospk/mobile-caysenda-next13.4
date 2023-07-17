@@ -1,7 +1,7 @@
 import Image from "next/image";
 import VariantCart from "./VariantCart";
 import { useState, useEffect, useRef } from "react";
-import { ActiveFull, HaftFull, NotActive } from "./Checked";
+import { ActiveFull, HaftFull, NotActive } from "../Checked/Checked";
 import { useOnActionOutside } from "@/components/hook/useOnActionOutside";
 import type { CartProduct } from "@/types/cart";
 import styles from "./styles.module.css";

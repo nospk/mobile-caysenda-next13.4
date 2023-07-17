@@ -1,5 +1,5 @@
 import { convertMoney } from "@/lib/formatPrice";
-import { ActiveFull, NotActive } from "./Checked";
+import { ActiveFull, NotActive } from "../Checked/Checked";
 import { useState, useRef } from "react";
 import { useOnActionOutside } from "@/components/hook/useOnActionOutside";
 import styles from "./styles.module.css";

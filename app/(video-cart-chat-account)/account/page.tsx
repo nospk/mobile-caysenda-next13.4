@@ -2,7 +2,7 @@
 import { IoSettingsOutline, IoChevronForwardOutline } from 'react-icons/io5';
 import Link from 'next/link'
 import { Icon } from '@/components/Icon';
-import Order from '@/components/Order';
+import OrderMenu from '@/components/Order/OrderMenu';
 import Menu from '@/components/Menu';
 import Setting from '@/components/Setting'
 export default async function Page() {
@@ -50,14 +50,14 @@ export default async function Page() {
 					<div className="bg-white rounded-lg px-2 py-5">
 						<p className=" text-lg font-semibold">Đơn Hàng Của Tôi</p>
 						<div className="">
-							<Order />
+							<OrderMenu />
 						</div>
 					</div>
 					<div className="bg-white rounded-lg px-2 py-5">
 						<p className=" text-lg font-semibold">Sản Phẩm Quan Tâm</p>
 					</div>
 					<div className="bg-white rounded-lg px-2 py-5">
-						<Menu showCategory={false} />
+						<Menu showCategory={false} nav={[]} />
 					</div>
 				</div>
 			</div>
