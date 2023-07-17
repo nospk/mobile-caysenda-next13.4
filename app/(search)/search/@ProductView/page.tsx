@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import OfferBar from '@/components/OfferBar';
 import ProductBar from '@/components/ProductBar';
-const ProductView: FC = () => {
+const ProductView = async () => {
 	const offers = [
 		{
 			src: `https://source.unsplash.com/random/300x300?sig=${Math.random() * 100}`,
