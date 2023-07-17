@@ -23,38 +23,39 @@ interface Props {
 }
 
 const renderView = (data: View[]) => {
-  let view = data.map((item: View, index: number) => {
-    if (item.type === "banner")
-      return <BannerCard key="banner" banner={item.data} />;
-    if (item.type === "product")
-      return (
-        <ProductCard
-          key={item.data.name + index}
-          name={item.data.name}
-          price={item.data.price}
-          sold={item.data.sold}
-          image={item.data.image}
-          unit={item.data.unit}
-          product={item.data.product}
-          link={item.data.link}
-          priority={index == 0 ? true : false}
-          
-        />
-      );
-    if (item.type === "keyword")
-      return <KeyWordCard key="keyword" keywords={item.data} />;
-    if (item.type === "video")
-      return (
-        <VideoCard
-          key={index}
-          name="Kẹo dẻo"
-          detail="Kẹo dẻo mềm thơm ngon"
-          image="https://images.unsplash.com/source-404?fm=eps&h=800&q=60&w=800"
-          id="349938442291"
-        />
-      );
-  });
-  return view;
+	let view = data.map((item: View, index: number) => {
+		if (item.type === "banner")
+			return <BannerCard key="banner" banner={item.data} />;
+		if (item.type === "product")
+			return (
+				<ProductCard
+					key={item.data.name + index}
+					name={item.data.name}
+					price={item.data.price}
+					sold={item.data.sold}
+					image={item.data.image}
+					unit={item.data.unit}
+					product={item.data.product}
+					link={item.data.link}
+					priority={index == 0 ? true : false}
+					productid={item.data.id}
+					retail={item.data.retail}
+				/>
+			);
+		if (item.type === "keyword")
+		return <KeyWordCard key="keyword" keywords={item.data} />;
+		if (item.type === "video")
+		return (
+			<VideoCard
+			key={index}
+			name="Kẹo dẻo"
+			detail="Kẹo dẻo mềm thơm ngon"
+			image="https://images.unsplash.com/source-404?fm=eps&h=800&q=60&w=800"
+			id="349938442291"
+			/>
+		);
+	});
+	return view;
 };
 const FlexTwoColView = function FlexTwoColView({banners, keyWords, data,maxPage, requestData}: Props) {
   let listLeft: any = data.slice(0, 4);
