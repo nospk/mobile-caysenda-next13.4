@@ -48,8 +48,8 @@ const AddToCartModal: FC<Props> = (props) => {
 
 		newVariants[indexAcitve].variants.map((variant:any) => {
 			if (variant.sku === sku) {
-				variant.order = Number(variant.order) - 1;
-				if (variant.order < 0) variant.order = 0;
+			variant.order = Number(variant.order) - 1;
+			if (variant.order < 0) variant.order = 0;
 			}
 		});
 

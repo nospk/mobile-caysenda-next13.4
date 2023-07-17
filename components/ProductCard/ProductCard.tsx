@@ -11,7 +11,6 @@ import {shimmer} from './Shimmer';
 import { useRouter } from 'next/navigation'
 
 type ProductCard = {
-	productid: number;
 	image: string;
 	name: string;
 	price: number;
@@ -20,7 +19,6 @@ type ProductCard = {
 	link: string;
 	product: object;
 	priority?: boolean;
-	retail: number;
 };
 
 const ProductCard: FC<ProductCard> = React.memo(function card(props) {
@@ -56,7 +54,7 @@ const ProductCard: FC<ProductCard> = React.memo(function card(props) {
 					<span className="float-left">Đã bán:</span>
 					<span className="float-right">{props.sold} {props.unit ? props.unit : ""}</span>
 				</div>
-				{/* {props.retail === 1 ? (<RetailModal className={styles.add_cart} productId={props.productid}/>) : (<WholeSaleModal className={styles.add_cart} productId={props.productid}/>)} */}
+				{false ? (<RetailModal className={styles.add_cart} />) : (<WholeSaleModal className={styles.add_cart} />)}
 			</div>
 		</div>
 	);

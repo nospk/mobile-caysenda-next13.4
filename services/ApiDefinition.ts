@@ -33,10 +33,6 @@ export default {
 	KEYWORD: {
 		RAND: {
 			FUNC_CD: 'RANDOMKEYWORD',
-			PARAMS:{
-				PARAM1:"ORDERBY",
-				PARAM2:"LIMIT"
-			}
 		}
 	},
 	WEBSITE: {
