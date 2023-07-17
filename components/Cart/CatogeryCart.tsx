@@ -1,5 +1,5 @@
 import { ProductCart } from "./ProductCart";
-import { ActiveFull, HaftFull, NotActive } from "./Checked";
+import { ActiveFull, HaftFull, NotActive } from "../Checked/Checked";
 import { convertMoney } from "@/lib/formatPrice";
 import type { CartCategory } from "@/types/cart";
 import styles from "./styles.module.css";

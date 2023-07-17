@@ -2,7 +2,7 @@
 
 import { convertMoney } from "@/lib/formatPrice";
 import { add, reset } from "@/redux/features/cart/cart.slice";
-import { ActiveFull, HaftFull, NotActive } from "./Checked";
+import { ActiveFull, HaftFull, NotActive } from "../Checked/Checked";
 import styles from "./styles.module.css";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import Header from "./Header";

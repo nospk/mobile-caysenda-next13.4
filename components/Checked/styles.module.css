@@ -1,0 +1,21 @@
+.checked_wrapper {
+  @apply relative ml-[-2.4vw] flex flex-shrink-0 flex-row items-center pb-[2.4vw] pl-[2.66667vw] pt-[2.4vw];
+}
+.checked_active_full {
+  @apply relative flex h-[5.33333vw] w-[5.33333vw] flex-col content-start items-center justify-center rounded-full border-[0.26667vw] border-[#ff4000] bg-[#ff4000] transition;
+}
+.checked_active_full_icon {
+  @apply box-border block text-center font-icon text-[4.26667vw] leading-none text-white before:content-['\e8b0'];
+}
+.checked_active_half {
+  @apply relative flex h-[5.33333vw] w-[5.33333vw] flex-col content-start items-center justify-center rounded-full border-[0.26667vw] border-[#ff4000] bg-[#ff4000] transition;
+}
+.checked_active_half_icon {
+  @apply box-border block text-center font-icon text-[4.26667vw] leading-none text-white before:content-['\e8a5'];
+}
+.checked_padding {
+  @apply relative ml-[2.13333vw] box-border flex flex-shrink-0 flex-col;
+}
+.checked_not_active {
+  @apply h-[5.33333vw] w-[5.33333vw] content-start items-center rounded-full border-[0.26667vw] border-[#ddd] transition;
+}
