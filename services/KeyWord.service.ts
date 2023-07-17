@@ -11,7 +11,7 @@ const getKeyWordTopData = async () => {
 
 	return keywords
 }
-const getKeyWordCardData = async () => {
+const getKeyWordCardData = async ({orderBy, limit}: any) => {
 	const keywords:KeyWord = {
 		type: 'keyword',
 		data: []
@@ -20,6 +20,14 @@ const getKeyWordCardData = async () => {
 	let requestParams:any = {};
 	requestParams["FUNC_CD"] = ApiDefinition.KEYWORD.RAND.FUNC_CD;
 
+	if (orderBy) {
+		requestParams[ApiDefinition.KEYWORD.RAND.PARAMS.PARAM1] = orderBy;
+	}
+
+	if (limit) {
+		requestParams[ApiDefinition.KEYWORD.RAND.PARAMS.PARAM2] = limit;
+	}
+
 	let res = await API.GET({
 		path: '/api/rest/dataaccess',
 		data: requestParams
@@ -27,7 +35,7 @@ const getKeyWordCardData = async () => {
 
 	if (res.status === "ok") {
 		keywords.data = res.results.map((data:any) => {
-			return data.keyword;
+			return data.KEYWORD;
 		});
 	}
 

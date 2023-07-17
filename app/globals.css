@@ -3,25 +3,29 @@
 @tailwind utilities;
 
 body {
-  @apply bg-[#f8f8f8];
-  font-family: Arial, Helvetica, sans-serif;
+	@apply bg-[#f8f8f8];
+	font-family: Arial, Helvetica, sans-serif;
 }
+
 .swiper-pagination-fraction {
-  border: 0px solid black;
-  box-sizing: border-box;
-  flex-shrink: 0;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  z-index: 98;
-  padding: 1.2vw 1.3333vw;
-  height: 5.3333vw;
-  border-top-left-radius: 2.6667vw;
-  font-size: 2.9333vw;
-  line-height: 2.9333vw;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.3);
+	border: 0px solid black !important;
+	box-sizing: border-box !important;
+	flex-shrink: 0 !important;
+	position: absolute !important;
+	right: 0 !important;
+	bottom: 0 !important;
+	z-index: 98 !important;
+	padding: 1.2vw 1.3333vw !important;
+	height: 5.3333vw !important;
+	border-top-left-radius: 2.6667vw !important;
+	font-size: 2.9333vw !important;
+	line-height: 2.9333vw !important;
+	color: white !important;
+	background-color: rgba(0, 0, 0, 0.3) !important;
+	left: unset !important;
+	width: auto !important;
 }
+
 .swiper-watch-progress {
-  padding-left: 2vw !important;
+	padding-left: 2vw !important;
 }

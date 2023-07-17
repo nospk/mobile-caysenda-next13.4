@@ -3,8 +3,9 @@ import type { FC } from 'react';
 import { VscTrash } from 'react-icons/vsc';
 import KeyWord from '@/components/KeyWord';
 import { useState } from 'react';
+import KeyWordService from '@/services/KeyWord.service';
 
-const HistoryView: FC = () => {
+const HistoryView = async (props:any) => {
 	const [textUserSearchs, settextUserSearchs] = useState([
 		'Quần',
 		'Áo',
@@ -18,23 +19,13 @@ const HistoryView: FC = () => {
 		'Balo Abc 3',
 		'Balo Abc 4',
 	]);
-	const [textEveryBodySearchs] = useState([
-		'Quần',
-		'Áo',
-		'Bàn Chải',
-		'Kem',
-		'Balo 1',
-		'Balo 2',
-		'Balo 3',
-		'Balo Abc 1',
-		'Balo Abc 2',
-		'Balo Abc 3',
-		'Balo Abc 4',
-	]);
+	const textEveryBodySearchs = await KeyWordService.getKeyWordCardData({orderBy :'RAND', limit: '5'});
+
 	const listUserSearch = textUserSearchs.map((textSearch) => (
 		<KeyWord key={textSearch} keyword={textSearch} />
 	));
-	const listEveryBodSearch = textEveryBodySearchs.map((textSearch) => (
+
+	const listEveryBodSearch = textEveryBodySearchs.data.map((textSearch:any) => (
 		<KeyWord key={textSearch} keyword={textSearch} />
 	));
 	return (
