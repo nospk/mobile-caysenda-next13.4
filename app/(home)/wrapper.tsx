@@ -10,7 +10,7 @@ export const Wrapper = async () => {
 	let page = await ProductService.getProductList({selectType:"@COUNT", ...requestData});
 
 	const getBanner = await BannerService.getBannerCardData();
-	const getKeyWords = await KeyWordService.getKeyWordCardData({orderBy : 'RAND', limit: '10'});
+	const getKeyWords = await KeyWordService.getKeyWordCardData();
 	return <FlexTwoColView data={data} maxPage={page.totalPages} requestData={requestData} banners={getBanner} keyWords={getKeyWords} />;
 };
 export default Wrapper;
