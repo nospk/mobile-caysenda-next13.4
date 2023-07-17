@@ -21,11 +21,11 @@ const Catogery = ({ category }: Props) => {
               <span className={styles.catogerycart_name}>{category.name}</span>
               {">"}
               <span className={styles.catogerycart_pricecondition}>
-                Tối thiểu: {convertMoney(category.condition) + "K"}
+                Tối thiểu: {convertMoney(category.condition) + "đ"}
               </span>
               {">>"}
               <span className={styles.catogerycart_pricenow}>
-                Hiện tại: {convertMoney(category.bill) + "K"}
+                Hiện tại: {convertMoney(category.bill) + "đ"}
               </span>
             </div>
             <span className={styles.catogerycart_button_buymore}>Đặt Thêm</span>

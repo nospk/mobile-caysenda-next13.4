@@ -191,7 +191,7 @@
   @apply box-border block whitespace-pre-wrap text-[3.73333vw] font-bold;
 }
 .footer_tottaly_currency {
-  @apply ml-[0.66667vw];
+  @apply ml-[0.66667vw] text-[3.2vw];
 }
 .footer_remove {
   @apply box-border flex flex-1 flex-row items-center justify-end;

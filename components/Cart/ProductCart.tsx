@@ -108,8 +108,7 @@ export const ProductCart = ({ product, catId }: Props) => {
         <div className={`${styles.productcart} ${cssTouch.css}`}>
           <div className={styles.productcart_pad}>
             <div className={styles.checked_wrapper}>
-              {!active ? <NotActive /> : null}
-              {CheckActiveFull() ? <ActiveFull /> : <HaftFull />}
+              {!active ? <NotActive /> : CheckActiveFull() ? <ActiveFull /> : <HaftFull />}
               <div className={styles.checked_padding}></div>
             </div>
             <div className={styles.productcart_main}>

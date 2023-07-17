@@ -1,11 +1,13 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import type { Cart } from "@/types/cart";
 import CartService from "@/services/Cart.service";
+import type { Fee_Delivery } from "@/types/fee_delivery";
 
 const initialState = {
   data: {} as Cart,
   loading: false as boolean,
   error: null as string | null | undefined,
+  fee_delivery: null as Fee_Delivery | null,
 };
 
 /**
@@ -35,56 +37,112 @@ export const update = createAsyncThunk(
     return result;
   }
 );
+/**
+ * Function fee-delivery
+ * catId, productId, variantId is id tracking in cart
+ */
+export const fee_delivery = createAsyncThunk("cart/fee_delivery", async () => {
+  const result = await CartService.getFeeAndDelivery();
 
+  return result;
+});
+/**
+ * Function fee-delivery
+ * catId, productId, variantId is id tracking in cart
+ */
 export const get = createAsyncThunk("cart/get", async () => {
   const result = await CartService.getCart();
   return result;
 });
+/**
+ * Function activeVariant
+ * catId, productId, variantId is id tracking in cart
+ */
+export const activeVariant = createAsyncThunk(
+  "cart/activeVariant",
+  async ({
+    active,
+    catId,
+    productId,
+    variantId,
+  }: {
+    active: boolean;
+    catId: number;
+    productId: number;
+    variantId: number;
+  }) => {
+    const result = await CartService.activeVariant(
+      active,
+      catId,
+      productId,
+      variantId
+    );
+    return result;
+  }
+);
 
 export const cart = createSlice({
   name: "cart",
   initialState,
   reducers: {
     reset: () => initialState,
-    add: (state) => {
-      state.data.categories = [];
-    },
-    changeInput: (state) => {},
     activeVariant: () => {},
     activeProduct: () => {},
     activeCatoger: () => {},
   },
   extraReducers: (builder) => {
     builder
-      //get
+      //get fee-delivery
+      .addCase(fee_delivery.fulfilled, (state, action) => {
+        state.fee_delivery = action.payload;
+      })
+      //get cart
       .addCase(get.fulfilled, (state, action) => {
         state.data = action.payload;
       })
+      //update cart
       .addCase(update.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      //update
       .addCase(update.fulfilled, (state, action) => {
-        const { respone, catId } = action.payload;
+        const { response, catId } = action.payload;
         let indexCategory = state.data.categories.findIndex((category) => {
           return category.id == catId;
         });
         let indexProduct = state.data.categories[
           indexCategory
         ].products.findIndex((product) => {
-          return product.id == respone.cartProductList[0].id;
+          return product.id == response.cartProductList[0].id;
         });
         state.data.categories[indexCategory].products[indexProduct] =
-          respone.cartProductList[0];
+          response.cartProductList[0];
       })
       .addCase(update.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
+      })
+      // active variant
+      .addCase(activeVariant.fulfilled, (state, action) => {
+        const { response, catId } = action.payload;
+        let indexCategory = state.data.categories.findIndex((category) => {
+          return category.id == catId;
+        });
+        if (response.activeCategory == false) {
+          state.data.categories[indexCategory].products.map((product) => {
+            product.active = false;
+            product.variants.map((variant) => {
+              variant.selected = false;
+            });
+          });
+        } else {
+          if (response.cartProductList)
+            state.data.categories[indexCategory].products =
+              response.cartProductList;
+        }
       });
-      //
   },
 });
 
-export const { add, reset } = cart.actions;
+export const { reset } = cart.actions;
 export default cart.reducer;
