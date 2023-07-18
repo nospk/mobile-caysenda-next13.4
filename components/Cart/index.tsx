@@ -3,7 +3,7 @@
 import { convertMoney } from "@/lib/formatPrice";
 import {
   selectErrorOrder,
-  selectCheckActive,
+  selectCheckActiveCart,
 } from "@/redux/features/cart/cart.selector";
 import { ActiveFull, HaftFull, NotActive } from "../Checked/Checked";
 import styles from "./styles.module.css";
@@ -20,7 +20,6 @@ interface Props {
   cart: Cart;
 }
 const Cart: FC<Props> = (props) => {
-  
   // Check button remove
   const isRemove = useAppSelector((state) => state.removeCartReducer.isRemove);
 
@@ -32,11 +31,14 @@ const Cart: FC<Props> = (props) => {
   //Initial cart
   const cart = useAppSelector((state) => state.cartReducer.data);
   const error = useAppSelector((state) => state.cartReducer.error);
-  const order_error = cart.categories ? selectErrorOrder(cart.categories) : 0;
-  const checkActive = cart.categories ? selectCheckActive(cart.categories) : 0;
   const fee_delivery = useAppSelector(
     (state) => state.cartReducer.fee_delivery
   );
+  const order_error = cart.categories ? selectErrorOrder(cart.categories) : 0;
+  const checkActive = cart.categories
+    ? selectCheckActiveCart(cart.categories)
+    : 0;
+
   const totalMoney = fee_delivery
     ? Number(fee_delivery.amountActive) + Number(fee_delivery.fee)
     : 0;

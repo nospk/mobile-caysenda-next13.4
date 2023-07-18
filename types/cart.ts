@@ -12,6 +12,7 @@ export interface CartCategory {
   products: CartProduct[];
   bill: number;
   id: number;
+  active: boolean;
 }
 
 export interface CartProduct {
@@ -44,7 +45,7 @@ export interface CartProduct {
 export interface CartVariant {
   name: string;
   thumbnail: string;
-  id:number;
+  id: number;
   sku: string;
   price: number;
   quantity: number;

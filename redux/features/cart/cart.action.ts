@@ -1,4 +1,4 @@
-import { get, fee_delivery, reset, update, activeVariant } from "./cart.slice";
+import { get, fee_delivery, reset, update, activeVariant, activeProduct, activeCategory } from "./cart.slice";
 
 // Action creators thủ công
 export const resetCart = () => {
@@ -36,4 +36,26 @@ export const getActiveVariant = ({
   variantId: number;
 }) => {
   return activeVariant({ active, catId, productId, variantId });
+};
+
+export const getActiveProduct = ({
+  active,
+  catId,
+  productId,
+}: {
+  active: boolean;
+  catId: number;
+  productId: number;
+}) => {
+  return activeProduct({ active, catId, productId });
+};
+
+export const getActiveCategory = ({
+  active,
+  catId,
+}: {
+  active: boolean;
+  catId: number;
+}) => {
+  return activeCategory({ active, catId });
 };
