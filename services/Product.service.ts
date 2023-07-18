@@ -26,6 +26,7 @@ const getProductList = async (params:ProductListParamType) => {
 		data: requestParams
 	});
 
+
 	if (params.selectType === "@COUNT") {
 		if (res.status === "ok") {
 			return {
@@ -72,7 +73,6 @@ const getDetail = async ({productId,slug}:ProductDetailParamType) => {
 
 const getQuickview = async (requetsData:ProductDetailParamType, retail?: boolean) => {
 	const data = await getDetail(requetsData);
-	console.log(data);
 	let returnData:QuickViewType = {
 		product: {
 			condition: data.conditiondefault,
