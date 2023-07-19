@@ -1,0 +1,21 @@
+.wrapper {
+	margin-top: 20px;
+}
+.label {
+	font-size			: 18px;
+	font-weight			: 600;
+}
+
+.content {
+	display				: flex;
+	flex-wrap			: wrap;
+	gap					: 10px;
+	border-radius		: 10px;
+	margin-top			: 10px;
+}
+.content a {
+	max-width			: 300px;
+	padding				: 5px;
+	background-color	: #f7f7f7;
+	border-radius		: 10px;
+}

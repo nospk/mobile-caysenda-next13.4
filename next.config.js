@@ -23,7 +23,7 @@ const nextConfig = {
 				destination: '/product',
 			},
 		]
-	}
+	},
 }
 
 module.exports = nextConfig

@@ -42,7 +42,7 @@ const InforWholeSale = React.memo(function InforWholeSale({image,name,product}:P
 				:''
 			}
 			<div className={styles.condtion_info}>
-				{`≥${product.condition}`} {product.unit}
+				{`≥${product?.condition}`} {product?.unit}
 			</div>
 			</div>
 		</div>
