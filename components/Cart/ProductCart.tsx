@@ -4,13 +4,26 @@ import { useState, useEffect, useRef } from "react";
 import { ActiveFull, HaftFull, NotActive } from "../Checked/Checked";
 import { useOnActionOutside } from "@/components/hook/useOnActionOutside";
 import type { CartProduct } from "@/types/cart";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { getActiveProduct } from "@/redux/features/cart/cart.action";
 import styles from "./styles.module.css";
 interface Props {
   product: CartProduct;
   catId: number;
 }
 export const ProductCart = ({ product, catId }: Props) => {
-  const { variants, name, thumbnail, active, conditionDefault, id } = product;
+  const {
+    variants,
+    name,
+    thumbnail,
+    active,
+    conditionDefault,
+    id,
+    unit,
+    range,
+  } = product;
+  const dispatch = useAppDispatch();
+  const isRemove = useAppSelector((state) => state.removeCartReducer.isRemove);
   const widthDivHidden = 12;
   const touchPosition = [
     "",
@@ -38,34 +51,36 @@ export const ProductCart = ({ product, catId }: Props) => {
   };
 
   const TouchHandle = (e: React.TouchEvent<HTMLDivElement>) => {
-    //Cal width will touch with div element with 12vw
-    //But i think need visual more long touch
-    const widthWillTouch = (window.screen.width / 100) * widthDivHidden * 3;
-    //Get touch postion when move
-    const nowTouch = e.touches[0].clientX;
-    const levlel = widthWillTouch / widthDivHidden;
+    if (!isRemove) {
+      //Cal width will touch with div element with 12vw
+      //But i think need visual more long touch
+      const widthWillTouch = (window.screen.width / 100) * widthDivHidden * 3;
+      //Get touch postion when move
+      const nowTouch = e.touches[0].clientX;
+      const levlel = widthWillTouch / widthDivHidden;
 
-    //main
-    if (direction == "left") {
-      if (touchStart - nowTouch > 0) {
-        const postion = Math.round((touchStart - nowTouch) / levlel);
-        if (touchStart - nowTouch > widthWillTouch)
-          setCssTouch({ css: touchPosition[12], level: 12 });
-        else setCssTouch({ css: touchPosition[postion], level: postion });
-      } else {
-        setCssTouch({ css: touchPosition[0], level: 0 });
-      }
-    } else {
-      if (nowTouch - touchStart > 0) {
-        const postion =
-          touchPosition.length -
-          Math.round((nowTouch - touchStart) / levlel) -
-          1;
-        if (nowTouch - touchStart > widthWillTouch)
+      //main
+      if (direction == "left") {
+        if (touchStart - nowTouch > 0) {
+          const postion = Math.round((touchStart - nowTouch) / levlel);
+          if (touchStart - nowTouch > widthWillTouch)
+            setCssTouch({ css: touchPosition[12], level: 12 });
+          else setCssTouch({ css: touchPosition[postion], level: postion });
+        } else {
           setCssTouch({ css: touchPosition[0], level: 0 });
-        else setCssTouch({ css: touchPosition[postion], level: postion });
+        }
       } else {
-        setCssTouch({ css: touchPosition[12], level: 12 });
+        if (nowTouch - touchStart > 0) {
+          const postion =
+            touchPosition.length -
+            Math.round((nowTouch - touchStart) / levlel) -
+            1;
+          if (nowTouch - touchStart > widthWillTouch)
+            setCssTouch({ css: touchPosition[0], level: 0 });
+          else setCssTouch({ css: touchPosition[postion], level: postion });
+        } else {
+          setCssTouch({ css: touchPosition[12], level: 12 });
+        }
       }
     }
   };
@@ -107,9 +122,25 @@ export const ProductCart = ({ product, catId }: Props) => {
       >
         <div className={`${styles.productcart} ${cssTouch.css}`}>
           <div className={styles.productcart_pad}>
-            <div className={styles.checked_wrapper}>
-              {!active ? <NotActive /> : null}
-              {CheckActiveFull() ? <ActiveFull /> : <HaftFull />}
+            <div
+              onClick={() => {
+                dispatch(
+                  getActiveProduct({
+                    active: active,
+                    catId: catId,
+                    productId: id,
+                  })
+                );
+              }}
+              className={styles.checked_wrapper}
+            >
+              {!active ? (
+                <NotActive />
+              ) : CheckActiveFull() ? (
+                <ActiveFull />
+              ) : (
+                <HaftFull />
+              )}
               <div className={styles.checked_padding}></div>
             </div>
             <div className={styles.productcart_main}>
@@ -143,6 +174,8 @@ export const ProductCart = ({ product, catId }: Props) => {
           productId={id}
           catId={catId}
           condition={conditionDefault}
+          unit={unit}
+          range={range}
         />
       ))}
     </div>
