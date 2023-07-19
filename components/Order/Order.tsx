@@ -1,29 +1,33 @@
+'use client';
+import { FC } from 'react';
+import { ActiveFull, HaftFull, NotActive } from '@/components/Checked/Checked'
 import Image from 'next/image';
-export default function Order ( ){
+import { IoIosArrowForward } from 'react-icons/io';
+import NewOrder from './NewOrder/NewOrder';
+
+type Order =  {
+    OrderId : string;
+    Product : string;
+    status  : string;
+    
+} 
+const Order: FC = () => {
     return (
         <>
-        <div className="background">
-            <ul className = 'List_Order'>
-                <li className = 'Order'>
-                     <div className = 'name/check/station'></div>
-                     <div className='product_List'>
-                        <div className="product">
-                            <Image src = {''} alt = 'product_img'/>
-                            <div className="Name_price">
-                            <h3 className="product_Name"></h3>
-                            <div className="price"></div>
-                            </div>
-                            
-                            <h4 className="category_Name"></h4>
-                            
-                        </div>
-                     </div>
-                </li>
-            </ul>
-            <div className=''>
-
+            <div className="bg-white pt-4">
+                <ul className='List_Order'>
+                    <li className='Order'>
+                        <NewOrder />
+                    </li> <li className='Order'>
+                        <NewOrder />
+                    </li> <li className='Order'>
+                        <NewOrder />
+                    </li> <li className='Order'>
+                        <NewOrder />
+                    </li>
+                </ul>
             </div>
-        </div>
         </>
     )
 };
+export default Order;
