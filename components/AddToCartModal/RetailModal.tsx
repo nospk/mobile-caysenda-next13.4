@@ -37,11 +37,13 @@ const AddToCartModal: FC<Props> = (props) => {
 	const [product, setProdct] = useState<any>();
 
 	useEffect(() => {
-		ProductService.getQuickview({productId: props.productId}, true).then((res) => {
-			setVariants(res.variants);
-			setProdct(res.product);
-		});
-	},[]);
+		if (isOpen) {
+			ProductService.getQuickview({productId: props.productId}, true).then((res) => {
+				setVariants(res.variants);
+				setProdct(res.product);
+			});
+		}
+	},[isOpen]);
 
 	const decreaseOrder = useCallback((sku: string) => {
 		const newVariants = [...variants];
