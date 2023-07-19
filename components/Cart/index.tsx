@@ -13,7 +13,7 @@ import Warning from "./Warning";
 import CatogeryCart from "./CatogeryCart";
 import { useState, type FC, useEffect } from "react";
 import { openDialog } from "@/redux/features/dialog/dialog.slice";
-import { getCart, getFeeDelivery } from "@/redux/features/cart/cart.action";
+import { getCart } from "@/redux/features/cart/cart.action";
 import type { Cart } from "@/types/cart";
 interface Props {
   address: string;
@@ -39,10 +39,6 @@ const Cart: FC<Props> = (props) => {
     ? selectCheckActiveCart(cart.categories)
     : 0;
 
-  const totalMoney = fee_delivery
-    ? Number(fee_delivery.amountActive) + Number(fee_delivery.fee)
-    : 0;
-
   //Use for show error when update cart
   useEffect(() => {
     if (error) dispatch(openDialog({ message: error }));
@@ -52,15 +48,8 @@ const Cart: FC<Props> = (props) => {
   //Get cart first load
   useEffect(() => {
     dispatch(getCart());
-    dispatch(getFeeDelivery());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  //Reload fee-delivery after change cart
-  useEffect(() => {
-    dispatch(getFeeDelivery());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cart]);
 
   return (
     <div className={styles.main}>
@@ -114,7 +103,7 @@ const Cart: FC<Props> = (props) => {
                           Tổng Cộng:{" "}
                         </span>
                         <span className={styles.footer_tottaly_money}>
-                          {convertMoney(totalMoney)}
+                          {convertMoney(cart.bill)}
                         </span>
                         <span className={styles.footer_tottaly_currency}>
                           đ

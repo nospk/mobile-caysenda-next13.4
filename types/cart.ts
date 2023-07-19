@@ -1,6 +1,6 @@
 export interface Cart {
-  user_id: number;
   categories: CartCategory[];
+  bill: number;
   note: string;
 }
 
@@ -10,32 +10,27 @@ export interface CartCategory {
   condition: number;
   amount: number;
   products: CartProduct[];
-  bill: number;
-  id: number;
+  categoryId: number;
   active: boolean;
 }
 
 export interface CartProduct {
   productId: number;
   name: string;
-  id: number;
   sku: string;
   slug: string;
   conditionDefault: number;
-  condition1: number;
-  condition2: number;
-  condition3: number;
-  condition4: number;
-  priceDefault: number;
-  price1: number;
-  price2: number;
-  price3: number;
-  price4: number;
+  condition1: number | null;
+  condition2: number | null;
+  condition3: number | null;
+  condition4: number | null;
+  price1: number | null;
+  price2: number | null;
+  price3: number | null;
+  price4: number | null;
   thumbnail: string;
-  categoryId: number;
   retail: boolean;
   quantity: number;
-  range: number;
   amount: number;
   active: boolean;
   unit: string;
@@ -45,11 +40,9 @@ export interface CartProduct {
 export interface CartVariant {
   name: string;
   thumbnail: string;
-  id: number;
   sku: string;
   price: number;
   quantity: number;
-  priceDefault: number;
   vip1: number;
   vip2: number;
   vip3: number;

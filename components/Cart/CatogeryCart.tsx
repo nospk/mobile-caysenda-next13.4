@@ -1,4 +1,4 @@
-import { ProductCart } from "./ProductCart";
+import ProductCart from "./ProductCart";
 import { ActiveFull, HaftFull, NotActive } from "../Checked/Checked";
 import { convertMoney } from "@/lib/formatPrice";
 import type { CartCategory } from "@/types/cart";
@@ -27,7 +27,7 @@ const Catogery = ({ category }: Props) => {
                 dispatch(
                   getActiveCategory({
                     active: category.active,
-                    catId: category.id,
+                    categoryId: category.categoryId,
                   })
                 );
               }}
@@ -50,7 +50,7 @@ const Catogery = ({ category }: Props) => {
               </span>
               {">>"}
               <span className={styles.catogerycart_pricenow}>
-                Hiện tại: {convertMoney(category.bill) + "đ"}
+                Hiện tại: {convertMoney(category.amount) + "đ"}
               </span>
             </div>
             <span
@@ -63,7 +63,7 @@ const Catogery = ({ category }: Props) => {
             </span>
           </div>
           <div className={styles.catogerycart_error}>
-            {category.condition < category.bill ? (
+            {category.amount < category.condition ? (
               <span>Chưa đạt mức tối thiểu của danh mục này</span>
             ) : null}
           </div>
@@ -71,7 +71,7 @@ const Catogery = ({ category }: Props) => {
         {category.products.map((product) => (
           <ProductCart
             key={product.name}
-            catId={category.id}
+            categoryId={category.categoryId}
             product={product}
           />
         ))}

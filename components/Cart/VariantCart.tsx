@@ -14,21 +14,23 @@ import {
 
 interface Prop {
   variant: CartVariant;
-  condition: number;
-  catId: number;
+  conditions: (number | null)[];
+  conditionDefault: number;
+  categoryId: number;
   productId: number;
   unit: string;
-  range: number;
+  retail: boolean;
 }
 const VariantCart = ({
   variant,
-  condition,
-  catId,
+  conditions,
+  conditionDefault,
+  categoryId,
   productId,
   unit,
-  range,
+  retail,
 }: Prop) => {
-  const { selected, name, thumbnail, quantity, price, id } = variant;
+  const { selected, name, thumbnail, quantity, price, variantId } = variant;
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const ref = useRef(null);
 
@@ -110,12 +112,25 @@ const VariantCart = ({
       }
     }
   };
-
+  const findConditionIndex = (
+    conditions: (number | null)[],
+    quantity: number
+  ) => {
+    for (let index = 0; index < conditions.length; index++) {
+      if (conditions[index] != null && quantity <= conditions[index]!) {
+        return index;
+      }
+    }
+    return 0;
+  };
   const checkPrice = (): number => {
-    if (!range) return Number(price) * Number(quantity);
-    const listPrice = [variant.vip1, variant.vip2, variant.vip3, variant.vip4]
-    const priceActive = listPrice[range-1]
-    return Number(priceActive) * Number(quantity)
+    //If retail will get price in variant
+    if (retail) Number(price) * Number(quantity);
+    //Else will be get condition to get the price level
+    let indexPrice = findConditionIndex(conditions, quantity);
+    const listPrice = [variant.vip1, variant.vip2, variant.vip3, variant.vip4];
+    const priceActive = listPrice[indexPrice];
+    return Number(priceActive) * Number(quantity);
   };
   //When div position doesn't reach the end then calculate
   const TouchEnd = () => {
@@ -149,9 +164,9 @@ const VariantCart = ({
                   dispatch(
                     getActiveVariant({
                       active: selected,
-                      catId: catId,
+                      categoryId: categoryId,
                       productId: productId,
-                      variantId: id,
+                      variantId: variantId,
                     })
                   );
                 }}
@@ -192,9 +207,9 @@ const VariantCart = ({
                       onClick={() => {
                         dispatch(
                           updateCart({
-                            catId: catId,
+                            categoryId: categoryId,
                             productId: productId,
-                            variantId: id,
+                            variantId: variantId,
                             quantity: Number(quantity) - 1,
                           })
                         ).catch((e) => {
@@ -214,9 +229,9 @@ const VariantCart = ({
                       onChange={(e) => {
                         dispatch(
                           updateCart({
-                            catId: catId,
+                            categoryId: categoryId,
                             productId: productId,
-                            variantId: id,
+                            variantId: variantId,
                             quantity: Number(e.target.value),
                           })
                         ).catch((e) => {
@@ -229,9 +244,9 @@ const VariantCart = ({
                         onClick={() => {
                           dispatch(
                             updateCart({
-                              catId: catId,
+                              categoryId: categoryId,
                               productId: productId,
-                              variantId: id,
+                              variantId: variantId,
                               quantity: Number(quantity) + 1,
                             })
                           );
@@ -247,9 +262,9 @@ const VariantCart = ({
               </div>
             </div>
             <div className={styles.variant_cart_error}>
-              {!isRemove && quantity < condition ? (
+              {!isRemove && quantity < conditionDefault ? (
                 <span className={styles.variant_cart_error_text}>
-                  Yêu cầu tối thiểu : {condition} {unit}
+                  Yêu cầu tối thiểu : {conditionDefault} {unit}
                 </span>
               ) : null}
             </div>

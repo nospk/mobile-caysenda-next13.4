@@ -7,20 +7,25 @@ import type { CartProduct } from "@/types/cart";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { getActiveProduct } from "@/redux/features/cart/cart.action";
 import styles from "./styles.module.css";
+import React from "react";
 interface Props {
   product: CartProduct;
-  catId: number;
-}
-export const ProductCart = ({ product, catId }: Props) => {
+  categoryId: number;
+} 
+const ProductCart = ({ product, categoryId }: Props) => {
   const {
     variants,
     name,
     thumbnail,
     active,
     conditionDefault,
-    id,
+    condition1,
+    condition2,
+    condition3,
+    condition4,
+    productId,
     unit,
-    range,
+    retail
   } = product;
   const dispatch = useAppDispatch();
   const isRemove = useAppSelector((state) => state.removeCartReducer.isRemove);
@@ -127,8 +132,8 @@ export const ProductCart = ({ product, catId }: Props) => {
                 dispatch(
                   getActiveProduct({
                     active: active,
-                    catId: catId,
-                    productId: id,
+                    categoryId: categoryId,
+                    productId: productId,
                   })
                 );
               }}
@@ -171,14 +176,15 @@ export const ProductCart = ({ product, catId }: Props) => {
         <VariantCart
           key={variant.name}
           variant={variant}
-          productId={id}
-          catId={catId}
-          condition={conditionDefault}
+          productId={productId}
+          categoryId={categoryId}
+          conditions={[condition1, condition2, condition3, condition4]}
+          conditionDefault={conditionDefault}
           unit={unit}
-          range={range}
+          retail={retail}
         />
       ))}
     </div>
   );
 };
-//export default ProductCart;
+export default React.memo(ProductCart);

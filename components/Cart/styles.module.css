@@ -164,7 +164,7 @@
   @apply box-border whitespace-pre-wrap bg-[#fff2e6] p-[2.4vw] text-[3.2vw] text-[#666];
 }
 .footer_main {
-  @apply flex flex-row items-center justify-between border-t border-solid border-[#e9e9e9] p-[2.66667vw];
+  @apply flex flex-row items-center justify-between border-t bg-orange-100 border-solid border-[#e9e9e9] p-[2.66667vw] z-auto;
 }
 .footer_checked_wapper {
   @apply relative ml-[-1.6vw] box-border flex flex-shrink-0 flex-row items-center py-[2.4vw] pl-[2.66667vw];

@@ -1,4 +1,4 @@
-import { get, fee_delivery, reset, update, activeVariant, activeProduct, activeCategory } from "./cart.slice";
+import { get, reset, update, activeVariant, activeProduct, activeCategory } from "./cart.slice";
 
 // Action creators thủ công
 export const resetCart = () => {
@@ -7,55 +7,53 @@ export const resetCart = () => {
 export const getCart = () => {
   return get();
 };
-export const getFeeDelivery = () => {
-  return fee_delivery();
-};
+
 export const updateCart = ({
-  catId,
+  categoryId,
   productId,
   variantId,
   quantity,
 }: {
-  catId: number;
+  categoryId: number;
   productId: number;
   variantId: number;
   quantity: number;
 }) => {
-  return update({ catId, productId, variantId, quantity });
+  return update({ categoryId, productId, variantId, quantity });
 };
 
 export const getActiveVariant = ({
   active,
-  catId,
+  categoryId,
   productId,
   variantId,
 }: {
   active: boolean;
-  catId: number;
+  categoryId: number;
   productId: number;
   variantId: number;
 }) => {
-  return activeVariant({ active, catId, productId, variantId });
+  return activeVariant({ active, categoryId, productId, variantId });
 };
 
 export const getActiveProduct = ({
   active,
-  catId,
+  categoryId,
   productId,
 }: {
   active: boolean;
-  catId: number;
+  categoryId: number;
   productId: number;
 }) => {
-  return activeProduct({ active, catId, productId });
+  return activeProduct({ active, categoryId, productId });
 };
 
 export const getActiveCategory = ({
   active,
-  catId,
+  categoryId,
 }: {
   active: boolean;
-  catId: number;
+  categoryId: number;
 }) => {
-  return activeCategory({ active, catId });
+  return activeCategory({ active, categoryId });
 };
