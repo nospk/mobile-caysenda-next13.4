@@ -11,8 +11,10 @@ import React from "react";
 interface Props {
   product: CartProduct;
   categoryId: number;
-} 
-const ProductCart = ({ product, categoryId }: Props) => {
+  categoryAmount: number;
+  categoryCondtion: number;
+}
+const ProductCart = ({ product, categoryId, categoryAmount, categoryCondtion }: Props) => {
   const {
     variants,
     name,
@@ -25,7 +27,8 @@ const ProductCart = ({ product, categoryId }: Props) => {
     condition4,
     productId,
     unit,
-    retail
+    retail,
+    quantity,
   } = product;
   const dispatch = useAppDispatch();
   const isRemove = useAppSelector((state) => state.removeCartReducer.isRemove);
@@ -131,7 +134,7 @@ const ProductCart = ({ product, categoryId }: Props) => {
               onClick={() => {
                 dispatch(
                   getActiveProduct({
-                    active: active,
+                    active: !active,
                     categoryId: categoryId,
                     productId: productId,
                   })
@@ -182,6 +185,9 @@ const ProductCart = ({ product, categoryId }: Props) => {
           conditionDefault={conditionDefault}
           unit={unit}
           retail={retail}
+          quantityProduct={quantity}
+          categoryAmount={categoryAmount}
+          categoryCondtion={categoryCondtion}
         />
       ))}
     </div>

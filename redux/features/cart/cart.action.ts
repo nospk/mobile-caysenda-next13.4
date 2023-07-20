@@ -1,4 +1,13 @@
-import { get, reset, update, activeVariant, activeProduct, activeCategory } from "./cart.slice";
+import {
+  get,
+  reset,
+  update,
+  activeVariant,
+  activeProduct,
+  activeCategory,
+  activeTotal,
+  removeVariant,
+} from "./cart.slice";
 
 // Action creators thủ công
 export const resetCart = () => {
@@ -12,14 +21,28 @@ export const updateCart = ({
   categoryId,
   productId,
   variantId,
-  quantity,
+  quantityNew,
+  quantityOld,
+  quantityProduct,
+  condition,
 }: {
   categoryId: number;
   productId: number;
   variantId: number;
-  quantity: number;
+  quantityNew: number;
+  quantityOld: number;
+  quantityProduct: number;
+  condition: number;
 }) => {
-  return update({ categoryId, productId, variantId, quantity });
+  return update({
+    categoryId,
+    productId,
+    variantId,
+    quantityNew,
+    quantityOld,
+    quantityProduct,
+    condition,
+  });
 };
 
 export const getActiveVariant = ({
@@ -33,7 +56,12 @@ export const getActiveVariant = ({
   productId: number;
   variantId: number;
 }) => {
-  return activeVariant({ active, categoryId, productId, variantId });
+  return activeVariant({
+    active,
+    categoryId,
+    productId,
+    variantId,
+  });
 };
 
 export const getActiveProduct = ({
@@ -56,4 +84,24 @@ export const getActiveCategory = ({
   categoryId: number;
 }) => {
   return activeCategory({ active, categoryId });
+};
+
+export const getActiveTotal = ({ active }: { active: boolean }) => {
+  return activeTotal({ active });
+};
+
+export const getRemoveVariant = ({
+  categoryId,
+  productId,
+  variantId,
+}: {
+  categoryId: number;
+  productId: number;
+  variantId: number;
+}) => {
+  return removeVariant({
+    categoryId,
+    productId,
+    variantId,
+  });
 };

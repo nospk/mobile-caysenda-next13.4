@@ -10,6 +10,9 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {
   updateCart,
   getActiveVariant,
+  getActiveProduct,
+  getActiveCategory,
+  getRemoveVariant,
 } from "@/redux/features/cart/cart.action";
 
 interface Prop {
@@ -20,6 +23,9 @@ interface Prop {
   productId: number;
   unit: string;
   retail: boolean;
+  quantityProduct: number;
+  categoryAmount: number;
+  categoryCondtion: number;
 }
 const VariantCart = ({
   variant,
@@ -29,6 +35,9 @@ const VariantCart = ({
   productId,
   unit,
   retail,
+  quantityProduct,
+  categoryAmount,
+  categoryCondtion,
 }: Prop) => {
   const { selected, name, thumbnail, quantity, price, variantId } = variant;
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -146,6 +155,35 @@ const VariantCart = ({
       } else setCssTouch({ css: touchPosition[18], level: 18 });
     }
   };
+  const variantAmount = checkPrice();
+  const activeVariant = () => {
+    if (
+      (!selected == true && quantityProduct < conditionDefault) ||
+      categoryAmount + variantAmount < categoryCondtion
+    )
+      return;
+    if (
+      !selected == false &&
+      categoryAmount - variantAmount < categoryCondtion
+    ) {
+      dispatch(
+        getActiveCategory({
+          active: false,
+          categoryId: categoryId,
+        })
+      );
+    } else {
+      dispatch(
+        getActiveVariant({
+          active: !selected,
+          categoryId: categoryId,
+          productId: productId,
+          variantId: variantId,
+        })
+      );
+    }
+  };
+
   return (
     <>
       <div className={styles.variant_cart_wrapper}>
@@ -160,16 +198,7 @@ const VariantCart = ({
             <div className={styles.variant_cart_content}>
               <div
                 className={styles.variant_cart_select}
-                onClick={() => {
-                  dispatch(
-                    getActiveVariant({
-                      active: selected,
-                      categoryId: categoryId,
-                      productId: productId,
-                      variantId: variantId,
-                    })
-                  );
-                }}
+                onClick={activeVariant}
               >
                 {selected ? <ActiveFull /> : <NotActive />}
                 <div className={styles.variant_cart_select_margin}></div>
@@ -192,7 +221,7 @@ const VariantCart = ({
             <div className={styles.variant_cart_control}>
               <div className={styles.variant_cart_price}>
                 <span className={styles.variant_cart_price_text}>
-                  {convertMoney(checkPrice()) + " đ"}
+                  {convertMoney(variantAmount) + " đ"}
                 </span>
               </div>
               <div className={styles.variant_cart_input_control}>
@@ -210,7 +239,10 @@ const VariantCart = ({
                             categoryId: categoryId,
                             productId: productId,
                             variantId: variantId,
-                            quantity: Number(quantity) - 1,
+                            quantityNew: Number(quantity) - 1,
+                            quantityOld: quantity,
+                            quantityProduct: quantityProduct,
+                            condition: conditionDefault,
                           })
                         ).catch((e) => {
                           console.log(e);
@@ -232,7 +264,10 @@ const VariantCart = ({
                             categoryId: categoryId,
                             productId: productId,
                             variantId: variantId,
-                            quantity: Number(e.target.value),
+                            quantityNew: Number(e.target.value),
+                            quantityOld: quantity,
+                            quantityProduct: quantityProduct,
+                            condition: conditionDefault,
                           })
                         ).catch((e) => {
                           console.log(e);
@@ -247,7 +282,10 @@ const VariantCart = ({
                               categoryId: categoryId,
                               productId: productId,
                               variantId: variantId,
-                              quantity: Number(quantity) + 1,
+                              quantityNew: Number(quantity) + 1,
+                              quantityOld: quantity,
+                              quantityProduct: quantityProduct,
+                              condition: conditionDefault,
                             })
                           );
                         }}
@@ -262,14 +300,26 @@ const VariantCart = ({
               </div>
             </div>
             <div className={styles.variant_cart_error}>
-              {!isRemove && quantity < conditionDefault ? (
+              {!isRemove && quantityProduct < conditionDefault ? (
                 <span className={styles.variant_cart_error_text}>
-                  Yêu cầu tối thiểu : {conditionDefault} {unit}
+                  Sản Phẩm Yêu Cầu Tối Thiểu Biến Thể : {conditionDefault}{" "}
+                  {unit}
                 </span>
               ) : null}
             </div>
           </div>
-          <div className={styles.variant_cart_button_remove}>
+          <div
+            onClick={() => {
+              dispatch(
+                getRemoveVariant({
+                  categoryId: categoryId,
+                  productId: productId,
+                  variantId: variantId,
+                })
+              );
+            }}
+            className={styles.variant_cart_button_remove}
+          >
             <span className={styles.variant_cart_button_remove_text}>Xóa</span>
           </div>
         </div>

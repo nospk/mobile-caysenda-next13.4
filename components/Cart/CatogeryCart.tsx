@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { getActiveCategory } from "@/redux/features/cart/cart.action";
 import { useRouter } from "next/navigation";
 import styles from "./styles.module.css";
-import React from "react";
+import React, { useEffect } from "react";
 interface Props {
   category: CartCategory;
 }
@@ -16,7 +16,17 @@ const Catogery = ({ category }: Props) => {
   // Check active button
   const dispatch = useAppDispatch();
   const checkActive = category ? selectCheckActiveCategory(category) : 0;
-
+  useEffect(() => {
+    if (category.amount < category.condition) {
+      dispatch(
+        getActiveCategory({
+          active: false,
+          categoryId: category.categoryId,
+        })
+      );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [category.amount]);
   return (
     <div className={styles.catogerycart_wrapper}>
       <div className={styles.catogerycart}>
@@ -26,7 +36,7 @@ const Catogery = ({ category }: Props) => {
               onClick={() => {
                 dispatch(
                   getActiveCategory({
-                    active: category.active,
+                    active: !category.active,
                     categoryId: category.categoryId,
                   })
                 );
@@ -72,6 +82,8 @@ const Catogery = ({ category }: Props) => {
           <ProductCart
             key={product.name}
             categoryId={category.categoryId}
+            categoryAmount={category.amount}
+            categoryCondtion={category.condition}
             product={product}
           />
         ))}

@@ -13,7 +13,7 @@ import Warning from "./Warning";
 import CatogeryCart from "./CatogeryCart";
 import { useState, type FC, useEffect } from "react";
 import { openDialog } from "@/redux/features/dialog/dialog.slice";
-import { getCart } from "@/redux/features/cart/cart.action";
+import { getCart, getActiveTotal } from "@/redux/features/cart/cart.action";
 import type { Cart } from "@/types/cart";
 interface Props {
   address: string;
@@ -78,7 +78,14 @@ const Cart: FC<Props> = (props) => {
             ) : null}
 
             <div className={styles.footer_main}>
-              <div className={styles.footer_checked_wapper}>
+              <div
+                onClick={() =>
+                  dispatch(
+                    getActiveTotal({ active: checkActive != 0 ? false : true })
+                  )
+                }
+                className={styles.footer_checked_wapper}
+              >
                 {checkActive == 0 ? (
                   <NotActive />
                 ) : checkActive == 1 ? (
