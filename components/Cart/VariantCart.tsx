@@ -6,11 +6,10 @@ import styles from "./styles.module.css";
 import type { CartVariant } from "@/types/cart";
 import Image from "next/image";
 import React from "react";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useAppDispatch } from "@/redux/hooks";
 import {
   updateCart,
   getActiveVariant,
-  getActiveProduct,
   getActiveCategory,
   getRemoveVariant,
 } from "@/redux/features/cart/cart.action";
@@ -26,6 +25,7 @@ interface Prop {
   quantityProduct: number;
   categoryAmount: number;
   categoryCondtion: number;
+  isRemove: boolean
 }
 const VariantCart = ({
   variant,
@@ -38,20 +38,28 @@ const VariantCart = ({
   quantityProduct,
   categoryAmount,
   categoryCondtion,
+  isRemove
 }: Prop) => {
-  const { selected, name, thumbnail, quantity, price, variantId } = variant;
+  const {
+    selected,
+    name,
+    thumbnail,
+    quantity,
+    price,
+    variantId,
+    selectedDelete,
+  } = variant;
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const ref = useRef(null);
+  //const ref = useRef(null); 
 
   const dispatch = useAppDispatch();
-  const isRemove = useAppSelector((state) => state.removeCartReducer.isRemove);
-  const handleClickOutside = () => {
-    setCssTouch({ css: touchPosition[0], level: 0 });
-    setdirection("left");
-  };
+  // const handleClickOutside = () => {
+  //   setCssTouch({ css: touchPosition[0], level: 0 });
+  //   setdirection("left");
+  // };
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  useOnActionOutside(ref, handleClickOutside, "mousedown");
+  //useOnActionOutside(ref, handleClickOutside, "mousedown");
   const widthDivHidden = 18;
   const touchPosition = [
     "",
@@ -183,12 +191,18 @@ const VariantCart = ({
       );
     }
   };
-
+  const checkActive = () => {
+    if (!isRemove) {
+      return selected ? <ActiveFull /> : <NotActive />;
+    } else {
+      return selectedDelete ? <ActiveFull /> : <NotActive />;
+    }
+  };
   return (
     <>
       <div className={styles.variant_cart_wrapper}>
         <div
-          ref={ref}
+          //ref={ref}
           onTouchStart={(e) => TouchStart(e)}
           onTouchMove={(e) => TouchHandle(e)}
           onTouchEnd={TouchEnd}
@@ -200,7 +214,7 @@ const VariantCart = ({
                 className={styles.variant_cart_select}
                 onClick={activeVariant}
               >
-                {selected ? <ActiveFull /> : <NotActive />}
+                {checkActive()}
                 <div className={styles.variant_cart_select_margin}></div>
               </div>
               <div className={styles.variant_cart_image_name}>

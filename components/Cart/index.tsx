@@ -13,15 +13,18 @@ import Warning from "./Warning";
 import CatogeryCart from "./CatogeryCart";
 import { useState, type FC, useEffect } from "react";
 import { openDialog } from "@/redux/features/dialog/dialog.slice";
-import { getCart, getActiveTotal } from "@/redux/features/cart/cart.action";
+import {
+  getCart,
+  getActiveTotal,
+  getDeleteTotal,
+} from "@/redux/features/cart/cart.action";
 import type { Cart } from "@/types/cart";
 interface Props {
   address: string;
-  cart: Cart;
 }
 const Cart: FC<Props> = (props) => {
   // Check button remove
-  const isRemove = useAppSelector((state) => state.removeCartReducer.isRemove);
+  const [isRemove, setIsRemove] = useState<boolean>(false);
 
   // InitialState Address
   const [address, setAddress] = useState<string>(props.address);
@@ -31,9 +34,9 @@ const Cart: FC<Props> = (props) => {
   //Initial cart
   const cart = useAppSelector((state) => state.cartReducer.data);
   const error = useAppSelector((state) => state.cartReducer.error);
-  const fee_delivery = useAppSelector(
-    (state) => state.cartReducer.fee_delivery
-  );
+  // const fee_delivery = useAppSelector(
+  //   (state) => state.cartReducer.fee_delivery
+  // );
   const order_error = cart.categories ? selectErrorOrder(cart.categories) : 0;
   const checkActive = cart.categories
     ? selectCheckActiveCart(cart.categories)
@@ -54,17 +57,27 @@ const Cart: FC<Props> = (props) => {
   return (
     <div className={styles.main}>
       <div className={styles.content}>
-        <Header address={address} />
+        <Header address={address} isRemove={isRemove} setIsRemove={setIsRemove}/>
         <div className={styles.content_wrapper}>
           <div className={styles.content_box}>
             <div className={styles.content_box_wrapper}>
               <div className={styles.catogerycart_overlay}>
                 <Warning />
-                {cart.categories
-                  ? cart.categories.map((category) => (
-                      <CatogeryCart key={category.name} category={category} />
-                    ))
-                  : null}
+                {cart.categories && cart.categories.length > 0 ? (
+                  cart.categories.map((category) => (
+                    <CatogeryCart key={category.name} category={category} isRemove={isRemove}/>
+                  ))
+                ) : (
+                  <div className="flex h-[300px] flex-col items-center justify-center text-center">
+                    <span>Không có đơn hàng</span>
+                    <a
+                      href="/"
+                      className="mt-1 rounded-full bg-[#FF603D] p-2 text-white"
+                    >
+                      Mua sắm ngay
+                    </a>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -97,7 +110,12 @@ const Cart: FC<Props> = (props) => {
               </div>
               {isRemove ? (
                 <div className={styles.footer_remove}>
-                  <div className={styles.footer_remove_button}>
+                  <div
+                    onClick={() => {
+                      dispatch(getDeleteTotal(cart));
+                    }}
+                    className={styles.footer_remove_button}
+                  >
                     <span className={styles.footer_remove_text}>Xóa Bỏ</span>
                   </div>
                 </div>
@@ -110,7 +128,7 @@ const Cart: FC<Props> = (props) => {
                           Tổng Cộng:{" "}
                         </span>
                         <span className={styles.footer_tottaly_money}>
-                          {convertMoney(cart.bill)}
+                          {convertMoney(cart.bill ? cart.bill : 0)}
                         </span>
                         <span className={styles.footer_tottaly_currency}>
                           đ

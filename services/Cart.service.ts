@@ -14,6 +14,7 @@ const getCart = async () => {
         amount: 0,
         categoryId: 321,
         active: false,
+        selectedDelete: false,
         products: [
           {
             productId: 123,
@@ -34,6 +35,7 @@ const getCart = async () => {
             retail: false,
             quantity: 5,
             active: false,
+            selectedDelete: false,
             unit: "Cái",
             variants: [
               {
@@ -50,6 +52,7 @@ const getCart = async () => {
                 vip4: 29000,
                 selected: false,
                 variantId: 1323,
+                selectedDelete: false
               },
               {
                 name: "Chậu Hình Cáo",
@@ -65,6 +68,7 @@ const getCart = async () => {
                 vip4: 17000,
                 selected: false,
                 variantId: 1236,
+                selectedDelete: false
               },
             ],
           },
@@ -82,6 +86,7 @@ const getCart = async () => {
             price2: 25000,
             price3: 21000,
             price4: 19000,
+            selectedDelete: false,
             thumbnail:
               "https://caysenda.vn/resources/upload/17892827873_102253868.jpg",
             retail: false,
@@ -103,6 +108,7 @@ const getCart = async () => {
                 vip4: 29000,
                 selected: false,
                 variantId: 1323,
+                selectedDelete: false
               },
               {
                 name: "Chậu Hình Cáo 21321",
@@ -118,6 +124,7 @@ const getCart = async () => {
                 vip4: 17000,
                 selected: false,
                 variantId: 1236,
+                selectedDelete: false
               },
             ],
           },
@@ -130,6 +137,7 @@ const getCart = async () => {
         amount: 0,
         categoryId: 1564,
         active: false,
+        selectedDelete: false,
         products: [
           {
             productId: 123,
@@ -150,6 +158,7 @@ const getCart = async () => {
             retail: true,
             quantity: 4,
             active: false,
+            selectedDelete: false,
             unit: "Cái",
             variants: [
               {
@@ -166,6 +175,7 @@ const getCart = async () => {
                 vip4: 10000,
                 selected: false,
                 variantId: 1234,
+                selectedDelete: false
               },
               {
                 name: "Chậu Hình Cáo",
@@ -180,6 +190,7 @@ const getCart = async () => {
                 vip4: 10000,
                 selected: false,
                 variantId: 1235,
+                selectedDelete: false
               },
             ],
           },
@@ -251,10 +262,7 @@ const removeVariant = async (
 
   return response;
 };
-const removeProduct = async (
-  categoryId: number,
-  productId: number
-) => {
+const removeProduct = async (categoryId: number, productId: number) => {
   const response = {
     success: true,
     message: "Cập nhật thành công",
@@ -262,13 +270,7 @@ const removeProduct = async (
 
   return response;
 };
-const removeCategory = async (active: boolean, categoryId: number) => {
-  const response = {
-    success: true,
-    message: "Cập nhật thành công",
-  };
-  return response;
-};
+
 const activeTotal = async (active: boolean) => {
   const response = {
     success: true,
@@ -276,6 +278,23 @@ const activeTotal = async (active: boolean) => {
   };
   return response;
 };
+
+const deleteTotal = async (cart: {
+  categoryId: number;
+  listProduct: {
+      productId: number;
+      listVariant: {
+          variantId: number;
+      }[];
+  };
+}[]) => {
+  const response = {
+    success: true,
+    message: "Cập nhật thành công",
+  };
+  return response;
+};
+
 const CartService = {
   getCart,
   updateCart,
@@ -285,6 +304,6 @@ const CartService = {
   activeTotal,
   removeVariant,
   removeProduct,
-  removeCategory
+  deleteTotal,
 };
 export default CartService;

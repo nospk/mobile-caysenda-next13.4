@@ -12,6 +12,7 @@ export interface CartCategory {
   products: CartProduct[];
   categoryId: number;
   active: boolean;
+  selectedDelete: boolean
 }
 
 export interface CartProduct {
@@ -35,6 +36,7 @@ export interface CartProduct {
   active: boolean;
   unit: string;
   variants: CartVariant[];
+  selectedDelete: boolean
 }
 
 export interface CartVariant {
@@ -49,4 +51,5 @@ export interface CartVariant {
   vip4: number;
   selected: boolean;
   variantId: number;
+  selectedDelete: boolean
 }

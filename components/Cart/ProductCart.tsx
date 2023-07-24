@@ -4,8 +4,11 @@ import { useState, useEffect, useRef } from "react";
 import { ActiveFull, HaftFull, NotActive } from "../Checked/Checked";
 import { useOnActionOutside } from "@/components/hook/useOnActionOutside";
 import type { CartProduct } from "@/types/cart";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { getActiveProduct } from "@/redux/features/cart/cart.action";
+import { useAppDispatch } from "@/redux/hooks";
+import {
+  getActiveProduct,
+  getRemoveProduct,
+} from "@/redux/features/cart/cart.action";
 import styles from "./styles.module.css";
 import React from "react";
 interface Props {
@@ -13,8 +16,15 @@ interface Props {
   categoryId: number;
   categoryAmount: number;
   categoryCondtion: number;
+  isRemove: boolean
 }
-const ProductCart = ({ product, categoryId, categoryAmount, categoryCondtion }: Props) => {
+const ProductCart = ({
+  product,
+  categoryId,
+  categoryAmount,
+  categoryCondtion,
+  isRemove
+}: Props) => {
   const {
     variants,
     name,
@@ -29,9 +39,9 @@ const ProductCart = ({ product, categoryId, categoryAmount, categoryCondtion }: 
     unit,
     retail,
     quantity,
+    selectedDelete
   } = product;
   const dispatch = useAppDispatch();
-  const isRemove = useAppSelector((state) => state.removeCartReducer.isRemove);
   const widthDivHidden = 12;
   const touchPosition = [
     "",
@@ -107,22 +117,37 @@ const ProductCart = ({ product, categoryId, categoryAmount, categoryCondtion }: 
       } else setCssTouch({ css: touchPosition[12], level: 12 });
     }
   };
-  const CheckActiveFull = () => {
-    const check = variants.filter((variant) => variant.selected == false);
-    return check.length > 0 ? false : true;
-  };
-  const handleClickOutside = () => {
-    // Your custom logic here
-    setCssTouch({ css: touchPosition[0], level: 0 });
-    setdirection("left");
-  };
 
-  const ref = useRef(null);
-  useOnActionOutside(ref, handleClickOutside, "mousedown");
+  //check active
+  const CheckActive = () => {
+    if (!isRemove) {
+      if (!active) {
+        return <NotActive />;
+      } else {
+        const check = variants.filter((variant) => variant.selected == false);
+        return check.length > 0 ? <ActiveFull /> : <HaftFull />;
+      }
+    }else{
+      if (!selectedDelete) {
+        return <NotActive />;
+      } else {
+        const check = variants.filter((variant) => variant.selectedDelete == false);
+        return check.length > 0 ? <ActiveFull /> : <HaftFull />;
+      }
+    }
+  };
+  // const handleClickOutside = () => {
+  //   // Your custom logic here
+  //   setCssTouch({ css: touchPosition[0], level: 0 });
+  //   setdirection("left");
+  // };
+
+  //const ref = useRef(null);
+  //useOnActionOutside(ref, handleClickOutside, "mousedown");
   return (
     <div className={styles.productcart_wrapper}>
       <div
-        ref={ref}
+        //ref={ref}
         onTouchStart={(e) => TouchStart(e)}
         onTouchMove={(e) => TouchHandle(e)}
         onTouchEnd={TouchEnd}
@@ -142,13 +167,7 @@ const ProductCart = ({ product, categoryId, categoryAmount, categoryCondtion }: 
               }}
               className={styles.checked_wrapper}
             >
-              {!active ? (
-                <NotActive />
-              ) : CheckActiveFull() ? (
-                <ActiveFull />
-              ) : (
-                <HaftFull />
-              )}
+              {CheckActive()}
               <div className={styles.checked_padding}></div>
             </div>
             <div className={styles.productcart_main}>
@@ -171,13 +190,20 @@ const ProductCart = ({ product, categoryId, categoryAmount, categoryCondtion }: 
             </div>
           </div>
         </div>
-        <div className={styles.productcart_button}>
+        <div
+          onClick={() =>
+            dispatch(
+              getRemoveProduct({ categoryId: categoryId, productId: productId })
+            )
+          }
+          className={styles.productcart_button}
+        >
           <span className={styles.productcart_button_text}>Xóa</span>
         </div>
       </div>
       {variants.map((variant) => (
         <VariantCart
-          key={variant.name}
+          key={variant.variantId}
           variant={variant}
           productId={productId}
           categoryId={categoryId}
@@ -188,6 +214,7 @@ const ProductCart = ({ product, categoryId, categoryAmount, categoryCondtion }: 
           quantityProduct={quantity}
           categoryAmount={categoryAmount}
           categoryCondtion={categoryCondtion}
+          isRemove={isRemove}
         />
       ))}
     </div>

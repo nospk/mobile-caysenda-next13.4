@@ -5,10 +5,13 @@ import {
   activeVariant,
   activeProduct,
   activeCategory,
-  activeTotal,
   removeVariant,
+  removeProduct,
+  deleteTotal,
+  activeTotal,
 } from "./cart.slice";
 
+import type { Cart } from "@/types/cart";
 // Action creators thủ công
 export const resetCart = () => {
   return reset();
@@ -86,10 +89,6 @@ export const getActiveCategory = ({
   return activeCategory({ active, categoryId });
 };
 
-export const getActiveTotal = ({ active }: { active: boolean }) => {
-  return activeTotal({ active });
-};
-
 export const getRemoveVariant = ({
   categoryId,
   productId,
@@ -104,4 +103,25 @@ export const getRemoveVariant = ({
     productId,
     variantId,
   });
+};
+
+export const getRemoveProduct = ({
+  categoryId,
+  productId,
+}: {
+  categoryId: number;
+  productId: number;
+}) => {
+  return removeProduct({
+    categoryId,
+    productId,
+  });
+};
+
+export const getActiveTotal = ({ active }: { active: boolean }) => {
+  return activeTotal({ active });
+};
+
+export const getDeleteTotal = (cart: Cart) => {
+  return deleteTotal(cart);
 };

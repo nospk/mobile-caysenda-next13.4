@@ -84,6 +84,43 @@ export const selectCheckActiveCategory = (category: CartCategory): number => {
 };
 
 /**
+ *
+ * @param category
+ * @returns number
+ *
+ * 0 is NotActive
+ * 1 is HaftFull
+ * 2 is ActiveFull
+ */
+export const selectCheckActiveDeleteCategory = (category: CartCategory): number => {
+  let active = 0;
+  let productNotActive = false;
+  category.products.map((product) => {
+    let activeProduct = 0;
+    product.variants.map((variant) => {
+      activeProduct =
+        variant.selectedDelete && active != 1
+          ? 2
+          : (!variant.selectedDelete && active != 0) ||
+            (variant.selectedDelete && active == 1)
+          ? 1
+          : 0;
+      if (activeProduct == 0 && !productNotActive) productNotActive = true;
+    });
+
+    active =
+      activeProduct == 2 && (active == 0 || active == 2) && !productNotActive
+        ? 2
+        : activeProduct == 2 && active == 0 && productNotActive
+        ? 1
+        : activeProduct == 0 && active == 0
+        ? 0
+        : 1;
+  });
+  return active;
+};
+
+/**
  * @param category
  * @returns number
  */

@@ -2,20 +2,46 @@ import ProductCart from "./ProductCart";
 import { ActiveFull, HaftFull, NotActive } from "../Checked/Checked";
 import { convertMoney } from "@/lib/formatPrice";
 import type { CartCategory } from "@/types/cart";
-import { selectCheckActiveCategory } from "@/redux/features/cart/cart.selector";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import {
+  selectCheckActiveCategory,
+  selectCheckActiveDeleteCategory,
+} from "@/redux/features/cart/cart.selector";
+import { useAppDispatch } from "@/redux/hooks";
 import { getActiveCategory } from "@/redux/features/cart/cart.action";
 import { useRouter } from "next/navigation";
 import styles from "./styles.module.css";
 import React, { useEffect } from "react";
 interface Props {
   category: CartCategory;
+  isRemove: boolean;
 }
-const Catogery = ({ category }: Props) => {
+const Catogery = ({ category, isRemove }: Props) => {
   const router = useRouter();
   // Check active button
   const dispatch = useAppDispatch();
-  const checkActive = category ? selectCheckActiveCategory(category) : 0;
+  const checkActiveSelect = category ? selectCheckActiveCategory(category) : 0;
+  const checkActiveDelete = category
+    ? selectCheckActiveDeleteCategory(category)
+    : 0;
+  const CheckActive = () => {
+    if (!isRemove) {
+      return checkActiveSelect == 0 ? (
+        <NotActive />
+      ) : checkActiveSelect == 1 ? (
+        <HaftFull />
+      ) : (
+        <ActiveFull />
+      );
+    } else {
+      return checkActiveDelete == 0 ? (
+        <NotActive />
+      ) : checkActiveDelete == 1 ? (
+        <HaftFull />
+      ) : (
+        <ActiveFull />
+      );
+    }
+  };
   useEffect(() => {
     if (category.amount < category.condition) {
       dispatch(
@@ -43,13 +69,7 @@ const Catogery = ({ category }: Props) => {
               }}
               className={styles.catogerycart_checked_wrapper}
             >
-              {checkActive == 0 ? (
-                <NotActive />
-              ) : checkActive == 1 ? (
-                <HaftFull />
-              ) : (
-                <ActiveFull />
-              )}
+              {CheckActive()}
               <div className={styles.checked_padding}></div>
             </div>
             <div className={styles.catogerycart_title}>
@@ -80,11 +100,12 @@ const Catogery = ({ category }: Props) => {
         </div>
         {category.products.map((product) => (
           <ProductCart
-            key={product.name}
+            key={product.productId}
             categoryId={category.categoryId}
             categoryAmount={category.amount}
             categoryCondtion={category.condition}
             product={product}
+            isRemove={isRemove}
           />
         ))}
       </div>

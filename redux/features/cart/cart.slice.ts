@@ -150,6 +150,27 @@ export const activeTotal = createAsyncThunk(
 );
 
 /**
+ * Function deleteTotal
+ * categoryId, productId is id tracking in cart
+ */
+export const deleteTotal = createAsyncThunk("cart/deleteTotal", async (cart: Cart) => {
+  console.log(cart)
+  const remove = [
+    {
+      categoryId: 123,
+      listProduct: {
+        productId: 123,
+        listVariant: [{ variantId: 123 }],
+      },
+    },
+  ];
+
+  const result = await CartService.deleteTotal(remove);
+  if (result.success == true) return { remove };
+  else throw result.message;
+});
+
+/**
  * Function activeVariant
  * categoryId, productId, variantId is id tracking in cart
  */
@@ -170,6 +191,25 @@ export const removeVariant = createAsyncThunk(
       variantId
     );
     if (result.success == true) return { categoryId, productId, variantId };
+    else throw result.message;
+  }
+);
+
+/**
+ * Function removeProduct
+ * categoryId, productId, variantId is id tracking in cart
+ */
+export const removeProduct = createAsyncThunk(
+  "cart/removeProduct",
+  async ({
+    categoryId,
+    productId,
+  }: {
+    categoryId: number;
+    productId: number;
+  }) => {
+    const result = await CartService.removeProduct(categoryId, productId);
+    if (result.success == true) return { categoryId, productId };
     else throw result.message;
   }
 );
@@ -212,11 +252,15 @@ export const cart = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      //get cart
+      /**
+       * get cart
+       */
       .addCase(get.fulfilled, (state, action) => {
         state.data = action.payload;
       })
-      //update cart
+      /**
+       * update cart
+       */
       .addCase(update.pending, (state) => {
         state.error = null;
       })
@@ -258,7 +302,9 @@ export const cart = createSlice({
       .addCase(update.rejected, (state, action) => {
         state.error = action.error.message;
       })
-      // active variant
+      /**
+       * active variant
+       */
       .addCase(activeVariant.pending, (state) => {
         state.error = null;
       })
@@ -302,7 +348,9 @@ export const cart = createSlice({
       .addCase(activeVariant.rejected, (state, action) => {
         state.error = action.error.message;
       })
-      // active product
+      /**
+       * active product
+       */
       .addCase(activeProduct.pending, (state) => {
         state.error = null;
       })
@@ -368,7 +416,9 @@ export const cart = createSlice({
       .addCase(activeProduct.rejected, (state, action) => {
         state.error = action.error.message;
       })
-      // active catogery
+      /**
+       * active catogery
+       */
       .addCase(activeCategory.pending, (state) => {
         state.error = null;
       })
@@ -435,7 +485,9 @@ export const cart = createSlice({
       .addCase(activeCategory.rejected, (state, action) => {
         state.error = action.error.message;
       })
-      //active Total
+      /**
+       * active Total
+       */
       .addCase(activeTotal.pending, (state) => {
         state.error = null;
       })
@@ -504,7 +556,9 @@ export const cart = createSlice({
       .addCase(activeTotal.rejected, (state, action) => {
         state.error = action.error.message;
       })
-      // remove variant
+      /**
+       * remove variant
+       */
       .addCase(removeVariant.pending, (state) => {
         state.error = null;
       })
@@ -558,6 +612,41 @@ export const cart = createSlice({
         }
       })
       .addCase(removeVariant.rejected, (state, action) => {
+        state.error = action.error.message;
+      })
+      /**
+       * remove product
+       */
+      .addCase(removeProduct.pending, (state) => {
+        state.error = null;
+      })
+      .addCase(removeProduct.fulfilled, (state, action) => {
+        const { categoryId, productId } = action.payload;
+        let indexCategory = findIndexCategory(
+          state.data.categories,
+          categoryId
+        );
+
+        //remove product
+        state.data.categories[indexCategory].products = state.data.categories[
+          indexCategory
+        ].products.filter((product) => product.productId != productId);
+
+        if (state.data.categories[indexCategory].products.length == 0) {
+          state.data.categories = state.data.categories.filter(
+            (category) => category.categoryId != categoryId
+          );
+        } else {
+          //Finaly calculator
+          const amount = selectBillCategory(
+            state.data.categories[indexCategory]
+          );
+          state.data.categories[indexCategory].amount = amount;
+          const bill = selectBillTotal(state.data.categories);
+          state.data.bill = bill;
+        }
+      })
+      .addCase(removeProduct.rejected, (state, action) => {
         state.error = action.error.message;
       });
   },
