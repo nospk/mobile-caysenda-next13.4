@@ -10,7 +10,7 @@ import { useAppDispatch } from "@/redux/hooks";
 import { getActiveCategory } from "@/redux/features/cart/cart.action";
 import { useRouter } from "next/navigation";
 import styles from "./styles.module.css";
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 interface Props {
   category: CartCategory;
   isRemove: boolean;
@@ -23,7 +23,7 @@ const Catogery = ({ category, isRemove }: Props) => {
   const checkActiveDelete = category
     ? selectCheckActiveDeleteCategory(category)
     : 0;
-  const CheckActive = () => {
+  const CheckActive = useMemo(() => {
     if (!isRemove) {
       return checkActiveSelect == 0 ? (
         <NotActive />
@@ -41,7 +41,7 @@ const Catogery = ({ category, isRemove }: Props) => {
         <ActiveFull />
       );
     }
-  };
+  }, [isRemove, checkActiveSelect, checkActiveDelete]);
   useEffect(() => {
     if (category.amount < category.condition) {
       dispatch(
@@ -69,7 +69,7 @@ const Catogery = ({ category, isRemove }: Props) => {
               }}
               className={styles.catogerycart_checked_wrapper}
             >
-              {CheckActive()}
+              {CheckActive}
               <div className={styles.checked_padding}></div>
             </div>
             <div className={styles.catogerycart_title}>

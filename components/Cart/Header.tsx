@@ -1,7 +1,7 @@
 import { AiOutlineEnvironment, AiOutlineRight } from "react-icons/ai";
 import styles from "./styles.module.css";
 import SelectAddressModal from "../SelectAddressModal/SelectAddressModal";
-
+import React from "react";
 interface Props {
   address: string;
   isRemove: boolean;
@@ -38,4 +38,4 @@ const Header: React.FC<Props> = ({ address, isRemove, setIsRemove }) => {
     </header>
   );
 };
-export default Header;
+export default React.memo(Header);

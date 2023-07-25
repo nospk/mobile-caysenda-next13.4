@@ -1,37 +1,38 @@
 "use client";
-
-import { convertMoney } from "@/lib/formatPrice";
-import {
-  selectErrorOrder,
-  selectCheckActiveCart,
-} from "@/redux/features/cart/cart.selector";
-import { ActiveFull, HaftFull, NotActive } from "../Checked/Checked";
 import styles from "./styles.module.css";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { convertMoney } from "@/lib/formatPrice";
+import { ActiveFull, HaftFull, NotActive } from "../Checked/Checked";
 import Header from "./Header";
 import Warning from "./Warning";
 import CatogeryCart from "./CatogeryCart";
-import { useState, type FC, useEffect } from "react";
+import { useState, type FC, useEffect, useMemo } from "react";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { openDialog } from "@/redux/features/dialog/dialog.slice";
 import {
   getCart,
   getActiveTotal,
   getDeleteTotal,
 } from "@/redux/features/cart/cart.action";
+import {
+  selectErrorOrder,
+  selectCheckActiveCart,
+} from "@/redux/features/cart/cart.selector";
 import type { Cart } from "@/types/cart";
+
 interface Props {
   address: string;
 }
 const Cart: FC<Props> = (props) => {
   // Check button remove
   const [isRemove, setIsRemove] = useState<boolean>(false);
-
+  
   // InitialState Address
   const [address, setAddress] = useState<string>(props.address);
 
-  const dispatch = useAppDispatch();
+  
 
   //Initial cart
+  const dispatch = useAppDispatch();
   const cart = useAppSelector((state) => state.cartReducer.data);
   const error = useAppSelector((state) => state.cartReducer.error);
   // const fee_delivery = useAppSelector(
@@ -57,7 +58,11 @@ const Cart: FC<Props> = (props) => {
   return (
     <div className={styles.main}>
       <div className={styles.content}>
-        <Header address={address} isRemove={isRemove} setIsRemove={setIsRemove}/>
+        <Header
+          address={address}
+          isRemove={isRemove}
+          setIsRemove={setIsRemove}
+        />
         <div className={styles.content_wrapper}>
           <div className={styles.content_box}>
             <div className={styles.content_box_wrapper}>
@@ -65,7 +70,11 @@ const Cart: FC<Props> = (props) => {
                 <Warning />
                 {cart.categories && cart.categories.length > 0 ? (
                   cart.categories.map((category) => (
-                    <CatogeryCart key={category.name} category={category} isRemove={isRemove}/>
+                    <CatogeryCart
+                      key={category.name}
+                      category={category}
+                      isRemove={isRemove}
+                    />
                   ))
                 ) : (
                   <div className="flex h-[300px] flex-col items-center justify-center text-center">

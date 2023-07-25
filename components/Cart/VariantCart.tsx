@@ -5,7 +5,7 @@ import { useOnActionOutside } from "@/components/hook/useOnActionOutside";
 import styles from "./styles.module.css";
 import type { CartVariant } from "@/types/cart";
 import Image from "next/image";
-import React from "react";
+import React, { useMemo } from "react";
 import { useAppDispatch } from "@/redux/hooks";
 import {
   updateCart,
@@ -16,43 +16,87 @@ import {
 
 interface Prop {
   variant: CartVariant;
-  conditions: (number | null)[];
-  conditionDefault: number;
   categoryId: number;
   productId: number;
   unit: string;
-  retail: boolean;
   quantityProduct: number;
   categoryAmount: number;
+  condition: number;
   categoryCondtion: number;
-  isRemove: boolean
+  isRemove: boolean;
+  price: number;
 }
 const VariantCart = ({
   variant,
-  conditions,
-  conditionDefault,
   categoryId,
   productId,
+  condition,
   unit,
-  retail,
   quantityProduct,
   categoryAmount,
   categoryCondtion,
-  isRemove
+  isRemove,
+  price,
 }: Prop) => {
-  const {
-    selected,
-    name,
-    thumbnail,
-    quantity,
-    price,
-    variantId,
-    selectedDelete,
-  } = variant;
+  /** Data config */
+  const { selected, name, thumbnail, quantity, variantId, selectedDelete } =
+    variant;
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  //const ref = useRef(null); 
+  //const ref = useRef(null);
 
   const dispatch = useAppDispatch();
+  const variantAmount = Number(price) * Number(quantity);
+  const activeVariant = () => {
+    if (
+      (!selected == true && quantityProduct < condition) ||
+      categoryAmount + variantAmount < categoryCondtion
+    ) {
+      return;
+    }
+
+    if (
+      !selected == false &&
+      categoryAmount - variantAmount < categoryCondtion
+    ) {
+      dispatch(
+        getActiveCategory({
+          active: false,
+          categoryId: categoryId,
+        })
+      );
+    } else {
+      dispatch(
+        getActiveVariant({
+          active: !selected,
+          categoryId: categoryId,
+          productId: productId,
+          variantId: variantId,
+        })
+      );
+    }
+  };
+  const checkActive = useMemo(() => {
+    if (!isRemove) {
+      return selected ? <ActiveFull /> : <NotActive />;
+    } else {
+      return selectedDelete ? <ActiveFull /> : <NotActive />;
+    }
+  }, [isRemove, selected, selectedDelete]);
+  const memoizedImage = useMemo(() => {
+    return (
+      <Image
+        className="rounded-lg"
+        src={thumbnail}
+        alt="test"
+        sizes="100vw"
+        width={0}
+        height={0}
+        style={{ width: "100%", height: "100%" }}
+      />
+    );
+  }, [thumbnail]);
+
+  /**CSS Config */
   // const handleClickOutside = () => {
   //   setCssTouch({ css: touchPosition[0], level: 0 });
   //   setdirection("left");
@@ -129,26 +173,7 @@ const VariantCart = ({
       }
     }
   };
-  const findConditionIndex = (
-    conditions: (number | null)[],
-    quantity: number
-  ) => {
-    for (let index = 0; index < conditions.length; index++) {
-      if (conditions[index] != null && quantity <= conditions[index]!) {
-        return index;
-      }
-    }
-    return 0;
-  };
-  const checkPrice = (): number => {
-    //If retail will get price in variant
-    if (retail) Number(price) * Number(quantity);
-    //Else will be get condition to get the price level
-    let indexPrice = findConditionIndex(conditions, quantity);
-    const listPrice = [variant.vip1, variant.vip2, variant.vip3, variant.vip4];
-    const priceActive = listPrice[indexPrice];
-    return Number(priceActive) * Number(quantity);
-  };
+
   //When div position doesn't reach the end then calculate
   const TouchEnd = () => {
     if (direction == "left") {
@@ -161,41 +186,6 @@ const VariantCart = ({
         setCssTouch({ css: touchPosition[0], level: 0 });
         setdirection("left");
       } else setCssTouch({ css: touchPosition[18], level: 18 });
-    }
-  };
-  const variantAmount = checkPrice();
-  const activeVariant = () => {
-    if (
-      (!selected == true && quantityProduct < conditionDefault) ||
-      categoryAmount + variantAmount < categoryCondtion
-    )
-      return;
-    if (
-      !selected == false &&
-      categoryAmount - variantAmount < categoryCondtion
-    ) {
-      dispatch(
-        getActiveCategory({
-          active: false,
-          categoryId: categoryId,
-        })
-      );
-    } else {
-      dispatch(
-        getActiveVariant({
-          active: !selected,
-          categoryId: categoryId,
-          productId: productId,
-          variantId: variantId,
-        })
-      );
-    }
-  };
-  const checkActive = () => {
-    if (!isRemove) {
-      return selected ? <ActiveFull /> : <NotActive />;
-    } else {
-      return selectedDelete ? <ActiveFull /> : <NotActive />;
     }
   };
   return (
@@ -214,21 +204,11 @@ const VariantCart = ({
                 className={styles.variant_cart_select}
                 onClick={activeVariant}
               >
-                {checkActive()}
+                {checkActive}
                 <div className={styles.variant_cart_select_margin}></div>
               </div>
               <div className={styles.variant_cart_image_name}>
-                <div className={styles.variant_cart_image}>
-                  <Image
-                    className="rounded-lg"
-                    src={thumbnail}
-                    alt="test"
-                    sizes="100vw"
-                    width={0}
-                    height={0}
-                    style={{ width: "100%", height: "100%" }}
-                  />
-                </div>
+                <div className={styles.variant_cart_image}>{memoizedImage}</div>
                 <span className={styles.variant_cart_name}>{name}</span>
               </div>
             </div>
@@ -256,7 +236,7 @@ const VariantCart = ({
                             quantityNew: Number(quantity) - 1,
                             quantityOld: quantity,
                             quantityProduct: quantityProduct,
-                            condition: conditionDefault,
+                            condition: condition,
                           })
                         ).catch((e) => {
                           console.log(e);
@@ -281,7 +261,7 @@ const VariantCart = ({
                             quantityNew: Number(e.target.value),
                             quantityOld: quantity,
                             quantityProduct: quantityProduct,
-                            condition: conditionDefault,
+                            condition: condition,
                           })
                         ).catch((e) => {
                           console.log(e);
@@ -299,7 +279,7 @@ const VariantCart = ({
                               quantityNew: Number(quantity) + 1,
                               quantityOld: quantity,
                               quantityProduct: quantityProduct,
-                              condition: conditionDefault,
+                              condition: condition,
                             })
                           );
                         }}
@@ -314,10 +294,9 @@ const VariantCart = ({
               </div>
             </div>
             <div className={styles.variant_cart_error}>
-              {!isRemove && quantityProduct < conditionDefault ? (
+              {!isRemove && quantityProduct < condition ? (
                 <span className={styles.variant_cart_error_text}>
-                  Sản Phẩm Yêu Cầu Tối Thiểu Biến Thể : {conditionDefault}{" "}
-                  {unit}
+                  Sản Phẩm Yêu Cầu Tối Thiểu Biến Thể : {condition} {unit}
                 </span>
               ) : null}
             </div>

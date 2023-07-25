@@ -5,7 +5,7 @@ import type { Fee_Delivery } from "@/types/fee_delivery";
 const getCart = async () => {
   const response = {
     note: "",
-    bill: 119000,
+    bill: 0,
     categories: [
       {
         name: "ZTC-1",
@@ -26,6 +26,7 @@ const getCart = async () => {
             condition2: 50,
             condition3: 100,
             condition4: 1000,
+            priceDefault: 33000,
             price1: 33000,
             price2: 25000,
             price3: 21000,
@@ -33,7 +34,7 @@ const getCart = async () => {
             thumbnail:
               "https://caysenda.vn/resources/upload/17892827873_102253868.jpg",
             retail: false,
-            quantity: 5,
+            quantity: 0,
             active: false,
             selectedDelete: false,
             unit: "Cái",
@@ -44,15 +45,15 @@ const getCart = async () => {
                 thumbnail:
                   "https://caysenda.vn/resources/upload/22216875771_102253868.jpg",
                 sku: "adw",
-                price: 40000,
-                quantity: 2,
-                vip1: 39000,
-                vip2: 37000,
-                vip3: 33000,
-                vip4: 29000,
+                price: 33000,
+                quantity: 0,
+                vip1: 33000,
+                vip2: 25000,
+                vip3: 21000,
+                vip4: 19000,
                 selected: false,
                 variantId: 1323,
-                selectedDelete: false
+                selectedDelete: false,
               },
               {
                 name: "Chậu Hình Cáo",
@@ -60,15 +61,15 @@ const getCart = async () => {
                 thumbnail:
                   "https://caysenda.vn/resources/upload/22216875771_102253868.jpg",
                 sku: "adw",
-                price: 40000,
-                quantity: 3,
+                price: 33000,
+                quantity: 0,
                 vip1: 33000,
-                vip2: 21000,
-                vip3: 19000,
-                vip4: 17000,
+                vip2: 25000,
+                vip3: 21000,
+                vip4: 19000,
                 selected: false,
                 variantId: 1236,
-                selectedDelete: false
+                selectedDelete: false,
               },
             ],
           },
@@ -90,7 +91,7 @@ const getCart = async () => {
             thumbnail:
               "https://caysenda.vn/resources/upload/17892827873_102253868.jpg",
             retail: false,
-            quantity: 5,
+            quantity: 0,
             active: false,
             unit: "Cái",
             variants: [
@@ -101,14 +102,14 @@ const getCart = async () => {
                   "https://caysenda.vn/resources/upload/22216875771_102253868.jpg",
                 sku: "adw",
                 price: 40000,
-                quantity: 2,
+                quantity: 0,
                 vip1: 39000,
                 vip2: 37000,
                 vip3: 33000,
                 vip4: 29000,
                 selected: false,
                 variantId: 1323,
-                selectedDelete: false
+                selectedDelete: false,
               },
               {
                 name: "Chậu Hình Cáo 21321",
@@ -117,14 +118,14 @@ const getCart = async () => {
                   "https://caysenda.vn/resources/upload/22216875771_102253868.jpg",
                 sku: "adw",
                 price: 40000,
-                quantity: 3,
+                quantity: 0,
                 vip1: 33000,
                 vip2: 21000,
                 vip3: 19000,
                 vip4: 17000,
                 selected: false,
                 variantId: 1236,
-                selectedDelete: false
+                selectedDelete: false,
               },
             ],
           },
@@ -149,10 +150,11 @@ const getCart = async () => {
             condition2: null,
             condition3: null,
             condition4: null,
-            price1: 60000,
-            price2: 40000,
-            price3: 30000,
-            price4: 30000,
+            priceDefault: null,
+            price1: null,
+            price2: null,
+            price3: null,
+            price4: null,
             thumbnail:
               "https://caysenda.vn/resources/upload/17892827873_102253868.jpg",
             retail: true,
@@ -169,13 +171,13 @@ const getCart = async () => {
                 sku: "adw",
                 price: 35000,
                 quantity: 2,
-                vip1: 30000,
-                vip2: 25000,
-                vip3: 15000,
-                vip4: 10000,
+                vip1: 35000,
+                vip2: 35000,
+                vip3: 35000,
+                vip4: 35000,
                 selected: false,
                 variantId: 1234,
-                selectedDelete: false
+                selectedDelete: false,
               },
               {
                 name: "Chậu Hình Cáo",
@@ -185,12 +187,12 @@ const getCart = async () => {
                 price: 40000,
                 quantity: 2,
                 vip1: 40000,
-                vip2: 30000,
-                vip3: 20000,
-                vip4: 10000,
+                vip2: 40000,
+                vip3: 40000,
+                vip4: 40000,
                 selected: false,
                 variantId: 1235,
-                selectedDelete: false
+                selectedDelete: false,
               },
             ],
           },
@@ -279,15 +281,17 @@ const activeTotal = async (active: boolean) => {
   return response;
 };
 
-const deleteTotal = async (cart: {
-  categoryId: number;
-  listProduct: {
+const deleteTotal = async (
+  cart: {
+    categoryId: number;
+    listProduct: {
       productId: number;
       listVariant: {
-          variantId: number;
+        variantId: number;
       }[];
-  };
-}[]) => {
+    };
+  }[]
+) => {
   const response = {
     success: true,
     message: "Cập nhật thành công",

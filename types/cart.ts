@@ -12,7 +12,7 @@ export interface CartCategory {
   products: CartProduct[];
   categoryId: number;
   active: boolean;
-  selectedDelete: boolean
+  selectedDelete: boolean;
 }
 
 export interface CartProduct {
@@ -25,6 +25,7 @@ export interface CartProduct {
   condition2: number | null;
   condition3: number | null;
   condition4: number | null;
+  priceDefault: number | null;
   price1: number | null;
   price2: number | null;
   price3: number | null;
@@ -36,7 +37,7 @@ export interface CartProduct {
   active: boolean;
   unit: string;
   variants: CartVariant[];
-  selectedDelete: boolean
+  selectedDelete: boolean;
 }
 
 export interface CartVariant {
@@ -51,5 +52,5 @@ export interface CartVariant {
   vip4: number;
   selected: boolean;
   variantId: number;
-  selectedDelete: boolean
+  selectedDelete: boolean;
 }

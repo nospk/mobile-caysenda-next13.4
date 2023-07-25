@@ -10,20 +10,20 @@ import {
   getRemoveProduct,
 } from "@/redux/features/cart/cart.action";
 import styles from "./styles.module.css";
-import React from "react";
+import React, { useMemo } from "react";
 interface Props {
   product: CartProduct;
   categoryId: number;
   categoryAmount: number;
   categoryCondtion: number;
-  isRemove: boolean
+  isRemove: boolean;
 }
 const ProductCart = ({
   product,
   categoryId,
   categoryAmount,
   categoryCondtion,
-  isRemove
+  isRemove,
 }: Props) => {
   const {
     variants,
@@ -39,9 +39,74 @@ const ProductCart = ({
     unit,
     retail,
     quantity,
-    selectedDelete
+    selectedDelete,
   } = product;
   const dispatch = useAppDispatch();
+
+  const findConditionIndex = (
+    conditions: (number | null)[],
+    quantity: number
+  ) => {
+    for (let index = 0; index < conditions.length; index++) {
+      if (conditions[index] != null && quantity <= conditions[index]!) {
+        return index;
+      }
+    }
+    return 0;
+  };
+  const checkPrice = (): number => {
+    //If retail will get price in variant
+    if (retail) Number(product.priceDefault);
+    //Else will be get condition to get the price level
+    let indexPrice = findConditionIndex(
+      [condition1, condition2, condition3, condition4],
+      quantity
+    );
+    const listPrice = [
+      product.price1,
+      product.price2,
+      product.price3,
+      product.price4,
+    ];
+    const priceActive = listPrice[indexPrice];
+    return Number(priceActive);
+  };
+
+  const checkActive = useMemo(() => {
+    if (!isRemove) {
+      if (!active) {
+        return <NotActive />;
+      } else {
+        const check = variants.filter((variant) => variant.selected == false);
+        return check.length == 0 ? <ActiveFull /> : <HaftFull />;
+      }
+    } else {
+      if (!selectedDelete) {
+        return <NotActive />;
+      } else {
+        const check = variants.filter(
+          (variant) => variant.selectedDelete == false
+        );
+        return check.length == 0 ? <ActiveFull /> : <HaftFull />;
+      }
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isRemove, active, selectedDelete]);
+  const memoizedImage = useMemo(() => {
+    return (
+      <Image
+        className="rounded-lg"
+        src={thumbnail}
+        alt="test"
+        sizes="100vw"
+        width={0}
+        height={0}
+        style={{ width: "100%", height: "100%" }}
+      />
+    );
+  }, [thumbnail]);
+
+  /** CSS Config */
   const widthDivHidden = 12;
   const touchPosition = [
     "",
@@ -118,24 +183,6 @@ const ProductCart = ({
     }
   };
 
-  //check active
-  const CheckActive = () => {
-    if (!isRemove) {
-      if (!active) {
-        return <NotActive />;
-      } else {
-        const check = variants.filter((variant) => variant.selected == false);
-        return check.length > 0 ? <ActiveFull /> : <HaftFull />;
-      }
-    }else{
-      if (!selectedDelete) {
-        return <NotActive />;
-      } else {
-        const check = variants.filter((variant) => variant.selectedDelete == false);
-        return check.length > 0 ? <ActiveFull /> : <HaftFull />;
-      }
-    }
-  };
   // const handleClickOutside = () => {
   //   // Your custom logic here
   //   setCssTouch({ css: touchPosition[0], level: 0 });
@@ -167,21 +214,13 @@ const ProductCart = ({
               }}
               className={styles.checked_wrapper}
             >
-              {CheckActive()}
+              {checkActive}
               <div className={styles.checked_padding}></div>
             </div>
             <div className={styles.productcart_main}>
               <div className={styles.productcart_image}>
                 <div className={styles.productcart_wrapper_image}>
-                  <Image
-                    className={styles.productcart_image_styles}
-                    src={thumbnail}
-                    alt="test"
-                    sizes="100vw"
-                    width={0}
-                    height={0}
-                    style={{ width: "100%", height: "100%" }}
-                  />
+                  {memoizedImage}
                 </div>
               </div>
               <div className={styles.productcart_name}>
@@ -207,10 +246,9 @@ const ProductCart = ({
           variant={variant}
           productId={productId}
           categoryId={categoryId}
-          conditions={[condition1, condition2, condition3, condition4]}
-          conditionDefault={conditionDefault}
           unit={unit}
-          retail={retail}
+          price={!retail ? checkPrice() : variant.price}
+          condition={conditionDefault}
           quantityProduct={quantity}
           categoryAmount={categoryAmount}
           categoryCondtion={categoryCondtion}

@@ -153,22 +153,25 @@ export const activeTotal = createAsyncThunk(
  * Function deleteTotal
  * categoryId, productId is id tracking in cart
  */
-export const deleteTotal = createAsyncThunk("cart/deleteTotal", async (cart: Cart) => {
-  console.log(cart)
-  const remove = [
-    {
-      categoryId: 123,
-      listProduct: {
-        productId: 123,
-        listVariant: [{ variantId: 123 }],
+export const deleteTotal = createAsyncThunk(
+  "cart/deleteTotal",
+  async (cart: Cart) => {
+    console.log(cart);
+    const remove = [
+      {
+        categoryId: 123,
+        listProduct: {
+          productId: 123,
+          listVariant: [{ variantId: 123 }],
+        },
       },
-    },
-  ];
+    ];
 
-  const result = await CartService.deleteTotal(remove);
-  if (result.success == true) return { remove };
-  else throw result.message;
-});
+    const result = await CartService.deleteTotal(remove);
+    if (result.success == true) return { remove };
+    else throw result.message;
+  }
+);
 
 /**
  * Function activeVariant
@@ -338,7 +341,14 @@ export const cart = createSlice({
         ].products.filter((product) => product.active == true);
         state.data.categories[indexCategory].active =
           checkCategory.length == 0 ? false : true;
-
+        //set for delete
+        state.data.categories[indexCategory].products[indexProduct].variants[
+          indexVariant
+        ].selectedDelete = active;
+        state.data.categories[indexCategory].products[
+          indexProduct
+        ].selectedDelete = active;
+        state.data.categories[indexCategory].selectedDelete = active;
         //Finaly calculator
         const amount = selectBillCategory(state.data.categories[indexCategory]);
         state.data.categories[indexCategory].amount = amount;
@@ -391,6 +401,10 @@ export const cart = createSlice({
               state.data.categories[indexCategory].products[
                 indexProduct
               ].variants[index].selected = active;
+              //set for delete
+              state.data.categories[indexCategory].products[
+                indexProduct
+              ].variants[index].selectedDelete = active;
             }
           }
         }
@@ -406,7 +420,11 @@ export const cart = createSlice({
         ].products.filter((product) => product.active == true);
         state.data.categories[indexCategory].active =
           checkCategory.length == 0 ? false : true;
-
+        // set for delete
+        state.data.categories[indexCategory].products[
+          indexProduct
+        ].selectedDelete = active;
+        state.data.categories[indexCategory].selectedDelete = active;
         //Finaly calculator
         const amount = selectBillCategory(state.data.categories[indexCategory]);
         state.data.categories[indexCategory].amount = amount;
@@ -441,6 +459,10 @@ export const cart = createSlice({
                 state.data.categories[indexCategory].products[
                   indexProduct
                 ].variants[index].selected = active;
+                //set for delete
+                state.data.categories[indexCategory].products[
+                  indexProduct
+                ].variants[index].selectedDelete = active;
               }
             } else {
               for (let index = 0; index < variantCount; index++) {
@@ -457,6 +479,10 @@ export const cart = createSlice({
                   state.data.categories[indexCategory].products[
                     indexProduct
                   ].variants[index].selected = active;
+                  //set for delete
+                  state.data.categories[indexCategory].products[
+                    indexProduct
+                  ].variants[index].selectedDelete = active;
                 }
               }
             }
@@ -466,6 +492,15 @@ export const cart = createSlice({
             ].variants.filter((variant) => variant.selected == true);
             state.data.categories[indexCategory].products[indexProduct].active =
               checkProduct.length == 0 ? false : true;
+            //set for delete
+            let checkProductDelete = state.data.categories[
+              indexCategory
+            ].products[indexProduct].variants.filter(
+              (variant) => variant.selectedDelete == true
+            );
+            state.data.categories[indexCategory].products[
+              indexProduct
+            ].selectedDelete = checkProductDelete.length == 0 ? false : true;
           }
         );
 
@@ -476,6 +511,12 @@ export const cart = createSlice({
         state.data.categories[indexCategory].active =
           checkCategory.length == 0 ? false : true;
 
+        // set for delete
+        let checkCategoryDelete = state.data.categories[
+          indexCategory
+        ].products.filter((product) => product.selectedDelete == true);
+        state.data.categories[indexCategory].selectedDelete =
+          checkCategoryDelete.length == 0 ? false : true;
         //Finaly calculator
         const amount = selectBillCategory(state.data.categories[indexCategory]);
         state.data.categories[indexCategory].amount = amount;
@@ -508,6 +549,10 @@ export const cart = createSlice({
                   state.data.categories[indexCategory].products[
                     indexProduct
                   ].variants[index].selected = active;
+                  //set for delete
+                  state.data.categories[indexCategory].products[
+                    indexProduct
+                  ].variants[index].selectedDelete = active;
                 }
               } else {
                 for (let index = 0; index < variantCount; index++) {
@@ -524,6 +569,10 @@ export const cart = createSlice({
                     state.data.categories[indexCategory].products[
                       indexProduct
                     ].variants[index].selected = active;
+                    //set for delete
+                    state.data.categories[indexCategory].products[
+                      indexProduct
+                    ].variants[index].selectedDelete = active;
                   }
                 }
               }
@@ -534,6 +583,15 @@ export const cart = createSlice({
               state.data.categories[indexCategory].products[
                 indexProduct
               ].active = checkProduct.length == 0 ? false : true;
+              //set for delete
+              let checkProductDelete = state.data.categories[
+                indexCategory
+              ].products[indexProduct].variants.filter(
+                (variant) => variant.selectedDelete == true
+              );
+              state.data.categories[indexCategory].products[
+                indexProduct
+              ].selectedDelete = checkProductDelete.length == 0 ? false : true;
             }
           );
 
@@ -543,7 +601,12 @@ export const cart = createSlice({
           ].products.filter((product) => product.active == true);
           state.data.categories[indexCategory].active =
             checkCategory.length == 0 ? false : true;
-
+          // set for delete
+          let checkCategoryDelete = state.data.categories[
+            indexCategory
+          ].products.filter((product) => product.selectedDelete == true);
+          state.data.categories[indexCategory].selectedDelete =
+            checkCategoryDelete.length == 0 ? false : true;
           //Finaly calculator
           const amount = selectBillCategory(
             state.data.categories[indexCategory]
