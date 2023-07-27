@@ -10,6 +10,7 @@ import type { Fee_Delivery } from "@/types/fee_delivery";
 import {
   selectBillCategory,
   selectBillTotal,
+  selectBillProduct,
 } from "@/redux/features/cart/cart.selector";
 
 const initialState = {
@@ -24,27 +25,40 @@ const initialState = {
  */
 export const update = createAsyncThunk(
   "cart/update",
-  async ({
-    categoryId,
-    productId,
-    variantId,
-    quantityNew,
-    quantityOld,
-    quantityProduct,
-    condition,
-  }: {
-    categoryId: number;
-    productId: number;
-    variantId: number;
-    quantityNew: number;
-    quantityOld: number;
-    quantityProduct: number;
-    condition: number;
-  }) => {
+  async (
+    {
+      categoryId,
+      productId,
+      variantId,
+      quantityNew,
+      quantityOld,
+      condition,
+    }: {
+      categoryId: number;
+      productId: number;
+      variantId: number;
+      quantityNew: number;
+      quantityOld: number;
+      condition: number;
+    },
+    state: any
+  ) => {
     if (quantityNew < 1) throw "Số lượng không thể nhỏ hơn 1";
+    let categories = state.getState().cartReducer.data.categories;
+    //Find index
+    let indexCategory = findIndexCategory(categories, categoryId);
+    let indexProduct = findIndexProduct(
+      categories[indexCategory].products,
+      productId
+    );
+    let indexVariant = findIndexVariant(
+      categories[indexCategory].products[indexProduct].variants,
+      variantId
+    );
     if (
       quantityOld > quantityNew &&
-      Number(quantityProduct) + (Number(quantityNew) - Number(quantityOld)) <
+      Number(categories[indexCategory].products[indexProduct].quantity) +
+        (Number(quantityNew) - Number(quantityOld)) <
         condition
     )
       throw "Không được đặt số lượng nhỏ hơn điều kiện";
@@ -55,7 +69,7 @@ export const update = createAsyncThunk(
       quantityNew
     );
     if (result.success == true)
-      return { categoryId, productId, variantId, quantityNew };
+      return { indexCategory, indexProduct, indexVariant, quantityNew };
     else throw result.message;
   }
 );
@@ -268,21 +282,8 @@ export const cart = createSlice({
         state.error = null;
       })
       .addCase(update.fulfilled, (state, action) => {
-        const { categoryId, productId, variantId, quantityNew } =
+        const { indexCategory, indexProduct, indexVariant, quantityNew } =
           action.payload;
-        //Find index
-        let indexCategory = findIndexCategory(
-          state.data.categories,
-          categoryId
-        );
-        let indexProduct = findIndexProduct(
-          state.data.categories[indexCategory].products,
-          productId
-        );
-        let indexVariant = findIndexVariant(
-          state.data.categories[indexCategory].products[indexProduct].variants,
-          variantId
-        );
         //Set quantity for variant
         state.data.categories[indexCategory].products[indexProduct].variants[
           indexVariant
@@ -297,8 +298,18 @@ export const cart = createSlice({
         state.data.categories[indexCategory].products[indexProduct].quantity =
           quantityProduct;
         //Finaly calculator
-        const amount = selectBillCategory(state.data.categories[indexCategory]);
-        state.data.categories[indexCategory].amount = amount;
+        const amountProduct = selectBillProduct(
+          state.data.categories[indexCategory].products[indexProduct]
+        );
+        state.data.categories[indexCategory].products[indexProduct].amount =
+          amountProduct;
+        const { moneyActive, moneyTotal } = selectBillCategory(
+          state.data.categories[indexCategory]
+        );
+        state.data.categories[indexCategory].amount = moneyTotal;
+        state.data.categories[indexCategory].amountActive = moneyActive
+
+        //Count bill
         const bill = selectBillTotal(state.data.categories);
         state.data.bill = bill;
       })
@@ -350,8 +361,11 @@ export const cart = createSlice({
         ].selectedDelete = active;
         state.data.categories[indexCategory].selectedDelete = active;
         //Finaly calculator
-        const amount = selectBillCategory(state.data.categories[indexCategory]);
-        state.data.categories[indexCategory].amount = amount;
+        const { moneyActive, moneyTotal } = selectBillCategory(
+          state.data.categories[indexCategory]
+        );
+        state.data.categories[indexCategory].amount = moneyTotal;
+        state.data.categories[indexCategory].amountActive = moneyActive
         const bill = selectBillTotal(state.data.categories);
         state.data.bill = bill;
       })
@@ -426,8 +440,11 @@ export const cart = createSlice({
         ].selectedDelete = active;
         state.data.categories[indexCategory].selectedDelete = active;
         //Finaly calculator
-        const amount = selectBillCategory(state.data.categories[indexCategory]);
-        state.data.categories[indexCategory].amount = amount;
+        const { moneyActive, moneyTotal } = selectBillCategory(
+          state.data.categories[indexCategory]
+        );
+        state.data.categories[indexCategory].amount = moneyTotal;
+        state.data.categories[indexCategory].amountActive = moneyActive
         const bill = selectBillTotal(state.data.categories);
         state.data.bill = bill;
       })
@@ -518,8 +535,11 @@ export const cart = createSlice({
         state.data.categories[indexCategory].selectedDelete =
           checkCategoryDelete.length == 0 ? false : true;
         //Finaly calculator
-        const amount = selectBillCategory(state.data.categories[indexCategory]);
-        state.data.categories[indexCategory].amount = amount;
+        const { moneyActive, moneyTotal } = selectBillCategory(
+          state.data.categories[indexCategory]
+        );
+        state.data.categories[indexCategory].amount = moneyTotal;
+        state.data.categories[indexCategory].amountActive = moneyActive
         const bill = selectBillTotal(state.data.categories);
         state.data.bill = bill;
       })
@@ -608,10 +628,11 @@ export const cart = createSlice({
           state.data.categories[indexCategory].selectedDelete =
             checkCategoryDelete.length == 0 ? false : true;
           //Finaly calculator
-          const amount = selectBillCategory(
+          const { moneyActive, moneyTotal } = selectBillCategory(
             state.data.categories[indexCategory]
           );
-          state.data.categories[indexCategory].amount = amount;
+          state.data.categories[indexCategory].amount = moneyTotal;
+          state.data.categories[indexCategory].amountActive = moneyActive
           const bill = selectBillTotal(state.data.categories);
           state.data.bill = bill;
         });
@@ -666,10 +687,11 @@ export const cart = createSlice({
           );
         } else {
           //Finaly calculator
-          const amount = selectBillCategory(
+          const { moneyActive, moneyTotal } = selectBillCategory(
             state.data.categories[indexCategory]
           );
-          state.data.categories[indexCategory].amount = amount;
+          state.data.categories[indexCategory].amount = moneyTotal;
+          state.data.categories[indexCategory].amountActive = moneyActive
           const bill = selectBillTotal(state.data.categories);
           state.data.bill = bill;
         }
@@ -701,10 +723,11 @@ export const cart = createSlice({
           );
         } else {
           //Finaly calculator
-          const amount = selectBillCategory(
+          const { moneyActive, moneyTotal } = selectBillCategory(
             state.data.categories[indexCategory]
           );
-          state.data.categories[indexCategory].amount = amount;
+          state.data.categories[indexCategory].amount = moneyTotal;
+          state.data.categories[indexCategory].amountActive = moneyActive
           const bill = selectBillTotal(state.data.categories);
           state.data.bill = bill;
         }

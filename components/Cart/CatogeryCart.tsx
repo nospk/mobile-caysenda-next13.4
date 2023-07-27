@@ -1,5 +1,10 @@
 import ProductCart from "./ProductCart";
-import { ActiveFull, HaftFull, NotActive } from "../Checked/Checked";
+import {
+  ActiveFull,
+  HaftFull,
+  NotActive,
+  DisableActive,
+} from "../Checked/Checked";
 import { convertMoney } from "@/lib/formatPrice";
 import type { CartCategory } from "@/types/cart";
 import {
@@ -23,7 +28,9 @@ const Catogery = ({ category, isRemove }: Props) => {
   const checkActiveDelete = category
     ? selectCheckActiveDeleteCategory(category)
     : 0;
-  const CheckActive = useMemo(() => {
+  const canActiveCategory = category.amount >= category.condition ? true : false;
+  const CheckActive = () => {
+    if (!canActiveCategory) return <DisableActive />;
     if (!isRemove) {
       return checkActiveSelect == 0 ? (
         <NotActive />
@@ -41,9 +48,10 @@ const Catogery = ({ category, isRemove }: Props) => {
         <ActiveFull />
       );
     }
-  }, [isRemove, checkActiveSelect, checkActiveDelete]);
+  };
+
   useEffect(() => {
-    if (category.amount < category.condition) {
+    if (category.amountActive < category.condition) {
       dispatch(
         getActiveCategory({
           active: false,
@@ -52,7 +60,7 @@ const Catogery = ({ category, isRemove }: Props) => {
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [category.amount]);
+  }, [category.amountActive]);
   return (
     <div className={styles.catogerycart_wrapper}>
       <div className={styles.catogerycart}>
@@ -60,6 +68,7 @@ const Catogery = ({ category, isRemove }: Props) => {
           <div className={styles.catogerycart_info}>
             <div
               onClick={() => {
+                if (!canActiveCategory) return;
                 dispatch(
                   getActiveCategory({
                     active: !category.active,
@@ -69,7 +78,7 @@ const Catogery = ({ category, isRemove }: Props) => {
               }}
               className={styles.catogerycart_checked_wrapper}
             >
-              {CheckActive}
+              {CheckActive()}
               <div className={styles.checked_padding}></div>
             </div>
             <div className={styles.catogerycart_title}>
@@ -80,7 +89,7 @@ const Catogery = ({ category, isRemove }: Props) => {
               </span>
               {">>"}
               <span className={styles.catogerycart_pricenow}>
-                Hiện tại: {convertMoney(category.amount) + "đ"}
+                Hiện tại: {convertMoney(category.amountActive) + "đ"}
               </span>
             </div>
             <span
@@ -93,21 +102,22 @@ const Catogery = ({ category, isRemove }: Props) => {
             </span>
           </div>
           <div className={styles.catogerycart_error}>
-            {category.amount < category.condition ? (
+            {category.amountActive < category.condition ? (
               <span>Chưa đạt mức tối thiểu của danh mục này</span>
             ) : null}
           </div>
         </div>
-        {category.products.map((product) => (
-          <ProductCart
-            key={product.productId}
-            categoryId={category.categoryId}
-            categoryAmount={category.amount}
-            categoryCondtion={category.condition}
-            product={product}
-            isRemove={isRemove}
-          />
-        ))}
+        {category.products.map((product) => {
+          return (
+            <ProductCart
+              key={product.productId}
+              categoryId={category.categoryId}
+              product={product}
+              isRemove={isRemove}
+              canActiveCategory={canActiveCategory}
+            />
+          );
+        })}
       </div>
     </div>
   );

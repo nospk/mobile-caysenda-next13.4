@@ -26,7 +26,6 @@ export const updateCart = ({
   variantId,
   quantityNew,
   quantityOld,
-  quantityProduct,
   condition,
 }: {
   categoryId: number;
@@ -34,7 +33,6 @@ export const updateCart = ({
   variantId: number;
   quantityNew: number;
   quantityOld: number;
-  quantityProduct: number;
   condition: number;
 }) => {
   return update({
@@ -43,7 +41,6 @@ export const updateCart = ({
     variantId,
     quantityNew,
     quantityOld,
-    quantityProduct,
     condition,
   });
 };

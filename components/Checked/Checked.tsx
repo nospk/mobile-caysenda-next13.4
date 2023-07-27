@@ -17,5 +17,7 @@ const HaftFull = () => {
 const NotActive = () => {
   return <div className={styles.checked_not_active}></div>;
 };
-
-export { ActiveFull, HaftFull, NotActive };
+const DisableActive = () => {
+  return <div className={styles.checked_disable_active}></div>;
+};
+export { ActiveFull, HaftFull, NotActive, DisableActive };

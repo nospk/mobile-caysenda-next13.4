@@ -19,3 +19,7 @@
 .checked_not_active {
   @apply h-[5.33333vw] w-[5.33333vw] content-start items-center rounded-full border-[0.26667vw] border-[#ddd] transition;
 }
+
+.checked_disable_active {
+  @apply h-[5.33333vw] w-[5.33333vw] content-start items-center rounded-full border-[0.26667vw] border-[#ddd] bg-[#F9F9F9] transition;
+}

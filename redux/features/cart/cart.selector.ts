@@ -58,6 +58,7 @@ export const selectCheckActiveCart = (categories: CartCategory[]): number => {
 export const selectCheckActiveCategory = (category: CartCategory): number => {
   let active = 0;
   let productNotActive = false;
+  let productActive = false;
   category.products.map((product) => {
     let activeProduct = 0;
     product.variants.map((variant) => {
@@ -68,15 +69,15 @@ export const selectCheckActiveCategory = (category: CartCategory): number => {
             (variant.selected && active == 1)
           ? 1
           : 0;
+      if (activeProduct != 0 && !productNotActive) productActive = true;
       if (activeProduct == 0 && !productNotActive) productNotActive = true;
     });
-
     active =
       activeProduct == 2 && (active == 0 || active == 2) && !productNotActive
         ? 2
         : activeProduct == 2 && active == 0 && productNotActive
         ? 1
-        : activeProduct == 0 && active == 0
+        : activeProduct == 0 && active == 0 && !productActive
         ? 0
         : 1;
   });
@@ -92,7 +93,9 @@ export const selectCheckActiveCategory = (category: CartCategory): number => {
  * 1 is HaftFull
  * 2 is ActiveFull
  */
-export const selectCheckActiveDeleteCategory = (category: CartCategory): number => {
+export const selectCheckActiveDeleteCategory = (
+  category: CartCategory
+): number => {
   let active = 0;
   let productNotActive = false;
   category.products.map((product) => {
@@ -120,28 +123,28 @@ export const selectCheckActiveDeleteCategory = (category: CartCategory): number 
   return active;
 };
 
-/**
- * @param category
- * @returns number
- */
 const findConditionIndex = (
   conditions: (number | null)[],
   quantity: number
 ) => {
-  for (let index = 0; index < conditions.length; index++) {
-    if (conditions[index] != null && quantity <= conditions[index]!) {
-      return index;
+  let index = 0;
+  for (let i = 0; i < conditions.length; i++) {
+    if (quantity > conditions[i]!) {
+      index = i;
     }
   }
-  return 0;
+  return index;
 };
 
 /**
  * @param category
  * @returns number
  */
-export const selectBillCategory = (category: CartCategory): number => {
-  let money = 0;
+export const selectBillCategory = (
+  category: CartCategory
+): { moneyActive: number; moneyTotal: number } => {
+  let moneyTotal = 0;
+  let moneyActive = 0;
   category.products.map((product) => {
     const retail = product.retail;
     const conditions = [
@@ -151,11 +154,14 @@ export const selectBillCategory = (category: CartCategory): number => {
       product.condition4,
     ];
     product.variants.map((variant) => {
-      if (!variant.selected) return;
+      if (product.quantity < product.conditionDefault) return;
       if (retail) {
-        money += Number(variant.price) * Number(variant.quantity);
+        moneyActive += variant.selected
+          ? Number(variant.price) * Number(variant.quantity)
+          : 0;
+        moneyTotal += Number(variant.price) * Number(variant.quantity);
       } else {
-        let indexPrice = findConditionIndex(conditions, variant.quantity);
+        let indexPrice = findConditionIndex(conditions, product.quantity);
         const listPrice = [
           variant.vip1,
           variant.vip2,
@@ -163,9 +169,42 @@ export const selectBillCategory = (category: CartCategory): number => {
           variant.vip4,
         ];
         const priceActive = listPrice[indexPrice];
-        money += Number(priceActive) * Number(variant.quantity);
+        moneyActive += variant.selected
+          ? Number(priceActive) * Number(variant.quantity)
+          : 0;
+        moneyTotal += Number(priceActive) * Number(variant.quantity);
       }
     });
+  });
+  return { moneyActive, moneyTotal };
+};
+
+/**
+ * @param product
+ * @returns number
+ */
+export const selectBillProduct = (product: CartProduct): number => {
+  let money = 0;
+  const conditions = [
+    product.condition1,
+    product.condition2,
+    product.condition3,
+    product.condition4,
+  ];
+  product.variants.map((variant) => {
+    if (product.retail) {
+      money += Number(variant.price) * Number(variant.quantity);
+    } else {
+      let indexPrice = findConditionIndex(conditions, product.quantity);
+      const listPrice = [
+        variant.vip1,
+        variant.vip2,
+        variant.vip3,
+        variant.vip4,
+      ];
+      const priceActive = listPrice[indexPrice];
+      money += Number(priceActive) * Number(variant.quantity);
+    }
   });
   return money;
 };

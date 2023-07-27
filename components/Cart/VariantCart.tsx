@@ -1,5 +1,5 @@
 import { convertMoney } from "@/lib/formatPrice";
-import { ActiveFull, NotActive } from "../Checked/Checked";
+import { ActiveFull, NotActive, DisableActive } from "../Checked/Checked";
 import { useState, useRef } from "react";
 import { useOnActionOutside } from "@/components/hook/useOnActionOutside";
 import styles from "./styles.module.css";
@@ -10,7 +10,6 @@ import { useAppDispatch } from "@/redux/hooks";
 import {
   updateCart,
   getActiveVariant,
-  getActiveCategory,
   getRemoveVariant,
 } from "@/redux/features/cart/cart.action";
 
@@ -19,12 +18,11 @@ interface Prop {
   categoryId: number;
   productId: number;
   unit: string;
-  quantityProduct: number;
-  categoryAmount: number;
   condition: number;
-  categoryCondtion: number;
   isRemove: boolean;
   price: number;
+  canActiveProduct: boolean;
+  canActiveCategory: boolean;
 }
 const VariantCart = ({
   variant,
@@ -32,11 +30,10 @@ const VariantCart = ({
   productId,
   condition,
   unit,
-  quantityProduct,
-  categoryAmount,
-  categoryCondtion,
   isRemove,
   price,
+  canActiveProduct,
+  canActiveCategory,
 }: Prop) => {
   /** Data config */
   const { selected, name, thumbnail, quantity, variantId, selectedDelete } =
@@ -47,41 +44,26 @@ const VariantCart = ({
   const dispatch = useAppDispatch();
   const variantAmount = Number(price) * Number(quantity);
   const activeVariant = () => {
-    if (
-      (!selected == true && quantityProduct < condition) ||
-      categoryAmount + variantAmount < categoryCondtion
-    ) {
+    if (!canActiveProduct || !canActiveCategory) {
       return;
     }
-
-    if (
-      !selected == false &&
-      categoryAmount - variantAmount < categoryCondtion
-    ) {
-      dispatch(
-        getActiveCategory({
-          active: false,
-          categoryId: categoryId,
-        })
-      );
-    } else {
-      dispatch(
-        getActiveVariant({
-          active: !selected,
-          categoryId: categoryId,
-          productId: productId,
-          variantId: variantId,
-        })
-      );
-    }
+    dispatch(
+      getActiveVariant({
+        active: !selected,
+        categoryId: categoryId,
+        productId: productId,
+        variantId: variantId,
+      })
+    );
   };
   const checkActive = useMemo(() => {
+    if (!canActiveCategory || !canActiveProduct) return <DisableActive />;
     if (!isRemove) {
       return selected ? <ActiveFull /> : <NotActive />;
     } else {
       return selectedDelete ? <ActiveFull /> : <NotActive />;
     }
-  }, [isRemove, selected, selectedDelete]);
+  }, [isRemove, selected, selectedDelete, canActiveCategory, canActiveProduct]);
   const memoizedImage = useMemo(() => {
     return (
       <Image
@@ -235,7 +217,6 @@ const VariantCart = ({
                             variantId: variantId,
                             quantityNew: Number(quantity) - 1,
                             quantityOld: quantity,
-                            quantityProduct: quantityProduct,
                             condition: condition,
                           })
                         ).catch((e) => {
@@ -260,7 +241,6 @@ const VariantCart = ({
                             variantId: variantId,
                             quantityNew: Number(e.target.value),
                             quantityOld: quantity,
-                            quantityProduct: quantityProduct,
                             condition: condition,
                           })
                         ).catch((e) => {
@@ -278,7 +258,6 @@ const VariantCart = ({
                               variantId: variantId,
                               quantityNew: Number(quantity) + 1,
                               quantityOld: quantity,
-                              quantityProduct: quantityProduct,
                               condition: condition,
                             })
                           );
@@ -294,7 +273,7 @@ const VariantCart = ({
               </div>
             </div>
             <div className={styles.variant_cart_error}>
-              {!isRemove && quantityProduct < condition ? (
+              {!isRemove && !canActiveProduct ? (
                 <span className={styles.variant_cart_error_text}>
                   Sản Phẩm Yêu Cầu Tối Thiểu Biến Thể : {condition} {unit}
                 </span>

@@ -1,7 +1,12 @@
 import Image from "next/image";
 import VariantCart from "./VariantCart";
 import { useState, useEffect, useRef } from "react";
-import { ActiveFull, HaftFull, NotActive } from "../Checked/Checked";
+import {
+  ActiveFull,
+  HaftFull,
+  NotActive,
+  DisableActive,
+} from "../Checked/Checked";
 import { useOnActionOutside } from "@/components/hook/useOnActionOutside";
 import type { CartProduct } from "@/types/cart";
 import { useAppDispatch } from "@/redux/hooks";
@@ -14,16 +19,14 @@ import React, { useMemo } from "react";
 interface Props {
   product: CartProduct;
   categoryId: number;
-  categoryAmount: number;
-  categoryCondtion: number;
   isRemove: boolean;
+  canActiveCategory: boolean;
 }
 const ProductCart = ({
   product,
   categoryId,
-  categoryAmount,
-  categoryCondtion,
   isRemove,
+  canActiveCategory,
 }: Props) => {
   const {
     variants,
@@ -47,12 +50,13 @@ const ProductCart = ({
     conditions: (number | null)[],
     quantity: number
   ) => {
-    for (let index = 0; index < conditions.length; index++) {
-      if (conditions[index] != null && quantity <= conditions[index]!) {
-        return index;
+    let index = 0;
+    for (let i = 0; i < conditions.length; i++) {
+      if (quantity > conditions[i]!) {
+        index = i;
       }
     }
-    return 0;
+    return index;
   };
   const checkPrice = (): number => {
     //If retail will get price in variant
@@ -71,8 +75,9 @@ const ProductCart = ({
     const priceActive = listPrice[indexPrice];
     return Number(priceActive);
   };
-
-  const checkActive = useMemo(() => {
+  const canActiveProduct = quantity >= conditionDefault ? true : false;
+  const checkActive = () => {
+    if (!canActiveCategory || !canActiveProduct) return <DisableActive />;
     if (!isRemove) {
       if (!active) {
         return <NotActive />;
@@ -90,8 +95,7 @@ const ProductCart = ({
         return check.length == 0 ? <ActiveFull /> : <HaftFull />;
       }
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isRemove, active, selectedDelete]);
+  };
   const memoizedImage = useMemo(() => {
     return (
       <Image
@@ -105,6 +109,19 @@ const ProductCart = ({
       />
     );
   }, [thumbnail]);
+
+  useEffect(() => {
+    if (quantity < conditionDefault) {
+      dispatch(
+        getActiveProduct({
+          active: false,
+          categoryId: categoryId,
+          productId: productId,
+        })
+      );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [quantity]);
 
   /** CSS Config */
   const widthDivHidden = 12;
@@ -204,6 +221,7 @@ const ProductCart = ({
           <div className={styles.productcart_pad}>
             <div
               onClick={() => {
+                if (!canActiveCategory || !canActiveProduct) return;
                 dispatch(
                   getActiveProduct({
                     active: !active,
@@ -214,7 +232,7 @@ const ProductCart = ({
               }}
               className={styles.checked_wrapper}
             >
-              {checkActive}
+              {checkActive()}
               <div className={styles.checked_padding}></div>
             </div>
             <div className={styles.productcart_main}>
@@ -249,10 +267,9 @@ const ProductCart = ({
           unit={unit}
           price={!retail ? checkPrice() : variant.price}
           condition={conditionDefault}
-          quantityProduct={quantity}
-          categoryAmount={categoryAmount}
-          categoryCondtion={categoryCondtion}
+          canActiveProduct={canActiveProduct}
           isRemove={isRemove}
+          canActiveCategory={canActiveCategory}
         />
       ))}
     </div>
