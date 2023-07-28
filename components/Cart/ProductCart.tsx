@@ -1,6 +1,6 @@
 import Image from "next/image";
 import VariantCart from "./VariantCart";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import {
   ActiveFull,
   HaftFull,
@@ -77,7 +77,8 @@ const ProductCart = ({
   };
   const canActiveProduct = quantity >= conditionDefault ? true : false;
   const checkActive = () => {
-    if (!canActiveCategory || !canActiveProduct) return <DisableActive />;
+    if ((!canActiveCategory || !canActiveProduct) && !isRemove)
+      return <DisableActive />;
     if (!isRemove) {
       if (!active) {
         return <NotActive />;
@@ -122,7 +123,18 @@ const ProductCart = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [quantity]);
-
+  const activeProduct = () => {
+    console.log("1");
+    if ((!canActiveCategory || !canActiveProduct) && !isRemove) return;
+    dispatch(
+      getActiveProduct({
+        active: !active,
+        categoryId: categoryId,
+        productId: productId,
+        isRemove: isRemove,
+      })
+    );
+  };
   /** CSS Config */
   const widthDivHidden = 12;
   const touchPosition = [
@@ -219,19 +231,7 @@ const ProductCart = ({
       >
         <div className={`${styles.productcart} ${cssTouch.css}`}>
           <div className={styles.productcart_pad}>
-            <div
-              onClick={() => {
-                if (!canActiveCategory || !canActiveProduct) return;
-                dispatch(
-                  getActiveProduct({
-                    active: !active,
-                    categoryId: categoryId,
-                    productId: productId,
-                  })
-                );
-              }}
-              className={styles.checked_wrapper}
-            >
+            <div onClick={activeProduct} className={styles.checked_wrapper}>
               {checkActive()}
               <div className={styles.checked_padding}></div>
             </div>

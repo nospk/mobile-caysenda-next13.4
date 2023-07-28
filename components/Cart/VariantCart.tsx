@@ -44,7 +44,7 @@ const VariantCart = ({
   const dispatch = useAppDispatch();
   const variantAmount = Number(price) * Number(quantity);
   const activeVariant = () => {
-    if (!canActiveProduct || !canActiveCategory) {
+    if ((!canActiveProduct || !canActiveCategory) && !isRemove) {
       return;
     }
     dispatch(
@@ -57,7 +57,8 @@ const VariantCart = ({
     );
   };
   const checkActive = useMemo(() => {
-    if (!canActiveCategory || !canActiveProduct) return <DisableActive />;
+    if ((!canActiveCategory || !canActiveProduct) && !isRemove)
+      return <DisableActive />;
     if (!isRemove) {
       return selected ? <ActiveFull /> : <NotActive />;
     } else {

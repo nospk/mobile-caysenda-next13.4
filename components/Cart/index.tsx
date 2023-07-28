@@ -25,11 +25,9 @@ interface Props {
 const Cart: FC<Props> = (props) => {
   // Check button remove
   const [isRemove, setIsRemove] = useState<boolean>(false);
-  
+
   // InitialState Address
   const [address, setAddress] = useState<string>(props.address);
-
-  
 
   //Initial cart
   const dispatch = useAppDispatch();
@@ -93,7 +91,7 @@ const Cart: FC<Props> = (props) => {
         </div>
         <footer className={styles.footer}>
           <div className={styles.footer_wapper}>
-            {order_error > 0 ? (
+            {!isRemove && order_error > 0 ? (
               <span className={styles.footer_error}>
                 Có {order_error} sản phẩm chưa đặt đủ số lượng hàng tối thiểu
               </span>
