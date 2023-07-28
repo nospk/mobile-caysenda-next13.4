@@ -216,7 +216,7 @@ export const selectBillProduct = (product: CartProduct): number => {
 export const selectBillTotal = (categories: CartCategory[]): number => {
   let money = 0;
   for (let index = 0; index < categories.length; index++) {
-    money += categories[index].amount;
+    money += categories[index].amountActive;
   }
   return money;
 };

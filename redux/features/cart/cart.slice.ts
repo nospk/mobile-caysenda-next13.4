@@ -122,18 +122,25 @@ export const activeProduct = createAsyncThunk(
     active,
     categoryId,
     productId,
+    isRemove,
   }: {
     active: boolean;
     categoryId: number;
     productId: number;
+    isRemove;
   }) => {
-    const result = await CartService.activeProduct(
-      active,
-      categoryId,
-      productId
-    );
-    if (result.success == true) return { active, categoryId, productId };
-    else throw result.message;
+    if (!isRemove) {
+      const result = await CartService.activeProduct(
+        active,
+        categoryId,
+        productId
+      );
+      if (result.success == true)
+        return { active, categoryId, productId, isRemove };
+      else throw result.message;
+    } else {
+      return { active, categoryId, productId, isRemove };
+    }
   }
 );
 
@@ -143,10 +150,22 @@ export const activeProduct = createAsyncThunk(
  */
 export const activeCategory = createAsyncThunk(
   "cart/activeCategory",
-  async ({ active, categoryId }: { active: boolean; categoryId: number }) => {
-    const result = await CartService.activeCategory(active, categoryId);
-    if (result.success == true) return { active, categoryId };
-    else throw result.message;
+  async ({
+    active,
+    categoryId,
+    isRemove,
+  }: {
+    active: boolean;
+    categoryId: number;
+    isRemove: boolean;
+  }) => {
+    if (!isRemove) {
+      const result = await CartService.activeCategory(active, categoryId);
+      if (result.success == true) return { active, categoryId, isRemove };
+      else throw result.message;
+    } else {
+      return { active, categoryId, isRemove };
+    }
   }
 );
 
@@ -307,7 +326,7 @@ export const cart = createSlice({
           state.data.categories[indexCategory]
         );
         state.data.categories[indexCategory].amount = moneyTotal;
-        state.data.categories[indexCategory].amountActive = moneyActive
+        state.data.categories[indexCategory].amountActive = moneyActive;
 
         //Count bill
         const bill = selectBillTotal(state.data.categories);
@@ -365,7 +384,7 @@ export const cart = createSlice({
           state.data.categories[indexCategory]
         );
         state.data.categories[indexCategory].amount = moneyTotal;
-        state.data.categories[indexCategory].amountActive = moneyActive
+        state.data.categories[indexCategory].amountActive = moneyActive;
         const bill = selectBillTotal(state.data.categories);
         state.data.bill = bill;
       })
@@ -379,7 +398,7 @@ export const cart = createSlice({
         state.error = null;
       })
       .addCase(activeProduct.fulfilled, (state, action) => {
-        const { categoryId, productId, active } = action.payload;
+        const { categoryId, productId, active, isRemove } = action.payload;
         let indexCategory = findIndexCategory(
           state.data.categories,
           categoryId
@@ -388,19 +407,33 @@ export const cart = createSlice({
           state.data.categories[indexCategory].products,
           productId
         );
-        //check active Variant
-        const variantCount =
-          state.data.categories[indexCategory].products[indexProduct].variants
-            .length;
-        if (
-          state.data.categories[indexCategory].products[indexProduct].retail
-        ) {
-          for (let index = 0; index < variantCount; index++) {
+        if (isRemove) {
+          const selectedDelete =
+            !state.data.categories[indexCategory].products[indexProduct]
+              .selectedDelete;
+          console.log(selectedDelete);
+          state.data.categories[indexCategory].products[
+            indexProduct
+          ].variants.map((variant, indexVariant) => {
             state.data.categories[indexCategory].products[
               indexProduct
-            ].variants[index].selected = active;
-          }
+            ].variants[indexVariant].selectedDelete = selectedDelete;
+          });
+          //check selected delete Product
+          state.data.categories[indexCategory].products[
+            indexProduct
+          ].selectedDelete = selectedDelete;
+          //check selected delete Category
+          let selectedDeleteCategory = state.data.categories[
+            indexCategory
+          ].products.filter((product) => product.selectedDelete == true);
+          state.data.categories[indexCategory].selectedDelete =
+            selectedDeleteCategory.length == 0 ? false : true;
         } else {
+          //check active Variant
+          const variantCount =
+            state.data.categories[indexCategory].products[indexProduct].variants
+              .length;
           for (let index = 0; index < variantCount; index++) {
             if (
               state.data.categories[indexCategory].products[indexProduct]
@@ -421,32 +454,32 @@ export const cart = createSlice({
               ].variants[index].selectedDelete = active;
             }
           }
+          //check active Product
+          let checkProduct = state.data.categories[indexCategory].products[
+            indexProduct
+          ].variants.filter((variant) => variant.selected == true);
+          state.data.categories[indexCategory].products[indexProduct].active =
+            checkProduct.length == 0 ? false : true;
+          //check active Category
+          let checkCategory = state.data.categories[
+            indexCategory
+          ].products.filter((product) => product.active == true);
+          state.data.categories[indexCategory].active =
+            checkCategory.length == 0 ? false : true;
+          // set for delete
+          state.data.categories[indexCategory].products[
+            indexProduct
+          ].selectedDelete = active;
+          state.data.categories[indexCategory].selectedDelete = active;
+          //Finaly calculator
+          const { moneyActive, moneyTotal } = selectBillCategory(
+            state.data.categories[indexCategory]
+          );
+          state.data.categories[indexCategory].amount = moneyTotal;
+          state.data.categories[indexCategory].amountActive = moneyActive;
+          const bill = selectBillTotal(state.data.categories);
+          state.data.bill = bill;
         }
-        //check active Product
-        let checkProduct = state.data.categories[indexCategory].products[
-          indexProduct
-        ].variants.filter((variant) => variant.selected == true);
-        state.data.categories[indexCategory].products[indexProduct].active =
-          checkProduct.length == 0 ? false : true;
-        //check active Category
-        let checkCategory = state.data.categories[
-          indexCategory
-        ].products.filter((product) => product.active == true);
-        state.data.categories[indexCategory].active =
-          checkCategory.length == 0 ? false : true;
-        // set for delete
-        state.data.categories[indexCategory].products[
-          indexProduct
-        ].selectedDelete = active;
-        state.data.categories[indexCategory].selectedDelete = active;
-        //Finaly calculator
-        const { moneyActive, moneyTotal } = selectBillCategory(
-          state.data.categories[indexCategory]
-        );
-        state.data.categories[indexCategory].amount = moneyTotal;
-        state.data.categories[indexCategory].amountActive = moneyActive
-        const bill = selectBillTotal(state.data.categories);
-        state.data.bill = bill;
       })
       .addCase(activeProduct.rejected, (state, action) => {
         state.error = action.error.message;
@@ -458,30 +491,36 @@ export const cart = createSlice({
         state.error = null;
       })
       .addCase(activeCategory.fulfilled, (state, action) => {
-        const { categoryId, active } = action.payload;
+        const { categoryId, active, isRemove } = action.payload;
         let indexCategory = findIndexCategory(
           state.data.categories,
           categoryId
         );
-        //check active Variant
-        state.data.categories[indexCategory].products.map(
-          (product, indexProduct) => {
-            const variantCount =
-              state.data.categories[indexCategory].products[indexProduct]
-                .variants.length;
-            if (
-              state.data.categories[indexCategory].products[indexProduct].retail
-            ) {
-              for (let index = 0; index < variantCount; index++) {
+        if (isRemove) {
+          const selectedDelete =
+            !state.data.categories[indexCategory].selectedDelete;
+          state.data.categories[indexCategory].selectedDelete = selectedDelete;
+          state.data.categories[indexCategory].products.map(
+            (product, indexProduct) => {
+              state.data.categories[indexCategory].products[
+                indexProduct
+              ].selectedDelete = selectedDelete;
+              state.data.categories[indexCategory].products[
+                indexProduct
+              ].variants.map((variant, indexVariant) => {
                 state.data.categories[indexCategory].products[
                   indexProduct
-                ].variants[index].selected = active;
-                //set for delete
-                state.data.categories[indexCategory].products[
-                  indexProduct
-                ].variants[index].selectedDelete = active;
-              }
-            } else {
+                ].variants[indexVariant].selectedDelete = selectedDelete;
+              });
+            }
+          );
+        } else {
+          //check active Variant
+          state.data.categories[indexCategory].products.map(
+            (product, indexProduct) => {
+              const variantCount =
+                state.data.categories[indexCategory].products[indexProduct]
+                  .variants.length;
               for (let index = 0; index < variantCount; index++) {
                 if (
                   state.data.categories[indexCategory].products[indexProduct]
@@ -502,46 +541,48 @@ export const cart = createSlice({
                   ].variants[index].selectedDelete = active;
                 }
               }
+
+              //check active Product
+              let checkProduct = state.data.categories[indexCategory].products[
+                indexProduct
+              ].variants.filter((variant) => variant.selected == true);
+              state.data.categories[indexCategory].products[
+                indexProduct
+              ].active = checkProduct.length == 0 ? false : true;
+              //set for delete
+              let checkProductDelete = state.data.categories[
+                indexCategory
+              ].products[indexProduct].variants.filter(
+                (variant) => variant.selectedDelete == true
+              );
+              state.data.categories[indexCategory].products[
+                indexProduct
+              ].selectedDelete = checkProductDelete.length == 0 ? false : true;
             }
-            //check active Product
-            let checkProduct = state.data.categories[indexCategory].products[
-              indexProduct
-            ].variants.filter((variant) => variant.selected == true);
-            state.data.categories[indexCategory].products[indexProduct].active =
-              checkProduct.length == 0 ? false : true;
-            //set for delete
-            let checkProductDelete = state.data.categories[
-              indexCategory
-            ].products[indexProduct].variants.filter(
-              (variant) => variant.selectedDelete == true
-            );
-            state.data.categories[indexCategory].products[
-              indexProduct
-            ].selectedDelete = checkProductDelete.length == 0 ? false : true;
-          }
-        );
+          );
 
-        //check active Category
-        let checkCategory = state.data.categories[
-          indexCategory
-        ].products.filter((product) => product.active == true);
-        state.data.categories[indexCategory].active =
-          checkCategory.length == 0 ? false : true;
+          //check active Category
+          let checkCategory = state.data.categories[
+            indexCategory
+          ].products.filter((product) => product.active == true);
+          state.data.categories[indexCategory].active =
+            checkCategory.length == 0 ? false : true;
 
-        // set for delete
-        let checkCategoryDelete = state.data.categories[
-          indexCategory
-        ].products.filter((product) => product.selectedDelete == true);
-        state.data.categories[indexCategory].selectedDelete =
-          checkCategoryDelete.length == 0 ? false : true;
-        //Finaly calculator
-        const { moneyActive, moneyTotal } = selectBillCategory(
-          state.data.categories[indexCategory]
-        );
-        state.data.categories[indexCategory].amount = moneyTotal;
-        state.data.categories[indexCategory].amountActive = moneyActive
-        const bill = selectBillTotal(state.data.categories);
-        state.data.bill = bill;
+          // set for delete
+          let checkCategoryDelete = state.data.categories[
+            indexCategory
+          ].products.filter((product) => product.selectedDelete == true);
+          state.data.categories[indexCategory].selectedDelete =
+            checkCategoryDelete.length == 0 ? false : true;
+          //Finaly calculator
+          const { moneyActive, moneyTotal } = selectBillCategory(
+            state.data.categories[indexCategory]
+          );
+          state.data.categories[indexCategory].amount = moneyTotal;
+          state.data.categories[indexCategory].amountActive = moneyActive;
+          const bill = selectBillTotal(state.data.categories);
+          state.data.bill = bill;
+        }
       })
       .addCase(activeCategory.rejected, (state, action) => {
         state.error = action.error.message;
@@ -561,11 +602,18 @@ export const cart = createSlice({
               const variantCount =
                 state.data.categories[indexCategory].products[indexProduct]
                   .variants.length;
-              if (
-                state.data.categories[indexCategory].products[indexProduct]
-                  .retail
-              ) {
-                for (let index = 0; index < variantCount; index++) {
+
+              for (let index = 0; index < variantCount; index++) {
+                if (
+                  state.data.categories[indexCategory].products[indexProduct]
+                    .quantity <
+                  state.data.categories[indexCategory].products[indexProduct]
+                    .conditionDefault
+                ) {
+                  state.data.categories[indexCategory].products[
+                    indexProduct
+                  ].variants[index].selected = false;
+                } else {
                   state.data.categories[indexCategory].products[
                     indexProduct
                   ].variants[index].selected = active;
@@ -574,28 +622,8 @@ export const cart = createSlice({
                     indexProduct
                   ].variants[index].selectedDelete = active;
                 }
-              } else {
-                for (let index = 0; index < variantCount; index++) {
-                  if (
-                    state.data.categories[indexCategory].products[indexProduct]
-                      .quantity <
-                    state.data.categories[indexCategory].products[indexProduct]
-                      .conditionDefault
-                  ) {
-                    state.data.categories[indexCategory].products[
-                      indexProduct
-                    ].variants[index].selected = false;
-                  } else {
-                    state.data.categories[indexCategory].products[
-                      indexProduct
-                    ].variants[index].selected = active;
-                    //set for delete
-                    state.data.categories[indexCategory].products[
-                      indexProduct
-                    ].variants[index].selectedDelete = active;
-                  }
-                }
               }
+
               //check active Product
               let checkProduct = state.data.categories[indexCategory].products[
                 indexProduct
@@ -632,7 +660,7 @@ export const cart = createSlice({
             state.data.categories[indexCategory]
           );
           state.data.categories[indexCategory].amount = moneyTotal;
-          state.data.categories[indexCategory].amountActive = moneyActive
+          state.data.categories[indexCategory].amountActive = moneyActive;
           const bill = selectBillTotal(state.data.categories);
           state.data.bill = bill;
         });
@@ -691,7 +719,7 @@ export const cart = createSlice({
             state.data.categories[indexCategory]
           );
           state.data.categories[indexCategory].amount = moneyTotal;
-          state.data.categories[indexCategory].amountActive = moneyActive
+          state.data.categories[indexCategory].amountActive = moneyActive;
           const bill = selectBillTotal(state.data.categories);
           state.data.bill = bill;
         }
@@ -727,7 +755,7 @@ export const cart = createSlice({
             state.data.categories[indexCategory]
           );
           state.data.categories[indexCategory].amount = moneyTotal;
-          state.data.categories[indexCategory].amountActive = moneyActive
+          state.data.categories[indexCategory].amountActive = moneyActive;
           const bill = selectBillTotal(state.data.categories);
           state.data.bill = bill;
         }

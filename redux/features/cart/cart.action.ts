@@ -68,22 +68,26 @@ export const getActiveProduct = ({
   active,
   categoryId,
   productId,
+  isRemove,
 }: {
   active: boolean;
   categoryId: number;
   productId: number;
+  isRemove: boolean;
 }) => {
-  return activeProduct({ active, categoryId, productId });
+  return activeProduct({ active, categoryId, productId, isRemove });
 };
 
 export const getActiveCategory = ({
   active,
   categoryId,
+  isRemove,
 }: {
   active: boolean;
   categoryId: number;
+  isRemove: boolean;
 }) => {
-  return activeCategory({ active, categoryId });
+  return activeCategory({ active, categoryId, isRemove });
 };
 
 export const getRemoveVariant = ({

@@ -15,7 +15,7 @@ import { useAppDispatch } from "@/redux/hooks";
 import { getActiveCategory } from "@/redux/features/cart/cart.action";
 import { useRouter } from "next/navigation";
 import styles from "./styles.module.css";
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useCallback } from "react";
 interface Props {
   category: CartCategory;
   isRemove: boolean;
@@ -28,9 +28,10 @@ const Catogery = ({ category, isRemove }: Props) => {
   const checkActiveDelete = category
     ? selectCheckActiveDeleteCategory(category)
     : 0;
-  const canActiveCategory = category.amount >= category.condition ? true : false;
+  const canActiveCategory =
+    category.amount >= category.condition ? true : false;
   const CheckActive = () => {
-    if (!canActiveCategory) return <DisableActive />;
+    if (!canActiveCategory && !isRemove) return <DisableActive />;
     if (!isRemove) {
       return checkActiveSelect == 0 ? (
         <NotActive />
@@ -61,21 +62,23 @@ const Catogery = ({ category, isRemove }: Props) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [category.amountActive]);
+  const activeCategory = () => {
+    if (!canActiveCategory && !isRemove) return;
+    dispatch(
+      getActiveCategory({
+        active: !category.active,
+        categoryId: category.categoryId,
+        isRemove: isRemove,
+      })
+    );
+  };
   return (
     <div className={styles.catogerycart_wrapper}>
       <div className={styles.catogerycart}>
         <div className={styles.catogerycart_main}>
           <div className={styles.catogerycart_info}>
             <div
-              onClick={() => {
-                if (!canActiveCategory) return;
-                dispatch(
-                  getActiveCategory({
-                    active: !category.active,
-                    categoryId: category.categoryId,
-                  })
-                );
-              }}
+              onClick={activeCategory}
               className={styles.catogerycart_checked_wrapper}
             >
               {CheckActive()}
@@ -83,26 +86,32 @@ const Catogery = ({ category, isRemove }: Props) => {
             </div>
             <div className={styles.catogerycart_title}>
               <span className={styles.catogerycart_name}>{category.name}</span>
-              {">"}
-              <span className={styles.catogerycart_pricecondition}>
-                Tối thiểu: {convertMoney(category.condition) + "đ"}
-              </span>
-              {">>"}
-              <span className={styles.catogerycart_pricenow}>
-                Hiện tại: {convertMoney(category.amountActive) + "đ"}
-              </span>
+              {!isRemove ? (
+                <>
+                  {">"}
+                  <span className={styles.catogerycart_pricecondition}>
+                    Tối thiểu: {convertMoney(category.condition) + "đ"}
+                  </span>
+                  {">>"}
+                  <span className={styles.catogerycart_pricenow}>
+                    Hiện tại: {convertMoney(category.amountActive) + "đ"}
+                  </span>
+                </>
+              ) : null}
             </div>
-            <span
-              onClick={() => {
-                router.push(`/${category.slug}`);
-              }}
-              className={styles.catogerycart_button_buymore}
-            >
-              Đặt Thêm
-            </span>
+            {!isRemove ? (
+              <span
+                onClick={() => {
+                  router.push(`/${category.slug}`);
+                }}
+                className={styles.catogerycart_button_buymore}
+              >
+                Đặt Thêm
+              </span>
+            ) : null}
           </div>
           <div className={styles.catogerycart_error}>
-            {category.amountActive < category.condition ? (
+            {!isRemove && category.amountActive < category.condition ? (
               <span>Chưa đạt mức tối thiểu của danh mục này</span>
             ) : null}
           </div>
