@@ -5,6 +5,8 @@ import Image from 'next/image';
 import { IoIosArrowForward } from 'react-icons/io';
 import NewOrder from './NewOrder/NewOrder';
 import CompleteOrder from './CompleteOrder';
+import AdditionOrder from './AdditionOrder';
+import ShippingOrder from './ShippingOrder';
 import { OrderType } from 'types/order';
 import StatusOrder from './StatusOrder';
 const OrderComponents: FC<{ List_Order: OrderType[] }> = ({ List_Order }) => {
@@ -16,8 +18,8 @@ const OrderComponents: FC<{ List_Order: OrderType[] }> = ({ List_Order }) => {
             <li key={index}>
               {_Order.status == StatusOrder.NewOrder && <NewOrder />}
               {_Order.status == StatusOrder.CompleteOrder && <CompleteOrder />}
-              {_Order.status == StatusOrder.ShippingOrder && <NewOrder />}
-              {_Order.status == StatusOrder.AdditionOrder && <NewOrder />}
+              {_Order.status == StatusOrder.ShippingOrder && <ShippingOrder />}
+              {_Order.status == StatusOrder.AdditionOrder && <AdditionOrder />}
             </li>
           ))}
         </ul>

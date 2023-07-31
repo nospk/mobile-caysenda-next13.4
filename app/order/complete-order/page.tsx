@@ -1,7 +1,14 @@
 import React from "react";
-
-function completePage() {
-  return <div>completePage</div>;
+import Order from "@/components/Order";
+import {OrderType } from 'types/order'
+import { getOrder } from "@/services/Order.service";
+import StatusOrder from '@/components/Order/StatusOrder'
+async function CompleteOrderPage() {
+  const listOrder = await getOrder(StatusOrder.CompleteOrder);
+  return (
+    <Order List_Order = {listOrder}/>
+  );
 }
 
-export default completePage;
+export default CompleteOrderPage;
+

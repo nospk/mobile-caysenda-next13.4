@@ -1,7 +1,15 @@
 import React from "react";
+import Order from "@/components/Order";
+import {OrderType } from 'types/order'
+import { getOrder } from "@/services/Order.service";
+import StatusOrder from '@/components/Order/StatusOrder'
 
-function newOrderPage() {
-  return <div>newOrderPage</div>;
+async function NewOrderPage() {
+  const listOrder = await getOrder(StatusOrder.NewOrder);
+  return (
+    <Order List_Order = {listOrder}/>
+  );
 }
 
-export default newOrderPage;
+export default NewOrderPage;
+
