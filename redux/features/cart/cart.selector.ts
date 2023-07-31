@@ -25,24 +25,43 @@ export const selectErrorOrder = (categories: CartCategory[]): number => {
  * 1 is HaftFull
  * 2 is ActiveFull
  */
-export const selectCheckActiveCart = (categories: CartCategory[]): number => {
+export const selectCheckActiveCart = (categories: CartCategory[], isRemove: boolean): number => {
   let active = 0;
-  let catogeryNotActive = false;
-  categories.map((category) => {
-    category.products.map((product) => {
-      product.variants.map((variant) => {
-        active =
-          variant.selected && active != 1
-            ? 2
-            : (!variant.selected && active != 0) ||
-              (variant.selected && active == 1)
-            ? 1
-            : 0;
+  if(isRemove){
+    let catogeryNotActive = false;
+    categories.map((category) => {
+      category.products.map((product) => {
+        product.variants.map((variant) => {
+          active =
+            variant.selectedDelete && active != 1
+              ? 2
+              : (!variant.selectedDelete && active != 0) ||
+                (variant.selectedDelete && active == 1)
+              ? 1
+              : 0;
+        });
+        if (active == 0) catogeryNotActive = true;
       });
-      if (active == 0) catogeryNotActive = true;
     });
-  });
-  if (active == 2 && catogeryNotActive) active = 1;
+    if (active == 2 && catogeryNotActive) active = 1;
+  }else{
+    let catogeryNotActive = false;
+    categories.map((category) => {
+      category.products.map((product) => {
+        product.variants.map((variant) => {
+          active =
+            variant.selected && active != 1
+              ? 2
+              : (!variant.selected && active != 0) ||
+                (variant.selected && active == 1)
+              ? 1
+              : 0;
+        });
+        if (active == 0) catogeryNotActive = true;
+      });
+    });
+    if (active == 2 && catogeryNotActive) active = 1;
+  }
   return active;
 };
 
@@ -69,9 +88,10 @@ export const selectCheckActiveCategory = (category: CartCategory): number => {
             (variant.selected && active == 1)
           ? 1
           : 0;
-      if (activeProduct != 0 && !productNotActive) productActive = true;
+      if (activeProduct != 0 && !productActive) productActive = true;
       if (activeProduct == 0 && !productNotActive) productNotActive = true;
     });
+    
     active =
       activeProduct == 2 && (active == 0 || active == 2) && !productNotActive
         ? 2
@@ -98,6 +118,7 @@ export const selectCheckActiveDeleteCategory = (
 ): number => {
   let active = 0;
   let productNotActive = false;
+  let productActive = false;
   category.products.map((product) => {
     let activeProduct = 0;
     product.variants.map((variant) => {
@@ -108,15 +129,16 @@ export const selectCheckActiveDeleteCategory = (
             (variant.selectedDelete && active == 1)
           ? 1
           : 0;
+      if (activeProduct != 0 && !productActive) productActive = true;
       if (activeProduct == 0 && !productNotActive) productNotActive = true;
     });
-
+    
     active =
       activeProduct == 2 && (active == 0 || active == 2) && !productNotActive
         ? 2
         : activeProduct == 2 && active == 0 && productNotActive
         ? 1
-        : activeProduct == 0 && active == 0
+        : activeProduct == 0 && active == 0 && !productActive
         ? 0
         : 1;
   });

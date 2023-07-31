@@ -53,6 +53,7 @@ const VariantCart = ({
         categoryId: categoryId,
         productId: productId,
         variantId: variantId,
+        isRemove: isRemove,
       })
     );
   };

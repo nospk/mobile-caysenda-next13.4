@@ -57,6 +57,7 @@ const Catogery = ({ category, isRemove }: Props) => {
         getActiveCategory({
           active: false,
           categoryId: category.categoryId,
+          isRemove: isRemove,
         })
       );
     }

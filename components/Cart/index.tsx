@@ -38,7 +38,7 @@ const Cart: FC<Props> = (props) => {
   // );
   const order_error = cart.categories ? selectErrorOrder(cart.categories) : 0;
   const checkActive = cart.categories
-    ? selectCheckActiveCart(cart.categories)
+    ? selectCheckActiveCart(cart.categories, isRemove)
     : 0;
 
   //Use for show error when update cart
@@ -101,7 +101,7 @@ const Cart: FC<Props> = (props) => {
               <div
                 onClick={() =>
                   dispatch(
-                    getActiveTotal({ active: checkActive != 0 ? false : true })
+                    getActiveTotal({ active: checkActive != 0 ? false : true, isRemove: isRemove })
                   )
                 }
                 className={styles.footer_checked_wapper}
@@ -119,7 +119,7 @@ const Cart: FC<Props> = (props) => {
                 <div className={styles.footer_remove}>
                   <div
                     onClick={() => {
-                      dispatch(getDeleteTotal(cart));
+                      dispatch(getDeleteTotal());
                     }}
                     className={styles.footer_remove_button}
                   >

@@ -50,17 +50,20 @@ export const getActiveVariant = ({
   categoryId,
   productId,
   variantId,
+  isRemove,
 }: {
   active: boolean;
   categoryId: number;
   productId: number;
   variantId: number;
+  isRemove: boolean;
 }) => {
   return activeVariant({
     active,
     categoryId,
     productId,
     variantId,
+    isRemove,
   });
 };
 
@@ -119,10 +122,16 @@ export const getRemoveProduct = ({
   });
 };
 
-export const getActiveTotal = ({ active }: { active: boolean }) => {
-  return activeTotal({ active });
+export const getActiveTotal = ({
+  active,
+  isRemove,
+}: {
+  active: boolean;
+  isRemove: boolean;
+}) => {
+  return activeTotal({ active, isRemove });
 };
 
-export const getDeleteTotal = (cart: Cart) => {
-  return deleteTotal(cart);
+export const getDeleteTotal = () => {
+  return deleteTotal({});
 };

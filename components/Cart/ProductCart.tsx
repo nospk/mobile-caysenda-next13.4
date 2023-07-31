@@ -118,13 +118,13 @@ const ProductCart = ({
           active: false,
           categoryId: categoryId,
           productId: productId,
+          isRemove: isRemove,
         })
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [quantity]);
   const activeProduct = () => {
-    console.log("1");
     if ((!canActiveCategory || !canActiveProduct) && !isRemove) return;
     dispatch(
       getActiveProduct({

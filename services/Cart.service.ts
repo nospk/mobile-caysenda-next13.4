@@ -288,14 +288,12 @@ const activeTotal = async (active: boolean) => {
 };
 
 const deleteTotal = async (
-  cart: {
+  remove: {
     categoryId: number;
     listProduct: {
       productId: number;
-      listVariant: {
-        variantId: number;
-      }[];
-    };
+      listVariant: number[];
+    }[];
   }[]
 ) => {
   const response = {
