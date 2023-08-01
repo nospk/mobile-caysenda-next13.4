@@ -1,6 +1,6 @@
 import { convertMoney } from "@/lib/formatPrice";
 import { ActiveFull, NotActive, DisableActive } from "../Checked/Checked";
-import { useState, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useOnActionOutside } from "@/components/hook/useOnActionOutside";
 import styles from "./styles.module.css";
 import type { CartVariant } from "@/types/cart";
@@ -11,6 +11,7 @@ import {
   updateCart,
   getActiveVariant,
   getRemoveVariant,
+  getActiveProduct,
 } from "@/redux/features/cart/cart.action";
 
 interface Prop {
@@ -172,6 +173,19 @@ const VariantCart = ({
       } else setCssTouch({ css: touchPosition[18], level: 18 });
     }
   };
+  useEffect(() => {
+    if (canActiveProduct && canActiveCategory && !isRemove) {
+      dispatch(
+        getActiveProduct({
+          active: true,
+          categoryId: categoryId,
+          productId: productId,
+          isRemove: false,
+        })
+      );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [quantity]);
   return (
     <>
       <div className={styles.variant_cart_wrapper}>
@@ -221,9 +235,7 @@ const VariantCart = ({
                             quantityOld: quantity,
                             condition: condition,
                           })
-                        ).catch((e) => {
-                          console.log(e);
-                        });
+                        );
                       }}
                     >
                       <div className={styles.decrement_wapper}>
@@ -245,9 +257,7 @@ const VariantCart = ({
                             quantityOld: quantity,
                             condition: condition,
                           })
-                        ).catch((e) => {
-                          console.log(e);
-                        });
+                        );
                       }}
                     />
                     <div className={styles.variant_cart_increment}>

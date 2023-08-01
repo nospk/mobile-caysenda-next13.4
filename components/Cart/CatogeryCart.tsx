@@ -52,12 +52,14 @@ const Catogery = ({ category, isRemove }: Props) => {
   };
 
   useEffect(() => {
-    if (category.amountActive < category.condition) {
+    //dont reactive when remove product change amountActive
+    if (isRemove) return;
+    if (category.active == true && category.amountActive < category.condition) {
       dispatch(
         getActiveCategory({
           active: false,
           categoryId: category.categoryId,
-          isRemove: isRemove,
+          isRemove: false,
         })
       );
     }

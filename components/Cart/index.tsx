@@ -101,7 +101,10 @@ const Cart: FC<Props> = (props) => {
               <div
                 onClick={() =>
                   dispatch(
-                    getActiveTotal({ active: checkActive != 0 ? false : true, isRemove: isRemove })
+                    getActiveTotal({
+                      active: checkActive != 0 ? false : true,
+                      isRemove: isRemove,
+                    })
                   )
                 }
                 className={styles.footer_checked_wapper}
@@ -119,7 +122,11 @@ const Cart: FC<Props> = (props) => {
                 <div className={styles.footer_remove}>
                   <div
                     onClick={() => {
-                      dispatch(getDeleteTotal());
+                      dispatch(getDeleteTotal()).then(() =>
+                        dispatch(
+                          getActiveTotal({ active: false, isRemove: false })
+                        )
+                      );
                     }}
                     className={styles.footer_remove_button}
                   >

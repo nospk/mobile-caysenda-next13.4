@@ -75,7 +75,15 @@ const ProductCart = ({
     const priceActive = listPrice[indexPrice];
     return Number(priceActive);
   };
-  const canActiveProduct = quantity >= conditionDefault ? true : false;
+  const canActiveProduct =
+    Number(quantity) >= Number(conditionDefault) ? true : false;
+  console.log(
+    "Product",
+    canActiveCategory,
+    canActiveProduct,
+    quantity,
+    conditionDefault
+  );
   const checkActive = () => {
     if ((!canActiveCategory || !canActiveProduct) && !isRemove)
       return <DisableActive />;
@@ -112,13 +120,13 @@ const ProductCart = ({
   }, [thumbnail]);
 
   useEffect(() => {
-    if (quantity < conditionDefault) {
+    if (active == true && quantity < conditionDefault) {
       dispatch(
         getActiveProduct({
           active: false,
           categoryId: categoryId,
           productId: productId,
-          isRemove: isRemove,
+          isRemove: false,
         })
       );
     }
@@ -211,15 +219,6 @@ const ProductCart = ({
       } else setCssTouch({ css: touchPosition[12], level: 12 });
     }
   };
-
-  // const handleClickOutside = () => {
-  //   // Your custom logic here
-  //   setCssTouch({ css: touchPosition[0], level: 0 });
-  //   setdirection("left");
-  // };
-
-  //const ref = useRef(null);
-  //useOnActionOutside(ref, handleClickOutside, "mousedown");
   return (
     <div className={styles.productcart_wrapper}>
       <div

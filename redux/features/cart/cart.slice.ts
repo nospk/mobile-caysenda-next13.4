@@ -233,7 +233,7 @@ export const deleteTotal = createAsyncThunk(
     });
     if (remove.length > 0) {
       const result = await CartService.deleteTotal(remove!);
-      if (result.success == true) return { remove };
+      if (result.success == true) return;
       else throw result.message;
     }
   }
@@ -796,6 +796,11 @@ export const cart = createSlice({
           );
         } else {
           //Finaly calculator
+          const amountProduct = selectBillProduct(
+            state.data.categories[indexCategory].products[indexProduct]
+          );
+          state.data.categories[indexCategory].products[indexProduct].amount =
+            amountProduct;
           const { moneyActive, moneyTotal } = selectBillCategory(
             state.data.categories[indexCategory]
           );
@@ -850,80 +855,91 @@ export const cart = createSlice({
       .addCase(deleteTotal.pending, (state) => {
         state.error = null;
       })
-      .addCase(deleteTotal.fulfilled, (state, action) => {
-        const remove = action.payload!.remove;
+      .addCase(deleteTotal.fulfilled, (state) => {
+        let countRemoveCategory = 0;
         state.data.categories.map((category, indexCategory) => {
-          let checkCategory = remove.filter(
-            (item) => item.categoryId == category.categoryId
-          );
-          if (checkCategory.length > 0) {
+          //trick bug remove category list index
+          indexCategory -= countRemoveCategory;
+          // check category
+          if (category.selectedDelete == true) {
+            let countRemoveProduct = 0;
             state.data.categories[indexCategory].products.map(
               (product, indexProduct) => {
-                let checkProduct = checkCategory[0].listProduct.filter(
-                  (item) => item.productId == product.productId
-                );
-                if (checkProduct.length > 0) {
-                  //remove varaint
-                  if (
+                //trick bug remove product lost index
+                indexProduct -= countRemoveProduct;
+                // check product
+                if (product.selectedDelete == true) {
+                  // check variant
+                  let checkVariant = state.data.categories[
+                    indexCategory
+                  ].products[indexProduct].variants.filter(
+                    (variant) => variant.selectedDelete != true
+                  );
+
+                  //if product delete all variants
+                  if (checkVariant.length == 0) {
+                    state.data.categories[indexCategory].products =
+                      state.data.categories[indexCategory].products.filter(
+                        (product) =>
+                          product.productId !=
+                          state.data.categories[indexCategory].products[
+                            indexProduct
+                          ].productId
+                      );
+                    //remove product will +1 index
+                    countRemoveProduct++;
+                  } else {
+                    state.data.categories[indexCategory].products[
+                      indexProduct
+                    ].variants = checkVariant;
+                    //else set false and calculator quantity, amount
                     state.data.categories[indexCategory].products[indexProduct]
-                  )
-                    checkProduct[0].listVariant.map((item) => {
+                      .selectedDelete == false;
+                    //Set quantity for product
+                    let quantityProduct = state.data.categories[
+                      indexCategory
+                    ].products[indexProduct].variants.reduce(
+                      (quantity, variant) => quantity + variant.quantity,
+                      0
+                    );
+                    state.data.categories[indexCategory].products[
+                      indexProduct
+                    ].quantity = quantityProduct;
+                    //Set amount for product
+                    const amountProduct = selectBillProduct(
                       state.data.categories[indexCategory].products[
                         indexProduct
-                      ].variants = state.data.categories[
-                        indexCategory
-                      ].products[indexProduct].variants.filter(
-                        (variant) => variant.variantId != item
-                      );
-                    });
+                      ]
+                    );
+                    state.data.categories[indexCategory].products[
+                      indexProduct
+                    ].amount = amountProduct;
+                  }
                 } else {
                   return;
                 }
-                //check product
-                if (
-                  state.data.categories[indexCategory].products[indexProduct]
-                    .variants.length == 0
-                ) {
-                  state.data.categories[indexCategory].products =
-                    state.data.categories[indexCategory].products.filter(
-                      (product) =>
-                        product.productId !=
-                        state.data.categories[indexCategory].products[
-                          indexProduct
-                        ].productId
-                    );
-                } else {
-                  state.data.categories[indexCategory].products[
-                    indexProduct
-                  ].quantity = state.data.categories[indexCategory].products[
-                    indexProduct
-                  ].variants.reduce((total, variant) => {
-                    return total + variant.quantity;
-                  }, 0);
-                  state.data.categories[indexCategory].products[
-                    indexProduct
-                  ].selectedDelete = false;
-                }
               }
             );
+            //if remove all product
+            if (state.data.categories[indexCategory].products.length == 0) {
+              state.data.categories = state.data.categories.filter(
+                (category) =>
+                  category.categoryId !=
+                  state.data.categories[indexCategory].categoryId
+              );
+              //remove category will + 1 index
+              countRemoveCategory++;
+            } else {
+              //set category
+              state.data.categories[indexCategory].selectedDelete == false;
+              const { moneyActive, moneyTotal } = selectBillCategory(
+                state.data.categories[indexCategory]
+              );
+              state.data.categories[indexCategory].amount = moneyTotal;
+              state.data.categories[indexCategory].amountActive = moneyActive;
+            }
           } else {
             return;
-          }
-          //check category
-          if (state.data.categories[indexCategory].products.length == 0) {
-            state.data.categories = state.data.categories.filter(
-              (category) =>
-                category.categoryId !=
-                state.data.categories[indexCategory].categoryId
-            );
-          } else {
-            state.data.categories[indexCategory].selectedDelete = false;
-            //Finaly calculator
-            const { moneyActive, moneyTotal } = selectBillCategory(
-              state.data.categories[indexCategory]
-            );
-            state.data.categories[indexCategory].amount = moneyTotal;
-            state.data.categories[indexCategory].amountActive = moneyActive;
           }
         });
         const bill = selectBillTotal(state.data.categories);
