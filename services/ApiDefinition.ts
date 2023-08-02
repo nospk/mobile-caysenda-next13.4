@@ -18,6 +18,12 @@ export default {
 				PARAM2:"SLUG"
 			}
 		},
+		TOP3PRODUCT : {
+			FUNC_CD : 'GETTOP3PRODUCT'
+		},
+		TOP10PRODUCT : {
+			FUNC_CD : 'GETTOP10PRODUCT'
+		}
 	},
 	SETTING: {
 		BANNER: {

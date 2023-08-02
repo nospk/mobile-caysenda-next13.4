@@ -5,12 +5,12 @@
 }
 
 .label {
-	font-size			: 18px;
+	font-size			: 14px;
 	font-weight			: 600;
 }
 
 .delete {
-	font-size			: 18px;
+	font-size			: 14px;
 }
 
 .delete:hover {

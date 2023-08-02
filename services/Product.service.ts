@@ -143,9 +143,46 @@ const getQuickview = async (requetsData:ProductDetailParamType, retail?: boolean
 	return returnData;
 }
 
+const getTop3Product = async () => {
+	let data = [];
+	let requestParams:any = {};
+	requestParams["FUNC_CD"] = ApiDefinition.PRODUCT.TOP3PRODUCT.FUNC_CD;
+
+	let res = await API.GET({
+		path: '/api/rest/dataaccess',
+		data: requestParams
+	});
+
+	if (res.status === "ok") {
+		data = res.results;
+	}
+	
+
+	return data;
+}
+
+const getTop10Product = async () => {
+	let data = [];
+	let requestParams:any = {};
+	requestParams["FUNC_CD"] = ApiDefinition.PRODUCT.TOP10PRODUCT.FUNC_CD;
+
+	let res = await API.GET({
+		path: '/api/rest/dataaccess',
+		data: requestParams
+	});
+	console.log(res);
+	if (res.status === "ok") {
+		data = res.results;
+	}
+
+	return data;
+}
+
 const ProductService = {
 	getProductList,
 	getDetail,
-	getQuickview
+	getQuickview,
+	getTop3Product,
+	getTop10Product
 }
 export default ProductService;

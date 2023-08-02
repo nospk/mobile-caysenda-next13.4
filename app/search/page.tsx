@@ -9,9 +9,9 @@ import TopKeyword from "./TopKeyword";
 const SearchPage = async () => {
 
 	return (
-		<div className="bg-white h-full">
+		<div className="bg-white pt-11">
 			<SearchBar/>
-			<div className="px-[2.4vw] mt-2">
+			<div className="px-[2.4vw] mt-2 h-full overflow-y-auto">
 				<HistoryView />
 				<Suspense fallback={<Loading/>}>
 					<TopKeyword/>

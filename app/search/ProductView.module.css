@@ -1,0 +1,34 @@
+.font12 {
+	font-size: 12px;
+}
+/* hotcard */
+.hotcard {
+	height: 500px;
+	width: 100%;
+	background: rgb(255,245,222);
+	background: linear-gradient(180deg, rgba(255,245,222,1) 0%, rgba(255,245,222,0.12648809523809523) 15%, rgba(252,252,252,0) 100%);
+	border-radius: 10px;
+}
+
+.hotcard_header {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	padding: 5px 10px;
+}
+
+.hotcard_header_icon {
+	color: #fbaa02;
+}
+
+.hotcard_header_title {
+	color: #9a6845;
+	font-size: 12px;
+}
+
+.hotcard_content {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	padding: 10px;
+}
