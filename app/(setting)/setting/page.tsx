@@ -4,7 +4,8 @@ import { Suspense, useEffect, useState } from "react";
 
 import Loading from "@/components/Loading";
 import Setting from "@/components/Setting";
-import ProductService from "@/services/Product.service";
+
+
 
 function SettingPage() {
   const router = useRouter();

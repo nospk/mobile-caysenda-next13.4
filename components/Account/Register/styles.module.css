@@ -108,3 +108,16 @@
   color: #a1a1aa;
   text-align: center;
 }
+.register-blocks {
+  @apply mt-6;
+}
+.register-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #636e72;
+  padding: 
+}

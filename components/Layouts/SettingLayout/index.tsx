@@ -24,9 +24,9 @@ const SettingLayout = ({ children }: { children: React.ReactNode }) => {
     }, [pathName])
     return (
         <div className='bg-white'>
-            <div className="flex justify-between items-center border-b-8 border-gray-300 h-14">
+            <div className="flex justify-between content-center items-center border-b-8 border-[#f5f5f5] h-14">
                 <div dir='rtl'>
-                    <button type="button" onClick={() => router.back()} className="rounded-s-lg bg-gray-400 px-2 mt-1">
+                    <button type="button" onClick={() => router.back()} className="rounded-s-full bg-[#efefef] px-2 py-0.5">
                         <IoIosArrowBack size={18} />
                     </button>
                 </div>
@@ -35,11 +35,11 @@ const SettingLayout = ({ children }: { children: React.ReactNode }) => {
                 </h2>
 
                 <div className="relative inline-block px-4 absolute top-2">
-                    <FaEllipsisH size={16} />
-                    <div className="bg-red-500 rounded-full flex items-center justify-center h-5 w-5 absolute -top-4">
-                        <p className="text-white text-sm font-medium leading-none">
+                    <FaEllipsisH size={18} />
+                    <div className="bg-red-500 rounded-full flex items-center justify-center h-5 w-5 absolute -top-4 p-0.5">
+                        <div className="text-white text-xs">
                             24
-                        </p>
+                        </div>
                     </div>
                 </div>
             </div>
