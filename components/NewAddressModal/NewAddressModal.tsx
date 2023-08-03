@@ -7,6 +7,17 @@ import { AiOutlineClose } from "react-icons/ai";
 interface Props {
   children: React.ReactNode;
 }
+// {
+//   "id": "342",
+//   "fullname": "Huy",
+//   "email": "yesterday_baby@yahoo.com",
+//   "phoneNumber": "012354123",
+//   "province": "202",
+//   "dictrict": "1451",
+//   "ward": "20910",
+//   "address": "1231",
+//   "ref": "address"
+// }
 const SelectAddressModal: FC<Props> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const handleOpenModal = () => {
