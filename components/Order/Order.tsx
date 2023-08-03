@@ -1,29 +1,31 @@
+'use client';
+import { FC, Key } from 'react';
+import { ActiveFull, HaftFull, NotActive } from '@/components/Checked/Checked';
 import Image from 'next/image';
-export default function Order ( ){
-    return (
-        <>
-        <div className="background">
-            <ul className = 'List_Order'>
-                <li className = 'Order'>
-                     <div className = 'name/check/station'></div>
-                     <div className='product_List'>
-                        <div className="product">
-                            <Image src = {''} alt = 'product_img'/>
-                            <div className="Name_price">
-                            <h3 className="product_Name"></h3>
-                            <div className="price"></div>
-                            </div>
-                            
-                            <h4 className="category_Name"></h4>
-                            
-                        </div>
-                     </div>
-                </li>
-            </ul>
-            <div className=''>
-
-            </div>
-        </div>
-        </>
-    )
+import { IoIosArrowForward } from 'react-icons/io';
+import NewOrder from './NewOrder/NewOrder';
+import CompleteOrder from './CompleteOrder';
+import AdditionOrder from './AdditionOrder';
+import ShippingOrder from './ShippingOrder';
+import { OrderType } from 'types/order';
+import StatusOrder from './StatusOrder';
+const OrderComponents: FC<{ List_Order: OrderType[] }> = ({ List_Order }) => {
+  return (
+    <>
+      <div className="bg-white py-4">
+        <ul className="List_Order">
+          {List_Order.map((_Order: OrderType, index) => (
+            <li key={index}>
+              {_Order.status == StatusOrder.NewOrder && <NewOrder />}
+              {_Order.status == StatusOrder.CompleteOrder && <CompleteOrder />}
+              {_Order.status == StatusOrder.ShippingOrder && <ShippingOrder />}
+              {_Order.status == StatusOrder.AdditionOrder && <AdditionOrder />}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </>
+  );
 };
+
+export default OrderComponents;

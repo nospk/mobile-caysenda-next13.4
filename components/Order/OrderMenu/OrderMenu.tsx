@@ -15,33 +15,33 @@ const OrderMenu: FC = () => {
 		<>
 			<div className={styles.menu}>
 				<div className={styles.menu_item}>
-					<Link href="/order">
+					<Link href="/order/new-order">
 						<div className={styles.menu_icon}>
-							<AiOutlineCreditCard size={50} />
+							<AiOutlineCreditCard size={30} />
 						</div>
 						<span>Đơn Mới</span>
 					</Link>
 				</div>
 				<div className={styles.menu_item}>
-					<Link href="/order">
+					<Link href="/order/shipping-order">
 						<div className={styles.menu_icon}>
-							<AiOutlineTransaction size={50} />
+							<AiOutlineTransaction size={30} />
 						</div>
 						<span>Đang Vận Chuyển</span>
 					</Link>
 				</div>
 				<div className={styles.menu_item}>
-					<Link href="/product-new">
+					<Link href="/order/addition-order">
 						<div className={styles.menu_icon}>
-							<AiOutlineClockCircle size={50} />
+							<AiOutlineClockCircle size={30} />
 						</div>
 						<span>Chờ Bổ Sung</span>
 					</Link>
 				</div>
 				<div className={styles.menu_item}>
-					<Link href="/product-hot">
+					<Link href="/order/complete-order">
 						<div className={styles.menu_icon}>
-							<AiOutlineCarryOut size={50} />
+							<AiOutlineCarryOut size={30} />
 						</div>
 						<span>Hoàn Thành</span>
 					</Link>
@@ -49,7 +49,7 @@ const OrderMenu: FC = () => {
 				<div className={styles.menu_item}>
 					<Link href="/order">
 						<div className={styles.menu_icon}>
-							<AiOutlineAccountBook size={50} />
+							<AiOutlineAccountBook size={30} />
 						</div>
 						<span>Toàn bộ</span>
 					</Link>

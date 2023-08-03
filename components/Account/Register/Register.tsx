@@ -3,8 +3,9 @@ import React, { useState } from "react";
 import styles from "./styles.module.css";
 import Image from "next/image";
 import "@/app/favicon.ico";
-
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 import getBaseUrl from '@/lib/getBaseUrl'
+import Link from "next/link";
 
 
 type RegisterForm = {
@@ -112,7 +113,7 @@ const Register = () => {
   return (
     <div className="w-full h-full flex justify-center items-center">
       <div className="w-full max-w-full">
-        <div className="absolute top-0 left-0 right-0 bottom-0 overflow-auto bg-white p-5 flex flex-col items-center">
+        <div className="overflow-auto bg-white p-5 flex flex-col items-center">
           <div className="w-full">
             <div className="flex justify-center items-center flex-col mt-0.5">
 
@@ -141,23 +142,6 @@ const Register = () => {
                       onChange={(e) => handleChange(e, name)}
                       required
                     />
-                    {name.includes('password') && (
-                      <div className="password_state" onClick={name === 'password' ? handleShowPassword : handleShowConfirmPassword}>
-                        {name === 'password' ? (
-                          showPassword ? (
-                            <i className="iconfont icon-eyes-visible"></i>
-                          ) : (
-                            <i className="iconfont icon-eyes-invisible"></i>
-                          )
-                        ) : (
-                          showConfirmPassword ? (
-                            <i className="iconfont icon-eyes-visible"></i>
-                          ) : (
-                            <i className="iconfont icon-eyes-invisible"></i>
-                          )
-                        )}
-                      </div>
-                    )}
                     <div className={styles.underline}>
                       <div className={styles.unfocused_line}></div>
                       <div className={styles.focused_line}></div>
@@ -176,6 +160,13 @@ const Register = () => {
                   </button>
                 </div>
               </form>
+              <div className={`${styles['register-blocks']} ${styles['register-links']}`}>
+                  <Link href="./login">Đăng Nhập</Link>
+
+                  <div className="link-forgot-password pl-2">
+                    <Link href="./forgotPassword">Quên Mật Khẩu</Link>
+                  </div>
+                </div>
             </div>
           </div>
         </div>

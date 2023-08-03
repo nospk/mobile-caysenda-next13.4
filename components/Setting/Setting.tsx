@@ -12,25 +12,28 @@ import {
   IoIosArrowBack,
   IoIosArrowForward
 } from 'react-icons/io';
-import {FiLock } from 'react-icons/fi';
+import { FiLock } from 'react-icons/fi';
 const SettingPage = () => {
+  
   return (
     <div className="min-h-screen bg-white">
       <div className="bg-white rounded-lg px-2">
-        <ul className="h-full w-full">
-          <li className="border-b border-gray-300 py-4">
+        <ul className="h-full w-full text-[#909090]">
+          <li className="border-b border-[#f5f5f5] py-4 ">
             <Link href="/change-avatar">
-              <div className="flex">
-                <div className="pr-2 flex-none">
-                  <FaCreativeCommonsNd size={18} />
+              <div className="flex content-center">
+                <div className="pr-2 flex-none content-center min-h-[26px]">
+                  <FaCreativeCommonsNd size={18} className='inline-flex content-center ' />
                 </div>
-                <div className="grow">Thay đổi Avatar</div>
-                <IoIosArrowForward size={18} className="flex-none" />
+                <div className="grow text-[18px]">Thay đổi Avatar</div>
+                <div className="flex-none content-center min-h-[26px]">
+                  <IoIosArrowForward size={18} className="inline-flex content-center" />
+                </div>
               </div>
             </Link>
           </li>
-          <li className="border-b border-gray-300 py-4">
-            <div className="flex">
+          <li className="border-b border-gray-300 py-4 ">
+            <div className="flex content-center">
               <div className="pr-2 flex-none">
                 <FaRegLaugh size={18} />
               </div>
@@ -38,7 +41,7 @@ const SettingPage = () => {
               <div className="flex-none px-4">Nomi</div>
             </div>
           </li>
-          <li className="border-b border-gray-300 py-4">
+          <li className="border-b border-gray-300 py-4 content-center">
             <div className="flex">
               <div className="pr-2 flex-none">
                 <FiLock size={18} />
@@ -49,18 +52,18 @@ const SettingPage = () => {
           </li>
           <li className="py-4">
             <Link href="/change-password">
-              <div className="flex">
-                <div className="pr-2 flex-none">
+              <div className="flex  content-center">
+                <div className="pr-2 flex-none content-center">
                   <FaRegEye size={18} />
                 </div>
-                <div className="grow">Đổi Mật Khẩu</div>
+                <div className="grow content-center">Đổi Mật Khẩu</div>
                 <IoIosArrowForward size={18} className="flex-none" />
               </div>
             </Link>
           </li>
           <li className="border-b border-gray-300 py-4">
             <Link href="/change-address">
-              <div className="flex">
+              <div className="flex content-center">
                 <div className="pr-2 flex-none">
                   <FaUserEdit size={18} />
                 </div>
