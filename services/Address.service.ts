@@ -1,11 +1,6 @@
 import API from "@/lib/api";
 import { ListDelivery } from "@/types/Delivery";
-const getCurrentAddress: () => Promise<string> = async () => {
-  const address =
-    "24 Nguyễn Thị Minh Khai, phường Bến Nghé, Quận 1, thành phố Hồ Chí Minh";
 
-  return address;
-};
 const getListDelivery: () => Promise<ListDelivery[]> = async () => {
   const list = [
     {
@@ -13,7 +8,7 @@ const getListDelivery: () => Promise<ListDelivery[]> = async () => {
       phone: "0962773213",
       address:
         "24 Nguyễn Thị Minh Khai, phường Bến Nghé, Quận 1, thành phố Hồ Chí Minh",
-      active: true,
+      active: false,
       id: 431,
     },
     {
@@ -21,7 +16,7 @@ const getListDelivery: () => Promise<ListDelivery[]> = async () => {
       phone: "123321321",
       address:
         "1231 Nguyễn Thị Minh Khai, phường Bến Nghé, Quận 1, thành phố Hồ Chí Minh",
-      active: false,
+      active: true,
       id: 123,
     },
   ];
@@ -38,7 +33,6 @@ const setActiveDelivery: (id: number) => Promise<{
   return result;
 };
 const AddressService = {
-  getCurrentAddress,
   getListDelivery,
   setActiveDelivery,
 };
