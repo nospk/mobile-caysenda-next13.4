@@ -1,9 +1,19 @@
 "use client";
-import { type FC } from "react";
+import { useEffect, type FC } from "react";
 import { useState } from "react";
 import Modal from "@/components/Modal";
 import styles from "./styles.module.css";
-import { AiOutlineClose } from "react-icons/ai";
+import { AiOutlineClose, AiOutlineDown } from "react-icons/ai";
+import AddressService from "@/services/Address.service";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/Select";
 interface Props {
   children: React.ReactNode;
 }
@@ -20,12 +30,21 @@ interface Props {
 // }
 const SelectAddressModal: FC<Props> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [listCity, setListCity] = useState<[] | any[]>([]);
   const handleOpenModal = () => {
     setIsOpen(true);
   };
   const handleCloseModal = () => {
     setIsOpen(false);
   };
+
+  useEffect(() => {
+    const getdata = async () => {
+      const listCity = await AddressService.getCityData();
+      setListCity(listCity);
+    };
+    getdata();
+  }, []);
   return (
     <>
       <div className={styles.main} onClick={handleOpenModal}>
@@ -131,17 +150,24 @@ const SelectAddressModal: FC<Props> = (props) => {
                     </div>
                     <div className="box-border flex-auto py-3">
                       <div className="box-border flex justify-normal">
-                        <div className="flex max-h-full min-h-[24px] w-full max-w-full items-center justify-start">
-                          <input
-                            className="m-0 box-border inline-block max-h-full w-full max-w-full appearance-none bg-transparent p-0 text-right leading-normal outline-0"
-                            maxLength={125}
-                            placeholder="Điền số điện thoại"
-                          ></input>
-                        </div>
-                        <div className="box-border block">
-                          <div className="absolute bottom-[-0.125rem] right-[0.375rem] mr-[0.375rem] mt-0 text-right text-[11px] text-[#ff3141]">
-                            Lỗi
-                          </div>
+                        <div className="flex max-h-full min-h-[24px] w-full max-w-full items-center justify-end  text-[#222]">
+                          <Select>
+                            <SelectTrigger className="w-[180px]">
+                              <SelectValue placeholder="Chọn Thành Phố" />
+                            </SelectTrigger>
+                            <SelectContent className="bg-white">
+                              <SelectGroup className="h-[400px]">
+                                {listCity.map((city) => {
+                                  return (
+                                    <SelectItem key={city.id} value={city.id}>
+                                      {city.name}
+                                    </SelectItem>
+                                  );
+                                })}
+                              </SelectGroup>
+                            </SelectContent>
+                          </Select>
+                          <AiOutlineDown className="ml-[6px] h-[16px] w-[16px] text-[#AAAAAA]" />
                         </div>
                       </div>
                     </div>
@@ -157,15 +183,20 @@ const SelectAddressModal: FC<Props> = (props) => {
                     <div className="box-border flex-auto py-3">
                       <div className="box-border flex justify-normal">
                         <div className="flex max-h-full min-h-[24px] w-full max-w-full items-center justify-start">
-                          <input
-                            className="m-0 box-border inline-block max-h-full w-full max-w-full appearance-none bg-transparent p-0 text-right leading-normal outline-0"
-                            maxLength={125}
-                            placeholder="Điền số điện thoại"
-                          ></input>
-                        </div>
-                        <div className="box-border block">
-                          <div className="absolute bottom-[-0.125rem] right-[0.375rem] mr-[0.375rem] mt-0 text-right text-[11px] text-[#ff3141]">
-                            Lỗi
+                          <div className="flex max-h-full min-h-[24px] w-full max-w-full items-center justify-end text-[#AAAAAA]">
+                            <select className={styles.select}>
+                              <option className="text-[#AAAAAA]">
+                                Chọn Quận/Huyện
+                              </option>
+                              {listCity.map((city) => {
+                                return (
+                                  <option key={city.id} value={city.id}>
+                                    {city.name}
+                                  </option>
+                                );
+                              })}
+                            </select>
+                            <AiOutlineDown className="ml-[6px] h-[16px] w-[16px] text-[#AAAAAA]" />
                           </div>
                         </div>
                       </div>
@@ -182,15 +213,20 @@ const SelectAddressModal: FC<Props> = (props) => {
                     <div className="box-border flex-auto py-3">
                       <div className="box-border flex justify-normal">
                         <div className="flex max-h-full min-h-[24px] w-full max-w-full items-center justify-start">
-                          <input
-                            className="m-0 box-border inline-block max-h-full w-full max-w-full appearance-none bg-transparent p-0 text-right leading-normal outline-0"
-                            maxLength={125}
-                            placeholder="Điền số điện thoại"
-                          ></input>
-                        </div>
-                        <div className="box-border block">
-                          <div className="absolute bottom-[-0.125rem] right-[0.375rem] mr-[0.375rem] mt-0 text-right text-[11px] text-[#ff3141]">
-                            Lỗi
+                          <div className="flex max-h-full min-h-[24px] w-full max-w-full items-center justify-end text-[#AAAAAA]">
+                            <select className={styles.select}>
+                              <option className="text-[#AAAAAA]">
+                                Chọn Phường/Xã
+                              </option>
+                              {listCity.map((city) => {
+                                return (
+                                  <option key={city.id} value={city.id}>
+                                    {city.name}
+                                  </option>
+                                );
+                              })}
+                            </select>
+                            <AiOutlineDown className="ml-[6px] h-[16px] w-[16px] text-[#AAAAAA]" />
                           </div>
                         </div>
                       </div>

@@ -32,8 +32,16 @@ const setActiveDelivery: (id: number) => Promise<{
   };
   return result;
 };
+const getCityData = async () => {
+  let res = await API.GET({
+    path: "/ajax/address?cities=203",
+  });
+  console.log(res);
+  return res;
+};
 const AddressService = {
   getListDelivery,
   setActiveDelivery,
+  getCityData,
 };
 export default AddressService;

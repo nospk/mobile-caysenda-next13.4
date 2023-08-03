@@ -1,5 +1,5 @@
 .modal {
-  @apply absolute bottom-0 z-auto left-0 right-0 box-border flex h-full min-h-[100vh] w-full bg-[#f8f8f8] shadow-md;
+  @apply absolute bottom-0 left-0 right-0 z-auto box-border flex h-full min-h-[100vh] w-full bg-[#f8f8f8] shadow-md;
 }
 .modalOverlay {
   @apply fixed left-0 top-0 z-30 flex h-full w-full animate-fade-up bg-[#0000008c] bg-opacity-60 animate-delay-0 animate-normal animate-duration-[350ms] animate-fill-none animate-once animate-ease-out;
@@ -12,4 +12,16 @@
 }
 .close {
   @apply absolute right-2 top-2 z-auto text-lg text-[#999];
+}
+.select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
+  background: none;
+}
+.select option {
+  @apply h-[100px];
+}
+.select:focus {
+  outline: none;
 }
