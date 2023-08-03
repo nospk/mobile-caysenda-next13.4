@@ -3,4 +3,5 @@ export interface ListDelivery {
   phone: string;
   address: string;
   active: boolean;
+  id: number;
 }

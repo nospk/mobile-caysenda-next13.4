@@ -14,6 +14,7 @@ const getListDelivery: () => Promise<ListDelivery[]> = async () => {
       address:
         "24 Nguyễn Thị Minh Khai, phường Bến Nghé, Quận 1, thành phố Hồ Chí Minh",
       active: true,
+      id: 431,
     },
     {
       name: "Trần Đăng Huy Hoàng 2",
@@ -21,15 +22,15 @@ const getListDelivery: () => Promise<ListDelivery[]> = async () => {
       address:
         "1231 Nguyễn Thị Minh Khai, phường Bến Nghé, Quận 1, thành phố Hồ Chí Minh",
       active: false,
+      id: 123,
     },
   ];
   return list;
 };
-const setActiveDelivery: (index: number) => Promise<{
+const setActiveDelivery: (id: number) => Promise<{
   status: boolean;
   message: string;
-}> = async (index) => {
-  //index là thứ tự trong list delivery
+}> = async (id) => {
   const result = {
     status: true,
     message: "Đổi địa chỉ thành công",

@@ -81,7 +81,7 @@ const SelectAddressModal: FC<Props> = (props) => {
               {listDelivery.map((item, index) => (
                 <div
                   onClick={() => {
-                    AddressService.setActiveDelivery(index).then((result) => {
+                    AddressService.setActiveDelivery(item.id).then((result) => {
                       if (result.status) {
                         let newAcitve = listDelivery;
                         newAcitve[getActiveDelivery()].active = false;
