@@ -4,34 +4,38 @@
   @apply w-full h-screen  flex items-center content-center justify-center;
 }
 .login_block {
-  @apply bg-white w-5/6 h-4/6 rounded-lg drop-shadow-sm flex flex-col;
+  
+  @apply bg-white w-[90vw] h-4/5 rounded-lg drop-shadow-sm flex flex-col;
 }
 .input_group {
   width: 100%;
-  height: 7vh;
-  @apply w-full flex items-center content-center rounded-full m-2.5 border-2 bg-[#f8f8f8];
+  height: 8vh;
+  @apply w-full flex items-center content-center rounded-full mt-[3vh] bg-[#f8f8f8];
 }
 .input_block {
+  color: #c1c1c1;
   @apply  p-5 rounded-l-full;
 }
 .input_text {
-  @apply w-full h-full px-2 text-lg rounded-r-full bg-[#f8f8f8] no-underline;
+  @apply w-full h-full px-2 text-lg rounded-r-full bg-[#f8f8f8] no-underline italic;
 }
 .button_group {
   background: rgb(254,164,26);
   background: linear-gradient(120deg, rgba(254,164,26,0.7455357142857143) 0%, rgba(242,47,3,0.989233193277311) 100%);
-  @apply w-full h-[7vh] flex justify-center rounded-full mt-2.5 border-2 text-xl;
+  @apply w-full h-[8vh] flex justify-center rounded-full mt-[5vh] text-xl;
 }
 .fm_btn {
-  @apply w-full h-full rounded-full text-white text-2xl drop-shadow-lg;
+  @apply w-full h-full rounded-full text-white text-2xl;
 }
 .login_link {
-  @apply flex justify-between px-5 text-xl;
+  color : #555;
+  @apply flex justify-between px-5 text-xl mx-5;
 }
 .login_other {
   @apply flex justify-center  absolute inset-x-0 bottom-[7vh];
 }
 .text_divider {
+  color: #c1c1c1;
   @apply flex items-center justify-center mx-5 w-full;
   --text-divider-gap: 1rem;
 }

@@ -71,18 +71,18 @@ const Login = () => {
                 <form className="flex p-5 mt-[5vh] flex-col items-center content-center justify-center" onSubmit={handleSubmit}>
                     <div className={styles.input_group}>
                         <div className={styles.input_block}>
-                            <BsFillPersonFill size= {24}/>
+                            <BsFillPersonFill size= {22} />
                         </div>
                         <input type="text"
-                            aria-label="Tài Khoản | Số Điện Thoại | Email"
-                            placeholder="Tài Khoản | Số Điện Thoại | Email"
+                            aria-label="Tài Khoản / Số Điện Thoại/ Email"
+                            placeholder="Tài Khoản / Số Điện Thoại / Email"
                             autoCapitalize={'off'}
                             onChange={handleUsernameChange}
                             className={styles.input_text} />
                     </div>
                     <div className={styles.input_group}>
                         <div className={styles.input_block}>
-                            <FaUnlockAlt size= {24} />
+                            <FaUnlockAlt size= {22} />
                         </div>
                         <input type="password"
                             aria-label="Mật Khẩu"
@@ -110,7 +110,7 @@ const Login = () => {
                 </div>
                 <div className={styles.login_other}>
                     <div className={styles.text_divider}>
-                        <span className="text-2xl">Caysenda.vn</span>
+                        <span className="text-2xl">caysenda.vn</span>
                     </div>
                 </div>
             </div>
