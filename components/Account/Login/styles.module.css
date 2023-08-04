@@ -1,205 +1,50 @@
-.login-form-body {
-    @apply w-full h-full;
-  display: flex;
-  background-color: white;
-  justify-content: center;
-  align-items: center;
+.login_background {
+  background: rgb(254,164,26);
+  background: linear-gradient(120deg, rgba(254,164,26,0.7455357142857143) 0%, rgba(242,47,3,0.989233193277311) 100%);
+  @apply w-full h-screen  flex items-center content-center justify-center;
 }
-
-.container {
-    @apply w-full;
-  max-width: 100%;
+.login_block {
+  @apply bg-white w-5/6 h-4/6 rounded-lg drop-shadow-sm flex flex-col;
 }
-
-.login-label-text {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow: auto;
-  background-color: white;
-  padding: 5px;
-  @apply flex flex-col items-center; /* Thêm @apply và chỉnh sửa */
-}
-
-.login-content-box {
-  
+.input_group {
   width: 100%;
-  padding: 10px;
+  height: 7vh;
+  @apply w-full flex items-center content-center rounded-full m-2.5 border-2 bg-[#f8f8f8];
 }
-
-.login-password {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  @apply mt-0.5; /* Thêm @apply và chỉnh sửa */
+.input_block {
+  @apply  p-5 rounded-l-full;
 }
-
-.login-error {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #ff6d6d;
-  margin: 20px 0;
-  font-size: 14px;
-  line-height: 16px;
-  @apply text-center; /* Thêm @apply và chỉnh sửa */
+.input_text {
+  @apply w-full h-full px-2 text-lg rounded-r-full bg-[#f8f8f8] no-underline;
 }
-
-.login-error i {
-  margin-right: 5px;
-  font-size: 20px;
+.button_group {
+  background: rgb(254,164,26);
+  background: linear-gradient(120deg, rgba(254,164,26,0.7455357142857143) 0%, rgba(242,47,3,0.989233193277311) 100%);
+  @apply w-full h-[7vh] flex justify-center rounded-full mt-2.5 border-2 text-xl;
 }
-
-.login-error-msg {
-  display: inline-block;
-  margin-left: 5px;
-  @apply text-xl;
+.fm_btn {
+  @apply w-full h-full rounded-full text-white text-2xl drop-shadow-lg;
 }
-
-.login-form {
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
-  @apply mt-10; /* Thêm @apply và chỉnh sửa */
+.login_link {
+  @apply flex justify-between px-5 text-xl;
 }
-
-.login-blocks {
-  @apply mt-6; /* Thêm @apply và chỉnh sửa */
+.login_other {
+  @apply flex justify-center  absolute inset-x-0 bottom-[7vh];
 }
-
-.logo-block {
-  @apply mb-5; /* Thêm @apply và chỉnh sửa */
+.text_divider {
+  @apply flex items-center justify-center mx-5 w-full;
+  --text-divider-gap: 1rem;
 }
-
-.fm-field {
-    width: 100%;
-  display: flex;
-  flex-direction: column;
-  font-weight: 100%;
-  margin-bottom: 20px;
-}
-
-.fm-label {
-  font-size: 14px;
-  font-weight: 100%;
-  margin-bottom: 5px;
-}
-
-.input-pwa-wrap {
-  position: relative;
-  display: inline-block;
-  height: 44px;
-  width: 100%;
-}
-
-.fm-text {
-  outline: none;
-  border: none;
-  font-size: 16px;
-  line-height: 18px;
-  width: 100%;
-  padding: 12px;
-  position: relative;
-  z-index: 1;
-  @apply focus:outline-none focus:border-blue-400; /* Thêm @apply và chỉnh sửa */
-}
-
-.underline {
-  position: relative;
-  width: 100%;
+.text_divider::before,
+.text_divider::after {
+  content: '';
   height: 1px;
+  background-color: #333;
+  flex-grow: 1;
 }
-
-.unfocused-line {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 1px;
-  background-color: #d2d6dc;
+.text_divider::before {
+  margin-right: var(--text-divider-gap);
 }
-
-.focused-line {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 1px;
-  background-color: #3182ce;
-  transform: scaleX(0);
-  transform-origin: bottom left;
-  transition: transform 0.3s ease;
-}
-
-.has-password-look-btn {
-  position: relative;
-  display: inline-block;
-  width: 100%;
-  height: 44px;
-}
-
-.input-wrap-password {
-  @apply relative flex items-center; /* Thêm @apply và chỉnh sửa */
-}
-
-.password-look-btn {
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-}
-
-.icon-eye-close {
-  @apply block w-6 h-6; /* Thêm @apply và chỉnh sửa */
-}
-
-.fm-btn {
-    width: 100%;
-    box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 10px;
-}
-
-.fm-button {
-    width: 100%;
-  outline: none;
-  border: none;
-  border-radius: 4px;
-  background-color: #ff4800;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 80%;
-  padding: 12px 24px;
-  transition: all 0.2s ease;
-  cursor: pointer;
-}
-
-.login-links {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 20px;
-  font-size: 14px;
-  font-weight: 700;
-  color: #636e72;
-  padding: 
-}
-
-.show-other-login {
-  margin-top: 20px;
-  font-size: 12px;
-  color: #a1a1aa;
-  text-align: center;
-}
-.password_state {
-  @apply absolute inset-y-0 right-0 flex items-center px-4 text-gray-600;
+.text_divider::after {
+  margin-left: var(--text-divider-gap);
 }

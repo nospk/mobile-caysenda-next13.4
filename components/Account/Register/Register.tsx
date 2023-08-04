@@ -14,6 +14,7 @@ type RegisterForm = {
   email?: string;
   password?: string;
   confirm_password?: string;
+  Errmsg? : string;
 };
 
 const inputList = [
@@ -94,6 +95,14 @@ const Register = () => {
           // expiresInMins: 60, // optional
         })
       })
+      if(res.status == 200)
+      {
+
+      }
+      else {
+        const errmsg = await res.json();
+        setErrors({ ...errors, 'Errmsg': errmsg.message });
+      }
     }
     catch {
 
@@ -113,18 +122,18 @@ const Register = () => {
   return (
     <div className="w-full h-full flex justify-center items-center">
       <div className="w-full max-w-full">
-        <div className="overflow-auto bg-white p-5 flex flex-col items-center">
+        <div className="overflow-auto bg-white h-screen p-5 flex flex-col items-center">
           <div className="w-full">
             <div className="flex justify-center items-center flex-col mt-0.5">
 
               <form className="w-full mt-10 flex flex-col items-center" onSubmit={handleSubmit}>
                 <div className="mt-6 mb-4">
-                  <Image src="/avatarzalo.jpg" alt="logo" width={100} height={100} />
+                  <Image src="/LogoLogin.jpg" alt="logo" width={100} height={100}/>
                 </div>
                 {errors && (
                       <div className={styles.register_error}>
                         <i className="iconfont icon-warning"></i>
-                        <div className={styles.register_error_msg}>{errors.username}</div>
+                        <div className={styles.register_error_msg}>{errors.Errmsg}</div>
                       </div>
                     )}
                 {inputList.map(({ name, label, placeholder }) => (

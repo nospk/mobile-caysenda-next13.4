@@ -7,7 +7,7 @@
   margin: 20px 0;
   font-size: 14px;
   line-height: 16px;
-  @apply text-center; /* Thêm @apply và chỉnh sửa */
+  @apply text-center; 
 }
 
 .register_error i {
@@ -37,7 +37,7 @@
   padding: 12px;
   position: relative;
   z-index: 1;
-  @apply focus:outline-none focus:border-blue-400; /* Thêm @apply và chỉnh sửa */
+  @apply focus:outline-none focus:border-blue-400; 
 }
 
 .underline {
@@ -89,7 +89,7 @@
   padding: 12px 24px;
   transition: all 0.2s ease;
   cursor: pointer;
-  @apply hover:bg-blue-400; /* Thêm @apply và chỉnh sửa */
+  @apply hover:bg-blue-400; 
 }
 
 .register-links {
