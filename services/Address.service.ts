@@ -22,6 +22,7 @@ const getListDelivery: () => Promise<ListDelivery[]> = async () => {
   ];
   return list;
 };
+
 const setActiveDelivery: (id: number) => Promise<{
   status: boolean;
   message: string;
@@ -34,14 +35,52 @@ const setActiveDelivery: (id: number) => Promise<{
 };
 const getCityData = async () => {
   let res = await API.GET({
-    path: "/ajax/address?cities=203",
+    path: "/ajax/address",
   });
-  console.log(res);
   return res;
+};
+const getDistrictData = async (id: string) => {
+  let res = await API.GET({
+    path: "/ajax/address",
+    data: { province: id },
+  });
+  return res;
+};
+const getWardData = async (id: string) => {
+  let res = await API.GET({
+    path: "/ajax/address",
+    data: { dictrict: id },
+  });
+  return res;
+};
+
+const createNewAddress: (
+  newAddress: {
+    fullName: string;
+    email: string;
+    phone: string;
+    province: string;
+    district: string;
+    ward: string;
+    address: string;
+  },
+  active: boolean
+) => Promise<{
+  status: boolean;
+  message: string;
+}> = async (newAddress, active) => {
+  const result = {
+    status: true,
+    message: "Thêm địa chỉ giao hàng mới thành công",
+  };
+  return result;
 };
 const AddressService = {
   getListDelivery,
   setActiveDelivery,
   getCityData,
+  getDistrictData,
+  getWardData,
+  createNewAddress,
 };
 export default AddressService;

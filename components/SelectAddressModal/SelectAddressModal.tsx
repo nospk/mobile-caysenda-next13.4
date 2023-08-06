@@ -39,9 +39,15 @@ const SelectAddressModal: FC<Props> = (props) => {
       return item.active == true;
     });
     return active;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [listDelivery]);
 
+  useEffect(() => {
+    for (const item of listDelivery) {
+      if (item.active == true) props.setAddress(item.address);
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [listDelivery]);
   return (
     <>
       <div className={styles.main} onClick={handleOpenModal}>
@@ -108,11 +114,10 @@ const SelectAddressModal: FC<Props> = (props) => {
               ))}
             </div>
             <div className={styles.footer}>
-              <NewAddressModal>
-                <button className={styles.button_create}>
-                  Tạo Địa Chỉ Giao Hàng Mới
-                </button>
-              </NewAddressModal>
+              <NewAddressModal
+                className={styles.button_create}
+                setListDelvery={setListDelvery}
+              />
             </div>
           </div>
         </div>

@@ -13,15 +13,3 @@
 .close {
   @apply absolute right-2 top-2 z-auto text-lg text-[#999];
 }
-.select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  border: none;
-  background: none;
-}
-.select option {
-  @apply h-[100px];
-}
-.select:focus {
-  outline: none;
-}
