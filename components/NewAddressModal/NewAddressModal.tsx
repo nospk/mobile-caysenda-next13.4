@@ -217,24 +217,22 @@ const SelectAddressModal: FC<Props> = (props) => {
           <a className={styles.close} onClick={handleCloseModal}>
             <AiOutlineClose />
           </a>
-          <article className="box-border flex flex-col items-stretch">
-            <header className="mb-[0.75rem] box-border flex h-[45px] items-center bg-white px-3">
-              <div className="text-left font-medium">ĐỊA CHỈ GIAO HÀNG MỚI</div>
+          <article className={styles.content}>
+            <header className={styles.header}>
+              <div className={styles.header_text}>ĐỊA CHỈ GIAO HÀNG MỚI</div>
             </header>
-            <div className="box-border block border-y border-[#eee] bg-white">
-              <div className="overflow-hidden">
-                <div className="relative block pl-4 text-[17px] leading-[1.5] ">
-                  <div className="flex items-stretch justify-start border-b border-[#eee] pr-3">
-                    <div className="box-border w-20 flex-none py-3 pr-3">
-                      <label className="relative box-border block h-full text-[16px] leading-[1.5] text-[#222]">
-                        Họ Tên
-                      </label>
+            <div className={styles.content_body}>
+              <div className={styles.content_wrapper}>
+                <div className={styles.list_item}>
+                  <div className={styles.list_item_content}>
+                    <div className={styles.list_item_content_prefix}>
+                      <label className={styles.list_item_label}>Họ Tên</label>
                     </div>
-                    <div className="box-border flex-auto py-3">
-                      <div className="box-border flex justify-normal">
-                        <div className="flex max-h-full min-h-[24px] w-full max-w-full items-center justify-start">
+                    <div className={styles.list_item_content_main}>
+                      <div className={styles.item_wrapper}>
+                        <div className={styles.item_data}>
                           <input
-                            className="m-0 box-border inline-block max-h-full w-full max-w-full appearance-none bg-transparent p-0 text-right leading-normal outline-0"
+                            className={styles.item_input}
                             maxLength={125}
                             placeholder="Điền Họ Và Tên Đầy Đủ"
                             value={newAddress.fullName}
@@ -242,8 +240,8 @@ const SelectAddressModal: FC<Props> = (props) => {
                           ></input>
                         </div>
                         {errors.fullName && (
-                          <div className="box-border block">
-                            <div className="absolute bottom-[-0.125rem] right-[0.375rem] mr-[0.375rem] mt-0 text-right text-[11px] text-[#ff3141]">
+                          <div className={styles.block_error}>
+                            <div className={styles.error_text}>
                               {errors.fullName}
                             </div>
                           </div>
@@ -252,26 +250,26 @@ const SelectAddressModal: FC<Props> = (props) => {
                     </div>
                   </div>
                 </div>
-                <div className="relative block pl-4 text-[17px] leading-[1.5]">
-                  <div className="flex items-stretch justify-start border-b border-[#eee] pr-3">
-                    <div className="box-border w-20 flex-none py-3 pr-3">
-                      <label className="relative box-border block h-full text-[16px] leading-[1.5] text-[#222]">
+                <div className={styles.list_item}>
+                  <div className={styles.list_item_content}>
+                    <div className={styles.list_item_content}>
+                      <label className={styles.list_item_content_prefix}>
                         Email
                       </label>
                     </div>
-                    <div className="box-border flex-auto py-3">
-                      <div className="box-border flex justify-normal">
-                        <div className="flex max-h-full min-h-[24px] w-full max-w-full items-center justify-start">
+                    <div className={styles.list_item_content_main}>
+                      <div className={styles.item_wrapper}>
+                        <div className={styles.item_data}>
                           <input
-                            className="m-0 box-border inline-block max-h-full w-full max-w-full appearance-none bg-transparent p-0 text-right leading-normal outline-0"
+                            className={styles.item_input}
                             maxLength={125}
                             placeholder="Điền Email"
                             onChange={(e) => handleChange(e, "email")}
                           ></input>
                         </div>
                         {errors.email && (
-                          <div className="box-border block">
-                            <div className="absolute bottom-[-0.125rem] right-[0.375rem] mr-[0.375rem] mt-0 text-right text-[11px] text-[#ff3141]">
+                          <div className={styles.block_error}>
+                            <div className={styles.error_text}>
                               {errors.email}
                             </div>
                           </div>
@@ -280,18 +278,18 @@ const SelectAddressModal: FC<Props> = (props) => {
                     </div>
                   </div>
                 </div>
-                <div className="relative block pl-4 text-[17px] leading-[1.5]">
-                  <div className="flex items-stretch justify-start border-b border-[#eee] pr-3">
-                    <div className="w-25 box-border flex-none py-3 pr-3">
-                      <label className="relative box-border block h-full text-[16px] leading-[1.5] text-[#222]">
+                <div className={styles.list_item}>
+                  <div className={styles.list_item_content}>
+                    <div className={styles.list_item_content_prefix_select}>
+                      <label className={styles.list_item_content_prefix}>
                         Số điện thoại
                       </label>
                     </div>
-                    <div className="box-border flex-auto py-3">
-                      <div className="box-border flex justify-normal">
-                        <div className="flex max-h-full min-h-[24px] w-full max-w-full items-center justify-start">
+                    <div className={styles.list_item_content_main}>
+                      <div className={styles.item_wrapper}>
+                        <div className={styles.item_data}>
                           <input
-                            className="m-0 box-border inline-block max-h-full w-full max-w-full appearance-none bg-transparent p-0 text-right leading-normal outline-0"
+                            className={styles.item_input}
                             maxLength={125}
                             placeholder="Điền số điện thoại"
                             onChange={(e) => handleChange(e, "phone")}
@@ -299,8 +297,8 @@ const SelectAddressModal: FC<Props> = (props) => {
                           ></input>
                         </div>
                         {errors.phone && (
-                          <div className="box-border block">
-                            <div className="absolute bottom-[-0.125rem] right-[0.375rem] mr-[0.375rem] mt-0 text-right text-[11px] text-[#ff3141]">
+                          <div className={styles.block_error}>
+                            <div className={styles.error_text}>
                               {errors.phone}
                             </div>
                           </div>
@@ -309,26 +307,26 @@ const SelectAddressModal: FC<Props> = (props) => {
                     </div>
                   </div>
                 </div>
-                <div className="relative block pl-4 text-[17px] leading-[1.5]">
-                  <div className="flex items-stretch justify-start border-b border-[#eee] pr-3">
-                    <div className="w-25 box-border flex-none py-3 pr-3">
-                      <label className="relative box-border block h-full text-[16px] leading-[1.5] text-[#222]">
+                <div className={styles.list_item}>
+                  <div className={styles.list_item_content}>
+                    <div className={styles.list_item_content_prefix_select}>
+                      <label className={styles.list_item_content_prefix}>
                         Tỉnh/Thành Phố
                       </label>
                     </div>
-                    <div className="box-border flex-auto py-3">
-                      <div className="box-border flex justify-normal">
-                        <div className="flex max-h-full min-h-[24px] w-full max-w-full items-center justify-end  text-[#222]">
+                    <div className={styles.list_item_content_main}>
+                      <div className={styles.item_wrapper}>
+                        <div className={styles.list_item_select}>
                           <Select
                             onValueChange={(e) =>
                               handleChangeData(e, "province")
                             }
                           >
-                            <SelectTrigger className="w-[180px]">
+                            <SelectTrigger className={styles.select_width}>
                               <SelectValue placeholder="Chọn Tỉnh/Thành Phố" />
                             </SelectTrigger>
-                            <SelectContent className="bg-white">
-                              <SelectGroup className="h-[400px]">
+                            <SelectContent className={styles.select_background}>
+                              <SelectGroup className={styles.select_height}>
                                 {listProvince.map((item) => {
                                   return (
                                     <SelectItem key={item.id} value={item.id}>
@@ -339,11 +337,11 @@ const SelectAddressModal: FC<Props> = (props) => {
                               </SelectGroup>
                             </SelectContent>
                           </Select>
-                          <AiOutlineDown className="ml-[6px] h-[16px] w-[16px] text-[#AAAAAA]" />
+                          <AiOutlineDown className={styles.select_icon} />
                         </div>
                         {errors.province && (
-                          <div className="box-border block">
-                            <div className="absolute bottom-[-0.125rem] right-[0.375rem] mr-[0.375rem] mt-0 text-right text-[11px] text-[#ff3141]">
+                          <div className={styles.block_error}>
+                            <div className={styles.error_text}>
                               {errors.province}
                             </div>
                           </div>
@@ -352,28 +350,30 @@ const SelectAddressModal: FC<Props> = (props) => {
                     </div>
                   </div>
                 </div>
-                <div className="relative block pl-4 text-[17px] leading-[1.5]">
-                  <div className="flex items-stretch justify-start border-b border-[#eee] pr-3">
-                    <div className="w-25 box-border flex-none py-3 pr-3">
-                      <label className="relative box-border block h-full text-[16px] leading-[1.5] text-[#222]">
+                <div className={styles.list_item}>
+                  <div className={styles.list_item_content}>
+                    <div className={styles.list_item_content_prefix_select}>
+                      <label className={styles.list_item_content_prefix}>
                         Quận/Huyện
                       </label>
                     </div>
-                    <div className="box-border flex-auto py-3">
-                      <div className="box-border flex justify-normal">
-                        <div className="flex max-h-full min-h-[24px] w-full max-w-full items-center justify-start">
-                          <div className="flex max-h-full min-h-[24px] w-full max-w-full items-center justify-end text-[#222]">
+                    <div className={styles.list_item_content_main}>
+                      <div className={styles.item_wrapper}>
+                        <div className={styles.item_data}>
+                          <div className={styles.list_item_select}>
                             {listDistrict.length > 0 ? (
                               <Select
                                 onValueChange={(e) =>
                                   handleChangeData(e, "district")
                                 }
                               >
-                                <SelectTrigger className="w-[180px]">
+                                <SelectTrigger className={styles.select_width}>
                                   <SelectValue placeholder="Chọn Quận/Huyện" />
                                 </SelectTrigger>
-                                <SelectContent className="bg-white">
-                                  <SelectGroup className="h-[400px]">
+                                <SelectContent
+                                  className={styles.select_background}
+                                >
+                                  <SelectGroup className={styles.select_height}>
                                     {listDistrict.map((item) => {
                                       return (
                                         <SelectItem
@@ -388,15 +388,15 @@ const SelectAddressModal: FC<Props> = (props) => {
                                 </SelectContent>
                               </Select>
                             ) : (
-                              <span className="text-[#AAAAAA]">
+                              <span className={styles.text_disable}>
                                 Chọn Quận/Huyện
                               </span>
                             )}
-                            <AiOutlineDown className="ml-[6px] h-[16px] w-[16px] text-[#AAAAAA]" />
+                            <AiOutlineDown className={styles.select_icon} />
                           </div>
                           {errors.district && (
-                            <div className="box-border block">
-                              <div className="absolute bottom-[-0.125rem] right-[0.375rem] mr-[0.375rem] mt-0 text-right text-[11px] text-[#ff3141]">
+                            <div className={styles.block_error}>
+                              <div className={styles.error_text}>
                                 {errors.district}
                               </div>
                             </div>
@@ -406,28 +406,30 @@ const SelectAddressModal: FC<Props> = (props) => {
                     </div>
                   </div>
                 </div>
-                <div className="relative block pl-4 text-[17px] leading-[1.5]">
-                  <div className="flex items-stretch justify-start border-b border-[#eee] pr-3">
-                    <div className="w-25 box-border flex-none py-3 pr-3">
-                      <label className="relative box-border block h-full text-[16px] leading-[1.5] text-[#222]">
+                <div className={styles.list_item}>
+                  <div className={styles.list_item_content}>
+                    <div className={styles.list_item_content_prefix_select}>
+                      <label className={styles.list_item_content_prefix}>
                         Phường/Xã
                       </label>
                     </div>
-                    <div className="box-border flex-auto py-3">
-                      <div className="box-border flex justify-normal">
-                        <div className="flex max-h-full min-h-[24px] w-full max-w-full items-center justify-start">
-                          <div className="flex max-h-full min-h-[24px] w-full max-w-full items-center justify-end text-[#222]">
+                    <div className={styles.list_item_content_main}>
+                      <div className={styles.item_wrapper}>
+                        <div className={styles.item_data}>
+                          <div className={styles.list_item_select}>
                             {listWard.length > 0 ? (
                               <Select
                                 onValueChange={(e) =>
                                   handleChangeData(e, "ward")
                                 }
                               >
-                                <SelectTrigger className="w-[180px]">
+                                <SelectTrigger className={styles.select_width}>
                                   <SelectValue placeholder="Chọn Phường/Xã" />
                                 </SelectTrigger>
-                                <SelectContent className="bg-white">
-                                  <SelectGroup className="h-[400px]">
+                                <SelectContent
+                                  className={styles.select_background}
+                                >
+                                  <SelectGroup className={styles.select_height}>
                                     {listWard.map((item) => {
                                       return (
                                         <SelectItem
@@ -442,15 +444,15 @@ const SelectAddressModal: FC<Props> = (props) => {
                                 </SelectContent>
                               </Select>
                             ) : (
-                              <span className="text-[#AAAAAA]">
+                              <span className={styles.text_disable}>
                                 Chọn Phường/Xã
                               </span>
                             )}
-                            <AiOutlineDown className="ml-[6px] h-[16px] w-[16px] text-[#AAAAAA]" />
+                            <AiOutlineDown className={styles.select_icon} />
                           </div>
                           {errors.ward && (
-                            <div className="box-border block">
-                              <div className="absolute bottom-[-0.125rem] right-[0.375rem] mr-[0.375rem] mt-0 text-right text-[11px] text-[#ff3141]">
+                            <div className={styles.block_error}>
+                              <div className={styles.error_text}>
                                 {errors.ward}
                               </div>
                             </div>
@@ -460,21 +462,21 @@ const SelectAddressModal: FC<Props> = (props) => {
                     </div>
                   </div>
                 </div>
-                <div className="relative block pl-4 text-[17px] leading-[1.5]">
-                  <div className="flex items-stretch justify-start pr-3">
-                    <div className="box-border flex-auto py-3">
-                      <div className="box-border flex justify-normal">
+                <div className={styles.list_item}>
+                  <div className={styles.list_item_content_prefix_textarea}>
+                    <div className={styles.list_item_content_main}>
+                      <div className={styles.item_wrapper}>
                         <textarea
                           rows={4}
-                          className="m-0 box-border block max-h-full w-full max-w-full resize-none appearance-none p-0 leading-normal outline-none"
+                          className={styles.text_area}
                           placeholder="Vui Lòng Nhập Địa Chỉ Chi Tiết"
                           onChange={(e) => handleChange(e, "address")}
                         ></textarea>
                       </div>
                     </div>
                     {errors.address && (
-                      <div className="box-border block">
-                        <div className="absolute bottom-[-0.125rem] right-[0.375rem] mr-[0.375rem] mt-0 text-right text-[11px] text-[#ff3141]">
+                      <div className={styles.block_error}>
+                        <div className={styles.error_text}>
                           {errors.address}
                         </div>
                       </div>
@@ -483,7 +485,7 @@ const SelectAddressModal: FC<Props> = (props) => {
                 </div>
               </div>
             </div>
-            <div className="mt-3 flex items-center justify-between bg-white p-3">
+            <div className={styles.switch_active}>
               <span>Đặt làm địa chỉ mặc định</span>
               <Switch
                 onChange={() => setActive(!active)}
@@ -496,11 +498,8 @@ const SelectAddressModal: FC<Props> = (props) => {
                 handleDiameter={16}
               />
             </div>
-            <footer className="absolute bottom-0 w-full items-center justify-center bg-white px-3 py-2">
-              <button
-                onClick={handleSubmit}
-                className="h-10 w-full rounded-full bg-[#ff620d] leading-10 text-white"
-              >
+            <footer className={styles.footer}>
+              <button onClick={handleSubmit} className={styles.footer_button}>
                 Tạo Mới
               </button>
             </footer>
