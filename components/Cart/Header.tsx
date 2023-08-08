@@ -1,13 +1,22 @@
 import { AiOutlineEnvironment, AiOutlineRight } from "react-icons/ai";
 import styles from "./styles.module.css";
-import SelectAddressModal from "../SelectAddressModal/SelectAddressModal";
-import React from "react";
+import SelectAddressModal from "../SelectAddressModal";
+import React, { SetStateAction, Dispatch } from "react";
+import { ListDelivery } from "@/types/Delivery";
 interface Props {
   address: string;
   isRemove: boolean;
-  setIsRemove: any;
+  setIsRemove: Dispatch<SetStateAction<boolean>>;
+  setAddress: Dispatch<SetStateAction<string>>;
+  listDelivery: ListDelivery[];
 }
-const Header: React.FC<Props> = ({ address, isRemove, setIsRemove }) => {
+const Header: React.FC<Props> = ({
+  address,
+  isRemove,
+  setIsRemove,
+  setAddress,
+  listDelivery,
+}) => {
   return (
     <header className={styles.header}>
       <div className={styles.header_wapper}>
@@ -16,10 +25,12 @@ const Header: React.FC<Props> = ({ address, isRemove, setIsRemove }) => {
           <div className={styles.address_content}>
             <AiOutlineEnvironment className={styles.address_icon_place} />
             <div className={styles.address_box}>
-              <SelectAddressModal>
-                <span className={styles.address_detail}>{address}</span>
-              </SelectAddressModal>
-
+              <SelectAddressModal
+                address={address}
+                className={styles.address_detail}
+                setAddress={setAddress}
+                listDelivery={listDelivery}
+              />
               <AiOutlineRight className={styles.address_icon_arrow} />
             </div>
           </div>

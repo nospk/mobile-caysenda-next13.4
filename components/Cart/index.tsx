@@ -18,9 +18,10 @@ import {
   selectCheckActiveCart,
 } from "@/redux/features/cart/cart.selector";
 import type { Cart } from "@/types/cart";
-
+import { ListDelivery } from "@/types/Delivery";
 interface Props {
   address: string;
+  listDelivery: ListDelivery[];
 }
 const Cart: FC<Props> = (props) => {
   // Check button remove
@@ -60,6 +61,8 @@ const Cart: FC<Props> = (props) => {
           address={address}
           isRemove={isRemove}
           setIsRemove={setIsRemove}
+          setAddress={setAddress}
+          listDelivery={props.listDelivery}
         />
         <div className={styles.content_wrapper}>
           <div className={styles.content_box}>

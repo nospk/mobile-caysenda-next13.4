@@ -77,13 +77,7 @@ const ProductCart = ({
   };
   const canActiveProduct =
     Number(quantity) >= Number(conditionDefault) ? true : false;
-  console.log(
-    "Product",
-    canActiveCategory,
-    canActiveProduct,
-    quantity,
-    conditionDefault
-  );
+
   const checkActive = () => {
     if ((!canActiveCategory || !canActiveProduct) && !isRemove)
       return <DisableActive />;
