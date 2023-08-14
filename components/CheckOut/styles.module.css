@@ -1,0 +1,24 @@
+.wrapper_header {
+  @apply box-border block bg-white p-[2.4vw];
+}
+.header {
+  @apply box-border block;
+}
+.header_content {
+  @apply box-border flex flex-shrink-0 flex-row items-center overflow-hidden;
+}
+.header_icon {
+  @apply relative block h-[5vw] w-[5vw] align-middle;
+}
+.address {
+  @apply box-border flex-1 px-[2vw];
+}
+.address_gray {
+  @apply text-[3.333333vw] text-[#666];
+}
+.address_margin {
+  @apply mr-[1vw] inline-block;
+}
+.address_icon {
+  @apply h-[3.23333vw] w-[3.23333vw] text-[#999];
+}
