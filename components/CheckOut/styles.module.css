@@ -22,3 +22,51 @@
 .address_icon {
   @apply h-[3.23333vw] w-[3.23333vw] text-[#999];
 }
+.modal {
+  @apply absolute bottom-0 left-0 right-0 box-border flex h-3/5 min-h-[40vh] w-full rounded-t-2xl bg-white shadow-md;
+}
+.modalOverlay {
+  @apply fixed left-0 top-0 z-20 flex h-full w-full animate-fade-up bg-[#0000008c] bg-opacity-60 animate-delay-0 animate-normal animate-duration-[350ms] animate-fill-none animate-once animate-ease-out;
+}
+.main {
+  @apply w-full;
+}
+.wrapper_payment {
+  @apply h-full w-full;
+}
+.close {
+  @apply absolute right-2 top-2 z-auto text-lg text-[#999];
+}
+.title_payment {
+  @apply mb-[0.625rem] text-center text-[1.125rem] font-semibold leading-[2.8125rem];
+}
+.payment_modal {
+  @apply box-border flex flex-1 flex-row items-center justify-end pl-[1.666667vw];
+}
+.payment_modal_text {
+  @apply inline text-[3.466667vw] text-[#666];
+}
+.payment_modal_icon {
+  @apply ml-[0.666667vw] h-[2vw] w-[2vw] text-[#999];
+}
+.modal_payment_content {
+  @apply p-3 text-[0.875rem] text-[#999999];
+}
+.modal_payment_main {
+  @apply font-semibold text-[#222];
+}
+.modal_payment_margin {
+  @apply mt-4;
+}
+.modal_payment_delivery {
+  @apply font-semibold text-orange-500;
+}
+.modal_payment_list {
+  @apply mt-1 pl-5;
+}
+.modal_payment_footer {
+  @apply absolute bottom-0 w-full px-[0.625rem] pb-[1.25rem] pt-[0.625rem];
+}
+.modal_payment_button {
+  @apply flex h-10 w-full flex-row justify-center rounded-full bg-[#ff4000] text-center leading-10 text-white;
+}

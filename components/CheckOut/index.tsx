@@ -1,9 +1,10 @@
 "use client";
 import { AiOutlineRight } from "react-icons/ai";
-import Image from "next/image";
 import Header from "./Header";
+import ListOrder from "./ListOrder";
 import { ListDelivery } from "@/types/Delivery";
 import { useState, type FC, useEffect, useMemo } from "react";
+import Payment from "./Payment";
 interface Props {
   listDelivery: ListDelivery[];
   activeDelivery: ListDelivery;
@@ -21,238 +22,33 @@ const CheckOut: FC<Props> = ({ listDelivery, activeDelivery }) => {
             setAddress={setAddress}
           />
           <div className="block overflow-hidden">
-            <div className="my-[1.66667vw] box-border block bg-white px-[1.66667vw]">
-              <div className="block">
-                <div className="box-border flex flex-row items-center py-[1.66667vw]">
-                  <h3 className="box-border flex-1 truncate text-[3.7333333vw] font-medium">
-                    Chậu Gốm Sứ Chậu Thú
-                  </h3>
-                </div>
-              </div>
-              <article className="block">
-                <div className="box-border">
-                  <div className="box-border">
-                    <div className="mb-[1.66667vw] box-border flex flex-row items-start">
-                      <div className="mr-[1vw] block h-[17.5vw] w-[17.5vw]">
-                        <Image
-                          className="rounded-lg"
-                          src="https://caysenda.vn/resources/upload/22216875771_102253868.jpg"
-                          alt="test"
-                          sizes="100vw"
-                          width={0}
-                          height={0}
-                          style={{ width: "100%", height: "100%" }}
-                        />
-                      </div>
-                      <div className="box-border flex-1 overflow-hidden">
-                        <div className="mb-[1vw] box-border truncate text-[3.666667vw] font-medium text-[#222]">
-                          ZTC1
-                        </div>
-                      </div>
-                    </div>
-                    <ul className="box-border">
-                      <li className="list-item">
-                        <div className="mb-[1.66667vw] flex list-none flex-row items-center rounded-lg bg-[#f9f9f9] px-[1.66667vw] py-[0.833333vw]">
-                          <div className="box-border flex-1 overflow-hidden">
-                            <div className="box-border">
-                              <span className="box-border text-[3.666667vw] text-[#555]">
-                                Chậu hình voi
-                              </span>
-                            </div>
-                            <span className="mr-[0.666666vw] box-border text-[3.666667vw] leading-[3vw] text-[#FF4000]">
-                              <span className="box-border">16K</span>
-                            </span>
-                            <span className="mr-[0.666666vw] box-border text-[2.666667vw] leading-[2vw] text-[#999]">
-                              {`Tổng: `}
-                              <span className="box-border">16K</span>
-                            </span>
-                          </div>
-                          <div className="box-border flex flex-col ">
-                            <div className="box-border h-[4.876vw] ">
-                              <span className="inline-block h-full rounded-lg bg-white px-[1.66667vw] text-[2.833333vw] leading-[4.876vw] text-[#999]">
-                                {"x "}
-                                <em className="not-italic text-[#222]">123</em>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                      <li className="list-item">
-                        <div className="mb-[1.66667vw] flex list-none flex-row items-center rounded-lg bg-[#f9f9f9] px-[1.66667vw] py-[0.833333vw]">
-                          <div className="box-border flex-1 overflow-hidden">
-                            <div className="box-border">
-                              <span className="box-border text-[3.666667vw] text-[#555]">
-                                Chậu hình voi
-                              </span>
-                            </div>
-                            <span className="mr-[0.666666vw] box-border text-[3.666667vw] leading-[3vw] text-[#FF4000]">
-                              <span className="box-border">16K</span>
-                            </span>
-                            <span className="mr-[0.666666vw] box-border text-[2.666667vw] leading-[2vw] text-[#999]">
-                              {`Tổng: `}
-                              <span className="box-border">16K</span>
-                            </span>
-                          </div>
-                          <div className="box-border flex flex-col ">
-                            <div className="box-border h-[4.876vw] ">
-                              <span className="inline-block h-full rounded-lg bg-white px-[1.66667vw] text-[2.833333vw] leading-[4.876vw] text-[#999]">
-                                {"x "}
-                                <em className="not-italic text-[#222]">123</em>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                      <li className="list-item">
-                        <div className="mb-[1.66667vw] flex list-none flex-row items-center rounded-lg bg-[#f9f9f9] px-[1.66667vw] py-[0.833333vw]">
-                          <div className="box-border flex-1 overflow-hidden">
-                            <div className="box-border">
-                              <span className="box-border text-[3.666667vw] text-[#555]">
-                                Chậu hình voi
-                              </span>
-                            </div>
-                            <span className="mr-[0.666666vw] box-border text-[3.666667vw] leading-[3vw] text-[#FF4000]">
-                              <span className="box-border">16K</span>
-                            </span>
-                            <span className="mr-[0.666666vw] box-border text-[2.666667vw] leading-[2vw] text-[#999]">
-                              {`Tổng: `}
-                              <span className="box-border">16K</span>
-                            </span>
-                          </div>
-                          <div className="box-border flex flex-col ">
-                            <div className="box-border h-[4.876vw] ">
-                              <span className="inline-block h-full rounded-lg bg-white px-[1.66667vw] text-[2.833333vw] leading-[4.876vw] text-[#999]">
-                                {"x "}
-                                <em className="not-italic text-[#222]">12</em>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="box-border">
-                    <div className="mb-[1.66667vw] box-border flex flex-row items-start">
-                      <div className="mr-[1vw] block h-[17.5vw] w-[17.5vw]">
-                        <Image
-                          className="rounded-lg"
-                          src="https://caysenda.vn/resources/upload/22216875771_102253868.jpg"
-                          alt="test"
-                          sizes="100vw"
-                          width={0}
-                          height={0}
-                          style={{ width: "100%", height: "100%" }}
-                        />
-                      </div>
-                      <div className="box-border flex-1 overflow-hidden">
-                        <div className="mb-[1vw] box-border truncate text-[3.3816vw] font-medium text-[#222]">
-                          ZTC1
-                        </div>
-                      </div>
-                    </div>
-                    <ul className="box-border">
-                      <li className="list-item">
-                        <div className="mb-[1.66667vw] flex list-none flex-row items-center rounded-lg bg-[#f9f9f9] px-[1.66667vw] py-[0.833333vw]">
-                          <div className="box-border flex-1 overflow-hidden">
-                            <div className="box-border">
-                              <span className="box-border text-[3.666667vw] text-[#555]">
-                                Chậu hình voi
-                              </span>
-                            </div>
-                            <span className="mr-[0.666666vw] box-border text-[3.666667vw] leading-[3vw] text-[#FF4000]">
-                              <span className="box-border">16K</span>
-                            </span>
-                            <span className="mr-[0.666666vw] box-border text-[2.666667vw] leading-[2vw] text-[#999]">
-                              {`Tổng: `}
-                              <span className="box-border">16K</span>
-                            </span>
-                          </div>
-                          <div className="box-border flex flex-col ">
-                            <div className="box-border h-[4.876vw] ">
-                              <span className="inline-block h-full rounded-lg bg-white px-[1.66667vw] text-[2.833333vw] leading-[4.876vw] text-[#999]">
-                                {"x "}
-                                <em className="not-italic text-[#222]">1</em>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                      <li className="list-item">
-                        <div className="mb-[1.66667vw] flex list-none flex-row items-center rounded-lg bg-[#f9f9f9] px-[1.66667vw] py-[0.833333vw]">
-                          <div className="box-border flex-1 overflow-hidden">
-                            <div className="box-border">
-                              <span className="box-border text-[3.666667vw] text-[#555]">
-                                Chậu hình voi
-                              </span>
-                            </div>
-                            <span className="mr-[0.666666vw] box-border text-[3.666667vw] leading-[3vw] text-[#FF4000]">
-                              <span className="box-border">16K</span>
-                            </span>
-                            <span className="mr-[0.666666vw] box-border text-[2.666667vw] leading-[2vw] text-[#999]">
-                              {`Tổng: `}
-                              <span className="box-border">16K</span>
-                            </span>
-                          </div>
-                          <div className="box-border flex flex-col ">
-                            <div className="box-border h-[4.876vw] ">
-                              <span className="inline-block h-full rounded-lg bg-white px-[1.66667vw] text-[2.833333vw] leading-[4.876vw] text-[#999]">
-                                {"x "}
-                                <em className="not-italic text-[#222]">1</em>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                      <li className="list-item">
-                        <div className="mb-[1.66667vw] flex list-none flex-row items-center rounded-lg bg-[#f9f9f9] px-[1.66667vw] py-[0.833333vw]">
-                          <div className="box-border flex-1 overflow-hidden">
-                            <div className="box-border">
-                              <span className="box-border text-[3.666667vw] text-[#555]">
-                                Chậu hình voi
-                              </span>
-                            </div>
-                            <span className="mr-[0.666666vw] box-border text-[3.666667vw] leading-[3vw] text-[#FF4000]">
-                              <span className="box-border">16K</span>
-                            </span>
-                            <span className="mr-[0.666666vw] box-border text-[2.666667vw] leading-[2vw] text-[#999]">
-                              {`Tổng: `}
-                              <span className="box-border">16K</span>
-                            </span>
-                          </div>
-                          <div className="box-border flex flex-col ">
-                            <div className="box-border h-[4.876vw] ">
-                              <span className="inline-block h-full rounded-lg bg-white px-[1.66667vw] text-[2.833333vw] leading-[4.876vw] text-[#999]">
-                                {"x "}
-                                <em className="not-italic text-[#222]">1</em>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div className="relative box-border pb-[1.666667vw]">
-                  <div className="box-border">
-                    <div className="flex flex-row items-center justify-between py-[1.166667vw] text-[2.833333vw]">
-                      <label className="mr-[2vw]">Phí Vận Chuyển</label>
-                      <div className="flex flex-1 flex-row items-center justify-end pl-[0.833333vw]">
-                        <span className="inline font-medium text-[#333]">
-                          30K
-                        </span>
-                        <AiOutlineRight className="ml-[0.666667vw] h-[2vw] w-[2vw] text-[#999]" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </article>
-            </div>
+            <ListOrder />
             <div className="box-border bg-white">
               <div className="mb-[1.666667vw] px-[1.666667vw] py-[2.333333vw] text-[#222]">
                 <div className="text-[3.666667vw] font-medium ">
                   Chi Tiết Thanh Toán
                 </div>
                 <div className="box-border">
+                  <div className="flex flex-row items-center justify-between py-[1.1666667vw]">
+                    <label className="text-[3.466667vw]">
+                      Hình Thức Thanh Toán
+                    </label>
+                    <Payment />
+                  </div>
+                  <div className="flex flex-row items-center justify-between py-[1.1666667vw]">
+                    <label className="text-[3.466667vw]">
+                      Tổng Tiền Phí Vận Chuyển
+                    </label>
+                    <div className="box-border flex flex-1 flex-row items-center justify-end pl-[1.666667vw]">
+                      <span className="box-border text-[3.466667vw] text-[#222]">
+                        60K
+                        <span className="ml-[0.333333vw] text-[2.666667vw]">
+                          đ
+                        </span>
+                      </span>
+                      <AiOutlineRight className="ml-[0.666667vw] h-[2vw] w-[2vw] text-[#999]" />
+                    </div>
+                  </div>
                   <div className="flex flex-row items-center justify-between py-[1.1666667vw]">
                     <label className="text-[3.466667vw] ">
                       Tổng Tiền Hàng
@@ -269,19 +65,7 @@ const CheckOut: FC<Props> = ({ listDelivery, activeDelivery }) => {
                       </span>
                     </div>
                   </div>
-                  <div className="flex flex-row items-center justify-between py-[1.1666667vw]">
-                    <label className="text-[3.466667vw]">
-                      Tổng Tiền Phí Vận Chuyển
-                    </label>
-                    <div className="box-border flex flex-1 flex-row items-center justify-end pl-[1.666667vw]">
-                      <span className="box-border text-[3.466667vw] text-[#222]">
-                        60K
-                        <span className="ml-[0.333333vw] text-[2.666667vw]">
-                          đ
-                        </span>
-                      </span>
-                    </div>
-                  </div>
+
                   <div className="flex flex-row items-center justify-between py-[1.1666667vw]">
                     <label className="text-[3.466667vw]">Tổng Thanh Toán</label>
                     <div className="box-border flex flex-1 flex-row items-center justify-end pl-[1.666667vw]">
@@ -291,17 +75,6 @@ const CheckOut: FC<Props> = ({ listDelivery, activeDelivery }) => {
                           đ
                         </span>
                       </span>
-                    </div>
-                  </div>
-                  <div className="flex flex-row items-center justify-between py-[1.1666667vw]">
-                    <label className="text-[3.466667vw]">
-                      Hình Thức Thanh Toán
-                    </label>
-                    <div className="box-border flex flex-1 flex-row items-center justify-end pl-[1.666667vw]">
-                      <span className="inline text-[3.466667vw] text-[#666]">
-                        CK trước 10%
-                      </span>
-                      <AiOutlineRight className="ml-[0.666667vw] h-[2vw] w-[2vw] text-[#999]" />
                     </div>
                   </div>
                   <div className="flex flex-row items-center justify-between py-[1.1666667vw]">
@@ -317,7 +90,6 @@ const CheckOut: FC<Props> = ({ listDelivery, activeDelivery }) => {
                 </div>
               </div>
             </div>
-            Header
           </div>
         </div>
       </div>

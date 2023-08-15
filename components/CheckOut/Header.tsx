@@ -10,9 +10,9 @@ interface Props {
   setAddress: Dispatch<SetStateAction<ListDelivery>>;
 }
 const Header: FC<Props> = ({ listDelivery, activeAddress, setAddress }) => {
-  let test = activeAddress.address.split(",");
-  const detail_address = test.shift() as string;
-  const district_address = test.join(",");
+  let addressSplit = activeAddress.address.split(",");
+  const detail_address = addressSplit.shift() as string;
+  const district_address = addressSplit.join(",");
   return (
     <div className={styles.wrapper_header}>
       <div className={styles.header}>
