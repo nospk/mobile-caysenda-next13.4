@@ -30,7 +30,6 @@ const Header: React.FC<Props> = ({
                 className={styles.address_detail}
                 setAddress={setAddress}
                 listDelivery={listDelivery}
-                type="Cart"
               />
               <AiOutlineRight className={styles.address_icon_arrow} />
             </div>

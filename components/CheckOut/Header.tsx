@@ -24,12 +24,7 @@ const Header: FC<Props> = ({ listDelivery, activeAddress, setAddress }) => {
           />
           <div className={styles.address}>
             <div className={styles.address_gray}>{district_address}</div>
-            <SelectAddressModal
-              address={detail_address}
-              setAddress={setAddress}
-              listDelivery={listDelivery}
-              type="CheckOut"
-            />
+            <span>{detail_address}</span>
             <div className={styles.address_gray}>
               <span className={styles.address_margin}>
                 {activeAddress.name}

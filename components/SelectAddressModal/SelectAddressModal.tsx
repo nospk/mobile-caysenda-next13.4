@@ -18,9 +18,8 @@ interface Props {
   className?: string;
   setAddress: Dispatch<SetStateAction<any>>;
   listDelivery: ListDelivery[];
-  type: "CheckOut" | "Cart";
 }
-const SelectAddressModal:FC<Props> = (props: Props) => {
+const SelectAddressModal: FC<Props> = (props: Props) => {
   //set open - close
   const [isOpen, setIsOpen] = useState(false);
   //set list delivery
@@ -44,10 +43,7 @@ const SelectAddressModal:FC<Props> = (props: Props) => {
 
   useEffect(() => {
     for (const item of listDelivery) {
-      if (item.active == true)
-        props.type == "Cart"
-          ? props.setAddress(item.address)
-          : props.setAddress(item);
+      if (item.active == true) props.setAddress(item.address);
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -97,10 +93,7 @@ const SelectAddressModal:FC<Props> = (props: Props) => {
                         newAcitve[getActiveDelivery()].active = false;
                         newAcitve[index].active = true;
                         setListDelvery(newAcitve);
-                        console.log(item);
-                        props.type == "Cart"
-                          ? props.setAddress(item.address)
-                          : props.setAddress(item);
+                        props.setAddress(item.address);
                         handleCloseModal();
                       }
                     });

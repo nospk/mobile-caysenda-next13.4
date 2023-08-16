@@ -17,7 +17,7 @@ const Payment: FC = () => {
     <>
       <div className={styles.payment_modal} onClick={handleOpenModal}>
         <span className={styles.payment_modal_text}>CK trước 10%</span>
-        <AiOutlineRight className={styles.payment_modal_icon} />
+        <AiOutlineRight className={styles.icon_arrow_right} />
       </div>
       <Modal
         isOpen={isOpen}
