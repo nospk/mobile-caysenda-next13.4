@@ -64,11 +64,7 @@ const ListOrder: FC<Props> = ({ data }) => {
                                   >
                                     <span className="box-border">
                                       {convertMoney(Number(variant.price))}
-                                      <span
-                                        className={styles.currency}
-                                      >
-                                        đ
-                                      </span>
+                                      <span className={styles.currency}>đ</span>
                                     </span>
                                   </span>
                                   <span
@@ -80,11 +76,7 @@ const ListOrder: FC<Props> = ({ data }) => {
                                         Number(variant.price) *
                                           Number(variant.quantity)
                                       )}
-                                      <span
-                                        className={styles.currency}
-                                      >
-                                        đ
-                                      </span>
+                                      <span className={styles.currency}>đ</span>
                                     </span>
                                   </span>
                                 </div>

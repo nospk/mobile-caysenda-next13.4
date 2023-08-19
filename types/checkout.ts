@@ -6,6 +6,7 @@ export interface CheckOut {
       name: string;
       image: string;
       id: string;
+      quantity: number;
       variants: [
         {
           name: string;

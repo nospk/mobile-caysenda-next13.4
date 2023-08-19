@@ -28,6 +28,9 @@
 .modalOverlay {
   @apply fixed left-0 top-0 z-20 flex h-full w-full animate-fade-up bg-[#0000008c] bg-opacity-60 animate-delay-0 animate-normal animate-duration-[350ms] animate-fill-none animate-once animate-ease-out;
 }
+.modal_full {
+  @apply fixed flex h-full w-full flex-col bg-[#f8f8f8];
+}
 .main {
   @apply w-full;
 }
@@ -199,6 +202,75 @@
 .footer_button {
   @apply h-[6.1666667vw] w-[18.6666667vw] flex-1 rounded-full bg-[#ff4000] text-[3.4666667vw] font-medium leading-[6.1666667vw] text-white;
 }
-.footer_confirm{
-  @apply flex
+.footer_confirm {
+  @apply flex;
+}
+.delivery_hearder {
+  @apply h-12 w-full bg-white leading-[48px] pl-[0.625rem]  font-semibold;
+}
+.delivery_main {
+  @apply box-border h-[calc(100dvh-105px)] overflow-auto;
+}
+.delivery_category {
+  @apply p-[0.625rem] text-[0.975rem] font-normal uppercase;
+}
+.delivery_product {
+  @apply m-0 flex flex-row bg-white px-[0.625rem] py-[0.875rem];
+}
+.delivery_image {
+  @apply float-left block h-[4.53125rem] w-[4.53125rem] flex-shrink-0 text-[0];
+}
+.delivery_product_name {
+  @apply grow pl-[0.625rem] text-[0.875rem] font-medium text-[#222];
+}
+.delivery_product_type {
+  @apply box-border text-[0.75rem] text-[#999];
+}
+.delivery_inline {
+  @apply inline;
+}
+.delivery_product_quantity {
+  @apply float-right inline;
+}
+.delivery_sum {
+  @apply my-[0.625rem] bg-white px-[0.625rem] pt-[0.625rem];
+}
+.delivery_result {
+  @apply mb-[0.625rem] text-right text-[0.875rem];
+}
+.delivery_result_label {
+  @apply text-[#ff3000];
+}
+.delivery_info {
+  @apply border-t border-[#e5e5e5] py-[0.875rem] text-[0.75rem] text-[#666];
+}
+.delivery_footer {
+  @apply absolute bottom-0 left-0 right-0 z-auto h-[57px] bg-white;
+}
+.delivery_button {
+  @apply h-[2.315rem] w-[6.25rem] flex-1 rounded-full bg-[#ff4000] px-3 font-[0.875rem] leading-[2.315rem] text-white;
+}
+.delivery_footer_wrapper {
+  @apply flex flex-row items-center p-[0.625rem];
+}
+.delivery_footer_sideleft {
+  @apply grow;
+}
+.delivery_footer_sideright {
+  @apply flex-initial;
+}
+.delivery_footer_label {
+  @apply text-[#333];
+}
+.delivery_footer_fee {
+  @apply text-[#ff7300];
+}
+.delivery_footer_textright {
+  @apply mr-[0.625rem] text-right;
+}
+.delivery_footer_text {
+  @apply text-[0.85rem] leading-3;
+}
+.delivery_back {
+  @apply h-[3rem] w-[2rem] pl-[0.625rem] float-left ;
 }

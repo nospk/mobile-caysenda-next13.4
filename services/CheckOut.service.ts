@@ -4,24 +4,25 @@ const getCheckOut = async () => {
     categories: [
       {
         name: "Chậu Gốm Sứ Chậu Sứ",
-        id: '123',
+        id: "123",
         products: [
           {
             name: "ZTC1 ZTC1 ZTC1 ZTC1 ZTC1 ZTC1 ZTC1 ZTC1 ZTC1 ZTC1",
             image:
               "https://caysenda.vn/resources/upload/22216875771_102253868.jpg",
-            id: '321',
+            id: "321",
+            quantity: 4,
             variants: [
               {
                 name: "Chậu hình voi",
-                id: '1236',
+                id: "1236",
                 price: 16000,
                 quantity: 2,
                 weight: 1000,
               },
               {
                 name: "Chậu hình voi",
-                id: '12367',
+                id: "12367",
                 price: 16000,
                 quantity: 2,
                 weight: 1000,
@@ -32,11 +33,12 @@ const getCheckOut = async () => {
             name: "ZTC2",
             image:
               "https://caysenda.vn/resources/upload/22216875771_102253868.jpg",
-            id: '3421',
+            id: "3421",
+            quantity: 2,
             variants: [
               {
                 name: "Chậu hình voi",
-                id: '12136',
+                id: "12136",
                 price: 18000,
                 quantity: 2,
                 weight: 1000,
@@ -47,24 +49,25 @@ const getCheckOut = async () => {
       },
       {
         name: "Chậu Gốm Sứ Chậu Sứ 2",
-        id: '1323',
+        id: "1323",
         products: [
           {
             name: "ZTC1",
             image:
               "https://caysenda.vn/resources/upload/22216875771_102253868.jpg",
-            id: '3521',
+            id: "3521",
+            quantity: 4,
             variants: [
               {
                 name: "Chậu hình voi",
-                id: '12575436',
+                id: "12575436",
                 price: 16000,
                 quantity: 2,
                 weight: 1000,
               },
               {
                 name: "Chậu hình voi",
-                id: '12367',
+                id: "12367",
                 price: 16000,
                 quantity: 2,
                 weight: 1000,
@@ -75,29 +78,30 @@ const getCheckOut = async () => {
             name: "ZTC2",
             image:
               "https://caysenda.vn/resources/upload/22216875771_102253868.jpg",
-            id: '3477521',
+            id: "3477521",
+            quantity: 5,
             variants: [
               {
                 name: "Chậu hình voi",
-                id: '12145436',
+                id: "12145436",
                 price: 18000,
-                quantity: 2,
+                quantity: 3,
                 weight: 1000,
               },
               {
                 name: "Chậu hình voi",
-                id: '121457436',
+                id: "121457436",
                 price: 18000,
                 quantity: 2,
                 weight: 1000,
-              }
+              },
             ],
           },
         ],
       },
     ],
     totalQuantity: 1,
-    totalWeight: 1000,
+    totalWeight: 1430,
     variantActive: 1,
     amount: 16000,
     fee: 30000,

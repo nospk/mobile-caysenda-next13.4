@@ -1,5 +1,5 @@
 "use client";
-import { AiOutlineRight } from "react-icons/ai";
+
 import Header from "./Header";
 import ListOrder from "./ListOrder";
 import { ListDelivery } from "@/types/Delivery";
@@ -8,6 +8,7 @@ import { CheckOut } from "@/types/checkout";
 import { convertMoney } from "@/lib/formatPrice";
 import styles from "./styles.module.css";
 import Payment from "./Payment";
+import Delivery from "./Delivery";
 interface Props {
   listDelivery: ListDelivery[];
   activeDelivery: ListDelivery;
@@ -41,13 +42,12 @@ const CheckOut: FC<Props> = ({ listDelivery, activeDelivery, data }) => {
                     <label className={styles.total_label}>
                       Tổng Tiền Phí Vận Chuyển
                     </label>
-                    <div className={styles.total_list_value}>
-                      <span className={styles.total_payment}>
-                        {convertMoney(Number(data.fee))}
-                        <span className={styles.currency}>đ</span>
-                      </span>
-                      <AiOutlineRight className={styles.icon_arrow_right} />
-                    </div>
+
+                    <Delivery
+                      className={styles.total_list_value}
+                      money={data.fee}
+                      data={data}
+                    />
                   </div>
                   <div className={styles.total_list}>
                     <label className={styles.total_label}>
