@@ -1,0 +1,41 @@
+.modal {
+  @apply absolute bottom-0 left-0 right-0 box-border flex h-full min-h-[40vh] w-full bg-[#f8f8f8] shadow-md;
+}
+.modalOverlay {
+  @apply fixed left-0 top-0 z-20 flex h-full w-full animate-fade-up bg-[#0000008c] bg-opacity-60 animate-delay-0 animate-normal animate-duration-[350ms] animate-fill-none animate-once animate-ease-out;
+}
+.main {
+  @apply w-full;
+}
+.back {
+  @apply absolute left-2 z-auto text-center h-[2.8125rem] w-[1.25rem];
+}
+.edit {
+  @apply absolute right-2 top-3 z-auto text-center text-sm text-[#FF602D];
+}
+.wrapper {
+  @apply h-full w-full flex flex-col;
+}
+.title {
+  @apply bg-white text-center text-[1.125rem] font-medium leading-[2.8125rem];
+}
+.delivery_to {
+  @apply box-border h-full my-[0.375rem] bg-white;
+}
+.icon {
+  @apply ml-[0.375rem] mr-[0.625rem] box-border h-[1.5rem] w-[1.375rem];
+}
+
+.list_body {
+  @apply box-border items-center;
+}
+
+.footer {
+  @apply bottom-[2.125rem] left-0 box-border w-full px-[0.5rem] py-[0.75rem] bg-white;
+}
+.button_create {
+  @apply w-full rounded-3xl bg-[#ff602d] py-[0.4375rem] text-[1rem] text-white;
+}
+.checked_wrapper {
+  @apply relative mr-[0.75rem] box-border flex flex-shrink-0 flex-row content-start items-center;
+}

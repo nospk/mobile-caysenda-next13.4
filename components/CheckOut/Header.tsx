@@ -1,7 +1,7 @@
 import { Icon } from "@/components/Icon";
 import { AiOutlineRight } from "react-icons/ai";
 import { ListDelivery } from "@/types/Delivery";
-import SelectAddressModal from "../SelectAddressModal";
+import EditAddressModal from "@/components/EditAddressModal";
 import { type FC, SetStateAction, Dispatch } from "react";
 import styles from "./styles.module.css";
 interface Props {
@@ -24,7 +24,11 @@ const Header: FC<Props> = ({ listDelivery, activeAddress, setAddress }) => {
           />
           <div className={styles.address}>
             <div className={styles.address_gray}>{district_address}</div>
-            <span>{detail_address}</span>
+            <EditAddressModal
+              address={detail_address}
+              setAddress={setAddress}
+              listDelivery={listDelivery}
+            />
             <div className={styles.address_gray}>
               <span className={styles.address_margin}>
                 {activeAddress.name}
