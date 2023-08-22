@@ -7,17 +7,20 @@
   margin: 20px 0;
   font-size: 14px;
   line-height: 16px;
-  @apply text-center; 
+  @apply text-center;  
 }
 
 .register_error i {
   margin-right: 5px;
   font-size: 20px;
 }
-
+.back {
+  @apply p-2.5 flex-none;
+}
 .register_error_msg {
   display: inline-block;
   margin-left: 5px;
+  @apply text-red-500;
 }
 
 .fm_field {

@@ -1,0 +1,27 @@
+.container {
+    @apply flex flex-col justify-center;
+}
+.back {
+    @apply bg-white flex h-[5vh] mb-2;
+}
+.head_block {
+    @apply absolute inset-x-0 top-0 h-[inherit] flex justify-center items-center;
+}
+.btn {
+    @apply w-full mx-5
+}
+.input_block {
+    @apply my-[1vh] bg-white h-[5vh] w-full flex ;
+}
+.input_label {
+    @apply flex-none flex content-center h-full my-2 px-2;
+}
+.input_email {
+    @apply grow;
+}
+.swipe_block {
+    @apply mx-[5vw] w-[90vw];
+}
+.msg_block {
+    @apply mt-[10vh] h-[5vh] mx-[5vw] w-[90vw] bg-[#777];
+}

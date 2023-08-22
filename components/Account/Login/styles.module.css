@@ -10,8 +10,7 @@
   @apply h-full w-[10vw] flex items-center px-2 text-3xl text-[#fe2801] font-serif font-semibold ;
 }
 .head_block {
-  
-  @apply w-full h-[30vh] flex flex-col ;
+  @apply w-full h-[25vh] flex flex-col ;
 }
 .logo_block {
   @apply grow flex items-center pl-3;
@@ -23,18 +22,18 @@
 .input_group {
   width: 100%;
   height: 8vh;
-  @apply w-full flex items-center content-center rounded-full mt-[3vh] bg-[#f8f8f8];
+  @apply w-full flex items-center content-center rounded-full mt-[2vh] bg-[#f8f8f8];
 }
 .input_block {
   color: #c1c1c1;
-  @apply  p-5 rounded-l-full;
+  @apply  px-5 rounded-l-full;
 }
 .input_text {
-  @apply w-full h-full px-2 text-lg rounded-r-full bg-[#f8f8f8] no-underline italic;
+  @apply w-full h-full px-5 text-lg rounded-full bg-[#f8f8f8] no-underline italic;
 }
 .button_group {
   background: #fe2e00 ;
-  @apply w-4/5 h-[8vh] flex justify-center rounded-full mt-[5vh] text-xl px-[5vw];
+  @apply w-4/5 h-[8vh] flex justify-center rounded-full mt-[3vh] text-xl px-[5vw];
 }
 .fm_btn {
   @apply w-full h-full rounded-full text-white text-2xl;

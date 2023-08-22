@@ -23,12 +23,15 @@
     "react-dom": "18.2.0",
     "react-icons": "^4.8.0",
     "react-redux": "^8.0.5",
+    "react-slide-button": "^2.0.0",
+    "react-swipezor": "^1.0.7",
     "sharp": "^0.32.1",
     "swiper": "^9.2.4",
     "tailwind-scrollbar-hide": "^1.1.7",
     "tailwindcss": "3.3.2",
     "tailwindcss-animated": "^1.0.1",
-    "typescript": "5.0.4"
+    "typescript": "5.0.4",
+    "yarn": "^1.22.19"
   },
   "devDependencies": {
     "prettier": "^2.8.8",

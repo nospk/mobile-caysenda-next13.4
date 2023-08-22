@@ -1,21 +1,12 @@
 'use client';
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import styles from "./styles.module.css";
-import Image from "next/image";
 import "@/app/favicon.ico";
-import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 import getBaseUrl from '@/lib/getBaseUrl'
 import Link from "next/link";
-
-
-type RegisterForm = {
-  username?: string;
-  phone?: string;
-  email?: string;
-  password?: string;
-  confirm_password?: string;
-  Errmsg? : string;
-};
+import { IoIosArrowBack } from "react-icons/io";
+import {RegisterForm, RegisterFormError} from '@/types/Account'
 
 const inputList = [
   { name: "username", label: "Username", placeholder: "Tên tài khoản" },
@@ -26,16 +17,16 @@ const inputList = [
 ];
 
 const Register = () => {
+  const router = useRouter();
   const [formData, setFormData] = useState<RegisterForm>({
     username: "",
     phone: "",
     email: "",
     password: "",
     confirm_password: "",
-  });
-  const [errors, setErrors] = useState<Partial<RegisterForm>>({});
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+});
+  const [errors, setErrors] = useState<Partial<RegisterFormError>>({});
+  const [message, setMessage] = useState('');
 
   //xét điều kiện nhập
   const isPhoneValid = (phone: string) => {
@@ -56,16 +47,16 @@ const Register = () => {
 
     // Kiểm tra điều kiện lỗi của trường input và lưu vào state errors
     if (field === 'phone' && value && !isPhoneValid(value)) {
-      setErrors({ ...errors, [field]: 'Số điện thoại không hợp lệ!' });
+      setErrors({ ...errors, [field]: { errorMsg: "Số điện thoại không hợp lệ!", type: "text" } })
     } else if (field === 'email' && value && !isEmailValid(value)) {
-      setErrors({ ...errors, [field]: 'Email không hợp lệ!' });
+      setErrors({ ...errors, [field]: { errorMsg: "Email không hợp lệ!", type: "text" } });
     } else if (field === 'password' && value && !isPasswordValid(value)) {
-      setErrors({ ...errors, [field]: 'Mật khẩu phải có đủ 6 ký tự!' });
+      setErrors({ ...errors, [field]: { errorMsg: "Mật khẩu không hợp lệ!", type: "text" } });
     } else if (field === 'confirm_password' && value && value !== formData.password) {
-      setErrors({ ...errors, [field]: 'Mật khẩu không khớp!' });
+      setErrors({ ...errors, [field]: { errorMsg: "Mật khẩu không chính xác", type: "text" } });
     } else {
       const newErrors = { ...errors };
-      delete newErrors[field as keyof RegisterForm]; // Xóa thông tin lỗi của trường input khi người dùng nhập lại
+      delete newErrors[field as keyof RegisterFormError]; // Xóa thông tin lỗi của trường input khi người dùng nhập lại
       setErrors(newErrors);
     }
 
@@ -73,7 +64,7 @@ const Register = () => {
     if (formData.hasOwnProperty(field)) {
       setFormData({
         ...formData,
-        [field as keyof RegisterForm]: value,
+        [field as keyof RegisterForm]: value, 
       });
     }
   };
@@ -92,16 +83,15 @@ const Register = () => {
           email: formData.email,
           password: formData.password,
           confirm_password: formData.confirm_password,
-          // expiresInMins: 60, // optional
         })
       })
-      if(res.status == 200)
-      {
+      if (res.status == 200) {
 
+        router.push('/login');
       }
       else {
         const errmsg = await res.json();
-        setErrors({ ...errors, 'Errmsg': errmsg.message });
+        setErrors(errmsg);
       }
     }
     catch {
@@ -109,38 +99,23 @@ const Register = () => {
     }
   };
 
-  const handleShowPassword = (event: React.MouseEvent<HTMLDivElement>) => {
-    event.preventDefault();
-    setShowPassword(!showPassword);
-  };
-
-  const handleShowConfirmPassword = (event: React.MouseEvent<HTMLDivElement>) => {
-    event.preventDefault();
-    setShowConfirmPassword(!showConfirmPassword);
-  };
-
   return (
-    <div className="w-full h-full flex justify-center items-center">
+    <div className="bg-white w-full h-full flex justify-center items-center">
       <div className="w-full max-w-full">
-        <div className="overflow-auto bg-white h-screen p-5 flex flex-col items-center">
+        <div className={styles.back} >
+          <button type="button" onClick={() => router.back()} className="rounded-full px-2 py-0.5">
+            <IoIosArrowBack size={22} />
+          </button>
+        </div>
+        <div className="overflow-auto h-screen p-5 flex flex-col items-center">
           <div className="w-full">
             <div className="flex justify-center items-center flex-col mt-0.5">
-
               <form className="w-full mt-10 flex flex-col items-center" onSubmit={handleSubmit}>
-                <div className="mt-6 mb-4">
-                  <Image src="/LogoLogin.jpg" alt="logo" width={100} height={100}/>
-                </div>
-                {errors && (
-                      <div className={styles.register_error}>
-                        <i className="iconfont icon-warning"></i>
-                        <div className={styles.register_error_msg}>{errors.Errmsg}</div>
-                      </div>
-                    )}
                 {inputList.map(({ name, label, placeholder }) => (
                   <div key={name} className={styles.fm_field}>
                     <input
                       name={name}
-                      type={name.includes('password') ? showPassword || showConfirmPassword ? 'text' : 'password' : 'text'}
+                      type={'password'}
                       className={styles.fm_text}
                       id={name}
                       tabIndex={1}
@@ -155,12 +130,18 @@ const Register = () => {
                       <div className={styles.unfocused_line}></div>
                       <div className={styles.focused_line}></div>
                     </div>
-                    {errors[name as keyof RegisterForm] && (
-                      <div className={styles.register_error}>
-                        <i className="iconfont icon-warning"></i>
-                        <div className={styles.register_error_msg}>{errors[name as keyof RegisterForm]}</div>
-                      </div>
-                    )}
+                    {errors[name as keyof RegisterFormError] &&
+                      (errors[name as keyof RegisterFormError]?.type == 'link' ? (
+                        <div className={styles.register_error}>
+                          <i className="iconfont icon-warning"></i>
+                          <Link href={'./forgot-password'} className={styles.register_error_msg}>{errors[name as keyof RegisterFormError]?.errorMsg} {"-> lấy lại mật khẩu"}</Link>
+                        </div>
+                      ) : (
+                        <div className={styles.register_error}>
+                          <i className="iconfont icon-warning"></i>
+                          <div className={styles.register_error_msg}>{errors[name as keyof RegisterFormError]?.errorMsg}</div>
+                        </div>
+                      ))}
                   </div>
                 ))}
                 <div className={styles.fm_btn}>
@@ -169,13 +150,8 @@ const Register = () => {
                   </button>
                 </div>
               </form>
-              <div className={`${styles['register-blocks']} ${styles['register-links']}`}>
-                  <Link href="./login">Đăng Nhập</Link>
-
-                  <div className="link-forgot-password pl-2">
-                    <Link href="./forgotPassword">Quên Mật Khẩu</Link>
-                  </div>
-                </div>
+              {message && (
+              <p id="message">{message}</p>)}
             </div>
           </div>
         </div>
