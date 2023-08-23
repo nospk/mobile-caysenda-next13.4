@@ -20,15 +20,11 @@ import {
 import type { Cart } from "@/types/cart";
 import { ListDelivery } from "@/types/Delivery";
 interface Props {
-  address: string;
   listDelivery: ListDelivery[];
 }
 const Cart: FC<Props> = (props) => {
   // Check button remove
   const [isRemove, setIsRemove] = useState<boolean>(false);
-
-  // InitialState Address
-  const [address, setAddress] = useState<string>(props.address);
 
   //Initial cart
   const dispatch = useAppDispatch();
@@ -58,10 +54,8 @@ const Cart: FC<Props> = (props) => {
     <div className={styles.main}>
       <div className={styles.content}>
         <Header
-          address={address}
           isRemove={isRemove}
           setIsRemove={setIsRemove}
-          setAddress={setAddress}
           listDelivery={props.listDelivery}
         />
         <div className={styles.content_wrapper}>

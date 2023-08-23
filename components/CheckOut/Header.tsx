@@ -10,9 +10,17 @@ interface Props {
   setAddress: Dispatch<SetStateAction<ListDelivery>>;
 }
 const Header: FC<Props> = ({ listDelivery, activeAddress, setAddress }) => {
-  let addressSplit = activeAddress.address.split(",");
-  const detail_address = addressSplit.shift() as string;
-  const district_address = addressSplit.join(",");
+  let detail_address;
+  let district_address;
+  if (activeAddress) {
+    let addressSplit = activeAddress.address.split(",");
+    detail_address = addressSplit.shift() as string;
+    district_address = addressSplit.join(",");
+  } else {
+    detail_address = "Chưa có địa chỉ giao hàng, vui lòng thêm địa chỉ trước khi đặt hàng";
+    district_address = "";
+  }
+
   return (
     <div className={styles.wrapper_header}>
       <div className={styles.header}>
@@ -28,15 +36,18 @@ const Header: FC<Props> = ({ listDelivery, activeAddress, setAddress }) => {
               address={detail_address}
               setAddress={setAddress}
               listDelivery={listDelivery}
+              className="text-[#666] text-[0.875rem]"
             />
-            <div className={styles.address_gray}>
-              <span className={styles.address_margin}>
-                {activeAddress.name}
-              </span>
-              <span className={styles.address_margin}>
-                {activeAddress.phone}
-              </span>
-            </div>
+            {activeAddress ? (
+              <div className={styles.address_gray}>
+                <span className={styles.address_margin}>
+                  {activeAddress.name}
+                </span>
+                <span className={styles.address_margin}>
+                  {activeAddress.phone}
+                </span>
+              </div>
+            ) : <span className={styles.header_warnning}>Vui lòng điền địa chỉ giao hàng</span>}
           </div>
           <AiOutlineRight className={styles.address_icon} />
         </div>

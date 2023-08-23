@@ -8,7 +8,10 @@
   @apply box-border flex flex-shrink-0 flex-row items-center overflow-hidden;
 }
 .header_icon {
-  @apply relative block h-[5vw] w-[5vw] align-middle;
+  @apply relative block h-[1.5rem] w-[1.5rem] align-middle;
+}
+.header_warnning {
+  @apply text-[0.75rem] text-red-500;
 }
 .address {
   @apply box-border flex-1 px-[2vw];
@@ -206,7 +209,7 @@
   @apply flex;
 }
 .delivery_hearder {
-  @apply h-12 w-full bg-white leading-[48px] pl-[0.625rem]  font-semibold;
+  @apply h-12 w-full bg-white pl-[0.625rem] font-semibold  leading-[48px];
 }
 .delivery_main {
   @apply box-border h-[calc(100dvh-105px)] overflow-auto;
@@ -272,5 +275,5 @@
   @apply text-[0.85rem] leading-3;
 }
 .delivery_back {
-  @apply h-[3rem] w-[2rem] pl-[0.625rem] float-left ;
+  @apply float-left h-[3rem] w-[2rem] pl-[0.625rem];
 }

@@ -1,22 +1,18 @@
 import { AiOutlineEnvironment, AiOutlineRight } from "react-icons/ai";
 import styles from "./styles.module.css";
 import SelectAddressModal from "../SelectAddressModal";
-import React, { SetStateAction, Dispatch } from "react";
+import React, { SetStateAction, Dispatch, useState } from "react";
 import { ListDelivery } from "@/types/Delivery";
 interface Props {
-  address: string;
   isRemove: boolean;
   setIsRemove: Dispatch<SetStateAction<boolean>>;
-  setAddress: Dispatch<SetStateAction<string>>;
+
   listDelivery: ListDelivery[];
 }
-const Header: React.FC<Props> = ({
-  address,
-  isRemove,
-  setIsRemove,
-  setAddress,
-  listDelivery,
-}) => {
+const Header: React.FC<Props> = ({ isRemove, setIsRemove, listDelivery }) => {
+  // InitialState Address
+  const [address, setAddress] = useState<string>("Bấm để thêm địa chỉ giao hàng");
+
   return (
     <header className={styles.header}>
       <div className={styles.header_wapper}>

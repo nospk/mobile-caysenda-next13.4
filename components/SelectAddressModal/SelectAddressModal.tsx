@@ -65,23 +65,28 @@ const SelectAddressModal: FC<Props> = (props: Props) => {
           </a>
           <div className={styles.title}>Địa Chỉ Giao Hàng</div>
           <div className={styles.delivery_to}>
-            <div className={styles.sub_title}>Địa chỉ hiện tại</div>
-            <div className={styles.current_delivery}>
-              <AiOutlineEnvironment className={styles.icon} />
-              <div className={styles.current_delivery_address}>
-                <div className={styles.name_phone_box}>
-                  <span className={styles.name}>
-                    {listDelivery[getActiveDelivery()].name}
-                  </span>
-                  <span className={styles.phone}>
-                    {listDelivery[getActiveDelivery()].phone}
-                  </span>
+            {listDelivery.length > 0 ? (
+              <>
+                <div className={styles.sub_title}>Địa chỉ hiện tại</div>
+
+                <div className={styles.current_delivery}>
+                  <AiOutlineEnvironment className={styles.icon} />
+                  <div className={styles.current_delivery_address}>
+                    <div className={styles.name_phone_box}>
+                      <span className={styles.name}>
+                        {listDelivery[getActiveDelivery()].name}
+                      </span>
+                      <span className={styles.phone}>
+                        {listDelivery[getActiveDelivery()].phone}
+                      </span>
+                    </div>
+                    <div className={styles.address}>
+                      {listDelivery[getActiveDelivery()].address}
+                    </div>
+                  </div>
                 </div>
-                <div className={styles.address}>
-                  {listDelivery[getActiveDelivery()].address}
-                </div>
-              </div>
-            </div>
+              </>
+            ) : null}
             <div className={styles.sub_title}>Chọn địa chỉ nhận hàng</div>
             <div className={styles.other_delivery_list}>
               {listDelivery.map((item, index) => (

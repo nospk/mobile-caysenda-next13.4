@@ -1,7 +1,29 @@
 import API from "@/lib/api";
 import { ListDelivery } from "@/types/Delivery";
 
-const getListDelivery: () => Promise<ListDelivery[]> = async () => {
+const getDetail: (id: number) => Promise<{
+  fullName: string;
+  email: string;
+  phone: string;
+  province: string;
+  district: string;
+  ward: string;
+  address: string;
+  active?: boolean;
+}> = async (id) => {
+  const result = {
+    fullName: "Trần Hoàng",
+    email: "nodawd@gmail.com",
+    phone: "0902776490",
+    province: "202",
+    district: "1446",
+    ward: "20401",
+    address: "dwad1231",
+    active: true,
+  };
+  return result;
+};
+const getListDelivery: () => Promise<ListDelivery[] | []> = async () => {
   const list = [
     {
       name: "Trần Đăng Huy Hoàng 1",
@@ -20,6 +42,7 @@ const getListDelivery: () => Promise<ListDelivery[]> = async () => {
       id: 123,
     },
   ];
+  //const list = [] as any;
   return list;
 };
 
@@ -75,6 +98,17 @@ const createNewAddress: (
   };
   return result;
 };
+
+const removeAddress: (id: number) => Promise<{
+  status: boolean;
+  message: string;
+}> = async (id) => {
+  const result = {
+    status: true,
+    message: "Đã Xóa Địa Chỉ Thành Công",
+  };
+  return result;
+};
 const AddressService = {
   getListDelivery,
   setActiveDelivery,
@@ -82,5 +116,7 @@ const AddressService = {
   getDistrictData,
   getWardData,
   createNewAddress,
+  removeAddress,
+  getDetail,
 };
 export default AddressService;
