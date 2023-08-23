@@ -547,7 +547,7 @@ const EditViewModal: FC<Props> = (props) => {
                 onClick={handleSubmit}
                 className={styles.edit_footer_button}
               >
-                Tạo Mới
+                Xác Nhận
               </button>
             </footer>
           </article>

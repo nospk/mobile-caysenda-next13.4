@@ -17,6 +17,10 @@ interface Props {
 const CheckOut: FC<Props> = ({ listDelivery, activeDelivery, data }) => {
   // InitialState Address
   const [address, setAddress] = useState<ListDelivery>(activeDelivery);
+  const [note, setNote] = useState<string>("");
+  const handleSubmit = () => {
+    
+  };
   return (
     <div>
       <div className={styles.main}>
@@ -82,6 +86,7 @@ const CheckOut: FC<Props> = ({ listDelivery, activeDelivery, data }) => {
                         className={styles.total_note}
                         maxLength={500}
                         placeholder="Lưu Ý Cho Người Bán"
+                        onChange={(e) => setNote(e.target.value)}
                       />
                     </div>
                   </div>
@@ -108,7 +113,14 @@ const CheckOut: FC<Props> = ({ listDelivery, activeDelivery, data }) => {
             </div>
             <div className={styles.footer_right}>
               <div className={styles.footer_confirm}>
-                <button className={styles.footer_button}>Xác Nhận</button>
+                <button
+                  onClick={() => {
+                    handleSubmit();
+                  }}
+                  className={styles.footer_button}
+                >
+                  Xác Nhận
+                </button>
               </div>
             </div>
           </div>
