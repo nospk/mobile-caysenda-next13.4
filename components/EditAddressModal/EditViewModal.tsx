@@ -22,7 +22,8 @@ type Data = {
   id: string;
   name: string;
 };
-type NewAddress = {
+
+type editAddress = {
   fullName: string;
   email: string;
   phone: string;
@@ -44,7 +45,7 @@ const EditViewModal: FC<Props> = (props) => {
   const [listProvince, setListProvince] = useState<[] | Data[]>([]);
   const [listDistrict, setListDistrict] = useState<[] | Data[]>([]);
   const [listWard, setListWard] = useState<[] | Data[]>([]);
-  const [newAddress, setNewAddress] = useState<NewAddress>({
+  const [editAddress, setEditAddress] = useState<editAddress>({
     fullName: "",
     email: "",
     phone: "",
@@ -53,7 +54,7 @@ const EditViewModal: FC<Props> = (props) => {
     ward: "",
     address: "",
   });
-  const [errors, setErrors] = useState<Partial<NewAddress>>({});
+  const [errors, setErrors] = useState<Partial<editAddress>>({});
   const dispatch = useAppDispatch();
   //Modal
   const handleOpenModal = () => {
@@ -88,15 +89,15 @@ const EditViewModal: FC<Props> = (props) => {
       setErrors({ ...errors, [field]: "Email không hợp lệ!" });
     } else {
       const newErrors = { ...errors };
-      delete newErrors[field as keyof NewAddress]; // Xóa thông tin lỗi của trường input khi người dùng nhập lại
+      delete newErrors[field as keyof editAddress]; // Xóa thông tin lỗi của trường input khi người dùng nhập lại
       setErrors(newErrors);
     }
 
     // Lưu giá trị của trường input vào state formData
-    if (newAddress.hasOwnProperty(field)) {
-      setNewAddress({
-        ...newAddress,
-        [field as keyof NewAddress]: value,
+    if (editAddress.hasOwnProperty(field)) {
+      setEditAddress({
+        ...editAddress,
+        [field as keyof editAddress]: value,
       });
     }
   };
@@ -106,8 +107,8 @@ const EditViewModal: FC<Props> = (props) => {
       const getDistrict = async () => {
         setListDistrict([]);
         let data = await AddressService.getDistrictData(value);
-        setNewAddress({
-          ...newAddress,
+        setEditAddress({
+          ...editAddress,
           province: value,
           district: "",
           ward: "",
@@ -121,8 +122,8 @@ const EditViewModal: FC<Props> = (props) => {
       const getWard = async () => {
         let data = await AddressService.getWardData(value);
         setListWard(data);
-        setNewAddress({
-          ...newAddress,
+        setEditAddress({
+          ...editAddress,
           district: value,
           ward: "",
         });
@@ -130,8 +131,8 @@ const EditViewModal: FC<Props> = (props) => {
       getWard();
     }
     if (field === "ward") {
-      setNewAddress({
-        ...newAddress,
+      setEditAddress({
+        ...editAddress,
         ward: value,
       });
     }
@@ -146,25 +147,25 @@ const EditViewModal: FC<Props> = (props) => {
   const handleSubmit = () => {
     //check error
     let error = {};
-    if (newAddress.phone === "" && !isPhoneValid(newAddress.phone)) {
+    if (editAddress.phone === "" && !isPhoneValid(editAddress.phone)) {
       error = { ...error, phone: "Số điện thoại không hợp lệ!" };
     }
-    if (newAddress.fullName === "") {
+    if (editAddress.fullName === "") {
       error = { ...error, fullName: "Vui lòng điền họ tên đầy đủ" };
     }
-    if (newAddress.email === "" && !isEmailValid(newAddress.email)) {
+    if (editAddress.email === "" && !isEmailValid(editAddress.email)) {
       error = { ...error, email: "Email không hợp lệ!" };
     }
-    if (newAddress.address === "") {
+    if (editAddress.address === "") {
       error = { ...error, address: "Vui lòng nhập địa chỉ chính xác" };
     }
-    if (newAddress.province === "") {
+    if (editAddress.province === "") {
       error = { ...error, province: "Vui lòng chọn thành phố" };
     }
-    if (newAddress.district === "") {
+    if (editAddress.district === "") {
       error = { ...error, district: "Vui lòng chọn quận/huyện" };
     }
-    if (newAddress.ward === "") {
+    if (editAddress.ward === "") {
       error = { ...error, ward: "Vui lòng chọn phường/xã" };
     }
 
@@ -172,11 +173,11 @@ const EditViewModal: FC<Props> = (props) => {
       setErrors(error);
     } else {
       const saveData = async () => {
-        let result = await AddressService.createNewAddress(newAddress, active);
+        let result = await AddressService.editAddress(editAddress, active);
         dispatch(openDialog({ message: result.message }));
         if (result.status) {
           handleCloseModal();
-          setNewAddress({
+          setEditAddress({
             fullName: "",
             email: "",
             phone: "",
@@ -199,11 +200,17 @@ const EditViewModal: FC<Props> = (props) => {
     if (isOpen) {
       const getdata = async () => {
         let dataEdit = await AddressService.getDetail(props.id);
-        const listCity = await AddressService.getCityData();
+        const listProvince = await AddressService.getCityData();
+        const listDistrict = await AddressService.getDistrictData(
+          dataEdit.province
+        );
+        const listWard = await AddressService.getWardData(dataEdit.district);
         setActive(dataEdit.active!);
         delete dataEdit.active;
-        setListProvince(listCity);
-        setNewAddress(dataEdit);
+        setEditAddress(dataEdit);
+        setListProvince(listProvince);
+        setListDistrict(listDistrict);
+        setListWard(listWard);
 
         //handleChangeData(dataEdit.province, "province")
         //handleChangeData(dataEdit.district, "district")
@@ -250,7 +257,7 @@ const EditViewModal: FC<Props> = (props) => {
                             className={styles.edit_item_input}
                             maxLength={125}
                             placeholder="Điền Họ Và Tên Đầy Đủ"
-                            value={newAddress.fullName}
+                            value={editAddress.fullName}
                             onChange={(e) => handleChange(e, "fullName")}
                           ></input>
                         </div>
@@ -280,7 +287,7 @@ const EditViewModal: FC<Props> = (props) => {
                             maxLength={125}
                             placeholder="Điền Email"
                             onChange={(e) => handleChange(e, "email")}
-                            value={newAddress.email}
+                            value={editAddress.email}
                           ></input>
                         </div>
                         {errors.email && (
@@ -312,7 +319,7 @@ const EditViewModal: FC<Props> = (props) => {
                             placeholder="Điền số điện thoại"
                             onChange={(e) => handleChange(e, "phone")}
                             type="tel"
-                            value={newAddress.phone}
+                            value={editAddress.phone}
                           ></input>
                         </div>
                         {errors.phone && (
@@ -342,6 +349,7 @@ const EditViewModal: FC<Props> = (props) => {
                             onValueChange={(e) =>
                               handleChangeData(e, "province")
                             }
+                            value={editAddress.province}
                           >
                             <SelectTrigger className={styles.edit_select_width}>
                               <SelectValue placeholder="Chọn Tỉnh/Thành Phố" />
@@ -392,6 +400,11 @@ const EditViewModal: FC<Props> = (props) => {
                               <Select
                                 onValueChange={(e) =>
                                   handleChangeData(e, "district")
+                                }
+                                value={
+                                  editAddress.district != ""
+                                    ? editAddress.district
+                                    : undefined
                                 }
                               >
                                 <SelectTrigger
@@ -457,6 +470,11 @@ const EditViewModal: FC<Props> = (props) => {
                                 onValueChange={(e) =>
                                   handleChangeData(e, "ward")
                                 }
+                                value={
+                                  editAddress.ward != ""
+                                    ? editAddress.ward
+                                    : undefined
+                                }
                               >
                                 <SelectTrigger
                                   className={styles.edit_select_width}
@@ -514,7 +532,7 @@ const EditViewModal: FC<Props> = (props) => {
                           className={styles.edit_text_area}
                           placeholder="Vui Lòng Nhập Địa Chỉ Chi Tiết"
                           onChange={(e) => handleChange(e, "address")}
-                          value={newAddress.address}
+                          value={editAddress.address}
                         ></textarea>
                       </div>
                     </div>
