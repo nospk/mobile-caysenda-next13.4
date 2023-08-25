@@ -98,7 +98,27 @@ const createNewAddress: (
   };
   return result;
 };
-
+const editAddress: (
+  editAddress: {
+    fullName: string;
+    email: string;
+    phone: string;
+    province: string;
+    district: string;
+    ward: string;
+    address: string;
+  },
+  active: boolean
+) => Promise<{
+  status: boolean;
+  message: string;
+}> = async (editAddress, active) => {
+  const result = {
+    status: true,
+    message: "Sửa địa chỉ giao hàng thành công",
+  };
+  return result;
+};
 const removeAddress: (id: number) => Promise<{
   status: boolean;
   message: string;
@@ -118,5 +138,6 @@ const AddressService = {
   createNewAddress,
   removeAddress,
   getDetail,
+  editAddress,
 };
 export default AddressService;
