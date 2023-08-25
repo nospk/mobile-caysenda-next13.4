@@ -18,7 +18,7 @@
 }
 .input_email {
     @apply grow;
-}
+} 
 .swipe_block {
     @apply mx-[5vw] w-[90vw];
 }
