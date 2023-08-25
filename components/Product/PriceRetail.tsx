@@ -1,8 +1,7 @@
 import styles from './ProductDetail.module.css';
+import { convertMoney } from "@/lib/formatPrice";
+
 export default function PriceRetail({ unit, price, name }: { unit: string; price: any[]; name: string }) {
-	const convertMoney = (money: string) => {
-		return `${money.replace(/\B(?=(\d{3})+(?!\d))/g, ".").replace(/0+/, '')}K`
-	};
 	return (
 		<>
 			<div className={styles.wrapper_price}>
@@ -12,7 +11,7 @@ export default function PriceRetail({ unit, price, name }: { unit: string; price
 							<div key={`${name}_${index}`} className={styles.wrapper_price_item}>
 								<div className={styles.price_item}>
 									<span className={styles.price_number}>
-										{convertMoney(item.money.toString())}
+										{convertMoney(item.money)}
 									</span>
 									<span className={styles.price_currency}>đ</span>
 								</div>

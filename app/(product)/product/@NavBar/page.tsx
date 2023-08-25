@@ -66,42 +66,39 @@ export default function Page() {
     navigator.clipboard.writeText(location.href);
     dispatch(openDialog({ message: "Đã copy link sản phẩm" }));
   };
-  return (
-    <div
-      className={`${styles.heard} bg-[#f8f8f8] ${opticalVariants[opacity]} ${
-        change ? " text-black" : "text-white"
-      }`}
-    >
-      <div
-        onClick={() => router.back()}
-        className={`${styles.back} ${change ? "" : styles.bg_black}`}
-      >
-        <AiOutlineLeft className={styles.icon} />
-      </div>
-      <div
-        onClick={() => router.push("/tim-kiem")}
-        className={`${styles.search} ${change ? "" : styles.bg_black}`}
-      >
-        <AiOutlineSearch className={styles.icon} />
-      </div>
-      <div
-        onClick={() => router.push("/cart")}
-        className={`${styles.cart} ${change ? "" : styles.bg_black}`}
-      >
-        <AiOutlineShoppingCart className={styles.icon} />
-      </div>
-      <div
-        onClick={copyLink}
-        className={`${styles.share} ${change ? "" : styles.bg_black}`}
-      >
-        <AiOutlineShareAlt className={styles.icon} />
-      </div>
-      <div
-        onClick={() => router.push("/")}
-        className={`${styles.home} ${change ? "" : styles.bg_black}`}
-      >
-        <AiOutlineHome className={styles.icon} />
-      </div>
-    </div>
-  );
-}
+	return (
+		<div
+			className={`${styles.heard} bg-[#f8f8f8] ${opticalVariants[opacity]} ${change ? " text-black" : "text-white"}`}>
+			<div
+				onClick={() => router.back()}
+				className={`${styles.back} ${change ? "" : styles.bg_black}`}
+			>
+				<AiOutlineLeft className={styles.icon} />
+			</div>
+			<div
+				onClick={() => router.push("/tim-kiem")}
+				className={`${styles.search} ${change ? "" : styles.bg_black}`}
+			>
+				<AiOutlineSearch className={styles.icon} />
+			</div>
+			<div
+				onClick={() => router.push("/cart")}
+				className={`${styles.cart} ${change ? "" : styles.bg_black}`}
+			>
+				<AiOutlineShoppingCart className={styles.icon} />
+			</div>
+			<div
+				onClick={copyLink}
+				className={`${styles.share} ${change ? "" : styles.bg_black}`}
+			>
+				<AiOutlineShareAlt className={styles.icon} />
+			</div>
+			<div
+				onClick={() => router.push("/")}
+				className={`${styles.home} ${change ? "" : styles.bg_black}`}
+			>
+				<AiOutlineHome className={styles.icon} />
+			</div>
+		</div>
+	);
+	}

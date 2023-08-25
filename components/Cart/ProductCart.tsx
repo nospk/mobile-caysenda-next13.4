@@ -1,16 +1,143 @@
 import Image from "next/image";
 import VariantCart from "./VariantCart";
-import { useState, useEffect, useRef } from "react";
-import { ActiveFull, HaftFull, NotActive } from "../Checked/Checked";
+import { useState, useEffect, useRef, useCallback } from "react";
+import {
+  ActiveFull,
+  HaftFull,
+  NotActive,
+  DisableActive,
+} from "../Checked/Checked";
 import { useOnActionOutside } from "@/components/hook/useOnActionOutside";
 import type { CartProduct } from "@/types/cart";
+import { useAppDispatch } from "@/redux/hooks";
+import {
+  getActiveProduct,
+  getRemoveProduct,
+} from "@/redux/features/cart/cart.action";
 import styles from "./styles.module.css";
+import React, { useMemo } from "react";
 interface Props {
   product: CartProduct;
-  catId: number;
+  categoryId: number;
+  isRemove: boolean;
+  canActiveCategory: boolean;
 }
-export const ProductCart = ({ product, catId }: Props) => {
-  const { variants, name, thumbnail, active, conditionDefault, id } = product;
+const ProductCart = ({
+  product,
+  categoryId,
+  isRemove,
+  canActiveCategory,
+}: Props) => {
+  const {
+    variants,
+    name,
+    thumbnail,
+    active,
+    conditionDefault,
+    condition1,
+    condition2,
+    condition3,
+    condition4,
+    productId,
+    unit,
+    retail,
+    quantity,
+    selectedDelete,
+  } = product;
+  const dispatch = useAppDispatch();
+
+  const findConditionIndex = (
+    conditions: (number | null)[],
+    quantity: number
+  ) => {
+    let index = 0;
+    for (let i = 0; i < conditions.length; i++) {
+      if (quantity > conditions[i]!) {
+        index = i;
+      }
+    }
+    return index;
+  };
+  const checkPrice = (): number => {
+    //If retail will get price in variant
+    if (retail) Number(product.priceDefault);
+    //Else will be get condition to get the price level
+    let indexPrice = findConditionIndex(
+      [condition1, condition2, condition3, condition4],
+      quantity
+    );
+    const listPrice = [
+      product.price1,
+      product.price2,
+      product.price3,
+      product.price4,
+    ];
+    const priceActive = listPrice[indexPrice];
+    return Number(priceActive);
+  };
+  const canActiveProduct =
+    Number(quantity) >= Number(conditionDefault) ? true : false;
+
+  const checkActive = () => {
+    if ((!canActiveCategory || !canActiveProduct) && !isRemove)
+      return <DisableActive />;
+    if (!isRemove) {
+      if (!active) {
+        return <NotActive />;
+      } else {
+        const check = variants.filter((variant) => variant.selected == false);
+        return check.length == 0 ? <ActiveFull /> : <HaftFull />;
+      }
+    } else {
+      if (!selectedDelete) {
+        return <NotActive />;
+      } else {
+        const check = variants.filter(
+          (variant) => variant.selectedDelete == false
+        );
+        return check.length == 0 ? <ActiveFull /> : <HaftFull />;
+      }
+    }
+  };
+  const memoizedImage = useMemo(() => {
+    return (
+      <Image
+        className="rounded-lg"
+        src={thumbnail}
+        alt="test"
+        sizes="100vw"
+        width={0}
+        height={0}
+        style={{ width: "100%", height: "100%" }}
+      />
+    );
+  }, [thumbnail]);
+
+  useEffect(() => {
+    if (active == true && quantity < conditionDefault) {
+      dispatch(
+        getActiveProduct({
+          active: false,
+          categoryId: categoryId,
+          productId: productId,
+          isRemove: false,
+        })
+      );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [quantity]);
+  const activeProduct = () => {
+    if ((!canActiveCategory || !canActiveProduct) && !isRemove) return;
+    dispatch(
+      getActiveProduct({
+        active: !active,
+        categoryId: categoryId,
+        productId: productId,
+        isRemove: isRemove,
+      })
+    );
+  };
+  /** CSS Config */
   const widthDivHidden = 12;
   const touchPosition = [
     "",
@@ -38,34 +165,36 @@ export const ProductCart = ({ product, catId }: Props) => {
   };
 
   const TouchHandle = (e: React.TouchEvent<HTMLDivElement>) => {
-    //Cal width will touch with div element with 12vw
-    //But i think need visual more long touch
-    const widthWillTouch = (window.screen.width / 100) * widthDivHidden * 3;
-    //Get touch postion when move
-    const nowTouch = e.touches[0].clientX;
-    const levlel = widthWillTouch / widthDivHidden;
+    if (!isRemove) {
+      //Cal width will touch with div element with 12vw
+      //But i think need visual more long touch
+      const widthWillTouch = (window.screen.width / 100) * widthDivHidden * 3;
+      //Get touch postion when move
+      const nowTouch = e.touches[0].clientX;
+      const levlel = widthWillTouch / widthDivHidden;
 
-    //main
-    if (direction == "left") {
-      if (touchStart - nowTouch > 0) {
-        const postion = Math.round((touchStart - nowTouch) / levlel);
-        if (touchStart - nowTouch > widthWillTouch)
-          setCssTouch({ css: touchPosition[12], level: 12 });
-        else setCssTouch({ css: touchPosition[postion], level: postion });
-      } else {
-        setCssTouch({ css: touchPosition[0], level: 0 });
-      }
-    } else {
-      if (nowTouch - touchStart > 0) {
-        const postion =
-          touchPosition.length -
-          Math.round((nowTouch - touchStart) / levlel) -
-          1;
-        if (nowTouch - touchStart > widthWillTouch)
+      //main
+      if (direction == "left") {
+        if (touchStart - nowTouch > 0) {
+          const postion = Math.round((touchStart - nowTouch) / levlel);
+          if (touchStart - nowTouch > widthWillTouch)
+            setCssTouch({ css: touchPosition[12], level: 12 });
+          else setCssTouch({ css: touchPosition[postion], level: postion });
+        } else {
           setCssTouch({ css: touchPosition[0], level: 0 });
-        else setCssTouch({ css: touchPosition[postion], level: postion });
+        }
       } else {
-        setCssTouch({ css: touchPosition[12], level: 12 });
+        if (nowTouch - touchStart > 0) {
+          const postion =
+            touchPosition.length -
+            Math.round((nowTouch - touchStart) / levlel) -
+            1;
+          if (nowTouch - touchStart > widthWillTouch)
+            setCssTouch({ css: touchPosition[0], level: 0 });
+          else setCssTouch({ css: touchPosition[postion], level: postion });
+        } else {
+          setCssTouch({ css: touchPosition[12], level: 12 });
+        }
       }
     }
   };
@@ -84,22 +213,10 @@ export const ProductCart = ({ product, catId }: Props) => {
       } else setCssTouch({ css: touchPosition[12], level: 12 });
     }
   };
-  const CheckActiveFull = () => {
-    const check = variants.filter((variant) => variant.selected == false);
-    return check.length > 0 ? false : true;
-  };
-  const handleClickOutside = () => {
-    // Your custom logic here
-    setCssTouch({ css: touchPosition[0], level: 0 });
-    setdirection("left");
-  };
-
-  const ref = useRef(null);
-  useOnActionOutside(ref, handleClickOutside, "mousedown");
   return (
     <div className={styles.productcart_wrapper}>
       <div
-        ref={ref}
+        //ref={ref}
         onTouchStart={(e) => TouchStart(e)}
         onTouchMove={(e) => TouchHandle(e)}
         onTouchEnd={TouchEnd}
@@ -107,23 +224,14 @@ export const ProductCart = ({ product, catId }: Props) => {
       >
         <div className={`${styles.productcart} ${cssTouch.css}`}>
           <div className={styles.productcart_pad}>
-            <div className={styles.checked_wrapper}>
-              {!active ? <NotActive /> : null}
-              {CheckActiveFull() ? <ActiveFull /> : <HaftFull />}
+            <div onClick={activeProduct} className={styles.checked_wrapper}>
+              {checkActive()}
               <div className={styles.checked_padding}></div>
             </div>
             <div className={styles.productcart_main}>
               <div className={styles.productcart_image}>
                 <div className={styles.productcart_wrapper_image}>
-                  <Image
-                    className={styles.productcart_image_styles}
-                    src={thumbnail}
-                    alt="test"
-                    sizes="100vw"
-                    width={0}
-                    height={0}
-                    style={{ width: "100%", height: "100%" }}
-                  />
+                  {memoizedImage}
                 </div>
               </div>
               <div className={styles.productcart_name}>
@@ -132,20 +240,32 @@ export const ProductCart = ({ product, catId }: Props) => {
             </div>
           </div>
         </div>
-        <div className={styles.productcart_button}>
+        <div
+          onClick={() =>
+            dispatch(
+              getRemoveProduct({ categoryId: categoryId, productId: productId })
+            )
+          }
+          className={styles.productcart_button}
+        >
           <span className={styles.productcart_button_text}>Xóa</span>
         </div>
       </div>
       {variants.map((variant) => (
         <VariantCart
-          key={variant.name}
+          key={variant.variantId}
           variant={variant}
-          productId={id}
-          catId={catId}
+          productId={productId}
+          categoryId={categoryId}
+          unit={unit}
+          price={!retail ? checkPrice() : variant.price}
           condition={conditionDefault}
+          canActiveProduct={canActiveProduct}
+          isRemove={isRemove}
+          canActiveCategory={canActiveCategory}
         />
       ))}
     </div>
   );
 };
-//export default ProductCart;
+export default React.memo(ProductCart);

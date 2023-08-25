@@ -1,5 +1,5 @@
 .modal {
-  @apply absolute bottom-0 z-auto left-0 right-0 box-border flex h-full min-h-[100vh] w-full bg-[#f8f8f8] shadow-md;
+  @apply absolute bottom-0 left-0 right-0 z-auto box-border flex h-full min-h-[100vh] w-full bg-[#f8f8f8] shadow-md;
 }
 .modalOverlay {
   @apply fixed left-0 top-0 z-30 flex h-full w-full animate-fade-up bg-[#0000008c] bg-opacity-60 animate-delay-0 animate-normal animate-duration-[350ms] animate-fill-none animate-once animate-ease-out;
@@ -12,4 +12,85 @@
 }
 .close {
   @apply absolute right-2 top-2 z-auto text-lg text-[#999];
+}
+.content {
+  @apply box-border flex flex-col items-stretch;
+}
+.header {
+  @apply mb-[0.75rem] box-border flex h-[45px] items-center bg-white px-3;
+}
+.header_text {
+  @apply text-left font-medium;
+}
+.content_body {
+  @apply box-border block border-y border-[#eee] bg-white;
+}
+.content_wrapper {
+  @apply overflow-hidden;
+}
+.list_item {
+  @apply relative block pl-4 text-[17px] leading-[1.5];
+}
+.list_item_content {
+  @apply flex items-stretch justify-start border-b border-[#eee] pr-3;
+}
+.list_item_content_prefix {
+  @apply box-border w-20 flex-none py-3 pr-3;
+}
+.list_item_label {
+  @apply relative box-border block h-full text-[16px] leading-[1.5] text-[#222];
+}
+.list_item_content_main {
+  @apply box-border flex-auto py-3;
+}
+.block_error {
+  @apply box-border block;
+}
+.error_text {
+  @apply absolute bottom-[-0.125rem] right-[0.375rem] mr-[0.375rem] mt-0 text-right text-[11px] text-[#ff3141];
+}
+.item_input {
+  @apply m-0 box-border inline-block max-h-full w-full max-w-full appearance-none bg-transparent p-0 text-right leading-normal outline-0;
+}
+.item_wrapper {
+  @apply box-border flex justify-normal;
+}
+.item_data {
+  @apply flex max-h-full min-h-[24px] w-full max-w-full items-center justify-start;
+}
+.list_item_content_prefix_select {
+  @apply w-fit box-border flex-none py-3 pr-3;
+}
+.list_item_select {
+  @apply flex max-h-full min-h-[24px] w-full max-w-full items-center justify-end  text-[#222];
+}
+.select_height {
+  @apply h-[400px];
+}
+.select_background {
+  @apply bg-white;
+}
+.select_icon {
+  @apply ml-[6px] h-[16px] w-[16px] text-[#AAAAAA];
+}
+.select_width {
+  @apply w-[180px];
+}
+.text_disable {
+  @apply text-[#AAAAAA];
+}
+.list_item_content_prefix_textarea {
+  @apply flex items-stretch justify-start pr-3;
+}
+.text_area {
+  @apply m-0 box-border block max-h-full w-full max-w-full resize-none appearance-none p-0 leading-normal outline-none;
+}
+.switch_active {
+  @apply mt-3 flex items-center justify-between bg-white p-3;
+}
+.footer {
+  @apply absolute bottom-0 w-full items-center justify-center bg-white px-3 py-2;
+}
+.footer_button {
+  @apply h-10 w-full rounded-full bg-[#ff620d] leading-10 text-white;
 }

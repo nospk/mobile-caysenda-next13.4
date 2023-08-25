@@ -1,0 +1,48 @@
+.productCart {
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	border-radius: 10px;
+}
+
+.thumbnail {
+	border-radius: 10px;
+}
+
+.title {
+	position: absolute;
+	bottom: 10px;
+	left: 0;
+	right: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	color: white;
+	z-index: 1;
+}
+
+.label1{
+	font-size: 12px;
+	line-height: 14px;
+	font-weight: normal;
+}
+
+.label2{
+	font-size: 12px;
+	line-height: 14px;
+	display: inline-flex;
+	align-items: center;
+	font-weight: normal;
+}
+
+.overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgb(2,0,36);
+	background: linear-gradient(0deg, rgba(2,0,36,0.7511379551820728) 0%, rgba(0,0,0,0.28895308123249297) 13%, rgba(252,252,252,0) 100%);
+	border-radius: 10px;
+}

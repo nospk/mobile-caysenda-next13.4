@@ -18,6 +18,12 @@ export default {
 				PARAM2:"SLUG"
 			}
 		},
+		TOP3PRODUCT : {
+			FUNC_CD : 'GETTOP3PRODUCT'
+		},
+		TOP10PRODUCT : {
+			FUNC_CD : 'GETTOP10PRODUCT'
+		}
 	},
 	SETTING: {
 		BANNER: {
@@ -33,6 +39,10 @@ export default {
 	KEYWORD: {
 		RAND: {
 			FUNC_CD: 'RANDOMKEYWORD',
+			PARAMS:{
+				PARAM1:"ORDERBY",
+				PARAM2:"LIMIT"
+			}
 		}
 	},
 	WEBSITE: {

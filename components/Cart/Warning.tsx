@@ -1,5 +1,6 @@
 import styles from "./styles.module.css";
-export default function Warning() {
+import React from 'react'
+ const Warning = () => {
   return (
     <>
       <div className={styles.warning_text}>
@@ -12,3 +13,4 @@ export default function Warning() {
     </>
   );
 }
+export default React.memo(Warning)

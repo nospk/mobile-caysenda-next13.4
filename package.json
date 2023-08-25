@@ -9,11 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-select": "^1.2.2",
     "@reduxjs/toolkit": "^1.9.5",
     "@types/node": "20.1.0",
     "@types/react": "18.2.5",
     "@types/react-dom": "18.2.4",
     "autoprefixer": "10.4.14",
+    "classnames": "^2.3.2",
     "eslint": "8.40.0",
     "eslint-config-next": "13.4.1",
     "fortawesome": "^0.0.1-security",
@@ -23,8 +25,13 @@
     "react-dom": "18.2.0",
     "react-icons": "^4.8.0",
     "react-redux": "^8.0.5",
+<<<<<<< HEAD
     "react-slide-button": "^2.0.0",
     "react-swipezor": "^1.0.7",
+=======
+    "react-switch": "^7.0.0",
+    "sass": "^1.63.6",
+>>>>>>> 6f618eab385dc707a2a5a580c35a6200c45bc5ff
     "sharp": "^0.32.1",
     "swiper": "^9.2.4",
     "tailwind-scrollbar-hide": "^1.1.7",

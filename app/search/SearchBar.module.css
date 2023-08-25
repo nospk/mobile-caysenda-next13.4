@@ -1,0 +1,47 @@
+.wrapper{
+	display				: flex;
+	align-items			: center;
+	height				: 42px;
+	width				: 100%;
+	padding				: 0 5px;
+	gap					: 5px;
+	position			: fixed;
+	top					: 0;
+	left				: 0;
+	right				: 0;
+	z-index				: 100;
+	background-color	: white;
+	padding				: 2px 0;
+}
+
+.backto {
+	font-size		: 30px;
+}
+
+.searchform{
+	height			: 100%;
+	display			: inline-flex;
+	border			: 3px solid #fe2200;
+	border-radius	: 6px;
+	width			: 100%;
+}
+
+.searchform select {
+	width			: 98px;
+	outline			: none;
+
+}
+
+.searchform input {
+	width			: 100%;
+	outline			: none;
+}
+
+.confirm {
+	background		: #fe2200;
+	font-weight		: 600;
+	color			: white;
+	font-size		: 12px;
+	padding			: 0 8px;
+	width			: 117px;
+}

@@ -164,7 +164,7 @@
   @apply box-border whitespace-pre-wrap bg-[#fff2e6] p-[2.4vw] text-[3.2vw] text-[#666];
 }
 .footer_main {
-  @apply flex flex-row items-center justify-between border-t border-solid border-[#e9e9e9] p-[2.66667vw];
+  @apply flex flex-row items-center justify-between border-t bg-orange-100 border-solid border-[#e9e9e9] p-[2.66667vw] z-auto;
 }
 .footer_checked_wapper {
   @apply relative ml-[-1.6vw] box-border flex flex-shrink-0 flex-row items-center py-[2.4vw] pl-[2.66667vw];
@@ -191,7 +191,7 @@
   @apply box-border block whitespace-pre-wrap text-[3.73333vw] font-bold;
 }
 .footer_tottaly_currency {
-  @apply ml-[0.66667vw];
+  @apply ml-[0.66667vw] text-[3.2vw];
 }
 .footer_remove {
   @apply box-border flex flex-1 flex-row items-center justify-end;
@@ -201,4 +201,85 @@
 }
 .footer_remove_text {
   @apply box-border block text-center text-[3.73333vw] leading-[1] text-[#ff4000];
+}
+.variant_cart_wrapper {
+  @apply relative box-border flex flex-shrink-0 flex-col overflow-hidden;
+}
+.variant_cart_button_remove {
+  @apply absolute right-0 top-0 z-0 flex h-full flex-row flex-nowrap items-stretch whitespace-nowrap;
+}
+.variant_cart_button_remove_text {
+  @apply box-border flex w-[18vw] items-center justify-center bg-[#ff0000] text-center text-[3.2vw] text-white;
+}
+.variant_cart_error {
+  @apply ml-[7.46667vw] box-border flex flex-shrink-0 flex-row justify-between;
+}
+.variant_cart_error_text {
+  @apply ml-[3.2vw] box-border block flex-1 whitespace-pre-wrap text-right text-[2.93333vw] text-[#FF4000];
+}
+.variant_cart_input {
+  @apply relative box-content h-[4.26667vw] w-[8.53333vw] appearance-none rounded-none border-y border-solid border-[#CECECE] p-[1.06667vw] text-center align-middle text-[3.73333vw] placeholder-black outline-0 focus:placeholder-white;
+}
+.variant_cart_increment {
+  @apply box-border flex flex-shrink-0 flex-col items-center justify-center rounded-r-xl border-x border-y border-solid border-[#CECECE] p-[1.06667vw] text-center;
+}
+.variant_cart_decrement {
+  @apply box-border flex flex-shrink-0 flex-col items-center justify-center rounded-l-xl border-x border-y border-solid border-[#CECECE] p-[1.06667vw] text-center;
+}
+.variant_cart {
+  @apply relative mt-[3.2vw] box-border flex flex-shrink-0 touch-auto flex-col;
+}
+.variant_cart_padding {
+  @apply z-10 box-border flex flex-shrink-0 flex-col bg-white px-[3.2vw];
+}
+.variant_cart_content {
+  @apply box-border flex flex-shrink-0 flex-row items-center justify-between;
+}
+.variant_cart_select {
+  @apply relative ml-[-2.4vw] flex flex-shrink-0 flex-row items-center pb-[2.4vw] pl-[2.66667vw] pt-[2.4vw];
+}
+.variant_cart_select_margin {
+  @apply relative ml-[2.13333vw] box-border flex flex-shrink-0 flex-col;
+}
+.variant_cart_image_name {
+  @apply box-border flex min-h-[6.93333vw] flex-1 flex-row content-between items-center;
+}
+.variant_cart_image {
+  @apply mr-[1.6vw] block h-[8vw] w-[8vw];
+}
+.variant_cart_name {
+  @apply box-border flex flex-1 flex-row content-between items-center rounded-lg bg-[#f9f9f9] p-[2.13333vw] text-[3.46667vw] text-[#666];
+}
+.variant_cart_control {
+  @apply ml-[7.46667vw] mt-[2.13333vw] box-border flex min-h-[6.93333vw] flex-1 flex-row items-center justify-between;
+}
+.variant_cart_price {
+  @apply box-border flex flex-shrink-0 flex-row text-[#FF4000];
+}
+.variant_cart_price_text {
+  @apply relative box-border text-[3.2vw] leading-[3.2vw];
+}
+.variant_cart_quantity {
+  @apply box-border block text-[3.46667vw] text-[#333];
+}
+.variant_cart_input_control {
+  @apply relative flex flex-row items-center text-[3.73333vw];
+}
+.variant_cart_input_control_main {
+  @apply relative box-border flex flex-shrink-0 flex-row items-center justify-start text-[3.73333vw];
+}
+.decrement_wapper {
+  @apply relative box-border flex h-[4.26667vw] w-[4.26667vw] flex-shrink-0 flex-col justify-center;
+}
+.icon_decrement {
+  @apply relative left-0 box-border flex h-[1px] w-[3.2vw] flex-shrink-0 flex-col self-center rounded-xl bg-[#222222];
+}
+.increment_wapper {
+@apply relative box-border flex h-[4.26667vw] w-[4.26667vw] flex-shrink-0 flex-col justify-center
+}
+.icon_increment_level{
+@apply relative top-[1.6vw] box-border flex h-[1px] w-[3.2vw] flex-shrink-0 flex-col self-center rounded-xl bg-[#222222]
+}
+.icon_increment_vertical{
+@apply relative box-border flex h-[3.2vw] w-[1px] flex-shrink-0 flex-col self-center rounded-xl bg-[#222222]
 }

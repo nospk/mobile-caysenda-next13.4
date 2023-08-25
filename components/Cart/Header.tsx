@@ -1,14 +1,18 @@
 import { AiOutlineEnvironment, AiOutlineRight } from "react-icons/ai";
 import styles from "./styles.module.css";
-import SelectAddressModal from "../SelectAddressModal/SelectAddressModal";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { setRemove } from "@/redux/features/removeCart/removeCart.slice";
+import SelectAddressModal from "../SelectAddressModal";
+import React, { SetStateAction, Dispatch, useState } from "react";
+import { ListDelivery } from "@/types/Delivery";
 interface Props {
-  address: string
+  isRemove: boolean;
+  setIsRemove: Dispatch<SetStateAction<boolean>>;
+
+  listDelivery: ListDelivery[];
 }
-const Header: React.FC<Props> = ({address}) => {
-  const isRemove = useAppSelector((state) => state.removeCartReducer.isRemove);
-  const dispatch = useAppDispatch();
+const Header: React.FC<Props> = ({ isRemove, setIsRemove, listDelivery }) => {
+  // InitialState Address
+  const [address, setAddress] = useState<string>("Bấm để thêm địa chỉ giao hàng");
+
   return (
     <header className={styles.header}>
       <div className={styles.header_wapper}>
@@ -17,17 +21,20 @@ const Header: React.FC<Props> = ({address}) => {
           <div className={styles.address_content}>
             <AiOutlineEnvironment className={styles.address_icon_place} />
             <div className={styles.address_box}>
-              <SelectAddressModal>
-                <span className={styles.address_detail}>
-                  {address}
-                </span>
-              </SelectAddressModal>
-
+              <SelectAddressModal
+                address={address}
+                className={styles.address_detail}
+                setAddress={setAddress}
+                listDelivery={listDelivery}
+              />
               <AiOutlineRight className={styles.address_icon_arrow} />
             </div>
           </div>
         </div>
-        <div className={styles.remove_button} onClick={() => dispatch(setRemove())}>
+        <div
+          className={styles.remove_button}
+          onClick={() => setIsRemove(!isRemove)}
+        >
           {isRemove ? (
             <span className={styles.remove_text_confirm}>Hoàn Tất</span>
           ) : (
@@ -38,4 +45,4 @@ const Header: React.FC<Props> = ({address}) => {
     </header>
   );
 };
-export default Header;
+export default React.memo(Header);

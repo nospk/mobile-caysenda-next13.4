@@ -1,58 +1,57 @@
 export interface Cart {
-  user_id: number;
   categories: CartCategory[];
+  bill: number;
   note: string;
 }
 
 export interface CartCategory {
   name: string;
   slug: string;
-  condition: number;
+  condition: number; // condtion price category
   amount: number;
   products: CartProduct[];
-  bill: number;
-  id: number;
+  categoryId: number;
+  active: boolean;
+  selectedDelete: boolean; // selectedDelete same active when new create
+  amountActive: number; 
 }
 
 export interface CartProduct {
   productId: number;
   name: string;
-  id: number;
   sku: string;
   slug: string;
   conditionDefault: number;
-  condition1: number;
-  condition2: number;
-  condition3: number;
-  condition4: number;
-  priceDefault: number;
-  price1: number;
-  price2: number;
-  price3: number;
-  price4: number;
+  condition1: number | null;
+  condition2: number | null;
+  condition3: number | null;
+  condition4: number | null;
+  priceDefault: number | null;
+  price1: number | null;
+  price2: number | null;
+  price3: number | null;
+  price4: number | null;
   thumbnail: string;
-  categoryId: number;
   retail: boolean;
   quantity: number;
-  range: number;
   amount: number;
   active: boolean;
   unit: string;
   variants: CartVariant[];
+  selectedDelete: boolean; // selectedDelete same active when new create
 }
 
 export interface CartVariant {
   name: string;
   thumbnail: string;
-  id:number;
   sku: string;
   price: number;
   quantity: number;
-  priceDefault: number;
-  vip1: number;
-  vip2: number;
-  vip3: number;
-  vip4: number;
+  vip1: number | null;
+  vip2: number | null;
+  vip3: number | null;
+  vip4: number | null;
   selected: boolean;
   variantId: number;
+  selectedDelete: boolean; // selectedDelete same selected when new create
 }

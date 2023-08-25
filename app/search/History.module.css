@@ -1,0 +1,32 @@
+.header {
+	display				: flex;
+	justify-content		: space-between;
+	align-items			: center;
+}
+
+.label {
+	font-size			: 14px;
+	font-weight			: 600;
+}
+
+.delete {
+	font-size			: 14px;
+}
+
+.delete:hover {
+	color				: red;
+}
+
+.content {
+	display				: flex;
+	flex-wrap			: wrap;
+	gap					: 10px;
+	border-radius		: 10px;
+	margin-top			: 10px;
+}
+.content a {
+	max-width			: 300px;
+	padding				: 5px;
+	background-color	: #f7f7f7;
+	border-radius		: 10px;
+}
