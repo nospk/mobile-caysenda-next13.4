@@ -2,7 +2,7 @@
     @apply flex flex-col justify-center;
 }
 .back {
-    @apply bg-white flex h-[5vh] mb-2;
+    @apply bg-white flex h-[5vh];
 }
 .head_block {
     @apply absolute inset-x-0 top-0 h-[inherit] flex justify-center items-center;
@@ -20,8 +20,17 @@
     @apply grow;
 } 
 .swipe_block {
-    @apply mx-[5vw] w-[90vw];
+    @apply mx-[5vw] h-[5vh] border-none rounded-[2px] w-[90vw] bg-[rgba(221,221,221,255)];
+}
+.overlay {
+    @apply bg-[rgba(120,196,48,255)];
+}
+.caret {
+    @apply bg-[rgba(255,255,255,255)];
 }
 .msg_block {
-    @apply mt-[10vh] h-[5vh] mx-[5vw] w-[90vw] bg-[#777];
+    @apply bg-[rgba(204,244,236,255)] border-l-[10px] border-[rgba(172,209,202,255)] mt-[10vh] h-auto mx-[5vw] w-[90vw] p-2;
+}
+.msg_text {
+    @apply text-[rgba(77,139,128,255)];
 }

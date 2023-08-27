@@ -103,14 +103,14 @@ const Register = () => {
     <div className="bg-white w-full h-full flex justify-center items-center">
       <div className="w-full max-w-full">
         <div className={styles.back} >
-          <button type="button" onClick={() => router.back()} className="rounded-full px-2 py-0.5">
+          <button type="button" onClick={() => router.push('/login')} className="rounded-full px-2 py-0.5">
             <IoIosArrowBack size={22} />
           </button>
         </div>
-        <div className="overflow-auto h-screen p-5 flex flex-col items-center">
+        <div className="overflow-auto h-screen px-5 flex flex-col items-center">
           <div className="w-full">
-            <div className="flex justify-center items-center flex-col mt-0.5">
-              <form className="w-full mt-10 flex flex-col items-center" onSubmit={handleSubmit}>
+            <div className="flex justify-center items-center flex-col">
+              <form className="w-full flex flex-col items-center" onSubmit={handleSubmit}>
                 {inputList.map(({ name, label, placeholder }) => (
                   <div key={name} className={styles.fm_field}>
                     <input

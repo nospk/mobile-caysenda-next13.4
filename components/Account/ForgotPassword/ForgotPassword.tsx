@@ -20,8 +20,7 @@ const ForgotPassword = () => {
         //     const req = await res.json();
         //     setMsg(req.msg)
         // }
-        setReset(e => e+1)
-        setMsg('đã kéo');
+        setMsg('đã gửi thông tin khôi phục mật khẩu về email của bạn');
     }
     return (
         <div className={styles.container}>
@@ -45,11 +44,11 @@ const ForgotPassword = () => {
                 </div>
                 <SwipeButton
                     mainText="Kéo để lấy lại mật khẩu"
-                    overlayText="Kéo để lấy lại mật khẩu"
                     classList={styles.swipe_block}
+                    overlayClassList={styles.overlay}
+                    caretClassList={styles.caret}
                     onSwipeDone={handleSubmit}
-                    reset={reset}
-                />
+                    reset={reset} overlayText={undefined}                />
             </div>
             {msg && (
                 <div className={styles.msg_block}>

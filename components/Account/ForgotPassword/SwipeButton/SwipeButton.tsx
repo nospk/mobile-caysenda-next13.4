@@ -4,7 +4,7 @@ import { useSwipeable } from 'react-swipeable';
 import Arrow from "@/public/arrow.png"
 import Image from 'next/image'
 import styles from  "./swipezor.module.css";
-
+import {RxDoubleArrowRight } from 'react-icons/rx'
 
 interface SwipezorProps {
   mainText: any;
@@ -103,7 +103,7 @@ function SwipeButton({
       <div className={`${styles.swipezor_overlay} ${overlayClassList}`} style={{ width: overlayWidth }}>
         <div className={styles.swipezor_overlay_wrapper}>
           <div className={`${styles.swipezor_caret_wrapper} ${caretClassList}`}>
-            {caret ? caret : <Image src={Arrow} alt="caret" style={{ maxWidth: '100%' }} />}
+            {caret ? caret : <RxDoubleArrowRight style={{ maxWidth: '100%' }} />}
           </div>
           <div className={styles.swipezor_overlay_txt}>
             {overlayText}
