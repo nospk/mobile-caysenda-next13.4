@@ -8,7 +8,9 @@
 .thumbnail {
 	border-radius: 10px;
 }
-
+.next_img {
+	@apply h-[calc((100vw-1rem-4.8vw)/3)] w-full relative;
+}
 .title {
 	position: absolute;
 	bottom: 10px;

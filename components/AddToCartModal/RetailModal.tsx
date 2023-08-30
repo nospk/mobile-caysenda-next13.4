@@ -120,6 +120,8 @@ const AddToCartModal: FC<Props> = (props) => {
 
 		setVariants(newVariants);
 		calculatorOrder();
+		
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 		},[indexAcitve, variants]);
 	const handleOpenModal = useCallback(() => {
 		setIsOpen(true);
