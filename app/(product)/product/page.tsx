@@ -11,7 +11,6 @@ import { ProductDetail } from '@/types/product';
 
 export default async function Page({searchParams}:any) {
 	const data:ProductDetail = await ProductService.getDetail({slug:searchParams.slug})
-
 	return (
 		<>
 			<Carousel images={data.quickviewGallery} name={data.name}/>
@@ -33,7 +32,7 @@ export default async function Page({searchParams}:any) {
 			</div>
 			<Detail product={data}/>
 			<Gallery content={data.content}/>
-			<AddToCart retail={data.retail} productId={data.id}/>
+			<AddToCart retail={data.retail} productId={data.id} category_slug={data.category_slug}/>
 		</>
 	);
 }

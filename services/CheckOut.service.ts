@@ -108,8 +108,15 @@ const getCheckOut = async () => {
   } as CheckOut;
   return response;
 };
-
+const submitCheckOut = async (note: string) => {
+  const response = {
+    success: true,
+    message: "Đơn hàng thành công",
+  };
+  return response
+};
 const CheckOutService = {
   getCheckOut,
+  submitCheckOut,
 };
 export default CheckOutService;

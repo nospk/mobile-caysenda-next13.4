@@ -72,12 +72,9 @@ const Cart: FC<Props> = (props) => {
                     />
                   ))
                 ) : (
-                  <div className="flex h-[300px] flex-col items-center justify-center text-center">
+                  <div className={styles.no_cart}>
                     <span>Không có đơn hàng</span>
-                    <a
-                      href="/"
-                      className="mt-1 rounded-full bg-[#FF603D] p-2 text-white"
-                    >
+                    <a href="/" className={styles.no_cart_text}>
                       Mua sắm ngay
                     </a>
                   </div>
