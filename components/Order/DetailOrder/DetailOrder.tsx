@@ -1,7 +1,13 @@
-import React from "react";
-
+'use client'
+import { useEffect } from 'react';
+import React from 'react';
+import styles from './styles.module.css'
 function DetailOrder() {
-  return <div>DetailOrder</div>;
+  
+  return (
+    <div >
+    </div>
+  );
 }
 
 export default DetailOrder;

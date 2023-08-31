@@ -22,7 +22,7 @@
 .input_group {
   width: 100%;
   height: 8vh;
-  @apply w-full flex items-center content-center rounded-full mt-[2vh] bg-[#f8f8f8];
+  @apply outline-none w-full flex items-center content-center rounded-full mt-[2vh] bg-[#f8f8f8];
 }
 .input_block {
   color: #c1c1c1;

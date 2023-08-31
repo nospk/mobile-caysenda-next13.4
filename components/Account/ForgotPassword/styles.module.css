@@ -4,6 +4,10 @@
 .back {
     @apply bg-white flex h-[5vh];
 }
+.link_back {
+    z-index: 1;
+    @apply  rounded-full px-2 py-0.5 flex-none;
+}
 .head_block {
     @apply absolute inset-x-0 top-0 h-[inherit] flex justify-center items-center;
 }
@@ -11,16 +15,16 @@
     @apply w-full mx-5
 }
 .input_block {
-    @apply my-[1vh] bg-white h-[5vh] w-full flex ;
+    @apply my-[1vh] bg-white h-[6vh] w-full flex items-center text-lg px-2;
 }
 .input_label {
-    @apply flex-none flex content-center h-full my-2 px-2;
+    @apply flex-none flex items-center h-full;
 }
 .input_email {
-    @apply grow;
+    @apply grow outline-none pl-2;
 } 
 .swipe_block {
-    @apply mx-[5vw] h-[5vh] border-none rounded-[2px] w-[90vw] bg-[rgba(221,221,221,255)];
+    @apply mx-5 h-[6vh] border-none rounded-[2px] bg-[rgba(221,221,221,255)];
 }
 .overlay {
     @apply bg-[rgba(120,196,48,255)];
@@ -32,5 +36,5 @@
     @apply bg-[rgba(204,244,236,255)] border-l-[10px] border-[rgba(172,209,202,255)] mt-[10vh] h-auto mx-[5vw] w-[90vw] p-2;
 }
 .msg_text {
-    @apply text-[rgba(77,139,128,255)];
+    @apply text-[rgba(77,139,128,255)] text-lg;
 }

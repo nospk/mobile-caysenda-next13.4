@@ -1,12 +1,13 @@
 export interface OrderType {
     OrderId: string;
-    Product: string;
+    Product: any;
     status: string;
-    category: CartCategory[];
+    price?: number;
+    category?: CartCategory[];
   }
   
   export interface CartCategory {
-    name: string;
+    name: string; 
     slug: string;
     condition: number;
     amount: number;

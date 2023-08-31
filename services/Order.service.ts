@@ -6,6 +6,7 @@ let listOrder = [
         OrderId: "1234567890",
         Product: "iPhone 13 Pro Max",
         status: "new",
+        price: 1000000000,
         category: [
             {
                 name: "Phones",
@@ -260,11 +261,11 @@ let listOrder = [
 ]
 
 // Create a function to get orders
-const getOrder = async (status: any = undefined) => {
+const getOrder = async (status: string | undefined) => {
 
     if (status === undefined) {
         const newList = { ...listOrder, category: [] }
-        return listOrder as OrderType[];
+        return newList;
     } else {
         return listOrder.filter((order) => order.status === status) as OrderType[];
     }
@@ -278,8 +279,7 @@ const delOrder = async (orderId: string) => {
 // Create a function to update orders
 const updateOrder = async (order: OrderType) => {
     const index = listOrder.findIndex((o) => o.OrderId === order.OrderId);
-    listOrder[index] = order;
-};
+}
 const detailOrder = async (orderId: string) => {
 
 }

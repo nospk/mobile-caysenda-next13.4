@@ -42,9 +42,7 @@
 }
 .swipezor_but .swipezor_overlay .swipezor_caret_wrapper {  
   position: absolute;
-  max-width: 45px;
-  width: 40px;
-  min-width: 10;
+  min-width: 50px;
   right: 0;
   top: 50%;
   height: 100%;

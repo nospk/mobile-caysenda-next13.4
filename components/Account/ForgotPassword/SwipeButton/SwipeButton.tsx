@@ -40,7 +40,7 @@ function SwipeButton({
   minSwipeVelocity = 0.6,
   caret = null
 }: SwipezorProps) {
-  const [overlayWidth, setOverlayWidth] = useState(40);
+  const [overlayWidth, setOverlayWidth] = useState(50);
   const [swipeComplete, setSwipeComplete] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>();
 

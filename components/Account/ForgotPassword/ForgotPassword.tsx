@@ -15,17 +15,17 @@ const ForgotPassword = () => {
 
 
     async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-        // let res = await AccountService.getPasswordApi(email);
-        // if (res.status == 200) {
-        //     const req = await res.json();
-        //     setMsg(req.msg)
-        // }
+        let res = await AccountService.getPasswordApi(email);
+        if (res.status == 200) {
+            const req = await res.json();
+            setMsg(req.msg)
+        }
         setMsg('đã gửi thông tin khôi phục mật khẩu về email của bạn');
     }
     return (
         <div className={styles.container}>
             <div className={styles.back} >
-                <button type="button" onClick={() => router.back()} className="rounded-full px-2 py-0.5 flex-none">
+                <button type="button" onClick = {() => router.back()} className={styles.link_back}>
                     <IoIosArrowBack size={22} />
                 </button>
                 <h1 className={styles.head_block}>
@@ -48,7 +48,7 @@ const ForgotPassword = () => {
                     overlayClassList={styles.overlay}
                     caretClassList={styles.caret}
                     onSwipeDone={handleSubmit}
-                    reset={reset} overlayText={undefined}                />
+                    reset={reset} overlayText={undefined} />
             </div>
             {msg && (
                 <div className={styles.msg_block}>

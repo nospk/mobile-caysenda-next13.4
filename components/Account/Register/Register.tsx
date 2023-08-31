@@ -86,8 +86,10 @@ const Register = () => {
         })
       })
       if (res.status == 200) {
-
-        router.push('/login');
+        setTimeout(()=> {
+          router.push('/login');
+        }, 3000)
+       
       }
       else {
         const errmsg = await res.json();
@@ -115,7 +117,7 @@ const Register = () => {
                   <div key={name} className={styles.fm_field}>
                     <input
                       name={name}
-                      type={'password'}
+                      type={name.includes('password') ? 'password' : 'text'}
                       className={styles.fm_text}
                       id={name}
                       tabIndex={1}
