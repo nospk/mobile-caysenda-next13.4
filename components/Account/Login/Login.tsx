@@ -4,20 +4,17 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import styles from './styles.module.css';
-import { VscWarning } from "react-icons/vsc";
 import Image from 'next/image';
-import { BsFillPersonFill } from 'react-icons/bs';
-import { FaUnlockAlt } from 'react-icons/fa'
 import { IoIosArrowBack } from 'react-icons/io';
-
+import { LoginProps} from '@/types/Account'
+import AccountService from '@/services/Account.service'
 // Login Page Component
 const Login = () => {
 	//state | props
-
 	const router = useRouter();
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
-	const [error, setError] = useState("");
+	const [error, setError] = useState<LoginProps>({});
 	const [showPassword, setShowPassword] = useState(false);
 
 	// Event handle
@@ -27,21 +24,12 @@ const Login = () => {
 	const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setPassword(event.target.value);
 	};
-	// Submit Login Form
+	// Submit Login Form 
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		const loginCredentials = { login: username, password };
+		
 		try {
-			// Gọi API bằng hàm `fetch`
-			const res = await fetch('https://dummyjson.com/auth/login', {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({
-					username: username,
-					password: password,
-					// expiresInMins: 60, // optional
-				})
-			})
+			const res = await AccountService.authLoginApi({username, password})
 			if (res.status === 200) {
 				const auth = await res.json();
 				localStorage.setItem('user_id', JSON.stringify(auth.id));
@@ -56,7 +44,7 @@ const Login = () => {
 		}
 		catch {
 			console.error(error);
-			setError("Đã có lỗi xảy ra. Vui lòng thử lại sau.");
+			setError(error);
 		}
 
 	};
@@ -69,8 +57,10 @@ const Login = () => {
 	return (
 		<div className={styles.login_background}>
 			<div className={styles.head_block}>
-				<div className={styles.back}>
-					<IoIosArrowBack size={28} />
+				<div className={styles.back} >
+					<button type="button" onClick={() => router.back()} className="rounded-s-full px-2 py-0.5">
+						<IoIosArrowBack size={18} />
+					</button>
 				</div>
 				<div className={styles.logo_block}>
 					<div className={styles.name_nomi}>
@@ -85,11 +75,8 @@ const Login = () => {
 				</div>
 			</div>
 			<div className={styles.login_block}>
-				<form className="flex p-5 mt-[5vh] flex-col items-center content-center justify-center" onSubmit={handleSubmit}>
+				<form className="flex p-5 mt-[2vh] flex-col items-center content-center justify-center" onSubmit={handleSubmit}>
 					<div className={styles.input_group}>
-						<div className={styles.input_block}>
-							<BsFillPersonFill size={22} />
-						</div>
 						<input type="text"
 							aria-label="Tài Khoản / Số Điện Thoại/ Email"
 							placeholder="Tài Khoản / Số Điện Thoại / Email"
@@ -97,17 +84,21 @@ const Login = () => {
 							onChange={handleUsernameChange}
 							className={styles.input_text} />
 					</div>
+					{error.username && (
+						<p className={styles.errmsg}>{error.username}</p>
+					)}
 					<div className={styles.input_group}>
-						<div className={styles.input_block}>
-							<FaUnlockAlt size={22} />
-						</div>
 						<input type="password"
 							aria-label="Mật Khẩu"
 							placeholder="Mật Khẩu"
 							autoCapitalize={'off'}
 							onChange={handlePasswordChange}
 							className={styles.input_text} />
+
 					</div>
+					{error.password && (
+						<p className={styles.errmsg}>{error.password}</p>
+					)}
 					<div className={styles.button_group}>
 
 						<button
@@ -124,7 +115,7 @@ const Login = () => {
 				<div className={styles.login_link}>
 					<Link href="./register" className="pr-5 text-[#ff8c35]">Đăng Ký</Link>
 					<div className="">|</div>
-					<Link href="./forgotPassword" className="pl-5">Quên Mật Khẩu</Link>
+					<Link href="./forgot-password" className="">Quên Mật Khẩu</Link>
 				</div>
 			</div>
 		</div>
