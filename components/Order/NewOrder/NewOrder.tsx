@@ -1,16 +1,17 @@
 'use client'
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Image from "next/image";
 import Link from "next/link";
-function NewOrder(_Prop : any) {
-    
+import {OrderType} from '@/types/order'
+function NewOrder({_Prop}:{_Prop?: OrderType}) {
+   const data = _Prop as OrderType;
     return (
 
         <div className="px-2 pb-2 border-b-2">
             <div className='flex '>
                 <div className="flex grow">
                     <div className="text-xl pr-2">
-                        {'Mã Đơn Hàng'}
+                        {data.OrderId}
                     </div>
                     <div className="flex-none">{'>'}</div>
                 </div>

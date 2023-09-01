@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { CiDeliveryTruck } from "react-icons/ci";
 import Image from "next/image";
-const AdditionOrderComponent = (_Prop:any) => {
+import { OrderType } from "@/types/order";
+const AdditionOrderComponent = ({_Prop}:{_Prop?: OrderType}) => {
     return (
         <div>
             <div className="px-2 pb-2 border-b-2">
