@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { CiDeliveryTruck } from "react-icons/ci";
 import Image from "next/image";
-const ShippingOrderCompornent = () => {
+const ShippingOrderCompornent = (_Prop: any) => {
     return (
         <div className="px-2 pb-2 border-b-2">
             <div className='flex '>

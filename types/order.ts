@@ -3,20 +3,20 @@ export interface OrderType {
     Product: any;
     status: string;
     price?: number;
-    category?: CartCategory[];
+    category?: OrderCategory[];
   }
   
-  export interface CartCategory {
+  export interface OrderCategory {
     name: string; 
     slug: string;
     condition: number;
     amount: number;
-    products: CartProduct[];
+    products: OrderProduct[];
     bill: number;
     id: number;
   }
   
-  export interface CartProduct {
+  export interface OrderProduct {
     productId: number;
     name: string;
     id: number;

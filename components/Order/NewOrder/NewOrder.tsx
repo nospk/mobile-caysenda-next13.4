@@ -2,7 +2,8 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-function NewOrder() {
+function NewOrder(_Prop : any) {
+    
     return (
 
         <div className="px-2 pb-2 border-b-2">

@@ -264,7 +264,7 @@ let listOrder = [
 const getOrder = async (status: string | undefined) => {
 
     if (status === undefined) {
-        const newList = { ...listOrder, category: [] }
+        const newList = { ...listOrder, category: [] } as unknown as OrderType[];
         return newList;
     } else {
         return listOrder.filter((order) => order.status === status) as OrderType[];
@@ -284,4 +284,5 @@ const detailOrder = async (orderId: string) => {
 
 }
 // Export the functions
-export { getOrder, delOrder, updateOrder };
+const OrderService = { getOrder, delOrder, updateOrder }
+export default OrderService  ;
