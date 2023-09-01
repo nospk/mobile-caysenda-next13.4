@@ -40,10 +40,10 @@ export interface OrderType {
     amount: number;
     active: boolean;
     unit: string;
-    variants: CartVariant[];
+    variants: OrderVariant[];
   }
   
-  export interface CartVariant {
+  export interface OrderVariant {
     name: string;
     thumbnail: string;
     id:number;

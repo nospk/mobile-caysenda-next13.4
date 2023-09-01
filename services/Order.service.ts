@@ -2009,7 +2009,7 @@ let listOrder = [
 ]
 
 // Create a function to get orders
-const getOrder = async (status: string | undefined) => {
+const getOrder = async (status: string) => {
 
     if (status === undefined) {
         return listOrder;
@@ -2025,8 +2025,8 @@ const delOrder = async (orderId: string) => {
 };
 
 // Create a function to update orders
-const updateOrder = async (orderId: string, order: any) => {
-    const index = listOrder.findIndex((o) => o.OrderId === order.OrderId);
+const updateOrder = async (_Order : any) => {
+    const index = listOrder.findIndex((o) => o.OrderId === _Order.OrderId);
 }
 const detailOrder = async (orderId: string) => {
     return listOrder.find((order)=> {order.OrderId === orderId});
