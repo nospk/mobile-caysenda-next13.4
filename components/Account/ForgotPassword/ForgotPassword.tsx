@@ -15,17 +15,21 @@ const ForgotPassword = () => {
 
 
     async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-        let res = await AccountService.getPasswordApi(email);
-        if (res.status == 200) {
-            const req = await res.json();
-            setMsg(req.msg)
+        try {
+            let res = await AccountService.getPasswordApi(email);
+            if (res.status == 200) {
+                const req = await res.json();
+                setMsg(req.msg)
+            }
         }
-        setMsg('đã gửi thông tin khôi phục mật khẩu về email của bạn');
+        catch {
+            setMsg("Lỗi!!! vui lòng gửi lại sau")
+        }
     }
     return (
         <div className={styles.container}>
             <div className={styles.back} >
-                <button type="button" onClick = {() => router.back()} className={styles.link_back}>
+                <button type="button" onClick={() => router.back()} className={styles.link_back}>
                     <IoIosArrowBack size={22} />
                 </button>
                 <h1 className={styles.head_block}>

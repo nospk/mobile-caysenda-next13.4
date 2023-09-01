@@ -14,7 +14,7 @@ const OrderComponents: FC<{ List_Order: OrderType[] }> = ({ List_Order }) => {
     <>
       <div className="bg-white py-4">
         <ul className="List_Order">
-          {List_Order.map((_Order: OrderType, index: Key | null | undefined) => (
+          {List_Order.map((_Order: OrderType, index: Key) => (
             <li key={index}>
               {_Order.status == StatusOrder.NewOrder && <NewOrder _Prop = {_Order} />}
               {_Order.status == StatusOrder.CompleteOrder && <CompleteOrder _Prop = {_Order}/>}

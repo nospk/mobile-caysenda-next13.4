@@ -1,8 +1,8 @@
 export interface OrderType {
     OrderId: string;
-    Product: any;
+    Product?: OrderProduct | any;
     status: string;
-    price?: number;
+    totalPrice?: number;
     category?: OrderCategory[];
   }
   
