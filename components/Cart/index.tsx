@@ -17,7 +17,7 @@ import {
   selectErrorOrder,
   selectCheckActiveCart,
 } from "@/redux/features/cart/cart.selector";
-import type { Cart } from "@/types/cart";
+import type { Cart, CartCategory } from "@/types/cart";
 import { ListDelivery } from "@/types/Delivery";
 interface Props {
   listDelivery: ListDelivery[];
@@ -64,7 +64,7 @@ const Cart: FC<Props> = (props) => {
               <div className={styles.catogerycart_overlay}>
                 <Warning />
                 {cart.categories && cart.categories.length > 0 ? (
-                  cart.categories.map((category) => (
+                  cart.categories.map((category: CartCategory) => (
                     <CatogeryCart
                       key={category.name}
                       category={category}

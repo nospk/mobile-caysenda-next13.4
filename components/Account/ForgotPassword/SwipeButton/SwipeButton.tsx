@@ -1,8 +1,6 @@
 'use client'
 import React, { useState, useEffect, useRef } from 'react'
 import { useSwipeable } from 'react-swipeable';
-import Arrow from "@/public/arrow.png"
-import Image from 'next/image'
 import styles from  "./swipezor.module.css";
 import {RxDoubleArrowRight } from 'react-icons/rx'
 

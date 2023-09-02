@@ -2,7 +2,9 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {CiDeliveryTruck} from 'react-icons/ci'
-const CompleteOrder = () => {
+import {OrderType} from '@/types/order'
+const CompleteOrder = ({_Prop}: {_Prop: OrderType} ) => {
+    
     return (
         <div className="px-2 pb-2 border-b-2">
             <div className='flex '>

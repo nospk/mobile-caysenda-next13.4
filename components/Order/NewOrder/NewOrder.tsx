@@ -1,91 +1,27 @@
 'use client'
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-function NewOrder() {
+import { OrderType } from '@/types/order'
+import DetailOrder from '@/components/Order/DetailOrder'
+function NewOrder({ _Prop }: { _Prop?: OrderType }) {
+    const data = _Prop as OrderType;
     return (
 
         <div className="px-2 pb-2 border-b-2">
             <div className='flex '>
                 <div className="flex grow">
                     <div className="text-xl pr-2">
-                        {'Mã Đơn Hàng'}
+                        {data.OrderId}
                     </div>
                     <div className="flex-none">{'>'}</div>
                 </div>
                 <div className="flex-none text-red-500">chờ thanh toán</div>
             </div>
-            <ul className="Sản Phẩm m-1">
-                <li className="Sản Phẩm 1">
-                    <Link className="Tên Sản Phẩm" href={""}>
-                        {'Tên Sản Phẩm'} {'>'}
-                    </Link>
-                    <div className="flex  m-2">
-                        <div className="avatar pr-2">
-                            <Image src={'https://caysenda.vn/resources/upload/17892827873_102253868.jpg'}
-                                width={100}
-                                height={100}
-                                alt='product_img'
-                                className='rounded-lg' />
-                        </div>
-                        <div className="grow ">
-                            <div className="flex justify-between">
-                                <h3 className="flex-none">{'Biến Thể'}</h3>
-                                <div className="order-last">{'2.000.000'} VND</div>
-                            </div>
-                            <div className="flex justify-between">
-                                <h4 className="category_Name">
-                                    {'Số Lượng'}
-                                </h4>
-                                <div className="">x{'100'}</div>
-                            </div>
-                        </div>
-                    </div><div className="flex m-2">
-                        <div className="avatar pr-2">
-                            <Image src={'https://caysenda.vn/resources/upload/17892827873_102253868.jpg'}
-                                width={100}
-                                height={100}
-                                alt='product_img'
-                                className='rounded-lg' />
-                        </div>
-                        <div className="grow ">
-                            <div className="flex justify-between">
-                                <h3 className="flex-none">{'Biến Thể'}</h3>
-                                <div className="order-last">{'2.000.000'} VND</div>
-                            </div>
-                            <div className="flex justify-between">
-                                <h4 className="category_Name">
-                                    {'Số Lượng'}
-                                </h4>
-                                <div className="">x{'100'}</div>
-                            </div>
-                        </div>
-                    </div><div className="flex m-2">
-                        <div className="avatar pr-2">
-                            <Image src={'https://caysenda.vn/resources/upload/17892827873_102253868.jpg'}
-                                width={100}
-                                height={100}
-                                alt='product_img'
-                                className='rounded-lg' />
-                        </div>
-                        <div className="grow ">
-                            <div className="flex justify-between">
-                                <h3 className="flex-none">{'Biến Thể'}</h3>
-                                <div className="order-last">{'2.000.000'} VND</div>
-                            </div>
-                            <div className="flex justify-between">
-                                <h4 className="category_Name">
-                                    {'Số Lượng'}
-                                </h4>
-                                <div className="">x{'100'}</div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
+            <DetailOrder props={data.category} />
             <div className="shipping_state/all_Money">
                 <div className="flex justify-between m-3 phiship/tongtien ">
-                    <div className="">không biết</div>
+                    <button type="submit" className="">chi tiết đơn hàng</button>
                     <div className="justify-items-end">
                         <div className="pr-2">phí ship (VND): {'30.000'}</div>
                         <div className="pr-2">tổng tiền (VND): {'3.000.000'}</div>

@@ -1,22 +1,22 @@
 export interface OrderType {
     OrderId: string;
-    Product: any;
+    Product?: OrderProduct | any;
     status: string;
-    price?: number;
-    category?: CartCategory[];
+    totalPrice?: number;
+    category?: OrderCategory[];
   }
   
-  export interface CartCategory {
+  export interface OrderCategory {
     name: string; 
     slug: string;
     condition: number;
     amount: number;
-    products: CartProduct[];
+    products: OrderProduct[];
     bill: number;
     id: number;
   }
   
-  export interface CartProduct {
+  export interface OrderProduct {
     productId: number;
     name: string;
     id: number;
@@ -40,10 +40,10 @@ export interface OrderType {
     amount: number;
     active: boolean;
     unit: string;
-    variants: CartVariant[];
+    variants: OrderVariant[];
   }
   
-  export interface CartVariant {
+  export interface OrderVariant {
     name: string;
     thumbnail: string;
     id:number;
