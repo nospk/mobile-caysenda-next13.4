@@ -13,7 +13,7 @@ interface Video {
 const VideoCard: FC<Video> = React.memo(function card(props) {
   return (
     <div className={styles.video_card}>
-      <Link href={`/video/${props.id}`}>
+      <Link href={`/video?id=${props.id}`}>
         <div className={styles.image_product}>
           <Image
             className={styles.image_square}

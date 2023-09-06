@@ -11,7 +11,7 @@ const Footer: FC = () => {
             <Icon src="/iconHome.png" alt="Home" className={styles.img_home} />
           </div>
         </Link>
-        <Link href="/video" scroll={true}>
+        <Link href="/videos" scroll={true}>
           <div className={styles.tab_item}>
             <IconWithLabel
               src="/iconVideos.png"

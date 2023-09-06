@@ -6,13 +6,14 @@ import ProductService from "@/services/Product.service";
 import type { Product } from "@/types/product";
 import type { Banner } from "@/types/banner";
 import type { KeyWord } from "@/types/keyword";
+import type { Video } from "@/types/video";
 import BannerCard from "@/components/BannerCard";
 import KeyWordCard from "@/components/KeyWordCard";
 import React from "react";
 import useScroll from "@/components/hook/useScroll";
 import VideoCard from "../VideoCard";
 import {ProductListParamType} from "@/services/types/ProductRequestType";
-type Video = { type: "video"; data: {} };
+
 type View = Banner | KeyWord | Product | Video;
 interface Props {
   banners?: Banner;
