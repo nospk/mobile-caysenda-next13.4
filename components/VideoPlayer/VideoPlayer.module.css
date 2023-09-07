@@ -1,0 +1,3 @@
+.video {
+  @apply relative h-fit w-full flex-1 justify-center;
+}
