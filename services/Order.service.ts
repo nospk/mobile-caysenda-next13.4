@@ -2009,7 +2009,7 @@ let listOrder = [
 ]
 
 // Create a function to get orders
-const getOrder = async (status: string) => {
+const getOrder = async (status?: string) => {
 
     if (status === undefined) {
         return listOrder;

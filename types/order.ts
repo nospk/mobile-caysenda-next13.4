@@ -1,8 +1,11 @@
+import {ListDelivery} from './Delivery'
 export interface OrderType {
     OrderId: string;
     Product?: OrderProduct | any;
     status: string;
     totalPrice?: number;
+    Deliveryfee?: number;
+    Delivery?: ListDelivery[];
     category?: OrderCategory[];
   }
   

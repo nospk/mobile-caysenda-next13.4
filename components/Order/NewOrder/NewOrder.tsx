@@ -4,27 +4,29 @@ import Image from "next/image";
 import Link from "next/link";
 import { OrderType } from '@/types/order'
 import DetailOrder from '@/components/Order/DetailOrder'
-function NewOrder({ _Prop }: { _Prop?: OrderType }) {
+function NewOrder({ _Prop }: { _Prop: OrderType }) {
     const data = _Prop as OrderType;
+    const [isdetail, setIsdetail] = useState(true);
+    const [req, setReq] = useState(0);
     return (
 
         <div className="px-2 pb-2 border-b-2">
             <div className='flex '>
                 <div className="flex grow">
                     <div className="text-xl pr-2">
-                        {data.OrderId}
+                        {_Prop.OrderId}
                     </div>
                     <div className="flex-none">{'>'}</div>
                 </div>
                 <div className="flex-none text-red-500">chờ thanh toán</div>
             </div>
-            <DetailOrder props={data.category} />
+            <DetailOrder props={isdetail?_Prop.Product : _Prop.category} />
             <div className="shipping_state/all_Money">
                 <div className="flex justify-between m-3 phiship/tongtien ">
-                    <button type="submit" className="">chi tiết đơn hàng</button>
+                    <button type="submit" className="" onClick = {e => (setReq(req+1))}>chi tiết đơn hàng</button>
                     <div className="justify-items-end">
-                        <div className="pr-2">phí ship (VND): {'30.000'}</div>
-                        <div className="pr-2">tổng tiền (VND): {'3.000.000'}</div>
+                        <div className="pr-2">phí ship (VND): {'30000'}</div>
+                        <div className="pr-2">tổng tiền (VND): {_Prop.totalPrice}</div>
                         <div className="pr-2">thời gian giao hàng dự kiến</div>
                     </div>
                 </div>

@@ -9,13 +9,13 @@ import AdditionOrder from './AdditionOrder';
 import ShippingOrder from './ShippingOrder';
 import { OrderType } from 'types/order';
 import StatusOrder from './StatusOrder';
-const OrderComponents: FC<{ List_Order: OrderType[] }> = ({ List_Order }) => {
+const OrderComponents  = ({ List_Order } : {List_Order: OrderType[]}) => {
   
   return (
     <>
       <div className="bg-white py-4">
         <ul className="List_Order">
-          {List_Order.map((_Order: any, index: Key) => (
+          { List_Order.map((_Order: any, index: Key) => (
             <li key={index}>
               {_Order.status == StatusOrder.NewOrder && <NewOrder _Prop = {_Order} />}
               {_Order.status == StatusOrder.CompleteOrder && <CompleteOrder _Prop = {_Order}/>}
