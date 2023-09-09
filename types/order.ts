@@ -1,4 +1,10 @@
 import {ListDelivery} from './Delivery'
+export interface DetailOrderType {
+  OrderId: string;
+  Product?: OrderProduct;
+  category?: OrderCategory[];
+  isdetail: boolean;
+}
 export interface OrderType {
     OrderId: string;
     Product?: OrderProduct | any;

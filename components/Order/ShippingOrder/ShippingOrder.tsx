@@ -4,7 +4,7 @@ import Image from "next/image";
 import { OrderType } from "@/types/order";
 const ShippingOrderCompornent = ({_Prop}:{_Prop?: OrderType}) => {
     return (
-        <div className="px-2 pb-2 border-b-2">
+        <div className="px-2 mb-2 border-b-2 rounded-lg bg-white">
             <div className='flex '>
                 <div className="flex grow">
                     <div className="text-xl pr-2">

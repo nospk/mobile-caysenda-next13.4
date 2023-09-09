@@ -3,7 +3,7 @@ import React from "react";
 
 function orderMenu() {
   return (
-    <div className="bg-white rounded-lg border-2 m-2">
+    <div className="bg-white rounded-lg border-2">
         <OrderMenu/>
     </div>
   );

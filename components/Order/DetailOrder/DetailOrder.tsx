@@ -5,16 +5,16 @@ import Image from "next/image";
 import { OrderProductList } from './ProductList';
 import Link from "next/link";
 import styles from './styles.module.css'
-import { OrderCategory, OrderProduct, OrderVariant } from '@/types/order'
+import { OrderCategory, OrderProduct, OrderVariant, DetailOrderType } from '@/types/order'
 
-function DetailOrder({ props }: { props?: OrderCategory[] | OrderProduct }) {
+function DetailOrder({ props, isdetail }: { props: OrderCategory[] | OrderProduct , isdetail: boolean}) {
     const [data, setData] = useState<OrderCategory[]>();
     const [product, setProduct] = useState<OrderProduct>();
     useEffect(
         () => {
             if (Array.isArray(props)) {
                 setData(props as OrderCategory[]);
-            }
+            } 
             else {
                 setProduct(props as OrderProduct);
             }
@@ -23,7 +23,7 @@ function DetailOrder({ props }: { props?: OrderCategory[] | OrderProduct }) {
     return (
         <ul className="Sản Phẩm m-1">
             <div>
-                {product && product.variants && product.variants.map((value: OrderVariant, index: Key) => (
+                {!isdetail && product && product.variants && product.variants.map((value: OrderVariant, index: Key) => (
                     <li key={index}>
                         <div className="flex  m-2">
                             <div className="avatar pr-2">
@@ -50,7 +50,7 @@ function DetailOrder({ props }: { props?: OrderCategory[] | OrderProduct }) {
                 ))
                 }
             </div>
-            {data && data.map((OrderCategory: OrderCategory, index: Key) => (
+            {isdetail && data && data.map((OrderCategory: OrderCategory, index: Key) => (
                 <li key={index}>
                     {OrderCategory && <OrderProductList props={OrderCategory.products} />}
                 </li>
