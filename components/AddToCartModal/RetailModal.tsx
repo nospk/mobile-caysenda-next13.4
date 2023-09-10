@@ -43,6 +43,8 @@ const AddToCartModal: FC<Props> = (props) => {
 				setProdct(res.product);
 			});
 		}
+		
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	},[isOpen]);
 
 	const decreaseOrder = useCallback((sku: string) => {

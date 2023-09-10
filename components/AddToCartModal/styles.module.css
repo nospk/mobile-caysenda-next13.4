@@ -20,7 +20,7 @@
   @apply box-border flex flex-none flex-col content-start flex-shrink-0;
 }
 .button_close {
-  @apply flex flex-col content-start flex-shrink-0 top-0 right-0 absolute z-10 pr-[1vw] pt-[1vw];
+  @apply text-black flex flex-col content-start flex-shrink-0 top-0 right-0 absolute z-10 pr-[1vw] pt-[1vw];
 }
 .icon_close {
   @apply h-[3vw] w-[3vw];
@@ -119,7 +119,7 @@
   @apply box-border flex flex-col flex-shrink-0 relative top-[1.6vw] left-0 w-[3.46667vw] h-[1px] rounded-xl;
 }
 .input_number {
-  @apply w-[11.73333vw] text-center rounded-none border-y border-solid border-[#CECECE] h-[8.26667vw] text-[4.26667vw] outline-0 appearance-none align-middle placeholder-black focus:placeholder-white;
+  @apply w-[11.73333vw] text-center rounded-none border-y border-solid text-black border-[#CECECE] h-[8.26667vw] text-[4.26667vw] outline-0 appearance-none align-middle placeholder-black focus:placeholder-white;
 }
 .increase_wapper {
   @apply box-border flex flex-col flex-shrink-0 justify-center items-center text-center w-[8.26667vw] h-[8.26667vw] leading-[8.26667vw] border-x border-y border-solid border-[#CECECE] rounded-r-xl self-center;
