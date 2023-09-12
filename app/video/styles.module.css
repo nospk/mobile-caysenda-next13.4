@@ -1,0 +1,51 @@
+.back {
+  @apply absolute top-[3.2vw] flex shrink-0 flex-col items-center justify-center pl-[3.2vw] text-white;
+}
+.icon_back {
+  @apply h-[7vw] text-right;
+}
+.wrapper {
+  @apply box-border absolute bottom-0 flex w-[100vw] flex-shrink-0 flex-col;
+}
+.content {
+  @apply relative mb-[9.0667vw] box-border flex flex-shrink-0 flex-col pl-[3.2vw];
+}
+.info {
+  @apply relative box-border flex h-[14.9333vw] flex-shrink-0 flex-row place-content-between pr-[3.2vw];
+}
+.info_wrapper {
+  @apply relative box-border block flex-shrink-0 flex-col content-start leading-[3.4667vw] text-white;
+}
+.name {
+  @apply text-[4.2vw];
+}
+.sold {
+  @apply mt-[2.6667vw] flex flex-row items-center justify-start text-[2.7vw] text-gray-400;
+}
+.sold_number {
+  @apply leading-[16px];
+}
+.button {
+  @apply h-8 rounded-full bg-red-500 px-2 font-bold text-white;
+}
+.list_item {
+  @apply relative box-border flex h-[26.1333vw] w-full flex-shrink-0 flex-col content-start overflow-hidden;
+}
+.list_item_wrapper {
+  @apply relative flex h-[29.3333vw] w-full flex-shrink-0 flex-row content-start overflow-scroll pr-[2.6667vw];
+}
+.variants {
+  @apply relative flex flex-shrink-0 flex-row content-start;
+}
+.variant_content {
+  @apply relative mr-[2.6667vw] box-border flex h-[26.1333vw] w-[20.8vw] flex-shrink-0 flex-col content-start items-center rounded-lg bg-white pt-[1.0667vw];
+}
+.variant_image {
+  @apply relative box-border flex h-[18.6667vw] w-[18.6667vw] flex-shrink-0 flex-col content-start overflow-hidden;
+}
+.variant_price {
+  @apply relative mt-[0.9333vw] box-border block text-center text-sm leading-[4vw] text-red-500;
+}
+.add_to_cart {
+  @apply relative mt-[3.2vw] box-border flex flex-shrink-0 flex-row place-content-between text-white;
+}
