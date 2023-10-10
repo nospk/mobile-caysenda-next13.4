@@ -1,13 +1,12 @@
-
 .register_error {
   display: flex;
   justify-content: center;
   align-items: center;
   color: #ff6d6d;
-  margin: 20px 0;
+  margin: 0;
   font-size: 14px;
   line-height: 16px;
-  @apply text-center;  
+  @apply text-center;
 }
 
 .register_error i {
@@ -15,7 +14,7 @@
   font-size: 20px;
 }
 .back {
-  @apply p-2.5 flex-none;
+  @apply flex-none p-2.5;
 }
 .register_error_msg {
   display: inline-block;
@@ -24,11 +23,11 @@
 }
 
 .fm_field {
-    width: 100%;
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  font-weight: 100%;
+  flex-direction: row;
   margin-bottom: 20px;
+  @apply border-b;
 }
 
 .fm_text {
@@ -40,40 +39,16 @@
   padding: 12px;
   position: relative;
   z-index: 1;
-  @apply focus:outline-none focus:border-blue-400; 
+  @apply outline-none;
 }
 
 .underline {
-  position: relative;
-  width: 100%;
-  height: 1px;
+  @apply relative border-t;
 }
 
-.unfocused_line {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 1px;
-  background-color: #d2d6dc;
-}
-
-.focused_line {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 1px;
-  background-color: #3182ce;
-  transform: scaleX(0);
-  transform-origin: bottom left;
-  transition: transform 0.3s ease;
-}
 .fm_btn {
-    width: 100%;
-    box-sizing: border-box;
+  width: 100%;
+  box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -81,18 +56,16 @@
 }
 
 .fm_button {
-    width: 100%;
+  width: 100%;
   outline: none;
   border: none;
-  border-radius: 4px;
-  background-color: rgba(254,106,0,255);
+  background-color: rgba(254, 106, 0, 255);
   color: #fff;
   font-size: 16px;
-  font-weight: 80%;
   padding: 12px 24px;
   transition: all 0.2s ease;
   cursor: pointer;
-  @apply hover:bg-blue-400; 
+  @apply rounded-xl hover:bg-blue-400;
 }
 
 .register-links {
@@ -122,5 +95,33 @@
   font-size: 14px;
   font-weight: 700;
   color: #636e72;
-  padding: 
+}
+.hidden_eye {
+  @apply w-10;
+}
+
+.content {
+  @apply flex h-[100dvh] w-full justify-center bg-white;
+}
+.wrapper {
+  @apply w-full max-w-full;
+}
+.icon_back {
+  @apply rounded-full px-2 py-0.5;
+}
+.form {
+  @apply flex flex-col items-center overflow-auto px-5;
+}
+.form_wrapper {
+  @apply w-full;
+}
+.form_content {
+  @apply flex flex-col items-center justify-center;
+}
+.form_control {
+  @apply flex w-full flex-col items-center;
+}
+
+.hidden {
+  @apply relative my-auto w-10;
 }

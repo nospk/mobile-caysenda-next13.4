@@ -1,5 +1,5 @@
 .menu {
-  @apply flex flex-row text-center mt-[2.4vw] h-[21.6vw] text-[#606060] justify-center items-center;
+  @apply flex flex-row text-center mt-[2.4vw] h-[21.6vw] text-[#606060] justify-evenly items-center;
 }
 .menu_item {
   @apply flex flex-col text-sm justify-center items-center w-[18.66667vw] h-[21.6vw] text-center cursor-pointer;

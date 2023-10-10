@@ -1,58 +1,62 @@
 .login_background {
-  background: rgba(255,228,243,255);
-  background: linear-gradient(55deg, rgba(255,228,243,255) 80%, rgba(234,222,251,255) 100%);
-  @apply w-full h-screen;
+  background: rgba(255, 228, 243, 255);
+  background: linear-gradient(
+    55deg,
+    rgba(255, 228, 243, 255) 80%,
+    rgba(234, 222, 251, 255) 100%
+  );
+  @apply h-[100dvh] w-full;
 }
 .back {
-  @apply p-2.5 flex-none;
+  @apply flex-none p-2.5;
 }
 .name_nomi {
-  @apply h-full w-[10vw] flex items-center px-2 text-3xl text-[#fe2801] font-serif font-semibold ;
+  @apply flex h-full w-[10vw] items-center pl-5 font-serif text-3xl font-semibold text-[#fe2801];
 }
 .head_block {
-  @apply w-full h-[25vh] flex flex-col ;
+  @apply flex h-[25dvh] w-full flex-col;
 }
 .logo_block {
-  @apply grow flex items-center pl-3;
+  @apply flex grow items-center;
 }
 
 .login_block {
-  @apply bg-white w-full h-screen rounded-[2rem] drop-shadow-sm flex flex-col;
+  @apply flex h-[75dvh] w-full flex-col rounded-t-[2rem] bg-white drop-shadow-sm;
 }
 .input_group {
   width: 100%;
-  height: 8vh;
-  @apply outline-none w-full flex items-center content-center rounded-full mt-[2vh] bg-[#f8f8f8];
+  height: 7vh;
+  @apply mt-[2vh] flex w-full content-center items-center rounded-full bg-[#f8f8f8] outline-none;
 }
 .input_block {
   color: #c1c1c1;
-  @apply  px-5 rounded-l-full;
+  @apply rounded-l-full px-5;
 }
 .input_text {
-  @apply w-full h-full px-5 text-lg rounded-full bg-[#f8f8f8] no-underline italic;
+  @apply h-full w-full rounded-full bg-[#f8f8f8] px-5 text-lg no-underline outline-none placeholder:italic;
 }
 .button_group {
-  background: #fe2e00 ;
-  @apply w-4/5 h-[8vh] flex justify-center rounded-full mt-[3vh] text-xl px-[5vw];
+  background: #fe2e00;
+  @apply mt-[3vh] flex h-[6vh] w-4/5 justify-center rounded-full px-[5vw] text-xl;
 }
 .fm_btn {
-  @apply w-full h-full rounded-full text-white text-2xl;
+  @apply h-full w-full rounded-full text-2xl text-white;
 }
 .login_link {
-  color : #555;
-  @apply flex justify-center px-5 text-xl mx-5;
+  color: #555;
+  @apply mx-5 flex justify-center px-5 text-lg italic;
 }
 .login_other {
-  @apply flex justify-center  absolute inset-x-0 bottom-[7vh];
+  @apply absolute inset-x-0  bottom-[7vh] flex justify-center;
 }
 .text_divider {
   color: #c1c1c1;
-  @apply flex items-center justify-center mx-5 w-full;
+  @apply mx-5 flex w-full items-center justify-center;
   --text-divider-gap: 1rem;
 }
 .text_divider::before,
 .text_divider::after {
-  content: '';
+  content: "";
   height: 1px;
   background-color: #333;
   flex-grow: 1;
@@ -62,4 +66,22 @@
 }
 .text_divider::after {
   margin-left: var(--text-divider-gap);
+}
+.icon_back {
+  @apply rounded-s-full px-2 py-0.5;
+}
+.login_image {
+  @apply flex grow justify-center;
+}
+.form {
+  @apply mt-[2vh] flex flex-col content-center items-center justify-center p-5;
+}
+.hidden_eye {
+  @apply w-10;
+}
+.register {
+  @apply pr-2 text-[#ff8c35];
+}
+.forgot {
+  @apply pl-2 text-[#ff3535];
 }

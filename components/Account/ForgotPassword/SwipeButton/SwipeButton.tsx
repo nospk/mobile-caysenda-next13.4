@@ -50,7 +50,7 @@ function SwipeButton({
   }, [reset]);
 
   const handlers = useSwipeable({
-    onSwipedRight: (data) => {
+    onSwipedRight: (data:any) => {
       if (swipeComplete)
         return;
 
@@ -75,7 +75,7 @@ function SwipeButton({
           setOverlayWidth(40);
       }
     },
-    onSwiping: (data) => {
+    onSwiping: (data:any) => {
       if (swipeComplete)
         return;
       const offsetLeft = findLeft(buttonRef.current);
