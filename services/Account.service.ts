@@ -1,14 +1,9 @@
 import getBaseUrl from '@/lib/getBaseUrl'
 import {RegisterForm, LoginProps} from '@/types/Account'
 const authLoginApi = async (props : LoginProps) => {
-    const res = await fetch('https://dummyjson.com/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            username: props.username,
-            password: props.password,
-            // expiresInMins: 60, // optional
-        })
+    const res = await fetch(`https://caysenda.vn/ajax/user/login?username=${props.username}&password=${props.password}`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
     })
     return res
 };

@@ -56,7 +56,7 @@ const Login = () => {
         <div className={styles.back}>
           <button
             type="button"
-            onClick={() => router.back()}
+            onClick={() => router.push("/")}
             className={styles.icon_back}
           >
             <IoIosArrowBack size={22} />

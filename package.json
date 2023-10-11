@@ -27,6 +27,7 @@
     "react-redux": "^8.0.5",
     "react-slide-button": "^2.0.0",
     "react-swipezor": "^1.0.7",
+    "react-switch": "^7.0.0",
     "sharp": "^0.32.1",
     "swiper": "^9.2.4",
     "tailwind-scrollbar-hide": "^1.1.7",

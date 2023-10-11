@@ -48,8 +48,8 @@ export default async function Page() {
 					</div>
 
 					<div className="bg-white rounded-lg px-2 py-5">
-						<p className=" text-lg font-semibold">Đơn Hàng Của Tôi</p>
-						<div className="">
+						<p className="text-lg font-semibold">Đơn Hàng Của Tôi</p>
+						<div className="relative">
 							<OrderMenu />
 						</div>
 					</div>

@@ -1,9 +1,9 @@
 .menu {
-	@apply flex flex-row text-center pt-2 h-20 mx-[2.4vw] text-[#606060];
+	@apply flex flex-row text-center pt-2 h-20 text-[#606060];
 }
 .menu_item {
-	@apply flex-1 text-sm;
+	@apply flex-1 text-xs;
 }
 .menu_icon {
-	@apply flex items-center justify-center;
+	@apply flex items-center justify-evenly;
 }

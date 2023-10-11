@@ -23,7 +23,6 @@ function SettingPage() {
       redirect("/login");
     }
   }, [loading, router, token]);
-
   return (
     <>
       {loading ? (

@@ -33,15 +33,6 @@ const SettingLayout = ({ children }: { children: React.ReactNode }) => {
                 <h2 className="flex flex-1 items-center text-xl font-bold pl-1">
                     {title}
                 </h2>
-
-                <div className="relative inline-block px-4 absolute top-2">
-                    <FaEllipsisH size={18} />
-                    <div className="bg-red-500 rounded-full flex items-center justify-center h-5 w-5 absolute -top-4 p-0.5">
-                        <div className="text-white text-xs">
-                            24
-                        </div>
-                    </div>
-                </div>
             </div>
             {children}
         </div>

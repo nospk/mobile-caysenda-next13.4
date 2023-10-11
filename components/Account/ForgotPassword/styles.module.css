@@ -1,40 +1,45 @@
 .container {
-    @apply flex flex-col justify-center;
+  @apply flex flex-col justify-center;
 }
 .back {
-    @apply bg-white flex h-[5vh];
+  @apply h-[5vh] flex-none bg-white p-2.5;
 }
 .link_back {
-    z-index: 1;
-    @apply  rounded-full px-2 py-0.5 flex-none;
+  @apply relative z-10 rounded-full px-2 py-0.5;
 }
 .head_block {
-    @apply absolute inset-x-0 top-0 h-[inherit] flex justify-center items-center;
+  @apply absolute inset-x-0 top-0 flex h-[inherit] items-center justify-center;
 }
 .btn {
-    @apply w-full mx-5
+  @apply mx-5 w-full;
 }
 .input_block {
-    @apply my-[1vh] bg-white h-[6vh] w-full flex items-center text-lg px-2;
+  @apply my-[1vh] flex h-[12vh] w-full items-center bg-white px-2 text-xl;
 }
 .input_label {
-    @apply flex-none flex items-center h-full;
+  @apply flex h-full flex-none items-center;
 }
 .input_email {
-    @apply grow outline-none pl-2;
-} 
+  @apply grow pl-2 outline-none;
+}
 .swipe_block {
-    @apply mx-5 h-[6vh] border-none rounded-[2px] bg-[rgba(221,221,221,255)];
+  @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-[6vh] rounded-lg border-none bg-[rgba(221,221,221,255)];
 }
 .overlay {
-    @apply bg-[rgba(120,196,48,255)];
+  @apply h-[6vh] rounded-lg bg-[#F66D09];
 }
 .caret {
-    @apply bg-[rgba(255,255,255,255)];
+  @apply bg-[rgba(255,255,255,255)];
 }
 .msg_block {
-    @apply bg-[rgba(204,244,236,255)] border-l-[10px] border-[rgba(172,209,202,255)] mt-[10vh] h-auto mx-[5vw] w-[90vw] p-2;
+  @apply mx-[5vw] mt-[10vh] h-auto w-[90vw] border-l-[10px] border-[rgba(172,209,202,255)] bg-[rgba(204,244,236,255)] p-2;
 }
 .msg_text {
-    @apply text-[rgba(77,139,128,255)] text-lg;
+  @apply text-lg text-[rgba(77,139,128,255)];
+}
+.title {
+  @apply text-xl font-semibold;
+}
+.form_submit {
+    @apply pt-9
 }
