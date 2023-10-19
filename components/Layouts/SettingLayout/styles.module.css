@@ -1,0 +1,12 @@
+.layout {
+  @apply h-[100dvh] bg-white;
+}
+.header {
+  @apply flex h-14 content-center items-center justify-between border-b-8 border-[#f5f5f5];
+}
+.button_back {
+  @apply rounded-s-full bg-[#efefef] px-2 py-0.5;
+}
+.title {
+  @apply flex h-full flex-1 items-center pl-1 text-xl font-bold;
+}

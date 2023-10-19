@@ -14,7 +14,7 @@ const ForgotPassword = () => {
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     try {
-      let res = await AccountService.getPasswordApi(email);
+      let res = await AccountService.ForGotPassWord(email);
       if (res.status == 200) {
         const req = await res.json();
         setMsg(req.msg);

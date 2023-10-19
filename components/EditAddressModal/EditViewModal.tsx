@@ -18,6 +18,7 @@ import {
 import Switch from "react-switch";
 import { openDialog } from "@/redux/features/dialog/dialog.slice";
 import { useAppDispatch } from "@/redux/hooks";
+import { isPhoneValid, isEmailValid } from "@/lib/validation";
 type Data = {
   id: string;
   name: string;
@@ -62,16 +63,6 @@ const EditViewModal: FC<Props> = (props) => {
   };
   const handleCloseModal = () => {
     setIsOpen(false);
-  };
-
-  //xét điều kiện nhập
-  const isPhoneValid = (phone: string) => {
-    const phoneRegex = /^0[0-9]{9}$/; // regex cho số điện thoại bắt đầu bằng 0, có 10 chữ số
-    return phoneRegex.test(phone); // trả về true nếu phone đúng định dạng, false nếu ngược lại
-  };
-  const isEmailValid = (email: string) => {
-    const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/; // regex cho định dạng email hợp lệ
-    return emailRegex.test(email); // trả về true nếu email đúng định dạng, false nếu ngược lại
   };
 
   //xét điều kiện nhập

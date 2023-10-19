@@ -1,45 +1,60 @@
-'use client';
-import { useState } from 'react';
-import Image from 'next/image'
-const AvatarPage = () => {
-  const [avatar, setAvatar] = useState('/avatarzalo.jpg');
+"use client";
+import Image from "next/image";
+import AccountService from "@/services/Account.service";
+import styles from "./styles.module.css";
+import { openDialog } from "@/redux/features/dialog/dialog.slice";
+import { useAppDispatch } from "@/redux/hooks";
+import { useRouter } from "next/navigation";
 
-  const handleAvatarChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
+const AvatarPage = () => {
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+
+  //Will get avatar and name from info user when do login
+  const avatar: string = "/avatarzalo.jpg";
+  const name: string = "Nospk";
+
+  const handleAvatarChange = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const file: File | undefined = event.target.files?.[0];
     if (file) {
       // Thực hiện xử lý tải lên hoặc xử lý ảnh ở đây
       // Ví dụ: Tải lên ảnh và nhận đường dẫn URL
-      const reader = new FileReader();
-      reader.onload = () => {
-        setAvatar(reader.result as string);
-      };
-      reader.readAsDataURL(file);
+      let result = await AccountService.ChangeAvatar(file);
+      if (result.status == 200) {
+        dispatch(openDialog({ message: result.message }));
+        router.push("/setting");
+      } else {
+        dispatch(openDialog({ message: result.message }));
+      }
     }
   };
 
   return (
-    <div className="h-screen">
-      <form className="flex flex-col items-center justify-center mt-8">
-        <h1 className="text-2xl font-bold mb-4">Nomi</h1>
+    <div>
+      <form className={styles.form}>
+        <h1 className={styles.name}>{name}</h1>
         {avatar ? (
           <Image
             src={avatar}
             alt="Avatar"
             width={100}
             height={100}
-            className="w-32 h-32 rounded-full object-cover mb-4"
+            className={styles.avatar}
+            priority
           />
         ) : (
-          <div className="w-32 h-32 bg-gray-300 rounded-full mb-4"></div>
+          <div className={styles.avatar_default}></div>
         )}
-        <label className="box-border">
+        <label className={styles.label}>
           <input
             type="file"
             accept="image/*"
             onChange={handleAvatarChange}
-            className="absolute h-0 w-0 overflow-hidden"
+            className={styles.input}
           />
-          <span className="file-custom bg-[#ff4800] text-white py-2 px-4 rounded cursor-pointer">Choose file</span>
+          <span className={styles.button_text}>Chọn Hình Đại Diện</span>
         </label>
       </form>
     </div>

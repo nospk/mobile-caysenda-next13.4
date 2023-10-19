@@ -8,9 +8,9 @@ type ChangePasswordData = {
 };
 
 const inputList = [
-  { name: "oldPassword", label: "Mật Khẩu Cũ", placeholder: "Mật Khẩu Cũ" },
-  { name: "newPassword", label: "Mật khẩu Mới", placeholder: "Mật khẩu Mới" },
-  { name: "confirmPassword", label: "Nhập lại mật khẩu", placeholder: "Nhập lại mật khẩu" },
+  { name: "current-password", label: "Mật Khẩu Cũ", placeholder: "Mật Khẩu Cũ" },
+  { name: "new-password", label: "Mật khẩu Mới", placeholder: "Mật khẩu Mới" },
+  { name: "re-new-password", label: "Nhập lại mật khẩu", placeholder: "Nhập lại mật khẩu" },
 ];
 
 const ChangePasswordPage = () => {
@@ -52,6 +52,7 @@ const ChangePasswordPage = () => {
             onClick={e => handleSubmit}
             onChange={(e) => handleChange(e, name)}
             required
+            autoComplete="on"
           />
           <div className='relative w-full h-1'>
             <div className='absolute left-0 right-0 bottom-0 w-full h-1 bg-gray-300'></div>

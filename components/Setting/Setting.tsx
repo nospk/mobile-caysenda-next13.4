@@ -1,88 +1,106 @@
 "use client";
 import Link from "next/link";
 import {
-  FaEllipsisH,
-  FaUserEdit,
-  FaCreativeCommonsNd,
-  FaRegLaugh,
-  FaRegEye,
+  FaAddressCard,
+  FaUserCircle,
+  FaPhoneAlt,
+  FaUserAlt,
 } from "react-icons/fa";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowForward } from "react-icons/io";
 import { FiLock } from "react-icons/fi";
 const SettingPage = () => {
+  const user = {
+    name: "Nospk",
+    phone: "096277430",
+  };
+
   return (
-    <div className="min-h-screen bg-white">
+    <div className="bg-white">
       <div className="rounded-lg bg-white px-2">
-        <ul className="h-full w-full text-[#909090]">
+        <ul className="w-full text-[#909090]">
           <li className="py-4">
-            <div className="flex content-center">
-              <div className="min-h-[26px] flex-none content-center pr-2">
-                <FaRegLaugh
+            <div className="flex ">
+              <div className="min-h-[26px] flex-none  pr-2">
+                <FaUserAlt
                   size={18}
-                  className="inline-flex content-center text-[#666]"
+                  className="inline-flex self-center text-[#666]"
                 />
               </div>
-              <div className="grow">Tên Đăng Nhập</div>
-              <div className="flex-none px-4 text-black">Nomi</div>
+              <div className="grow self-center">Tên Đăng Nhập</div>
+              <div className="flex-none px-4 text-black">{user.name}</div>
             </div>
           </li>
-          <div className="absolute h-4 w-full left-0 bg-[#f8f8f8]"></div>
-          <li className="border-b border-gray-300 py-4 mt-4">
+          <div className="absolute left-0 h-4 w-full bg-[#f8f8f8]"></div>
+          <li className="mt-4 border-b border-gray-300 py-4">
             <Link href="/change-avatar">
-              <div className="flex content-center">
-                <div className="min-h-[26px] flex-none content-center pr-2">
-                  <FaCreativeCommonsNd
+              <div className="flex ">
+                <div className="min-h-[26px] flex-none  pr-2">
+                  <FaUserCircle
                     size={18}
-                    className="inline-flex content-center text-[#666]"
+                    className="inline-flex self-center text-[#666]"
                   />
                 </div>
-                <div className="grow">Thay đổi Avatar</div>
-                <div className="min-h-[26px] flex-none content-center">
+                <div className="grow self-center">Thay Đổi Avatar</div>
+                <div className="min-h-[26px] flex-none ">
                   <IoIosArrowForward
                     size={18}
-                    className="inline-flex content-center text-[#666]"
+                    className="inline-flex self-center text-[#666]"
                   />
                 </div>
               </div>
             </Link>
           </li>
-          <li className="content-center border-b border-gray-300 py-4">
-            <div className="flex content-center">
-              <div className="min-h-[26px] flex-none content-center pr-2">
-                <FiLock
+          <li className=" border-b border-gray-300 py-4">
+            <Link href="/change-phone">
+              <div className="flex ">
+                <div className="min-h-[26px] flex-none  pr-2">
+                  <FaPhoneAlt
+                    size={18}
+                    className="inline-flex self-center text-[#666]"
+                  />
+                </div>
+                <div className="grow self-center">Số Điện Thoại</div>
+                <div className="flex-none self-center px-4 text-black">
+                  {user.phone}
+                </div>
+                <IoIosArrowForward
                   size={18}
-                  className="inline-flex content-center text-[#666]"
+                  className="flex-none self-center text-[#666]"
                 />
               </div>
-              <div className="grow">Số Điện Thoại</div>
-              <div className="flex-none px-4 text-black">0123456789</div>
-            </div>
+            </Link>
           </li>
           <li className="border-b border-gray-300 py-4">
             <Link href="/change-password">
-              <div className="flex content-center">
-                <div className="min-h-[26px] flex-none content-center pr-2">
-                  <FaRegEye
+              <div className="flex ">
+                <div className="min-h-[26px] flex-none  pr-2">
+                  <FiLock
                     size={18}
-                    className="inline-flex content-center text-[#666]"
+                    className="inline-flex self-center text-[#666]"
                   />
                 </div>
-                <div className="grow">Đổi Mật Khẩu</div>
-                <IoIosArrowForward size={18} className="flex-none" />
+                <div className="grow self-center">Đổi Mật Khẩu</div>
+                <IoIosArrowForward
+                  size={18}
+                  className="flex-none self-center text-[#666]"
+                />
               </div>
             </Link>
           </li>
           <li className="border-b border-gray-300 py-4">
             <Link href="/change-address">
-              <div className="flex content-center">
-                <div className="min-h-[26px] flex-none content-center pr-2">
-                  <FaUserEdit
+              <div className="flex ">
+                <div className="min-h-[26px] flex-none  pr-2">
+                  <FaAddressCard
                     size={18}
-                    className="inline-flex content-center text-[#666]"
+                    className="inline-flex self-center text-[#666]"
                   />
                 </div>
-                <div className="grow">Địa Chỉ Giao Hàng</div>
-                <IoIosArrowForward size={18} className="flex-none" />
+                <div className="grow self-center">Địa Chỉ Giao Hàng</div>
+                <IoIosArrowForward
+                  size={18}
+                  className="flex-none self-center text-[#666]"
+                />
               </div>
             </Link>
           </li>

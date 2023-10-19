@@ -8,6 +8,7 @@ import Link from "next/link";
 import { IoIosArrowBack } from "react-icons/io";
 import { RegisterForm, RegisterFormError } from "@/types/Account";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
+import { isPhoneValid, isEmailValid, isPasswordValid } from "@/lib/validation";
 const inputList = [
   { name: "username", label: "Username", placeholder: "Tên tài khoản" },
   { name: "phone", label: "Số điện thoại", placeholder: "Số điện thoại" },
@@ -32,19 +33,7 @@ const Register = () => {
   const [errors, setErrors] = useState<Partial<RegisterFormError>>({});
   const [message, setMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  //xét điều kiện nhập
-  const isPhoneValid = (phone: string) => {
-    const phoneRegex = /^0[0-9]{9}$/; // regex cho số điện thoại bắt đầu bằng 0, có 10 chữ số
-    return phoneRegex.test(phone); // trả về true nếu phone đúng định dạng, false nếu ngược lại
-  };
-  const isEmailValid = (email: string) => {
-    const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/; // regex cho định dạng email hợp lệ
-    return emailRegex.test(email); // trả về true nếu email đúng định dạng, false nếu ngược lại
-  };
 
-  const isPasswordValid = (password: string) => {
-    return password.length >= 6; // trả về true nếu độ dài mật khẩu >= 6 ký tự, false nếu ngược lại
-  };
   //xét điều kiện nhập
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement>,

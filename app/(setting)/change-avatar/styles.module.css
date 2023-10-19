@@ -1,0 +1,21 @@
+.form {
+  @apply mt-8 flex flex-col items-center justify-center;
+}
+.name {
+  @apply mb-4 text-2xl font-bold;
+}
+.avatar {
+  @apply mb-4 h-32 w-32 rounded-full object-cover;
+}
+.avatar_default {
+  @apply mb-4 h-32 w-32 rounded-full bg-gray-300;
+}
+.label {
+  @apply box-border;
+}
+.input {
+  @apply absolute h-0 w-0 overflow-hidden;
+}
+.button_text {
+  @apply cursor-pointer rounded-lg bg-[#ff4800] px-4 py-2 text-white;
+}

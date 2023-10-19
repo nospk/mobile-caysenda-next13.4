@@ -2,5 +2,5 @@
   @apply relative 
 }
 .modalOverlay {
-  @apply fixed top-1/2 left-1/2 w-auto h-auto -translate-x-1/2 -translate-y-1/2 bg-slate-900 z-20 opacity-60 p-[2.33333vw];
+  @apply fixed top-1/2 left-1/2 w-auto h-auto -translate-x-1/2 -translate-y-1/2 bg-slate-900 z-20 opacity-60 p-[2.33333vw] rounded-lg;
 }
