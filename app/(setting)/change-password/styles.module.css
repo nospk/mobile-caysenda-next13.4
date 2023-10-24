@@ -1,0 +1,24 @@
+.form {
+  @apply mt-10 flex h-screen w-full flex-col items-center px-4;
+}
+.space {
+  @apply mb-4 mt-3;
+}
+.item_list {
+  @apply mb-5 flex w-full flex-row border-b border-gray-300;
+}
+.input {
+  @apply relative w-full border-none p-3 text-base leading-6 outline-none;
+}
+.border_input {
+  @apply relative my-auto w-10;
+}
+.border {
+  @apply w-10;
+}
+.confirm {
+  @apply mt-1 box-border flex items-center justify-center px-4;
+}
+.button {
+  @apply w-full rounded-full bg-[#ff4800] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-orange-600 hover:text-white dark:bg-[#ff4800] sm:w-auto;
+}

@@ -1,26 +1,47 @@
-'use client';
-import { useState } from 'react';
+"use client";
+import { useState } from "react";
+import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
+import AccountService from "@/services/Account.service";
+import styles from "./styles.module.css";
+import { openDialog } from "@/redux/features/dialog/dialog.slice";
+import { useAppDispatch } from "@/redux/hooks";
+import { useRouter } from "next/navigation";
+import { isPasswordValid } from "@/lib/validation";
 
 type ChangePasswordData = {
-  oldPassword: string;
+  currentPassword: string;
   newPassword: string;
-  confirmPassword: string;
+  renewPassword: string;
 };
 
 const inputList = [
-  { name: "current-password", label: "Mật Khẩu Cũ", placeholder: "Mật Khẩu Cũ" },
-  { name: "new-password", label: "Mật khẩu Mới", placeholder: "Mật khẩu Mới" },
-  { name: "re-new-password", label: "Nhập lại mật khẩu", placeholder: "Nhập lại mật khẩu" },
+  {
+    name: "currentPassword",
+    label: "Mật Khẩu Hiện Tại",
+    placeholder: "Mật Khẩu Hiện Tại",
+  },
+  { name: "newPassword", label: "Mật khẩu Mới", placeholder: "Mật khẩu Mới" },
+  {
+    name: "renewPassword",
+    label: "Nhập lại mật khẩu",
+    placeholder: "Nhập lại mật khẩu",
+  },
 ];
 
 const ChangePasswordPage = () => {
+  const dispatch = useAppDispatch();
+  const router = useRouter();
   const [formData, setFormData] = useState<ChangePasswordData>({
-    oldPassword: '',
-    newPassword: '',
-    confirmPassword: '',
+    currentPassword: "",
+    newPassword: "",
+    renewPassword: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>, field: string) => {
+  const [showPassword, setShowPassword] = useState(false);
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    field: string
+  ) => {
     const value = e.target.value;
     setFormData((prevFormData) => ({
       ...prevFormData,
@@ -28,40 +49,67 @@ const ChangePasswordPage = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Gửi dữ liệu đổi mật khẩu tới server
-    // Các xử lý logic khác...
+    if (formData.newPassword != formData.renewPassword) {
+      dispatch(
+        openDialog({ message: "Nhập Lại Mật Khẩu Mới Không Trùng Nhau" })
+      );
+      return;
+    }
+    if (!isPasswordValid(formData.newPassword)) {
+      dispatch(openDialog({ message: "Mật Khẩu Mới Không Hợp Lệ" }));
+      return;
+    } else {
+      let result = await AccountService.ChangePassWord(formData);
+      if (result.status == 200) {
+        dispatch(openDialog({ message: result.message }));
+        router.push("/setting");
+      } else {
+        dispatch(openDialog({ message: result.message }));
+      }
+    }
   };
-
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
   return (
-    <form className="h-screen w-full mt-10 flex flex-col items-center" onSubmit={handleSubmit}>
-      <div className="mt-3 mb-4">
-      </div>
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <div className={styles.space}></div>
       {inputList.map(({ name, label, placeholder }) => (
-        <div key={name} className='w-full flex flex-col mb-5 px-4 rounded-full'>
+        <div key={name} className={styles.item_list}>
           <input
             name={name}
-            type='password'
-            className='outline-none border-none text-base leading-6 w-full p-3 relative z-10 focus:outline-none focus:border-blue-400'
+            type={
+              name.includes("newPassword") && !showPassword
+                ? "password"
+                : "text"
+            }
+            className={styles.input}
             id={name}
             tabIndex={1}
             aria-label={label}
             placeholder={placeholder}
             autoCapitalize="off"
-            onClick={e => handleSubmit}
+            onClick={handleSubmit}
             onChange={(e) => handleChange(e, name)}
             required
-            autoComplete="on"
+            autoComplete="off"
           />
-          <div className='relative w-full h-1'>
-            <div className='absolute left-0 right-0 bottom-0 w-full h-1 bg-gray-300'></div>
-            <div className='absolute left-0 right-0 bottom-0 w-full h-1 bg-blue-500 transform scale-x-0 origin-bottom-left transition-transform duration-300 ease-in'></div>
+          <div
+            className={styles.border_input}
+            onClick={togglePasswordVisibility}
+          >
+            {name != "newPassword" ? null : showPassword ? (
+              <AiOutlineEyeInvisible className={styles.border} />
+            ) : (
+              <AiOutlineEye className={styles.border} />
+            )}
           </div>
         </div>
       ))}
-      <div className=' box-border flex justify-center items-center mt-1 px-4'>
-        <button type="submit" tabIndex={3} className='w-full rounded-full text-white bg-[#ff4800] hover:bg-orange-600 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm sm:w-auto px-5 py-2.5 text-center dark:bg-[#ff4800] dark:hover:bg-orange-800 dark:focus:ring-blue-800'>
+      <div className={styles.confirm}>
+        <button type="submit" tabIndex={3} className={styles.button}>
           Lưu Mật Khẩu
         </button>
       </div>
