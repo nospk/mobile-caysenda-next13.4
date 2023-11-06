@@ -20,7 +20,11 @@ const inputList = [
     label: "Mật Khẩu Hiện Tại",
     placeholder: "Mật Khẩu Hiện Tại",
   },
-  { name: "newPassword", label: "Mật khẩu Mới", placeholder: "Mật khẩu Mới" },
+  {
+    name: "newPassword",
+    label: "Mật khẩu Mới",
+    placeholder: "Mật khẩu Mới",
+  },
   {
     name: "renewPassword",
     label: "Nhập lại mật khẩu",
@@ -38,10 +42,7 @@ const ChangePasswordPage = () => {
   });
 
   const [showPassword, setShowPassword] = useState(false);
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    field: string
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>, field: string) => {
     const value = e.target.value;
     setFormData((prevFormData) => ({
       ...prevFormData,
@@ -53,12 +54,18 @@ const ChangePasswordPage = () => {
     e.preventDefault();
     if (formData.newPassword != formData.renewPassword) {
       dispatch(
-        openDialog({ message: "Nhập Lại Mật Khẩu Mới Không Trùng Nhau" })
+        openDialog({
+          message: "Nhập Lại Mật Khẩu Mới Không Trùng Nhau",
+        })
       );
       return;
     }
     if (!isPasswordValid(formData.newPassword)) {
-      dispatch(openDialog({ message: "Mật Khẩu Mới Không Hợp Lệ" }));
+      dispatch(
+        openDialog({
+          message: "Mật Khẩu Mới Không Hợp Lệ",
+        })
+      );
       return;
     } else {
       let result = await AccountService.ChangePassWord(formData);
@@ -80,26 +87,18 @@ const ChangePasswordPage = () => {
         <div key={name} className={styles.item_list}>
           <input
             name={name}
-            type={
-              name.includes("newPassword") && !showPassword
-                ? "password"
-                : "text"
-            }
+            type={name.includes("newPassword") && !showPassword ? "password" : "text"}
             className={styles.input}
             id={name}
             tabIndex={1}
             aria-label={label}
             placeholder={placeholder}
             autoCapitalize="off"
-            onClick={handleSubmit}
             onChange={(e) => handleChange(e, name)}
             required
             autoComplete="off"
           />
-          <div
-            className={styles.border_input}
-            onClick={togglePasswordVisibility}
-          >
+          <div className={styles.border_input} onClick={togglePasswordVisibility}>
             {name != "newPassword" ? null : showPassword ? (
               <AiOutlineEyeInvisible className={styles.border} />
             ) : (
