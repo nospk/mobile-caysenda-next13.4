@@ -19,6 +19,9 @@
 .address_gray {
   @apply text-[3.333333vw] text-[#666];
 }
+.address_detail {
+  @apply text-[3.8vw] font-bold text-[#222222];
+}
 .address_margin {
   @apply mr-[1vw] inline-block;
 }

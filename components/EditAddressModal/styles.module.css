@@ -11,7 +11,10 @@
   @apply absolute left-2 z-auto h-[2.8125rem] w-[1.25rem] text-center;
 }
 .edit {
-  @apply absolute right-2 top-3 z-auto text-center text-sm text-[#FF602D];
+  @apply absolute right-2 top-3 z-auto text-center text-sm;
+}
+.text_red {
+  @apply text-[#FF602D];
 }
 .wrapper {
   @apply flex h-full w-full flex-col;
@@ -98,10 +101,10 @@
   @apply box-border flex flex-col items-stretch;
 }
 .edit_header {
-  @apply mb-[0.75rem] box-border flex h-[45px] items-center bg-white px-3 justify-center;
+  @apply mb-[0.75rem] box-border flex h-[45px] items-center justify-center bg-white px-3;
 }
 .edit_header_text {
-  @apply text-center font-medium text-[1rem];
+  @apply text-center text-[1rem] font-medium;
 }
 .edit_content_body {
   @apply box-border block border-y border-[#eee] bg-white;
@@ -140,7 +143,7 @@
   @apply flex max-h-full min-h-[24px] w-full max-w-full items-center justify-start;
 }
 .edit_list_item_content_prefix_select {
-  @apply w-fit box-border flex-none py-3 pr-3;
+  @apply box-border w-fit flex-none py-3 pr-3;
 }
 .edit_list_item_select {
   @apply flex max-h-full min-h-[24px] w-full max-w-full items-center justify-end  text-[#222];

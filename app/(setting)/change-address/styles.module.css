@@ -1,0 +1,75 @@
+.header_edit {
+  @apply fixed right-1 top-0 flex h-[3rem] flex-row items-center text-sm;
+}
+.text_edit {
+  @apply text-[#ff6000];
+}
+.content {
+  @apply h-[calc(100%-6.5rem)] w-full overflow-x-hidden overflow-y-scroll bg-[#F5F5F5];
+}
+.list_item {
+  @apply relative bg-white leading-[1.1875rem];
+}
+.list_item_edit {
+  @apply relative box-border flex flex-shrink-0 flex-row bg-white leading-[1.1875rem];
+}
+.m_list_item {
+  @apply mr-[3rem];
+}
+.m_list_item_edit {
+  @apply ml-[1rem] mr-[3rem];
+}
+.acitve_item_edit {
+  @apply my-auto box-border flex items-center justify-center;
+}
+.item_main {
+  @apply mt-[0.0625rem] box-border p-[1rem];
+}
+.item_main_edit {
+  @apply mt-[0.0625rem] box-border py-[1rem];
+}
+.item_wrapper {
+  @apply box-border block pb-[0.75rem] text-[1rem];
+}
+.item_name {
+  @apply float-left break-all;
+}
+.item_phone {
+  @apply ml-[0.625rem];
+}
+.item_content {
+  @apply break-all text-[0.875rem] text-[#4d4d4d];
+}
+.item_down {
+  @apply block;
+}
+.item_edit {
+  @apply absolute bottom-0 right-0 top-0 m-auto block h-11 w-11;
+}
+.button_edit {
+  @apply relative inline-block h-12 w-12;
+}
+.icon_edit {
+  @apply mx-auto h-5 w-5 text-[#666];
+}
+.footer {
+  @apply absolute bottom-0 left-0 right-0 flex items-center justify-center bg-[#ff6000] text-white;
+}
+.footer_edit {
+  @apply absolute bottom-0 left-0 right-0 flex h-12 w-full flex-shrink-0;
+}
+.button_create {
+  @apply h-[3rem] w-full bg-[#ff602d] text-[1rem] leading-[3rem] text-white;
+}
+.wrapper_active {
+  @apply my-auto box-border flex items-center justify-center;
+}
+.select_all {
+  @apply relative flex w-fit grow items-center pl-3;
+}
+.wrapper_button_remove {
+  @apply flex;
+}
+.button_remove {
+  @apply w-[7.5625rem] min-w-[5rem] flex-1 bg-[#FF6000] text-[1rem] leading-[3rem] text-white;
+}

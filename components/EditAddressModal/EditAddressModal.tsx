@@ -1,12 +1,5 @@
 "use client";
-import {
-  useState,
-  SetStateAction,
-  Dispatch,
-  useCallback,
-  useEffect,
-  type FC,
-} from "react";
+import { useState, SetStateAction, Dispatch, useCallback, useEffect, type FC } from "react";
 import Modal from "@/components/Modal";
 import styles from "./styles.module.css";
 import NewAddressModal from "@/components/NewAddressModal";
@@ -27,9 +20,7 @@ const SelectAddressModal: FC<Props> = (props: Props) => {
   //set open - close
   const [isOpen, setIsOpen] = useState<boolean>(false);
   //set list delivery
-  const [listDelivery, setListDelvery] = useState<ListDelivery[]>(
-    props.listDelivery
-  );
+  const [listDelivery, setListDelvery] = useState<ListDelivery[]>(props.listDelivery);
   //hanlde open - close
   const handleOpenModal = () => {
     setIsOpen(true);
@@ -64,9 +55,7 @@ const SelectAddressModal: FC<Props> = (props: Props) => {
   //when open again will set edit false
   useEffect(() => {
     setIsEdit(false);
-    const sortList = listDelivery.sort(
-      (a, b) => Number(b.active) - Number(a.active)
-    );
+    const sortList = listDelivery.sort((a, b) => Number(b.active) - Number(a.active));
     setListDelvery(sortList);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
@@ -85,7 +74,7 @@ const SelectAddressModal: FC<Props> = (props: Props) => {
           <div>
             <AiOutlineLeft onClick={handleCloseModal} className={styles.back} />
             <div className={styles.title}>Địa Chỉ Giao Hàng</div>
-            <a className={styles.edit}>
+            <a className={`${styles.edit} ${isEdit ? styles.text_red : ""}`}>
               <span
                 onClick={() => {
                   setIsEdit(!isEdit);
@@ -104,9 +93,7 @@ const SelectAddressModal: FC<Props> = (props: Props) => {
                       if (result.status) {
                         let newAcitve = listDelivery;
                         let indexActive = getActiveDelivery();
-                        indexActive >= 0
-                          ? (newAcitve[getActiveDelivery()].active = false)
-                          : null;
+                        indexActive >= 0 ? (newAcitve[getActiveDelivery()].active = false) : null;
                         newAcitve[index].active = true;
                         setListDelvery(newAcitve);
                         props.setAddress(item);
@@ -119,24 +106,14 @@ const SelectAddressModal: FC<Props> = (props: Props) => {
                 >
                   <div className={styles.address_item}>
                     <div className={styles.inner_wrapper}>
-                      <div className={styles.checked_wrapper}>
-                        {item.active ? <ActiveFull /> : <NotActive />}
-                      </div>
+                      <div className={styles.checked_wrapper}>{item.active ? <ActiveFull /> : <NotActive />}</div>
                       <div className={styles.address_content}>
                         <div className={styles.address_subject}>
-                          <span className={styles.address_name}>
-                            {item.name}
-                          </span>
-                          <span className={styles.address_phone}>
-                            {item.phone}
-                          </span>
+                          <span className={styles.address_name}>{item.name}</span>
+                          <span className={styles.address_phone}>{item.phone}</span>
                         </div>
                         <div className={styles.address_default}>
-                          {item.active ? (
-                            <span className={styles.address_default_text}>
-                              Mặc Định
-                            </span>
-                          ) : null}
+                          {item.active ? <span className={styles.address_default_text}>Mặc Định</span> : null}
                           {item.address}
                         </div>
                       </div>
@@ -153,19 +130,11 @@ const SelectAddressModal: FC<Props> = (props: Props) => {
                     <div className={styles.inner_wrapper}>
                       <div className={styles.address_content}>
                         <div className={styles.address_subject}>
-                          <span className={styles.address_name}>
-                            {item.name}
-                          </span>
-                          <span className={styles.address_phone}>
-                            {item.phone}
-                          </span>
+                          <span className={styles.address_name}>{item.name}</span>
+                          <span className={styles.address_phone}>{item.phone}</span>
                         </div>
                         <div className={styles.address_default}>
-                          {item.active ? (
-                            <span className={styles.address_default_text}>
-                              Mặc Định
-                            </span>
-                          ) : null}
+                          {item.active ? <span className={styles.address_default_text}>Mặc Định</span> : null}
                           {item.address}
                         </div>
                       </div>
@@ -177,11 +146,10 @@ const SelectAddressModal: FC<Props> = (props: Props) => {
                           className={styles.address_button_manage}
                           id={item.id}
                           setListDelvery={setListDelvery}
-                        />
-                        <button
-                          onClick={() => handleRemove(item.id)}
-                          className={styles.address_button_manage}
                         >
+                          <span>Sửa</span>
+                        </EditViewModal>
+                        <button onClick={() => handleRemove(item.id)} className={styles.address_button_manage}>
                           Xóa
                         </button>
                       </div>
@@ -193,10 +161,7 @@ const SelectAddressModal: FC<Props> = (props: Props) => {
           )}
 
           <div className={styles.footer}>
-            <NewAddressModal
-              className={styles.button_create}
-              setListDelvery={setListDelvery}
-            />
+            <NewAddressModal className={styles.button_create} setListDelvery={setListDelvery} />
           </div>
         </div>
       </Modal>

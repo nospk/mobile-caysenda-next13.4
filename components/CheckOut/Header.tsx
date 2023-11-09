@@ -36,7 +36,7 @@ const Header: FC<Props> = ({ listDelivery, activeAddress, setAddress }) => {
               address={detail_address}
               setAddress={setAddress}
               listDelivery={listDelivery}
-              className="text-[#666] text-[0.875rem]"
+              className={styles.address_detail}
             />
             {activeAddress ? (
               <div className={styles.address_gray}>

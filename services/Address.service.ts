@@ -29,7 +29,7 @@ const getListDelivery: () => Promise<ListDelivery[] | []> = async () => {
       name: "Trần Đăng Huy Hoàng 1",
       phone: "0962773213",
       address:
-        "24 Nguyễn Thị Minh Khai, phường Bến Nghé, Quận 1, thành phố Hồ Chí Minh",
+        "24 Nguyễn Thị Minh Khai, phường Bến Nghé, Quận 1, TP. Hồ Chí Minh",
       active: false,
       id: 431,
     },
@@ -37,7 +37,7 @@ const getListDelivery: () => Promise<ListDelivery[] | []> = async () => {
       name: "Trần Đăng Huy Hoàng 2",
       phone: "123321321",
       address:
-        "1231 Nguyễn Thị Minh Khai, phường Bến Nghé, Quận 1, thành phố Hồ Chí Minh",
+        "1231 Nguyễn Thị Minh Khai, phường Bến Nghé, Quận 1, TP. Hồ Chí Minh",
       active: true,
       id: 123,
     },
@@ -129,6 +129,16 @@ const removeAddress: (id: number) => Promise<{
   };
   return result;
 };
+const removeListAddress: (list: number[]) => Promise<{
+  status: boolean;
+  message: string;
+}> = async (list) => {
+  const result = {
+    status: true,
+    message: "Đã Xóa Địa Chỉ Thành Công",
+  };
+  return result;
+};
 const AddressService = {
   getListDelivery,
   setActiveDelivery,
@@ -137,6 +147,7 @@ const AddressService = {
   getWardData,
   createNewAddress,
   removeAddress,
+  removeListAddress,
   getDetail,
   editAddress,
 };

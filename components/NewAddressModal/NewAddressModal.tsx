@@ -137,13 +137,13 @@ const SelectAddressModal: FC<Props> = (props) => {
   const handleSubmit = () => {
     //check error
     let error = {};
-    if (newAddress.phone === "" && !isPhoneValid(newAddress.phone)) {
+    if (newAddress.phone === "" || !isPhoneValid(newAddress.phone)) {
       error = { ...error, phone: "Số điện thoại không hợp lệ!" };
     }
     if (newAddress.fullName === "") {
       error = { ...error, fullName: "Vui lòng điền họ tên đầy đủ" };
     }
-    if (newAddress.email === "" && !isEmailValid(newAddress.email)) {
+    if (newAddress.email === "" || !isEmailValid(newAddress.email)) {
       error = { ...error, email: "Email không hợp lệ!" };
     }
     if (newAddress.address === "") {
@@ -158,7 +158,6 @@ const SelectAddressModal: FC<Props> = (props) => {
     if (newAddress.ward === "") {
       error = { ...error, ward: "Vui lòng chọn phường/xã" };
     }
-
     if (Object.keys(error).length > 0) {
       setErrors(error);
     } else {

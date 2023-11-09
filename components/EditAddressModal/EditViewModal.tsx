@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, SetStateAction, Dispatch, type FC } from "react";
+import { useEffect, SetStateAction, Dispatch, type FC, Children } from "react";
 import { useState } from "react";
 import Modal from "@/components/Modal";
 import styles from "./styles.module.css";
@@ -11,7 +11,6 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/Select";
@@ -37,6 +36,7 @@ type editAddress = {
 interface Props {
   className: string;
   id: number;
+  children: React.ReactNode
   setListDelvery?: Dispatch<SetStateAction<ListDelivery[]>>;
 }
 
@@ -138,13 +138,13 @@ const EditViewModal: FC<Props> = (props) => {
   const handleSubmit = () => {
     //check error
     let error = {};
-    if (editAddress.phone === "" && !isPhoneValid(editAddress.phone)) {
+    if (editAddress.phone === "" || !isPhoneValid(editAddress.phone)) {
       error = { ...error, phone: "Số điện thoại không hợp lệ!" };
     }
     if (editAddress.fullName === "") {
       error = { ...error, fullName: "Vui lòng điền họ tên đầy đủ" };
     }
-    if (editAddress.email === "" && !isEmailValid(editAddress.email)) {
+    if (editAddress.email === "" || !isEmailValid(editAddress.email)) {
       error = { ...error, email: "Email không hợp lệ!" };
     }
     if (editAddress.address === "") {
@@ -215,7 +215,7 @@ const EditViewModal: FC<Props> = (props) => {
   return (
     <>
       <button className={props.className} onClick={handleOpenModal}>
-        Sửa
+        {props.children}
       </button>
 
       <Modal
