@@ -4,6 +4,8 @@ import BannerService from "@/services/Banner.service";
 import KeyWordService from "@/services/KeyWord.service";
 import {ProductListParamType} from "@/services/types/ProductRequestType";
 
+export const revalidate = 3600
+
 export const Wrapper = async () => {
 	let requestData:ProductListParamType = {}
 	let data = await ProductService.getProductList({selectType:"@SELECT", ...requestData});

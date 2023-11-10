@@ -32,7 +32,7 @@ const SettingPage = () => {
           </li>
           <div className="absolute left-0 h-4 w-full bg-[#f8f8f8]"></div>
           <li className="mt-4 border-b border-gray-300 py-4">
-            <Link href="/change-avatar">
+            <Link href="/setting/change-avatar">
               <div className="flex ">
                 <div className="min-h-[26px] flex-none  pr-2">
                   <FaUserCircle
@@ -51,7 +51,7 @@ const SettingPage = () => {
             </Link>
           </li>
           <li className=" border-b border-gray-300 py-4">
-            <Link href="/change-phone">
+            <Link href="/setting/change-phone">
               <div className="flex ">
                 <div className="min-h-[26px] flex-none  pr-2">
                   <FaPhoneAlt
@@ -71,7 +71,7 @@ const SettingPage = () => {
             </Link>
           </li>
           <li className="border-b border-gray-300 py-4">
-            <Link href="/change-password">
+            <Link href="/setting/change-password">
               <div className="flex ">
                 <div className="min-h-[26px] flex-none  pr-2">
                   <FiLock
@@ -88,7 +88,7 @@ const SettingPage = () => {
             </Link>
           </li>
           <li className="border-b border-gray-300 py-4">
-            <Link href="/change-address">
+            <Link href="/setting/change-address">
               <div className="flex ">
                 <div className="min-h-[26px] flex-none  pr-2">
                   <FaAddressCard

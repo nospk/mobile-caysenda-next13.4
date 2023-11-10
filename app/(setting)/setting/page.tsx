@@ -1,11 +1,9 @@
-'use client';
+"use client";
 import { redirect, useRouter } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
-
+import SettingLayout from "@/components/Layouts/SettingLayout";
 import Loading from "@/components/Loading";
 import Setting from "@/components/Setting";
-
-
 
 function SettingPage() {
   const router = useRouter();
@@ -29,7 +27,9 @@ function SettingPage() {
         <Loading />
       ) : (
         <Suspense fallback={<Loading />}>
-          <Setting />
+          <SettingLayout title="Cài Đặt" back="/account">
+            <Setting />
+          </SettingLayout>
         </Suspense>
       )}
     </>

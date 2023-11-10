@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import {OrderType, OrderCategory,  OrderProduct, CartVariant} from '@/types/order'
+import {OrderType, OrderCategory,  OrderProduct} from '@/types/order'
 import OrderService from "@/services/Order.service";
 const initialState: OrderType[] =  [
 ]

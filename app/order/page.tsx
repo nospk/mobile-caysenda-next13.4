@@ -10,7 +10,7 @@ async function OrderPage() {
   
   useEffect( () => {
     const fetchData = async () => {
-      const result = await OrderService.getOrder(undefined)
+      const result = await OrderService.getOrder("")
       setListOrder(result as unknown  as OrderType[]);
     }
     fetchData()

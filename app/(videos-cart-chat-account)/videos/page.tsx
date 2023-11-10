@@ -4,11 +4,12 @@ import Link from "next/link";
 import FlexTwoColView from "@/components/FlexTwoColView";
 import BannerService from "@/services/Banner.service";
 import VideoService from "@/services/Video.service";
-
+import {ProductListParamType} from "@/services/types/ProductRequestType";
 export default async function Page() {
   const data = await VideoService.getVideoList() ;
   const banners = await BannerService.getBannerCardData();
-
+  let requestData:ProductListParamType = {}
+	requestData.page = 1;
   return (
     <>
       <div className={styles.sticky_out_wrapper}>
@@ -25,7 +26,8 @@ export default async function Page() {
         </div>
       </div>
 
-      <FlexTwoColView data={data} banners={banners} />
+      <FlexTwoColView data={data} banners={banners} maxPage={1}
+					requestData={requestData} />
     </>
   );
 }

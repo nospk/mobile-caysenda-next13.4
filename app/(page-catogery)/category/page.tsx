@@ -21,7 +21,7 @@ export default async function Page({searchParams}:any) {
 	let page = await ProductService.getProductList({selectType:"@COUNT", ...requestData});
 
 	return(
-		<LayoutProduct title={data[0].data.catName}>
+		<LayoutProduct title={data[0]?.data.catName}>
 			<Suspense fallback={<Loading />}>
 				<FlexTwoColView
 					data={data}

@@ -9,7 +9,6 @@ export async function generateMetadata({ params , searchParams}:any) {
 	return convertPageInfoToMeta(pageData);
 }
 export const dynamic = 'force-dynamic';
-
 export default async function Page() {
 	return (
 		<>

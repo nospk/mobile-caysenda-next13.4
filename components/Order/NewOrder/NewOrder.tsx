@@ -18,7 +18,7 @@ function NewOrder({ _Prop }: { _Prop?: OrderType }) {
                 </div>
                 <div className="flex-none text-red-500">chờ thanh toán</div>
             </div>
-            <DetailOrder props={data.category} />
+            <DetailOrder props={data.category} ><a>Test</a></DetailOrder>
             <div className="shipping_state/all_Money">
                 <div className="flex justify-between m-3 phiship/tongtien ">
                     <button type="submit" className="">chi tiết đơn hàng</button>
