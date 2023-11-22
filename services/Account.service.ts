@@ -78,12 +78,21 @@ const ChangePassWord = async (data:  {
     message: "Thay đổi mật khẩu thành công",
   };
 };
+const GetDataUser = async ()=>{
+  return {
+    name: 'nospk',
+		avatar: 'https://images.unsplash.com/photo-1676664506255-d0f9634f103d?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=500&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY3NzUxNDczMg&ixlib=rb-4.0.3&q=80&w=500',
+		phone: '0962776490',
+    vip: 2
+  };
+}
 const AccountService = {
   Login,
   Register,
   ForGotPassWord,
   ChangeAvatar,
   ChangePhone,
-  ChangePassWord
+  ChangePassWord,
+  GetDataUser
 };
 export default AccountService;

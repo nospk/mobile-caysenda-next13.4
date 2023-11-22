@@ -146,7 +146,7 @@ const Rating: React.FC<RatingProps> = ({
     );
   }
 
-  return <div className={`rating ${className}`}>{stars}</div>;
+  return <div className={className} >{stars}</div>;
 };
 
 export default Rating;

@@ -12,15 +12,15 @@ export default function Info({product}:Props) {
 				</span>
 			</div>
 			<div className="flex flex-row justify-self-start box-border content-start mt-[0.8vw]">
-				<div className="flex relative font-bold box-border content-start shrink-0">
+				<div className="flex relative font-bold box-border content-start w-1/4">
 				<Rating
-					className="flex flex-row box-broder shrink-0"
+					className="flex flex-row box-broder content-start w-full"
 					count={5}
 					edit={false}
 					value={4}
 				/>
 				</div>
-				<div className="flex justify-end box-border grow content-start shrink-0">
+				<div className="flex justify-end box-border grow ">
 				<span className="text-[3.2vw] box-border text-[#999999] block relative text-right">
 					Đã bán: {product.sold} {product.unit}
 				</span>

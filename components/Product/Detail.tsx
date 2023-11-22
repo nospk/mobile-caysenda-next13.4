@@ -31,28 +31,28 @@ export default function Detail({product}:Props) {
 				<table>
 					<tbody>
 						<tr>
-							<td className="flex mt-1" width={100}><span className="text-[3.4667vw] text-[#999999] shrink-0 relative box-border block">Tên Sản Phẩm:</span></td>
+							<td className="flex mt-[2px]" width={100}><span className="text-sm text-[#999999] shrink-0 relative box-border block">Tên Sản Phẩm:</span></td>
 							<td><span className="text-sm">{product.name}</span></td>
 						</tr>
 						<tr>
-							<td className="flex mt-1" width={100}><span className="text-[3.4667vw] text-[#999999] shrink-0 relative box-border block">SKU:</span></td>
+							<td className="flex mt-[2px]" width={100}><span className="text-sm text-[#999999] shrink-0 relative box-border block">SKU:</span></td>
 							<td><span className="text-sm">{product.sku}</span></td>
 						</tr>
 						<tr>
-							<td className="flex mt-1" width={100}><span className="text-[3.4667vw] text-[#999999] shrink-0 relative box-border block">Danh mục:</span></td>
+							<td className="flex mt-[2px]" width={100}><span className="text-sm text-[#999999] shrink-0 relative box-border block">Danh mục:</span></td>
 							<td>
 								<Link href={"/" + product.category_slug} className="text-blue-700"><span className="text-[3.4667vw] leading-[3.4667vw] text-sm">{product.category_name}</span></Link>
 							</td>
 						</tr>
 						<tr>
-							<td className="flex mt-1" width={100}><span className="text-[3.4667vw] text-[#999999] shrink-0 relative box-border block">Sử dụng:</span></td>
+							<td className="flex mt-[2px]" width={100}><span className="text-sm text-[#999999] shrink-0 relative box-border block">Sử dụng:</span></td>
 							<td><span className="text-sm">{product.description}</span></td>
 						</tr>
 						<tr>
-							<td className="flex mt-1" width={100}><span className="text-[3.4667vw] text-[#999999] shrink-0 relative box-border block">Tải ảnh:</span></td>
+							<td className="flex mt-[2px]" width={100}><span className="text-sm text-[#999999] shrink-0 relative box-border block">Tải ảnh:</span></td>
 							<td>
 								<Link href={""}>
-									<span className="text-[3.4667vw] leading-[3.4667vw] text-[#023cf8] text-sm">
+									<span className="leading-[3.4667vw] text-[#023cf8] text-sm">
 										Nhấn để tải
 									</span>
 								</Link>
