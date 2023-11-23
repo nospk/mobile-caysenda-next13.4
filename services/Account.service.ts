@@ -72,7 +72,7 @@ const ChangePassWord = async (data:  {
   //     file: file,
   //   }),
   // });
-  console.log(data);
+  //console.log(data);
   return {
     status: 200,
     message: "Thay đổi mật khẩu thành công",

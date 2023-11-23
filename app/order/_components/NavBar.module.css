@@ -1,16 +1,24 @@
 .sticky_out_wrapper {
-  @apply sticky top-0 z-10 space-y-1 bg-[#f8f8f8] p-[2.4vw];
+  @apply sticky top-0 z-10 flex flex-row bg-[#f8f8f8] p-[2.4vw];
 }
 
-.sticky_wrapper {
-  @apply flex h-[9.33333vw] max-w-full items-center justify-center rounded-lg bg-white;
+.input {
+  @apply flex grow h-[9.33333vw] items-center justify-center rounded-lg bg-white;
 }
-
+.back {
+  @apply flex items-center justify-center;
+}
+.back_icon {
+    @apply ml-auto mr-auto h-[4.4vw] w-[4.4vw];
+  }
 .search_wapper_icon {
   @apply relative float-right max-w-[9vw] flex-1;
 }
+.search_wapper_back {
+  @apply relative;
+}
 .search_icon {
-  @apply ml-auto mr-auto h-[4.4vw] w-[4.4vw] text-[#999999] ;
+  @apply ml-auto mr-auto h-[4.4vw] w-[4.4vw] text-[#999999];
 }
 .search_text {
   @apply relative w-full flex-1 truncate bg-white pr-2 text-[3.4vw] text-[#222222] outline-none;

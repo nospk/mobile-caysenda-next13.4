@@ -47,10 +47,8 @@ const ChangeAddress = () => {
   const handleSelectAll = (): void => {
     if (listDelete.length == listDelivery.length) {
       setListDelete([]);
-      console.log(listDelete);
     } else {
       setListDelete(listDelivery.map((item) => item.id));
-      console.log(listDelete);
     }
   };
   return (

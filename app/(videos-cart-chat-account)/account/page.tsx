@@ -17,7 +17,7 @@ export default async function Page() {
   const user: User = await AccountService.GetDataUser();
   return (
     <>
-      <div className="m-[2.4vw] space-y-6">
+      <div className="h-full overflow-scroll px-[2.4vw] pt-[2.4vw] space-y-3">
         <div className="relative flex items-center justify-center">
           <div className="flex gap-x-1">
             <div className="flex-1">
@@ -46,31 +46,23 @@ export default async function Page() {
             </div>
           </Link>
         </div>
-        <div className="flex flex-col space-y-4">
-          <div className="flex items-center justify-start rounded-lg bg-amber-600 py-5">
+        <div className="flex flex-col space-y-2">
+          <div className="flex items-center justify-start rounded-lg bg-amber-600 py-3 text-sm">
             <span className="mx-2 inline-block rounded-md bg-black p-1 text-white ">{VIP_TYPE[user.vip - 1]}</span>
             Thẻ {VIP_TYPE[user.vip - 1]} GIẢM {user.vip}% mọi đơn hàng trong tháng {new Date().getMonth() + 1}
           </div>
 
-          <div className="rounded-lg  bg-white px-2 py-5">
+          <div className="rounded-lg  bg-white px-2 py-3">
             <span className="text-lg font-semibold">Đơn Hàng Của Tôi</span>
             <div className="relative">
               <OrderMenu />
             </div>
           </div>
-          <div className="relative flex items-center  rounded-lg bg-white px-2 py-5">
-            <FcPaid  className="h-[30px] w-[30px] justify-start" />
+          <div className="relative flex items-center justify-center rounded-lg bg-white pl-2 pr-4 py-3">
+            <FcPaid  className="h-[40px] w-[40px] justify-start" />
             <span className="text-base font-semibold"> Sản Phẩm Quan Tâm</span>
             <div className="grow"></div>
             <div className="z-10">
-              <Icon
-                className="h-[45px] w-[45px] rounded-full border-2 border-green-500"
-                src={user.avatar}
-                alt="products of interest "
-                isCricle={true}
-              />
-            </div>
-            <div className="ml-[-15px]">
               <Icon
                 className="h-[45px] w-[45px] rounded-full border-2 border-green-500"
                 src={user.avatar}
@@ -78,8 +70,17 @@ export default async function Page() {
                 isCricle={true}
               />
             </div>
+            <div className="ml-[-10px]">
+              <Icon
+                className="h-[45px] w-[45px] rounded-full border-2 border-green-500"
+                src={user.avatar}
+                alt="products of interest"
+                isCricle={true}
+              />
+            </div>
+            <div className="z-20 bottom-3 right-0 absolute "><span className="bg-green-500 rounded-full px-2 text-white text-sm py-0.5">12</span></div>
           </div>
-          <div className="rounded-lg bg-white px-2 py-5">
+          <div className="rounded-lg bg-white px-2 py-3">
             <Menu showCategory={false} nav={[]} />
           </div>
         </div>

@@ -1,8 +1,4 @@
-'use client';
 import { FC, Key } from 'react';
-import { ActiveFull, HaftFull, NotActive } from '@/components/Checked/Checked';
-import Image from 'next/image';
-import { IoIosArrowForward } from 'react-icons/io';
 import NewOrder from './NewOrder';
 import CompleteOrder from './CompleteOrder';
 import AdditionOrder from './AdditionOrder';

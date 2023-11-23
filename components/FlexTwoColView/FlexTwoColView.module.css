@@ -1,3 +1,12 @@
 .flex2col {
-    @apply flex flex-row gap-x-[2.4vw] justify-center p-[2.4vw] box-border;
+  @apply box-border flex flex-row justify-center gap-x-[2.4vw] p-[2.4vw];
+}
+.end {
+  @apply flex h-[60vw] flex-row items-stretch justify-center pb-[15vw] text-[#999999];
+}
+.divide {
+  @apply flex-1;
+}
+.text {
+  @apply self-end;
 }

@@ -20,7 +20,7 @@ const getProductList = async (params:ProductListParamType) => {
 	requestParams[ApiDefinition.PRODUCT.PRODUCTLIST.PARAMS.PARAM4]	= offset;
 	requestParams[ApiDefinition.PRODUCT.PRODUCTLIST.PARAMS.PARAM3]	= params.selectType ? params.selectType : '';
 	requestParams[ApiDefinition.PRODUCT.PRODUCTLIST.PARAMS.PARAM6]	= params.randFlag ? params.randFlag : '';
-
+	//console.log(requestParams)
 	let res = await API.GET({
 		path: '/api/rest/dataaccess',
 		data: requestParams
@@ -170,7 +170,7 @@ const getTop10Product = async () => {
 		path: '/api/rest/dataaccess',
 		data: requestParams
 	});
-	console.log(res);
+	//console.log(res);
 	if (res.status === "ok") {
 		data = res.results;
 	}

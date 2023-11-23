@@ -83,7 +83,7 @@ const Register = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(formData);
+    //console.log(formData);
     try {
       // Gọi API bằng hàm `fetch`
       const res = await fetch(`${getBaseUrl + "/api/register"}`, {
