@@ -4,7 +4,7 @@ import Header from "./Header";
 import ListOrder from "./ListOrder";
 import { ListDelivery } from "@/types/Delivery";
 import { useState, type FC } from "react";
-import { CheckOut } from "@/types/checkout";
+import { CheckOut } from "@/types/Checkout";
 import { convertMoney } from "@/lib/formatPrice";
 import styles from "./styles.module.css";
 import Payment from "./Payment";
@@ -17,7 +17,7 @@ interface Props {
   activeDelivery: ListDelivery;
   data: CheckOut;
 }
-const CheckOut: FC<Props> = ({ listDelivery, activeDelivery, data }) => {
+const Page: FC<Props> = ({ listDelivery, activeDelivery, data }) => {
   // InitialState Address
   const [address, setAddress] = useState<ListDelivery>(activeDelivery);
   const [note, setNote] = useState<string>("");
@@ -36,11 +36,7 @@ const CheckOut: FC<Props> = ({ listDelivery, activeDelivery, data }) => {
     <div>
       <div className={styles.main}>
         <div className={styles.content}>
-          <Header
-            listDelivery={listDelivery}
-            activeAddress={address}
-            setAddress={setAddress}
-          />
+          <Header listDelivery={listDelivery} activeAddress={address} setAddress={setAddress} />
           <div className={styles.order}>
             {data.categories.length == 0 ? (
               <div className={styles.no_checkout}>
@@ -54,26 +50,16 @@ const CheckOut: FC<Props> = ({ listDelivery, activeDelivery, data }) => {
                 <ListOrder data={data} />
                 <div className={styles.total}>
                   <div className={styles.total_content}>
-                    <div className={styles.total_title}>
-                      Chi Tiết Thanh Toán
-                    </div>
+                    <div className={styles.total_title}>Chi Tiết Thanh Toán</div>
                     <div className="box-border">
                       <div className={styles.total_list}>
-                        <label className={styles.total_label}>
-                          Hình Thức Thanh Toán
-                        </label>
+                        <label className={styles.total_label}>Hình Thức Thanh Toán</label>
                         <Payment />
                       </div>
                       <div className={styles.total_list}>
-                        <label className={styles.total_label}>
-                          Tổng Tiền Phí Vận Chuyển
-                        </label>
+                        <label className={styles.total_label}>Tổng Tiền Phí Vận Chuyển</label>
 
-                        <Delivery
-                          className={styles.total_list_value}
-                          money={data.fee}
-                          data={data}
-                        />
+                        <Delivery className={styles.total_list_value} money={data.fee} data={data} />
                       </div>
                       <div className={styles.total_list}>
                         <label className={styles.total_label}>
@@ -91,14 +77,10 @@ const CheckOut: FC<Props> = ({ listDelivery, activeDelivery, data }) => {
                       </div>
 
                       <div className={styles.total_list}>
-                        <label className={styles.total_label}>
-                          Tổng Thanh Toán
-                        </label>
+                        <label className={styles.total_label}>Tổng Thanh Toán</label>
                         <div className={styles.total_list_value}>
                           <span className={styles.total_price}>
-                            {convertMoney(
-                              Number(data.fee) + Number(data.amount)
-                            )}
+                            {convertMoney(Number(data.fee) + Number(data.amount))}
                             <span className={styles.currency}>đ</span>
                           </span>
                         </div>
@@ -127,9 +109,7 @@ const CheckOut: FC<Props> = ({ listDelivery, activeDelivery, data }) => {
           <div className={styles.footer_content}>
             <div className={styles.footer_left}>
               <label>
-                <span className={styles.footer_text}>
-                  Đã bao gồm phí vận chuyển
-                </span>
+                <span className={styles.footer_text}>Đã bao gồm phí vận chuyển</span>
                 {"Tổng Cộng "}
               </label>
               <span className={styles.footer_price}>
@@ -156,4 +136,4 @@ const CheckOut: FC<Props> = ({ listDelivery, activeDelivery, data }) => {
   );
 };
 
-export default CheckOut;
+export default Page;

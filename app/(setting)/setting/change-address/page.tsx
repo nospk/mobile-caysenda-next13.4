@@ -11,7 +11,7 @@ import { openDialog } from "@/redux/features/dialog/dialog.slice";
 import { useAppDispatch } from "@/redux/hooks";
 import { useRouter } from "next/navigation";
 import styles from "./styles.module.css";
-
+export const dynamic = 'force-dynamic';
 type T_listDelete = number[];
 
 const ChangeAddress = () => {

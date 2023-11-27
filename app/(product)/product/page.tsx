@@ -9,6 +9,7 @@ import styles from './styles.module.css';
 import ProductService from '@/services/Product.service';
 import { ProductDetail } from '@/types/product';
 
+export const dynamic = 'force-dynamic';
 export default async function Page({searchParams}:any) {
 	const data:ProductDetail = await ProductService.getDetail({slug:searchParams.slug})
 	return (

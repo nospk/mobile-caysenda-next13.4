@@ -84,7 +84,7 @@ const FlexTwoColView = function FlexTwoColView({ banners, keyWords, data, maxPag
 
         setListLeft((prevData) => [...prevData, ...newListLeft]);
         setListRight((prevData) => [...prevData, ...newListRight]);
-        console.log(currentPage, maxPage);
+        //console.log(currentPage, maxPage);
         setCurrentPage(nextPage);
       }
     } catch (error) {
@@ -109,7 +109,7 @@ const FlexTwoColView = function FlexTwoColView({ banners, keyWords, data, maxPag
         <div className={styles.divide}>{viewRight}</div>
       </div>
       <div className={styles.end}>
-        <span className={styles.text}>--- Không còn sản phẩm để hiện thị ---</span>
+        <span className={styles.text}>--- Không còn sản phẩm để hiển thị ---</span>
       </div>
     </>
   );

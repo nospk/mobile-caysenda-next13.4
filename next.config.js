@@ -11,6 +11,10 @@ const nextConfig = {
 				destination: '/search',
 			},
 			{
+				source: '/:slug',
+				destination: '/category',
+			},
+			{
 				source: '/san-pham',
 				destination: '/category',
 			},

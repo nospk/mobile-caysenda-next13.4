@@ -1,9 +1,10 @@
 export interface OrderType {
-  OrderId: string;
-  Product?: OrderProduct | any;
+  orderId: string;
   status: string;
-  totalPrice?: number;
-  category?: OrderCategory[];
+  totalPrice: number;
+  category: OrderCategory[];
+  fee: number;
+  address: string;
 }
 
 export interface OrderCategory {

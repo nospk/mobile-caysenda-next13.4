@@ -7,7 +7,7 @@ import { openDialog } from "@/redux/features/dialog/dialog.slice";
 import { useAppDispatch } from "@/redux/hooks";
 import { useRouter } from "next/navigation";
 type Phone = string | "";
-
+export const dynamic = 'force-dynamic';
 const ChangePasswordPage = () => {
   const dispatch = useAppDispatch();
   const router = useRouter();

@@ -5,6 +5,7 @@ import FlexTwoColView from "@/components/FlexTwoColView";
 import BannerService from "@/services/Banner.service";
 import VideoService from "@/services/Video.service";
 import {ProductListParamType} from "@/services/types/ProductRequestType";
+export const dynamic = 'force-dynamic';
 export default async function Page() {
   const data = await VideoService.getVideoList() ;
   const banners = await BannerService.getBannerCardData();

@@ -1,16 +1,16 @@
 .sticky_out_wrapper {
-  @apply sticky top-0 z-10 flex flex-row bg-[#f8f8f8] p-[2.4vw];
+  @apply sticky top-0 z-10 flex flex-row bg-[#f8f8f8] py-[2.4vw] pr-[2.4vw] items-center;
 }
 
 .input {
-  @apply flex grow h-[9.33333vw] items-center justify-center rounded-lg bg-white;
+  @apply flex h-[9.33333vw] grow items-center justify-center rounded-lg bg-white;
 }
 .back {
-  @apply flex items-center justify-center;
+  @apply flex items-center justify-center mr-2;
 }
 .back_icon {
-    @apply ml-auto mr-auto h-[4.4vw] w-[4.4vw];
-  }
+  @apply ml-auto mr-auto h-[4.4vw] w-[4.4vw];
+}
 .search_wapper_icon {
   @apply relative float-right max-w-[9vw] flex-1;
 }
@@ -25,4 +25,7 @@
 }
 .search_input {
   @apply w-full outline-none;
+}
+.button_back {
+  @apply rounded-e-full bg-[#efefef] px-2 py-0.5;
 }

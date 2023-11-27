@@ -24,6 +24,7 @@ interface ProductDetail {
   sold: number;
   category_slug: string;
 }
+export const dynamic = 'force-dynamic';
 export default async function Page({ searchParams }: any) {
   const id: string = searchParams.id;
   //Will edit by search ProductId

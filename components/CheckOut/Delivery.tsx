@@ -5,7 +5,7 @@ import Modal from "@/components/Modal";
 import styles from "./styles.module.css";
 import { AiOutlineRight } from "react-icons/ai";
 import { convertMoney } from "@/lib/formatPrice";
-import { CheckOut } from "@/types/checkout";
+import { CheckOut } from "@/types/Checkout";
 
 
 interface Props {

@@ -5,7 +5,7 @@ import Loading from "@/app/loading";
 import KeyWordService from "@/services/KeyWord.service";
 import SearchBar from "./SearchBar";
 import TopKeyword from "./TopKeyword";
-
+export const dynamic = 'force-dynamic';
 const SearchPage = async () => {
 
 	return (

@@ -5,7 +5,7 @@ import styles from "./styles.module.css";
 import { openDialog } from "@/redux/features/dialog/dialog.slice";
 import { useAppDispatch } from "@/redux/hooks";
 import { useRouter } from "next/navigation";
-
+export const dynamic = 'force-dynamic';
 const AvatarPage = () => {
   const dispatch = useAppDispatch();
   const router = useRouter();

@@ -1,4 +1,4 @@
-import { CheckOut } from "@/types/checkout";
+import { CheckOut } from "@/types/Checkout";
 const getCheckOut = async () => {
   const response = {
     categories: [

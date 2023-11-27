@@ -7,7 +7,7 @@ import { openDialog } from "@/redux/features/dialog/dialog.slice";
 import { useAppDispatch } from "@/redux/hooks";
 import { useRouter } from "next/navigation";
 import { isPasswordValid } from "@/lib/validation";
-
+export const dynamic = 'force-dynamic';
 type ChangePasswordData = {
   currentPassword: string;
   newPassword: string;

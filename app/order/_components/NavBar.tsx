@@ -1,16 +1,16 @@
 import { GoSearch } from "react-icons/go";
-import { IoArrowBackSharp } from "react-icons/io5";
+import { IoIosArrowBack } from "react-icons/io";
 import styles from "./NavBar.module.css";
 import Link from "next/link";
-export default function Page() {
+export default function NavBar() {
   return (
     <div className={styles.sticky_out_wrapper}>
       <div className={styles.back}>
-        <span className={styles.wapper_back}>
+        <button type="button" className={styles.button_back}>
           <Link href="/account">
-            <IoArrowBackSharp className={styles.back_icon} />
+            <IoIosArrowBack size={22} />
           </Link>
-        </span>
+        </button>
       </div>
       <div className={styles.input}>
         <span className={styles.search_wapper_icon}>

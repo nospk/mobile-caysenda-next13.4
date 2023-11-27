@@ -1,5 +1,4 @@
 
-import ProductService from '@/services/Product.service';
 import Loading from '@/components/Loading';
 import { Suspense } from 'react';
 import Register from '@/components/Account/Register'

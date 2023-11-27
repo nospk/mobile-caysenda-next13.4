@@ -1,6 +1,8 @@
 import CheckOut from "@/components/CheckOut";
 import AddressService from "@/services/Address.service";
 import CheckOutService from "@/services/CheckOut.service";
+
+export const dynamic = 'force-dynamic';
 export default async function Page() {
   const listDelivery = await AddressService.getListDelivery();
   const activeDelivery = listDelivery.filter((item) => item.active == true);

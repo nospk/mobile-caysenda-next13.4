@@ -1,1 +1,8 @@
-export { default}  from './StatusOrder'
+const StatusOrder = {
+    NewOrder: 'new',
+    ShippingOrder: 'shipping',
+    CompleteOrder: 'complete',
+    AdditionOrder: 'addition',
+  };
+  
+  export default StatusOrder;

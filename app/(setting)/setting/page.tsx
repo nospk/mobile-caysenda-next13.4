@@ -4,7 +4,7 @@ import { Suspense, useEffect, useState } from "react";
 import SettingLayout from "@/components/Layouts/SettingLayout";
 import Loading from "@/components/Loading";
 import Setting from "@/components/Setting";
-
+export const dynamic = 'force-dynamic';
 function SettingPage() {
   const router = useRouter();
   const [token, setToken] = useState<string | null>(null);
