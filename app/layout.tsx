@@ -6,7 +6,8 @@ import { StoreProviders } from "@/redux/provider";
 
 //dialog message global
 import Dialog from "@/components/Dialog";
-
+//modal popup global
+import ModalPopup from "@/components/ModalPopup";
 
 //font text basic
 const fonter = Open_Sans({
@@ -30,17 +31,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="vi">
       <body className={`${fontIcon.variable} `}>
         <StoreProviders>
-            <main>{children}</main>
-            <Dialog />
+          <main>{children}</main>
+          <Dialog />
+          <ModalPopup />
         </StoreProviders>
       </body>
     </html>

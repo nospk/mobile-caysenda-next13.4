@@ -6,7 +6,8 @@ import { OrderType } from "@/types/order";
 import { FaChevronRight } from "react-icons/fa";
 import { convertMoney } from "@/lib/formatPrice";
 import { countVaraint } from "@/lib/common";
-
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { openModal, setModal, closeModal } from "@/redux/features/modal/modal.slice";
 function NewOrder({
   _Prop,
   handleCancelOrder,
@@ -18,8 +19,10 @@ function NewOrder({
 }) {
   const data = _Prop as OrderType;
   const total = countVaraint(data);
-  
-
+  const dispatch = useAppDispatch();
+  const handleEditAddress = () => {
+    dispatch(openModal({ time: 0 }));
+  };
 
   return (
     <div className="mb-4 rounded-lg bg-white px-2 py-[2.4vw]">
@@ -72,7 +75,7 @@ function NewOrder({
           <button onClick={() => handleCancelOrder(data.orderId)} className="mr-1 rounded-full border-2 px-1 py-1">
             <span>Hủy Đơn</span>
           </button>
-          <button className="mr-1 rounded-full border-2 px-1 py-1">
+          <button onClick={handleEditAddress} className="mr-1 rounded-full border-2 px-1 py-1">
             <span>Đổi Địa Chỉ</span>
           </button>
           <button className="rounded-full border-2 border-orange-600 px-1 py-1">
@@ -82,7 +85,6 @@ function NewOrder({
           </button>
         </div>
       </div>
-
     </div>
   );
 }

@@ -1,0 +1,6 @@
+.modal {
+  @apply relative;
+}
+.modalOverlay {
+  @apply fixed left-0 top-0 z-30 flex h-full w-full animate-fade-up bg-[#0000008c] bg-opacity-60 animate-delay-0 animate-normal animate-duration-[350ms] animate-fill-none animate-once animate-ease-out;
+}
