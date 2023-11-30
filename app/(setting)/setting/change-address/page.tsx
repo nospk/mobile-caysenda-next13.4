@@ -5,7 +5,7 @@ import AddressService from "@/services/Address.service";
 import { AiOutlineRight } from "react-icons/ai";
 import { ActiveFull, NotActive } from "@/components/Checked";
 import { RiEditBoxLine } from "react-icons/ri";
-import EditViewModal from "@/components/EditAddressModal/EditViewModal";
+import EditViewModal from "@/components/CheckOut/EditAddressModal/EditViewModal";
 import NewAddressModal from "@/components/NewAddressModal";
 import { openDialog } from "@/redux/features/dialog/dialog.slice";
 import { useAppDispatch } from "@/redux/hooks";

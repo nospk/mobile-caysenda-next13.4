@@ -1,6 +1,6 @@
 import { AiOutlineEnvironment, AiOutlineRight } from "react-icons/ai";
 import styles from "./styles.module.css";
-import SelectAddressModal from "../SelectAddressModal";
+import SelectAddressModal from "@/components/Cart/SelectAddressModal";
 import React, { SetStateAction, Dispatch, useState } from "react";
 import { ListDelivery } from "@/types/Delivery";
 interface Props {
@@ -31,10 +31,7 @@ const Header: React.FC<Props> = ({ isRemove, setIsRemove, listDelivery }) => {
             </div>
           </div>
         </div>
-        <div
-          className={styles.remove_button}
-          onClick={() => setIsRemove(!isRemove)}
-        >
+        <div className={styles.remove_button} onClick={() => setIsRemove(!isRemove)}>
           {isRemove ? (
             <span className={styles.remove_text_confirm}>Hoàn Tất</span>
           ) : (

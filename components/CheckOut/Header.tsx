@@ -1,7 +1,7 @@
 import { Icon } from "@/components/Icon";
 import { AiOutlineRight } from "react-icons/ai";
 import { ListDelivery } from "@/types/Delivery";
-import EditAddressModal from "@/components/EditAddressModal";
+import EditAddressModal from "@/components/CheckOut/EditAddressModal";
 import { type FC, SetStateAction, Dispatch } from "react";
 import styles from "./styles.module.css";
 interface Props {

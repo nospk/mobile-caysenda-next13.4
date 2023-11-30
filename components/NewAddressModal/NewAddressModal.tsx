@@ -38,7 +38,7 @@ interface Props {
   setListDelvery?: Dispatch<SetStateAction<ListDelivery[]>>;
 }
 
-const SelectAddressModal: FC<Props> = (props) => {
+const NewAddressModal: FC<Props> = (props) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [active, setActive] = useState<boolean>(false);
   const [listProvince, setListProvince] = useState<[] | Data[]>([]);
@@ -501,4 +501,4 @@ const SelectAddressModal: FC<Props> = (props) => {
   );
 };
 
-export default SelectAddressModal;
+export default NewAddressModal;

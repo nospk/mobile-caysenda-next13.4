@@ -11,7 +11,7 @@
   @apply relative bg-white leading-[1.1875rem];
 }
 .list_item_edit {
-  @apply relative box-border flex flex-shrink-0 flex-row bg-white leading-[1.1875rem];
+  @apply relative box-border flex flex-shrink-0 flex-row bg-white leading-[1.1875rem] pl-2;
 }
 .m_list_item {
   @apply mr-[3rem];

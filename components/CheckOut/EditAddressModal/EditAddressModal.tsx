@@ -14,7 +14,7 @@ interface Props {
   setAddress: Dispatch<SetStateAction<ListDelivery>>;
   listDelivery: ListDelivery[];
 }
-const SelectAddressModal: FC<Props> = (props: Props) => {
+const EditAddressModal: FC<Props> = (props: Props) => {
   //set edit
   const [isEdit, setIsEdit] = useState<boolean>(false);
   //set open - close
@@ -54,9 +54,12 @@ const SelectAddressModal: FC<Props> = (props: Props) => {
 
   //when open again will set edit false
   useEffect(() => {
-    setIsEdit(false);
-    const sortList = listDelivery.sort((a, b) => Number(b.active) - Number(a.active));
-    setListDelvery(sortList);
+    if (isOpen) {
+      setIsEdit(false);
+      const sortList = listDelivery.sort((a, b) => Number(b.active) - Number(a.active));
+      setListDelvery(sortList);
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
   return (
@@ -169,4 +172,4 @@ const SelectAddressModal: FC<Props> = (props: Props) => {
   );
 };
 
-export default SelectAddressModal;
+export default EditAddressModal;
