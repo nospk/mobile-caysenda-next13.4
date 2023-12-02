@@ -6,6 +6,6 @@ export interface ListDelivery {
   dictrict: number;
   province: number;
   ward: number;
-  active: number;
+  active: boolean;
   id: number;
 }

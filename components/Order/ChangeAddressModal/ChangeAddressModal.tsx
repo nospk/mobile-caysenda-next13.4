@@ -32,7 +32,7 @@ const ChangeAddressModal: FC<Props> = (props: Props) => {
   //get index item active
   const getActiveDelivery: () => number = useCallback(() => {
     const active = listDelivery.findIndex((item) => {
-      return item.active == 1;
+      return item.active == true;
     });
     return active;
   }, [listDelivery]);
@@ -92,8 +92,8 @@ const ChangeAddressModal: FC<Props> = (props: Props) => {
                       if (result.status) {
                         let newAcitve = listDelivery;
                         let indexActive = getActiveDelivery();
-                        indexActive >= 0 ? (newAcitve[getActiveDelivery()].active = 0) : null;
-                        newAcitve[index].active = 1;
+                        indexActive >= 0 ? (newAcitve[getActiveDelivery()].active = false) : null;
+                        newAcitve[index].active = true
                         setListDelvery(newAcitve);
                         handleCloseModal();
                       }

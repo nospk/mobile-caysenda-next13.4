@@ -36,14 +36,14 @@ const SelectAddressModal: FC<Props> = (props: Props) => {
 
   const getActiveDelivery: () => number = useCallback(() => {
     const active = listDelivery.findIndex((item) => {
-      return item.active == 1;
+      return item.active == true;
     });
     return active;
   }, [listDelivery]);
 
   useEffect(() => {
     for (const item of listDelivery) {
-      if (item.active == 1) props.setAddress(item.full_address);
+      if (item.active == true) props.setAddress(item.full_address);
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -95,8 +95,8 @@ const SelectAddressModal: FC<Props> = (props: Props) => {
                     AddressService.setActiveDelivery(item.id).then((result) => {
                       if (result.status) {
                         let newAcitve = listDelivery;
-                        newAcitve[getActiveDelivery()].active = 0;
-                        newAcitve[index].active = 1;
+                        newAcitve[getActiveDelivery()].active = false;
+                        newAcitve[index].active = true;
                         setListDelvery(newAcitve);
                         props.setAddress(item.address);
                         handleCloseModal();
