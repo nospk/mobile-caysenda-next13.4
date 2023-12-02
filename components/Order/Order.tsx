@@ -12,9 +12,10 @@ import { openDialog } from "@/redux/features/dialog/dialog.slice";
 import { useAppDispatch } from "@/redux/hooks";
 import { FaClipboardList } from "react-icons/fa";
 import styles from "./Order.module.css";
+import ChangeAddressModal from "./ChangeAddressModal";
 const OrderComponents: FC<{ List_Order: OrderType[]; type: string }> = ({ List_Order, type }) => {
   const [orders, setOrders] = useState<OrderType[]>(List_Order);
-
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const dispatch = useAppDispatch();
 
   const refersh: () => void = async () => {
@@ -28,6 +29,7 @@ const OrderComponents: FC<{ List_Order: OrderType[]; type: string }> = ({ List_O
     else return;
   };
   const handleChangeAddress: (id: string) => Promise<void> = async (id) => {
+    setIsOpen(!isOpen);
     return;
   };
   // Refersh when change type order
@@ -41,9 +43,13 @@ const OrderComponents: FC<{ List_Order: OrderType[]; type: string }> = ({ List_O
       <div className="mx-2 pb-8 pt-4">
         <ul>
           {orders.map((_Order: any, index: Key) => (
-            <li key={index}>
+            <li key={index + _Order.orderId}>
               {_Order.status == StatusOrder.NewOrder && (
-                <NewOrder _Prop={_Order} handleCancelOrder={handleCancelOrder} handleChangeAddress={handleChangeAddress} />
+                <NewOrder
+                  _Prop={_Order}
+                  handleCancelOrder={handleCancelOrder}
+                  handleChangeAddress={handleChangeAddress}
+                />
               )}
               {_Order.status == StatusOrder.CompleteOrder && <CompleteOrder _Prop={_Order} />}
               {_Order.status == StatusOrder.ShippingOrder && <ShippingOrder _Prop={_Order} />}
@@ -63,6 +69,7 @@ const OrderComponents: FC<{ List_Order: OrderType[]; type: string }> = ({ List_O
       <div className={styles.more}>
         <span className={styles.text}>Có thể bạn cũng thích</span>
       </div>
+      <ChangeAddressModal isOpen={isOpen} setIsOpen={setIsOpen} listDelivery={[]} />
     </>
   );
 };

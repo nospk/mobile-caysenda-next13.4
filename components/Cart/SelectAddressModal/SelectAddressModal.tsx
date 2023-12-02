@@ -36,14 +36,14 @@ const SelectAddressModal: FC<Props> = (props: Props) => {
 
   const getActiveDelivery: () => number = useCallback(() => {
     const active = listDelivery.findIndex((item) => {
-      return item.active == true;
+      return item.active == 1;
     });
     return active;
   }, [listDelivery]);
 
   useEffect(() => {
     for (const item of listDelivery) {
-      if (item.active == true) props.setAddress(item.address);
+      if (item.active == 1) props.setAddress(item.full_address);
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -81,7 +81,7 @@ const SelectAddressModal: FC<Props> = (props: Props) => {
                       </span>
                     </div>
                     <div className={styles.address}>
-                      {listDelivery[getActiveDelivery()].address}
+                      {listDelivery[getActiveDelivery()].full_address}
                     </div>
                   </div>
                 </div>
@@ -95,8 +95,8 @@ const SelectAddressModal: FC<Props> = (props: Props) => {
                     AddressService.setActiveDelivery(item.id).then((result) => {
                       if (result.status) {
                         let newAcitve = listDelivery;
-                        newAcitve[getActiveDelivery()].active = false;
-                        newAcitve[index].active = true;
+                        newAcitve[getActiveDelivery()].active = 0;
+                        newAcitve[index].active = 1;
                         setListDelvery(newAcitve);
                         props.setAddress(item.address);
                         handleCloseModal();
@@ -112,7 +112,7 @@ const SelectAddressModal: FC<Props> = (props: Props) => {
                         <span className={styles.name}>{item.name}</span>
                         <span className={styles.phone}>{item.phone}</span>
                       </div>
-                      <div className={styles.address}>{item.address}</div>
+                      <div className={styles.address}>{item.full_address}</div>
                     </div>
                   </div>
                 </div>

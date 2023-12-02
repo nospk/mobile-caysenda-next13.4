@@ -28,18 +28,24 @@ const getListDelivery: () => Promise<ListDelivery[] | []> = async () => {
     {
       name: "Trần Đăng Huy Hoàng 1",
       phone: "0962773213",
-      address:
-        "24 Nguyễn Thị Minh Khai, phường Bến Nghé, Quận 1, TP. Hồ Chí Minh",
-      active: false,
+      full_address: "24 Nguyễn Thị Minh Khai, phường Bến Nghé, Quận 1, TP. Hồ Chí Minh",
+      address: "24 Nguyễn Thị Minh Khai",
+      active: 1,
+      dictrict: 1453,
+      province: 202,
+      ward: 21112,
       id: 431,
     },
     {
       name: "Trần Đăng Huy Hoàng 2",
       phone: "123321321",
-      address:
-        "1231 Nguyễn Thị Minh Khai, phường Bến Nghé, Quận 1, TP. Hồ Chí Minh",
-      active: true,
-      id: 123,
+      full_address: "1231 Nguyễn Thị Minh Khai, phường Bến Nghé, Quận 1, TP. Hồ Chí Minh",
+      address: "1231 Nguyễn Thị Minh Khai",
+      active: 0,
+      dictrict: 1453,
+      province: 202,
+      ward: 21112,
+      id: 431,
     },
   ];
   //const list = [] as any;

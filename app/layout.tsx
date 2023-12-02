@@ -6,8 +6,7 @@ import { StoreProviders } from "@/redux/provider";
 
 //dialog message global
 import Dialog from "@/components/Dialog";
-//modal popup global
-import ModalPopup from "@/components/ModalPopup";
+
 
 //font text basic
 const fonter = Open_Sans({
@@ -38,7 +37,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <StoreProviders>
           <main>{children}</main>
           <Dialog />
-          <ModalPopup />
         </StoreProviders>
       </body>
     </html>

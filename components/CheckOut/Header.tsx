@@ -13,7 +13,7 @@ const Header: FC<Props> = ({ listDelivery, activeAddress, setAddress }) => {
   let detail_address;
   let district_address;
   if (activeAddress) {
-    let addressSplit = activeAddress.address.split(",");
+    let addressSplit = activeAddress.full_address.split(",");
     detail_address = addressSplit.shift() as string;
     district_address = addressSplit.join(",");
   } else {

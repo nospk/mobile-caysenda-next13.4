@@ -10,23 +10,23 @@ import { ActiveFull, NotActive } from "@/components/Checked";
 import EditViewModal from "./EditViewModal";
 interface Props {
   address?: string;
+  isOpen: boolean;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
   className?: string;
-  setAddress: Dispatch<SetStateAction<ListDelivery>>;
   listDelivery: ListDelivery[];
 }
-const EditAddressModal: FC<Props> = (props: Props) => {
+const ChangeAddressModal: FC<Props> = (props: Props) => {
   //set edit
   const [isEdit, setIsEdit] = useState<boolean>(false);
-  //set open - close
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+
   //set list delivery
   const [listDelivery, setListDelvery] = useState<ListDelivery[]>(props.listDelivery);
   //hanlde open - close
   const handleOpenModal = () => {
-    setIsOpen(true);
+    props.setIsOpen(true);
   };
   const handleCloseModal = () => {
-    setIsOpen(false);
+    props.setIsOpen(false);
   };
 
   //get index item active
@@ -38,37 +38,33 @@ const EditAddressModal: FC<Props> = (props: Props) => {
   }, [listDelivery]);
 
   //handel action when remove
-  const handleRemove = (id: number) => {
-    const action = async () => {
-      const result = await AddressService.removeAddress(id);
-      if (result) {
-        let newData = await AddressService.getListDelivery();
-        if (newData) {
-          setListDelvery(newData);
-          props.setAddress(newData[0]);
-        }
+  const handleRemove = async (id: number) => {
+    const result = await AddressService.removeAddress(id);
+    if (result) {
+      let newData = await AddressService.getListDelivery();
+      if (newData) {
+        setListDelvery(newData);
       }
-    };
-    action();
+    }
   };
 
   //when open again will set edit false
   useEffect(() => {
-    if (isOpen) {
+    if (props.isOpen) {
       setIsEdit(false);
       const sortList = listDelivery.sort((a, b) => Number(b.active) - Number(a.active));
       setListDelvery(sortList);
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOpen]);
+  }, [props.isOpen]);
   return (
     <>
       <div className={styles.main} onClick={handleOpenModal}>
         <span className={props.className}>{props.address}</span>
       </div>
       <Modal
-        isOpen={isOpen}
+        isOpen={props.isOpen}
         styleModal={styles.modal}
         styleModalOverlay={styles.modalOverlay}
         onClose={handleCloseModal}
@@ -99,7 +95,6 @@ const EditAddressModal: FC<Props> = (props: Props) => {
                         indexActive >= 0 ? (newAcitve[getActiveDelivery()].active = 0) : null;
                         newAcitve[index].active = 1;
                         setListDelvery(newAcitve);
-                        props.setAddress(item);
                         handleCloseModal();
                       }
                     });
@@ -117,7 +112,7 @@ const EditAddressModal: FC<Props> = (props: Props) => {
                         </div>
                         <div className={styles.address_default}>
                           {item.active ? <span className={styles.address_default_text}>Mặc Định</span> : null}
-                          {item.full_address}
+                          {item.address}
                         </div>
                       </div>
                     </div>
@@ -172,4 +167,4 @@ const EditAddressModal: FC<Props> = (props: Props) => {
   );
 };
 
-export default EditAddressModal;
+export default ChangeAddressModal;

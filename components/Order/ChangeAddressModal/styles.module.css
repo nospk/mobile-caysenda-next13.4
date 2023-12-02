@@ -1,0 +1,180 @@
+.modal {
+  @apply absolute bottom-0 left-0 right-0 box-border flex h-full min-h-[40vh] w-full bg-[#f8f8f8] shadow-md;
+}
+.modalOverlay {
+  @apply fixed left-0 top-0 z-20 flex h-full w-full animate-fade-up bg-[#0000008c] bg-opacity-60 animate-delay-0 animate-normal animate-duration-[350ms] animate-fill-none animate-once animate-ease-out;
+}
+.main {
+  @apply w-full;
+}
+.back {
+  @apply absolute left-2 z-auto h-[2.8125rem] w-[1.25rem] text-center;
+}
+.edit {
+  @apply absolute right-2 top-3 z-auto text-center text-sm;
+}
+.text_red {
+  @apply text-[#FF602D];
+}
+.wrapper {
+  @apply flex h-full w-full flex-col;
+}
+.title {
+  @apply bg-white text-center text-[1.125rem] font-medium leading-[2.8125rem];
+}
+.delivery {
+  @apply my-[0.375rem] box-border h-full bg-white;
+}
+.icon {
+  @apply ml-[0.375rem] mr-[0.625rem] box-border h-[1.5rem] w-[1.375rem];
+}
+
+.list_body {
+  @apply box-border items-center;
+}
+
+.footer {
+  @apply bottom-[2.125rem] left-0 box-border w-full bg-white px-[0.5rem] py-[0.75rem];
+}
+.button_create {
+  @apply w-full rounded-3xl bg-[#ff602d] py-[0.4375rem] text-[1rem] text-white;
+}
+.checked_wrapper {
+  @apply relative mr-[0.75rem] box-border flex flex-shrink-0 flex-row content-start items-center;
+}
+.address_item {
+  @apply p-[1rem];
+}
+.inner_wrapper {
+  @apply flex flex-row items-center;
+}
+.address_content {
+  @apply flex-1;
+}
+.delivery_manage {
+  @apply my-[0.375rem] box-border h-full px-[0.375rem];
+}
+.address_item_manage {
+  @apply mb-[0.375rem] rounded-xl bg-white p-[1rem];
+}
+.address_subject {
+  @apply box-border flex flex-row flex-wrap items-center pb-[0.25rem];
+}
+.address_name {
+  @apply mr-[0.25rem] text-[15px] font-semibold;
+}
+.address_phone {
+  @apply mr-[0.25rem] text-[13px] text-[#222];
+}
+.address_default {
+  @apply relative break-normal text-[12px] leading-[1rem] text-[#666];
+}
+.address_default_text {
+  @apply mr-[0.25rem] box-border w-[100px] border border-[#ff9d7c] text-center text-red-400;
+}
+.divider {
+  @apply my-[0.875rem] items-center border-t border-[#eee];
+}
+.address_option {
+  @apply flex flex-row items-center justify-end;
+}
+.address_button_group {
+  @apply box-content text-right text-[13px] text-[#000000];
+}
+.address_button_manage {
+  @apply ml-[1.875rem];
+}
+
+.edit_modal {
+  @apply absolute bottom-0 left-0 right-0 z-auto box-border flex h-full min-h-[100vh] w-full bg-[#f8f8f8] shadow-md;
+}
+.edit_modalOverlay {
+  @apply fixed left-0 top-0 z-30 flex h-full w-full animate-fade-up bg-[#0000008c] bg-opacity-60 animate-delay-0 animate-normal animate-duration-[350ms] animate-fill-none animate-once animate-ease-out;
+}
+.edit_wrapper {
+  @apply h-full w-full;
+}
+.edit_close {
+  @apply absolute right-2 top-2 z-auto text-lg text-[#999];
+}
+.edit_content {
+  @apply box-border flex flex-col items-stretch;
+}
+.edit_header {
+  @apply mb-[0.75rem] box-border flex h-[45px] items-center justify-center bg-white px-3;
+}
+.edit_header_text {
+  @apply text-center text-[1rem] font-medium;
+}
+.edit_content_body {
+  @apply box-border block border-y border-[#eee] bg-white;
+}
+.edit_content_wrapper {
+  @apply overflow-hidden;
+}
+.edit_list_item {
+  @apply relative block pl-4 text-[17px] leading-[1.5];
+}
+.edit_list_item_content {
+  @apply flex items-stretch justify-start border-b border-[#eee] pr-3;
+}
+.edit_list_item_content_prefix {
+  @apply box-border w-20 flex-none py-3 pr-3;
+}
+.edit_list_item_label {
+  @apply relative box-border block h-full text-[16px] leading-[1.5] text-[#222];
+}
+.edit_list_item_content_main {
+  @apply box-border flex-auto py-3;
+}
+.edit_block_error {
+  @apply box-border block;
+}
+.edit_error_text {
+  @apply absolute bottom-[-0.125rem] right-[0.375rem] mr-[0.375rem] mt-0 text-right text-[11px] text-[#ff3141];
+}
+.edit_item_input {
+  @apply m-0 box-border inline-block max-h-full w-full max-w-full appearance-none bg-transparent p-0 text-right leading-normal outline-0;
+}
+.edit_item_wrapper {
+  @apply box-border flex justify-normal;
+}
+.edit_item_data {
+  @apply flex max-h-full min-h-[24px] w-full max-w-full items-center justify-start;
+}
+.edit_list_item_content_prefix_select {
+  @apply box-border w-fit flex-none py-3 pr-3;
+}
+.edit_list_item_select {
+  @apply flex max-h-full min-h-[24px] w-full max-w-full items-center justify-end  text-[#222];
+}
+.edit_select_height {
+  @apply h-[400px];
+}
+.edit_select_background {
+  @apply bg-white;
+}
+.edit_select_icon {
+  @apply ml-[6px] h-[16px] w-[16px] text-[#AAAAAA];
+}
+.edit_select_width {
+  @apply w-[180px];
+}
+.edit_text_disable {
+  @apply text-[#AAAAAA];
+}
+.edit_list_item_content_prefix_textarea {
+  @apply flex items-stretch justify-start pr-3;
+}
+.edit_text_area {
+  @apply m-0 box-border block max-h-full w-full max-w-full resize-none appearance-none p-0 leading-normal outline-none;
+}
+.edit_switch_active {
+  @apply mt-3 flex items-center justify-between bg-white p-3;
+}
+.edit_footer {
+  @apply absolute bottom-0 w-full items-center justify-center bg-white px-3 py-2;
+}
+.edit_footer_button {
+  @apply h-10 w-full rounded-full bg-[#ff620d] leading-10 text-white;
+}
