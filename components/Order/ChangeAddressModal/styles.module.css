@@ -2,7 +2,7 @@
   @apply absolute bottom-0 left-0 right-0 box-border flex h-full min-h-[40vh] w-full bg-[#f8f8f8] shadow-md;
 }
 .modalOverlay {
-  @apply fixed left-0 top-0 z-20 flex h-full w-full animate-fade-up bg-[#0000008c] bg-opacity-60 animate-delay-0 animate-normal animate-duration-[350ms] animate-fill-none animate-once animate-ease-out;
+  @apply fixed left-0 top-0 z-20 flex h-[100dvh] w-full animate-fade-up bg-[#0000008c] bg-opacity-60 animate-delay-0 animate-normal animate-duration-[350ms] animate-fill-none animate-once animate-ease-out;
 }
 .main {
   @apply w-full;

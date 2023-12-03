@@ -3,9 +3,9 @@ export interface ListDelivery {
   phone: string;
   full_address: string;
   address: string;
-  dictrict: number;
-  province: number;
-  ward: number;
+  dictrict: string;
+  province: string;
+  ward: string;
   active: boolean;
   id: number;
 }

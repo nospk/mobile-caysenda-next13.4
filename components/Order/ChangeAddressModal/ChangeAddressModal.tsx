@@ -9,22 +9,26 @@ import { ListDelivery } from "@/types/Delivery";
 import { ActiveFull, NotActive } from "@/components/Checked";
 import EditViewModal from "./EditViewModal";
 interface Props {
-  address?: string;
+  orderChangeAddress: {
+    id: number;
+    full_address: string;
+    address: string;
+    province: string;
+    dictrict: string;
+    ward: string;
+  };
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
+  handleAddressOrder: (order_id: number, address_id: number) => Promise<void>;
   className?: string;
-  listDelivery: ListDelivery[];
 }
 const ChangeAddressModal: FC<Props> = (props: Props) => {
   //set edit
   const [isEdit, setIsEdit] = useState<boolean>(false);
 
   //set list delivery
-  const [listDelivery, setListDelvery] = useState<ListDelivery[]>(props.listDelivery);
-  //hanlde open - close
-  const handleOpenModal = () => {
-    props.setIsOpen(true);
-  };
+  const [listDelivery, setListDelvery] = useState<ListDelivery[]>([]);
+
   const handleCloseModal = () => {
     props.setIsOpen(false);
   };
@@ -48,21 +52,34 @@ const ChangeAddressModal: FC<Props> = (props: Props) => {
     }
   };
 
+  const getActive = (item: any) => {
+    if (
+      item.address == props.orderChangeAddress.address &&
+      item.province == props.orderChangeAddress.province &&
+      item.dictrict == props.orderChangeAddress.dictrict &&
+      item.ward == props.orderChangeAddress.ward
+    )
+      return true;
+    else return false;
+  };
+
   //when open again will set edit false
   useEffect(() => {
     if (props.isOpen) {
-      setIsEdit(false);
-      const sortList = listDelivery.sort((a, b) => Number(b.active) - Number(a.active));
-      setListDelvery(sortList);
+      const setup = async () => {
+        setIsEdit(false);
+        const getListDelivery = await AddressService.getListDelivery();
+
+        const sortList = getListDelivery.sort((a, b) => Number(b.active) - Number(a.active));
+        setListDelvery(sortList);
+      };
+      setup();
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.isOpen]);
   return (
     <>
-      <div className={styles.main} onClick={handleOpenModal}>
-        <span className={props.className}>{props.address}</span>
-      </div>
       <Modal
         isOpen={props.isOpen}
         styleModal={styles.modal}
@@ -72,7 +89,7 @@ const ChangeAddressModal: FC<Props> = (props: Props) => {
         <div className={styles.wrapper}>
           <div>
             <AiOutlineLeft onClick={handleCloseModal} className={styles.back} />
-            <div className={styles.title}>Địa Chỉ Giao Hàng</div>
+            <div className={styles.title}>Đổi Địa Chỉ Giao Hàng</div>
             <a className={`${styles.edit} ${isEdit ? styles.text_red : ""}`}>
               <span
                 onClick={() => {
@@ -88,23 +105,14 @@ const ChangeAddressModal: FC<Props> = (props: Props) => {
               {listDelivery.map((item, index) => (
                 <div
                   onClick={() => {
-                    AddressService.setActiveDelivery(item.id).then((result) => {
-                      if (result.status) {
-                        let newAcitve = listDelivery;
-                        let indexActive = getActiveDelivery();
-                        indexActive >= 0 ? (newAcitve[getActiveDelivery()].active = false) : null;
-                        newAcitve[index].active = true
-                        setListDelvery(newAcitve);
-                        handleCloseModal();
-                      }
-                    });
+                    props.handleAddressOrder(props.orderChangeAddress.id, item.id);
                   }}
                   key={item.id}
                   className={styles.list_body}
                 >
                   <div className={styles.address_item}>
                     <div className={styles.inner_wrapper}>
-                      <div className={styles.checked_wrapper}>{item.active ? <ActiveFull /> : <NotActive />}</div>
+                      <div className={styles.checked_wrapper}>{getActive(item) ? <ActiveFull /> : <NotActive />}</div>
                       <div className={styles.address_content}>
                         <div className={styles.address_subject}>
                           <span className={styles.address_name}>{item.name}</span>

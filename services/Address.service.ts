@@ -31,9 +31,9 @@ const getListDelivery: () => Promise<ListDelivery[] | []> = async () => {
       full_address: "24 Nguyễn Thị Minh Khai, phường Bến Nghé, Quận 1, TP. Hồ Chí Minh",
       address: "24 Nguyễn Thị Minh Khai",
       active: true,
-      dictrict: 1453,
-      province: 202,
-      ward: 21112,
+      dictrict: "1453",
+      province: "202",
+      ward: "21112",
       id: 431,
     },
     {
@@ -42,10 +42,10 @@ const getListDelivery: () => Promise<ListDelivery[] | []> = async () => {
       full_address: "1231 Nguyễn Thị Minh Khai, phường Bến Nghé, Quận 1, TP. Hồ Chí Minh",
       address: "1231 Nguyễn Thị Minh Khai",
       active: false,
-      dictrict: 1453,
-      province: 202,
-      ward: 21112,
-      id: 431,
+      dictrict: "1453",
+      province: "202",
+      ward: "21112",
+      id: 432,
     },
   ];
   //const list = [] as any;

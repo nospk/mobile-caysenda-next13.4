@@ -16,21 +16,60 @@ import ChangeAddressModal from "./ChangeAddressModal";
 const OrderComponents: FC<{ List_Order: OrderType[]; type: string }> = ({ List_Order, type }) => {
   const [orders, setOrders] = useState<OrderType[]>(List_Order);
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [orderChangeAddress, setOrderChangeAddress] = useState<{
+    id: number;
+    full_address: string;
+    address: string;
+    province: string;
+    dictrict: string;
+    ward: string;
+  }>({
+    id: 0,
+    full_address: "",
+    address: "",
+    province: "",
+    dictrict: "",
+    ward: "",
+  });
   const dispatch = useAppDispatch();
 
   const refersh: () => void = async () => {
     const data = (await OrderService.getOrder(type)) as unknown as OrderType[];
     setOrders(data);
   };
-  const handleCancelOrder: (id: string) => Promise<void> = async (id) => {
+  const handleCancelOrder: (id: number) => Promise<void> = async (id) => {
     const result: ResponseMessage = await OrderService.cancelOrder(id);
     dispatch(openDialog({ message: result.message }));
     if (result.success) refersh();
     else return;
   };
-  const handleChangeAddress: (id: string) => Promise<void> = async (id) => {
+  const handleChangeAddress: (
+    id: number,
+    full_address: string,
+    address: string,
+    province: string,
+    dictrict: string,
+    ward: string
+  ) => Promise<void> = async (id, full_address, address, province, dictrict, ward) => {
+    setOrderChangeAddress({
+      id: id,
+      full_address: full_address,
+      address: address,
+      province: province,
+      dictrict: dictrict,
+      ward: ward,
+    });
     setIsOpen(!isOpen);
     return;
+  };
+
+  const handleAddressOrder: (order_id: number, address_id: number) => Promise<void> = async (order_id, address_id) => {
+    const result: ResponseMessage = await OrderService.changeAddressOrder(order_id, address_id);
+    dispatch(openDialog({ message: result.message }));
+    if (result.success) {
+      setIsOpen(false);
+      refersh();
+    } else return;
   };
   // Refersh when change type order
   useEffect(() => {
@@ -69,7 +108,12 @@ const OrderComponents: FC<{ List_Order: OrderType[]; type: string }> = ({ List_O
       <div className={styles.more}>
         <span className={styles.text}>Có thể bạn cũng thích</span>
       </div>
-      <ChangeAddressModal isOpen={isOpen} setIsOpen={setIsOpen} listDelivery={[]} />
+      <ChangeAddressModal
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        orderChangeAddress={orderChangeAddress}
+        handleAddressOrder={handleAddressOrder}
+      />
     </>
   );
 };

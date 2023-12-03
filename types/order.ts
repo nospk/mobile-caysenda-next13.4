@@ -1,20 +1,24 @@
 export interface OrderType {
-  orderId: string;
+  id: number;
   status: string;
-  totalPrice: number;
-  category: OrderCategory[];
-  fee: number;
+  order_amount: number;
+  ship: number;
+  full_address: string;
   address: string;
+  dictrict: string;
+  province: string;
+  ward: string;
+  order_detail: OrderDetailType[] | [];
 }
 
-export interface OrderCategory {
-  name: string;
-  slug: string;
-  condition: number;
-  amount: number;
-  products: OrderProduct[];
-  bill: number;
-  id: number;
+export interface OrderDetailType {
+  product_id: number;
+  product_name: string;
+  variant_name: string;
+  thumbnail: string;
+  price: number;
+  quantity: number;
+  variant_id: number;
 }
 
 export interface OrderProduct {
