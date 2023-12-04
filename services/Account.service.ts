@@ -91,10 +91,10 @@ const SetProductRecent = (product: ProductDetail) => {
     }
   }
 
-  localStorage.setItem("product", JSON.stringify(data));
+  localStorage.setItem("product-recent", JSON.stringify(data));
 };
 const GetProductRecent = () => {
-  let data = localStorage.getItem("product");
+  let data = localStorage.getItem("product-recent");
 
   if (data) {
     try {

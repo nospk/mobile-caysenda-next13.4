@@ -36,6 +36,7 @@ export interface ProductDetail {
 	id					: number,
 	name				: string,
 	sku					: string,
+	thumbnail			: string,
 	conditiondefault	: number,
 	condition1 			: number,
 	condition2			: number,
