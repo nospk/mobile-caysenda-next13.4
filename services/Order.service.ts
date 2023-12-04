@@ -55,7 +55,7 @@ let listOrder = [
     ],
   },
   {
-    orderId: 123456133,
+    id: 123456133,
     status: "complete",
     order_amount: 120000,
     ship: 500000,

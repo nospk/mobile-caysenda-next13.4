@@ -23,8 +23,7 @@ function NewOrder({
   ) => Promise<void>;
 }) {
   const data = _Prop as OrderType;
-
-
+  const [isShow, setIsShow] = React.useState<boolean>(false);
   return (
     <div className="mb-4 rounded-lg bg-white px-2 py-[2.4vw]">
       <div className="flex items-center ">
@@ -36,7 +35,7 @@ function NewOrder({
         </div>
         <div className="flex-none text-sm text-red-500">Chờ Thanh Toán</div>
       </div>
-      <div className="flex">
+      <div className="flex pt-2">
         <div className="pr-2">
           <Image
             src={data.order_detail[0].thumbnail}
@@ -61,6 +60,38 @@ function NewOrder({
           </div>
         </div>
       </div>
+      {data.order_detail.length > 1 &&
+        isShow &&
+        data.order_detail.map((item, index) => {
+          if (index > 0)
+            return (
+              <div className="flex pt-2">
+                <div className="pr-2">
+                  <Image
+                    src={item.thumbnail}
+                    width={100}
+                    height={100}
+                    alt="product_img"
+                    className="rounded-lg"
+                    priority={true}
+                  />
+                </div>
+                <div className="grow ">
+                  <div className="flex justify-between">
+                    <h3 className="flex-none">{item.product_name}</h3>
+                    <div className="">{convertMoney(item.price)} đ</div>
+                  </div>
+                  <div className="flex justify-between">
+                    <h4>{item.variant_name}</h4>
+                    <div className="">x{item.quantity}</div>
+                  </div>
+                  <div className="mt-3">
+                    <h4 className="text-sm text-orange-600">Giao hàng sau khi thanh toán</h4>
+                  </div>
+                </div>
+              </div>
+            );
+        })}
       <div className="flex flex-row justify-between pt-2 text-[#999999]">
         <span>Tổng cộng {data.order_detail.length} mã hàng</span>
         <span>Phí Ship: {convertMoney(data.ship)} đ</span>
@@ -69,23 +100,24 @@ function NewOrder({
         <span className="font-bold">Tổng Bill: {convertMoney(data.order_amount)} đ</span>
       </div>
       <div className="flex items-center justify-between py-2 text-xs">
-        <Link href={`/order/id?=${data.id}`}>
-          <span className="text-[#999999]">Chi Tiết Đơn Hàng</span>
-        </Link>
+        {data.order_detail.length == 1 && <div></div>}
+        {data.order_detail.length > 1 && !isShow && (
+          <span onClick={() => setIsShow(!isShow)} className="text-[#999999]">
+            Chi Tiết Đơn Hàng
+          </span>
+        )}
+        {data.order_detail.length > 1 && isShow && (
+          <span onClick={() => setIsShow(!isShow)} className="text-[#999999]">
+            Ẩn Chi Tiết
+          </span>
+        )}
         <div className="flex justify-end py-2 text-sm">
           <button onClick={() => handleCancelOrder(data.id)} className="mr-1 rounded-full border-2 px-1 py-1">
             <span>Hủy Đơn</span>
           </button>
           <button
             onClick={() =>
-              handleChangeAddress(
-                data.id,
-                data.full_address,
-                data.address,
-                data.province,
-                data.dictrict,
-                data.ward
-              )
+              handleChangeAddress(data.id, data.full_address, data.address, data.province, data.dictrict, data.ward)
             }
             className="mr-1 rounded-full border-2 px-1 py-1"
           >
