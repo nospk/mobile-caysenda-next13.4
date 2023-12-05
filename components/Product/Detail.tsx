@@ -1,7 +1,7 @@
 "use client";
 import { AiOutlineRight } from "react-icons/ai";
 import styles from "./ProductDetail.module.css";
-import { ProductDetail } from "@/types/product";
+import { ProductDetail } from "@/types/Product";
 import Link from "next/link";
 import AccountService from "@/services/Account.service";
 import { useEffect } from "react";

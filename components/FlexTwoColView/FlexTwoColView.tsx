@@ -3,28 +3,32 @@ import { useEffect, useState } from "react";
 import styles from "./FlexTwoColView.module.css";
 import ProductCard from "@/components/ProductCard";
 import ProductService from "@/services/Product.service";
-import type { Product } from "@/types/product";
+import type { Product } from "@/types/Product";
+import type { T_ProductRelated } from "@/types/ProductRelated";
 import type { Banner } from "@/types/banner";
 import type { KeyWord } from "@/types/keyword";
 import type { Video } from "@/types/video";
 import BannerCard from "@/components/BannerCard";
 import KeyWordCard from "@/components/KeyWordCard";
+import ProductRelatedCard from "@/components/ProductRelatedCard";
 import React from "react";
 import useScroll from "@/components/hook/useScroll";
 import VideoCard from "../VideoCard";
 import { ProductListParamType } from "@/services/types/ProductRequestType";
-
-type View = Banner | KeyWord | Product | Video;
+import { convertNameToURL } from "@/lib/common";
+type T_Data = Banner | KeyWord | Product | Video | T_ProductRelated;
 interface Props {
   banners?: Banner;
   keyWords?: KeyWord;
-  data: Product[] | Video[];
+  data: Product[] | Video[] | T_ProductRelated[];
   maxPage: number;
   requestData: ProductListParamType;
 }
 
-const renderView = (data: View[]) => {
-  let view = data.map((item: View, index: number) => {
+const renderView = (data: T_Data[]) => {
+
+  let view = data.map((item: T_Data, index: number) => {
+
     if (item.type === "banner") return <BannerCard key="banner" banner={item.data} />;
     if (item.type === "product")
       return (
@@ -53,12 +57,24 @@ const renderView = (data: View[]) => {
           id="349938442291"
         />
       );
+    if (item.type === "product-recent")
+      return (
+        <ProductRelatedCard
+          key={item.name + index}
+          name={item.name}
+          price={item.price[0].money}
+          sold={item.sold}
+          image={item.thumbnail}
+          unit={item.unit}
+          link={`${"\\" + item.category_slug + "\\" + convertNameToURL(item.name)}`}
+        />
+      );
   });
   return view;
 };
 const FlexTwoColView = function FlexTwoColView({ banners, keyWords, data, maxPage, requestData }: Props) {
-  let listLeft: any = data.slice(0, 4);
-  let listRight: any = data.slice(4, 8);
+  let listLeft: any = data.slice(0, Math.round(data.length / 2));
+  let listRight: any = data.slice(Math.round(data.length / 2), data.length);
   const [isLoanding, setIsLoading] = useState<boolean>(false);
   const [currentPage, setCurrentPage] = useState<number>(1);
 
@@ -79,8 +95,8 @@ const FlexTwoColView = function FlexTwoColView({ banners, keyWords, data, maxPag
         requestData.page = nextPage;
 
         const res = await ProductService.getProductList(requestData);
-        let newListLeft = res.slice(0, res.length / 2);
-        let newListRight = res.slice(res.length / 2, res.length);
+        let newListLeft = res.slice(0, Math.round(res.length / 2));
+        let newListRight = res.slice(Math.round(res.length / 2), res.length);
 
         setListLeft((prevData) => [...prevData, ...newListLeft]);
         setListRight((prevData) => [...prevData, ...newListRight]);

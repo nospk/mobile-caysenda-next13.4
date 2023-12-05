@@ -3,7 +3,7 @@ import { Icon } from "@/components/Icon";
 import { FcPaid } from "react-icons/fc";
 import AccountService from "@/services/Account.service";
 import { useEffect, useState } from "react";
-import { ProductDetail } from "@/types/product";
+import { ProductDetail } from "@/types/Product";
 export default function ProductRecent() {
   let [data, setData] = useState<ProductDetail[]>([]);
   useEffect(() => {

@@ -1,5 +1,5 @@
 import Rating from "@/components/Rating";
-import { ProductDetail } from "@/types/product";
+import { ProductDetail } from "@/types/Product";
 interface Props {
 	product:ProductDetail
 }

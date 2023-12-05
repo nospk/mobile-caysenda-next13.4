@@ -4,7 +4,7 @@ import Header from "./Header";
 import ListOrder from "./ListOrder";
 import { ListDelivery } from "@/types/Delivery";
 import { useState, type FC } from "react";
-import { CheckOut } from "@/types/Checkout";
+import { CheckOut } from "@/types/CheckOut";
 import { convertMoney } from "@/lib/formatPrice";
 import styles from "./styles.module.css";
 import Payment from "./Payment";

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { CheckOut } from "@/types/Checkout";
+import { CheckOut } from "@/types/CheckOut";
 import { type FC } from "react";
 import React from "react";
 import { convertMoney } from "@/lib/formatPrice";

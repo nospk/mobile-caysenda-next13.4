@@ -1,6 +1,6 @@
 import getBaseUrl from "@/lib/getBaseUrl";
 import { RegisterForm, LoginProps } from "@/types/Account";
-import { ProductDetail } from "@/types/product";
+import { ProductDetail } from "@/types/Product";
 const Login = async (props: LoginProps) => {
   const res = await fetch(`https://caysenda.vn/ajax/user/login?username=${props.username}&password=${props.password}`, {
     method: "GET",
@@ -82,6 +82,7 @@ const GetDataUser = async () => {
   };
 };
 const SetProductRecent = (product: ProductDetail) => {
+  product.type = 'product-recent'
   let data: ProductDetail[] = GetProductRecent();
   if (!data.some((obj) => obj.id === product.id)) {
     if (data.length < 99) {
