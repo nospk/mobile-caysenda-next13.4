@@ -1,0 +1,9 @@
+.title_right {
+  @apply absolute right-[52%];
+}
+.title_left {
+  @apply absolute left-[52%];
+}
+.title_active {
+  @apply text-[#F66D09] underline;
+}

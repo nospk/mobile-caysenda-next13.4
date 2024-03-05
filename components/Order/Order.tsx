@@ -82,7 +82,7 @@ const OrderComponents: FC<{ List_Order: OrderType[]; type: string }> = ({ List_O
       <div className="mx-2 pb-8 pt-4">
         <ul>
           {orders.map((_Order: any, index: Key) => (
-            <li key={index + _Order.orderId}>
+            <li key={index + "_" + _Order.id}>
               {_Order.status == StatusOrder.NewOrder && (
                 <NewOrder
                   _Prop={_Order}
@@ -97,6 +97,7 @@ const OrderComponents: FC<{ List_Order: OrderType[]; type: string }> = ({ List_O
               )}
             </li>
           ))}
+
           {orders.length == 0 && (
             <div className="flex flex-col items-center text-center">
               <FaClipboardList className="h-10 w-10" />

@@ -82,7 +82,7 @@ const GetDataUser = async () => {
   };
 };
 const SetProductRecent = (product: ProductDetail) => {
-  product.type = 'product-recent'
+  product.type = "product-recent";
   let data: ProductDetail[] = GetProductRecent();
   if (!data.some((obj) => obj.id === product.id)) {
     if (data.length < 99) {
@@ -107,6 +107,27 @@ const GetProductRecent = () => {
 
   return [];
 };
+const GetProductSuggest = () => {
+  /* return like ProductRecent [          
+          name={item.name}
+          price={item.price[0].money}
+          sold={item.sold}
+          image={item.thumbnail}
+          unit={item.unit}
+          link={`${"\\" + item.category_slug + "\\" + convertNameToURL(item.name)}`}]
+  */
+  let data = localStorage.getItem("product-recent");
+
+  if (data) {
+    try {
+      return JSON.parse(data);
+    } catch (e) {
+      return [];
+    }
+  }
+
+  return [];
+};
 const AccountService = {
   Login,
   Register,
@@ -117,5 +138,6 @@ const AccountService = {
   GetDataUser,
   SetProductRecent,
   GetProductRecent,
+  GetProductSuggest,
 };
 export default AccountService;
