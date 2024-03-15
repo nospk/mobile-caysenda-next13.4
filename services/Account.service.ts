@@ -114,7 +114,8 @@ const GetProductSuggest = () => {
           sold={item.sold}
           image={item.thumbnail}
           unit={item.unit}
-          link={`${"\\" + item.category_slug + "\\" + convertNameToURL(item.name)}`}]
+          link={`${"\\" + item.category_slug + "\\" + convertNameToURL(item.name)}`}
+          type='product-suggest']
   */
   let data = localStorage.getItem("product-recent");
 

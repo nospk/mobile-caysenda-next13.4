@@ -15,7 +15,9 @@ export async function generateMetadata({ params , searchParams}:any) {
 
 export default async function Page({searchParams}:any) {
 	let requestData:ProductListParamType = {}
+
 	requestData.catSlug = searchParams.slug;
+	console.log(searchParams)
 	let data = await ProductService.getProductList({selectType:"@SELECT", ...requestData});
 	let page = await ProductService.getProductList({selectType:"@COUNT", ...requestData});
 

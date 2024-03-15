@@ -1,23 +1,19 @@
 import type { Video } from "@/types/video";
 const getVideoList = async () => {
-  const videos:Video[] = [
+  const videos: Video[] = [
     {
       type: "video",
-      data: {
-        image: "",
-        name: "",
-        productId: 12321312,
-        detail: ""
-      },
+      thumbnail: "https://images.unsplash.com/source-404?fm=eps&h=800&q=60&w=800",
+      name: "Kẹo dẻo",
+      productId: 123213132,
+      detail: "Kẹo dẻo mềm thơm ngon",
     },
     {
       type: "video",
-      data: {
-        image: "",
-        name: "",
-        productId: 12323312,
-        detail: ""
-      },
+      thumbnail: "https://images.unsplash.com/source-404?fm=eps&h=800&q=60&w=800",
+      name: "Kẹo dẻo",
+      productId: 123234312,
+      detail: "Kẹo dẻo mềm thơm ngon",
     },
   ];
 

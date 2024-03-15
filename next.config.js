@@ -7,10 +7,6 @@ const nextConfig = {
 	rewrites() {
 		return [
 			{
-				source: '/tim-kiem',
-				destination: '/search',
-			},
-			{
 				source: '/:slug',
 				destination: '/category',
 			},
@@ -18,6 +14,12 @@ const nextConfig = {
 				source: '/san-pham',
 				destination: '/category',
 			},
+			{
+				source: '/tim-kiem',
+				destination: '/search',
+			},
+
+
 			{
 				source: '/:catSlug/:slug',
 				destination: '/product',
@@ -27,3 +29,4 @@ const nextConfig = {
 }
 
 module.exports = nextConfig
+

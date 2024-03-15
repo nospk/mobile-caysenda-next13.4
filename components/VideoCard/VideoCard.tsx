@@ -7,7 +7,7 @@ interface Video {
   name: string;
   detail: string;
   image: string;
-  id: string;
+  id: number;
 }
 
 const VideoCard: FC<Video> = React.memo(function card(props) {

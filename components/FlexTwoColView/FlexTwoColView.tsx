@@ -5,6 +5,7 @@ import ProductCard from "@/components/ProductCard";
 import ProductService from "@/services/Product.service";
 import type { Product } from "@/types/Product";
 import type { T_ProductRelated } from "@/types/ProductRelated";
+import type { T_ProductSuggest } from "@/types/ProductSuggest";
 import type { Banner } from "@/types/banner";
 import type { KeyWord } from "@/types/keyword";
 import type { Video } from "@/types/video";
@@ -16,19 +17,17 @@ import useScroll from "@/components/hook/useScroll";
 import VideoCard from "../VideoCard";
 import { ProductListParamType } from "@/services/types/ProductRequestType";
 import { convertNameToURL } from "@/lib/common";
-type T_Data = Banner | KeyWord | Product | Video | T_ProductRelated;
+type T_Data = Banner | KeyWord | Product | Video | T_ProductRelated | T_ProductSuggest;
 interface Props {
   banners?: Banner;
   keyWords?: KeyWord;
-  data: Product[] | Video[] | T_ProductRelated[];
+  data: Product[] | Video[] | T_ProductRelated[] | T_ProductSuggest[];
   maxPage: number;
   requestData: ProductListParamType;
 }
 
 const renderView = (data: T_Data[]) => {
-
   let view = data.map((item: T_Data, index: number) => {
-
     if (item.type === "banner") return <BannerCard key="banner" banner={item.data} />;
     if (item.type === "product")
       return (
@@ -48,16 +47,20 @@ const renderView = (data: T_Data[]) => {
       );
     if (item.type === "keyword") return <KeyWordCard key="keyword" keywords={item.data} />;
     if (item.type === "video")
+      return <VideoCard key={index} name={item.name} detail={item.detail} image={item.thumbnail} id={item.productId} />;
+    if (item.type === "product-recent")
       return (
-        <VideoCard
-          key={index}
-          name="Kẹo dẻo"
-          detail="Kẹo dẻo mềm thơm ngon"
-          image="https://images.unsplash.com/source-404?fm=eps&h=800&q=60&w=800"
-          id="349938442291"
+        <ProductRelatedCard
+          key={item.name + index}
+          name={item.name}
+          price={item.price[0].money}
+          sold={item.sold}
+          image={item.thumbnail}
+          unit={item.unit}
+          link={`${"\\" + item.category_slug + "\\" + convertNameToURL(item.name)}`}
         />
       );
-    if (item.type === "product-recent")
+    if (item.type === "product-suggest")
       return (
         <ProductRelatedCard
           key={item.name + index}
